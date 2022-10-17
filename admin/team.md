@@ -34,3 +34,6 @@ Hi! I’m a fourth year math&CS student at ERC. I came to CSE 110 to dig into my
 
 - [Raymond Romero](https://raymond50romero.github.io/): 
   I’m a third year transfer Mathematics-Computer Science student. I enrolled into cse110 because I look forward to learning how to develop software on a team and better develop methods on how to be a better software engineer. 
+
+- [Tatsuo Kumamoto](https://takkunkuma.github.io/):
+  I’m a fourth year Applied Mathematics student. I decided to take cse 110 because I wanted to know what software engineering is really about! I also hope to get to know some tools for developing :)
