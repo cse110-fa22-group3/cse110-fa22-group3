@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+button,
+input {
+  outline: none;
+  border: none;
+}
+img {
+  width: 100%;
+  vertical-align: middle;
+}
+.content {
+  padding: 20px;
+  width: 1200px;
+  margin: 50px auto;
+  border-radius: 25px;
+  border: 5px solid #000;
+}
+.content .head {
+  margin-bottom: 30px;
+  height: 50px;
+}
+.content .head .back {
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+.content .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.content .row .item {
+  margin-bottom: 30px;
+  padding: 30px;
+  width: 350px;
+  border-radius: 45px;
+  border: 5px solid #000;
+  text-align: center;
+  cursor: pointer;
+}
+.content .row .item .text {
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content .row .item .text img {
+  width: 35px;
+  height: auto;
+}
+.content .row .item .text p {
+  font-size: 25px;
+}
+.content .row .item h3 {
+  text-align: left;
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+.content .row .item span {
+  font-size: 20px;
+}
+.content .row .item:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 45px;
+}
