@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/popup.css">
+    
 </head>
 <body>
     <div class="content">
@@ -40,10 +42,43 @@
                 <span>1 January 1998</span>
             </div>
            
-            <div class="item">
+            <div class="item" id="new">
                 Add+
             </div>
         </div>
     </div>
+    <!-- popup starts -->
+    <div id="background" class="back">
+        <div id="div1" class="content">
+            <div id="close">
+                <span id="close-button">×</span>
+                <h2>header</h2>
+            </div>
+            <div id="div2">
+                <form  comment="Haochen:use action to store user info locally" class="create">
+                    <!-- <fieldset>jjk</fieldset>
+                    <input type="text">
+                    <textarea name="a" id="b" cols="30" rows="10">jjk</textarea>
+                    <datalist>
+                        <option value="e">jjk</option>
+                    </datalist>
+                    <select name="c" id="d"></select>
+                    <button>jjk</button> -->
+                    <label for="birthday">
+                        Birthday:
+                        <input type="text" id="birthday"  placeholder="mm/dd/yyyy" pattern="\d\d/\d\d/\d\d\d\d" required>
+                    </label>
+                    <!-- <label for="">
+                        Birthday:
+                        <input type="text" id="birthday" required> -->
+                    <button type="submit">create roommate</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- popup ends -->
+    <!-- <script src="js/create-roommate.js"></script> -->
+    <!-- <script src="js/edit-roommate.js"></script> -->
+    <script src="js/main.js" type="module"></script>
 </body>
 </html>
