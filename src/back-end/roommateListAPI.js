@@ -29,7 +29,15 @@ export function createRoommate(formData){
  * @param {Object} formData An object with form data regarding new roommate
  */
 export function updateRoommate(formData){
-
+    //gather data inputted from form
+    let roommateInfo = formData
+    let roommateList = JSON.parse(localStorage.getItem('RoommateListData'))["Roommates"];
+    for(let i = 0; i < roommateList.length; i++){
+        if(roommateList[i]["name"] == roommateInfo["name"]){
+            roommateList[i] = roommateInfo;
+        }
+    }
+    localStorage.setItem("RoommateListData", JSON.stringify(roommateList))
 }
 
 /**
@@ -54,8 +62,8 @@ export function updateRoommate(formData){
         let roommate = JSON.parse(localStorage.getItem('RoommateListData'));
         return roommate["Roommates"];
     }
-}
-    
+} 
+
 /**
  * Reads 'RoommateListData' from local storage and removes all instances
  * of a specified name from the list of roommates array. No change is made
