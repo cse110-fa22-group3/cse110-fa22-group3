@@ -5,21 +5,25 @@
  * @param {Object} formData An object with form data regarding new roommate
  */
 export function createRoommate(formData){
-    //gather data inputted from form
-    let roommateInfo = formData
-    //check to see if this is the first time the user is attempting to add roommates
+    //Check if the RoommateListData key is contained within local storage
+    //If not then create it, otherwise just append to roommates list and update id
     if(localStorage.getItem("RoommateListData")  === null){
+        formData["id"] = 0;
         let firstRoommate = {
             "Roommates" : [
-                roommateInfo
-            ]
+                formData  
+            ],
+            "idCount" : 1
         };
         localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
     }
     else{
-        let roommateList = JSON.parse(localStorage.getItem('RoommateListData'));
-        roommateList["Roommates"].push(roommateInfo);
-        localStorage.setItem("RoommateListData", JSON.stringify(roommateList))
+        let roommateInfo = formData
+        let apiData = JSON.parse(localStorage.getItem("RoommateListData"));
+        roommateInfo["id"] = apiData["idCount"];
+        apiData["idCount"] += 1;
+        apiData["Roommates"].push(roommateInfo);
+        localStorage.setItem("RoommateListData", JSON.stringify(apiData))
     }
 }
 
@@ -53,9 +57,10 @@ export function updateRoommate(formData){
         let firstRoommate = {
             "Roommates" : [
                 
-            ]
+            ],
+            "idCount" : 0
         };
-        localStorage.setItem("RoommateListData", JSON.stringify(firstRoomate));
+        localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
         return JSON.parse(localStorage.getItem('RoommateListData'))["Roommates"];
     }else{
 
@@ -65,12 +70,12 @@ export function updateRoommate(formData){
 } 
 
 /**
- * Reads 'RoommateListData' from local storage and removes all instances
- * of a specified name from the list of roommates array. No change is made
- * to the array if the name is not found.
- * @param {String} name Name of the roommate to remove
+ * Reads 'RoommateListData' from local storage and removes the instance
+ * of a specified roommate based on id from the list of roommates array. 
+ * No change is made to the array if the id is not found.
+ * @param {Int} id Id of the roommate to remove
  */
-export function deleteRoommate(name)
+export function deleteRoommate(id)
 {
     //get the RoommateListData from local storage
     const roommateList = JSON.parse(localStorage.getItem('RoommateListData'));
@@ -81,12 +86,11 @@ export function deleteRoommate(name)
     for (let i = 0; i < roommates.length; i++)
     {
         //check if the name matches our query
-        if (roommates[i]['name'] === name)
+        if (roommates[i]['id'] == id)
         {
             //remove the roommate from the list of roommates
             roommates.splice(i, 1);
-            //decrement to make sure we don't skip a roommate
-            i--;
+            return;
         }
     }
 
