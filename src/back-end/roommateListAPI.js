@@ -33,6 +33,29 @@ export function updateRoommate(formData){
 }
 
 /**
+ * Reads 'RoommateListData' data from local storage 
+ * and returns an array of all the roommates information
+ * found. If nothing in local storage returns empty array
+ * @returns {Array<object>} An array of RoommateListData
+ */
+ export function readRoommate(){
+
+    //check to see if this is the first time the user is attempting to add roommates
+    if(localStorage.getItem("RoommateListData")  === null){
+        let firstRoommate = {
+            "Roommates" : [
+                
+            ]
+        };
+        localStorage.setItem("RoommateListData", JSON.stringify(firstRoomate));
+        return JSON.parse(localStorage.getItem('RoommateListData'))["Roommates"];
+    }else{
+
+        let roommate = JSON.parse(localStorage.getItem('RoommateListData'));
+        return roommate["Roommates"];
+    }
+    
+/**
  * Reads 'RoommateListData' from local storage and removes all instances
  * of a specified name from the list of roommates array. No change is made
  * to the array if the name is not found.
