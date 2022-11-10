@@ -54,6 +54,7 @@ export function updateRoommate(formData){
         let roommate = JSON.parse(localStorage.getItem('RoommateListData'));
         return roommate["Roommates"];
     }
+}
     
 /**
  * Reads 'RoommateListData' from local storage and removes all instances
