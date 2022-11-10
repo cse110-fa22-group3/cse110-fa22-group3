@@ -31,7 +31,6 @@ export function createRoommate(formData){
 export function updateRoommate(formData){
 
 }
-
 /**
  * Reads 'RoommateListData' data from local storage 
  * and returns an array of all the roommates information
@@ -39,13 +38,19 @@ export function updateRoommate(formData){
  * @returns {Array<object>} An array of RoommateListData
  */
  export function readRoommate(){
-    //stores the roommate information in an array
-    const roommate = JSON.parse(localStorage.getItem('RoommateListData'));
 
-    //if the array is empty return a new array for frontend
-    if(roommate == null){
-        return new Array();
+    //check to see if this is the first time the user is attempting to add roommates
+    if(localStorage.getItem("RoommateListData")  === null){
+        let firstRoommate = {
+            "Roommates" : [
+                
+            ]
+        };
+        localStorage.setItem("RoommateListData", JSON.stringify(firstRoomate));
+        return JSON.parse(localStorage.getItem('RoommateListData'))["Roommates"];
     }else{
-        return roommate;
+
+        let roommate = JSON.parse(localStorage.getItem('RoommateListData'));
+        return roommate["Roommates"];
     }
 }
