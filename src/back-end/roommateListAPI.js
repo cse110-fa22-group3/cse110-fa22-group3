@@ -31,3 +31,21 @@ export function createRoommate(formData){
 export function updateRoommate(formData){
 
 }
+
+/**
+ * Reads 'RoommateListData' data from local storage 
+ * and returns an array of all the roommates information
+ * found. If nothing in local storage returns empty array
+ * @returns {Array<object>} An array of RoommateListData
+ */
+ export function readRoommate(){
+    //stores the roommate information in an array
+    const roommate = JSON.parse(localStorage.getItem('RoommateListData'));
+
+    //if the array is empty return a new array for frontend
+    if(roommate == null){
+        return new Array();
+    }else{
+        return roommate;
+    }
+}
