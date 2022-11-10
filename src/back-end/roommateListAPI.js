@@ -1,26 +1,25 @@
 //roommateListAPI.js
-
 /**
  * Reads formData from the form that creates a new rooomate.
  * Then stores this information within the localStorage API.
  * @param {Object} formData An object with form data regarding new roommate
  */
-export function createRoomate(formData){
+export function createRoommate(formData){
     //gather data inputted from form
-    let roomateInfo = formData
-    //check to see if this is the first time the user is attempting to add roomates
+    let roommateInfo = formData
+    //check to see if this is the first time the user is attempting to add roommates
     if(localStorage.getItem("RoommateListData")  === null){
-        let firstRoomate = {
+        let firstRoommate = {
             "Roommates" : [
-                roomateInfo
+                roommateInfo
             ]
         };
-        localStorage.setItem("RoommateListData", JSON.stringify(firstRoomate));
+        localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
     }
     else{
-        let roomateList = JSON.parse(localStorage.getItem('RoommateListData'));
-        roomateList["Roommates"].push(roomateInfo);
-        localStorage.setItem("RoommateListData", JSON.stringify(roomateList))
+        let roommateList = JSON.parse(localStorage.getItem('RoommateListData'));
+        roommateList["Roommates"].push(roommateInfo);
+        localStorage.setItem("RoommateListData", JSON.stringify(roommateList))
     }
 }
 
@@ -29,6 +28,6 @@ export function createRoomate(formData){
  * Then stores this information within the localStorage API.
  * @param {Object} formData An object with form data regarding new roommate
  */
-export function updateRoomate(formData){
+export function updateRoommate(formData){
 
 }
