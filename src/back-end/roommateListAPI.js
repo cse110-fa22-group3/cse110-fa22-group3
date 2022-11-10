@@ -45,6 +45,19 @@ export function deleteRoommate(name)
     //get the list of roommates from RoommateListData
     const roommates = roommateList['Roommates'];
 
+    //iterate through the list of roommates
+    for (let i = 0; i < roommates.length; i++)
+    {
+        //check if the name matches our query
+        if (roommates[i]['name'] === name)
+        {
+            //remove the roommate from the list of roommates
+            roommates.splice(i, 1);
+            //decrement to make sure we don't skip a roommate
+            i--;
+        }
+    }
+
     //replace the old list of roommates
     roommateList["Roommates"] = roommates;
     //replace the RoommateListData in local storage
