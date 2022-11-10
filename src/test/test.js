@@ -1,7 +1,7 @@
 //test.js
 
-//Supplies the information for the create API for roomateList
-import { createRoomate } from "../back-end/roommateListAPI.js";
+//Supplies the information for the create API for roommateList
+import { createRoommate } from "../back-end/roommateListAPI.js";
 
 const form  = document.getElementById('signup');
 
@@ -17,5 +17,5 @@ form.addEventListener('submit', (event) => {
         "age" : age
     };
     console.log(formData)
-    createRoomate(formData);
+    createRoommate(formData);
 });
