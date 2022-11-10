@@ -63,6 +63,7 @@ export function updateRoommate(formData){
         return roommate["Roommates"];
     }
 } 
+
 /**
  * Reads 'RoommateListData' from local storage and removes all instances
  * of a specified name from the list of roommates array. No change is made
