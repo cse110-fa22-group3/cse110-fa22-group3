@@ -1,7 +1,7 @@
 //test.js
 
 //Supplies the information for the create API for roommateList
-import { createRoommate, deleteRoommate } from "../back-end/roommateListAPI.js";
+import { createRoommate, deleteRoommate } from "../../back-end/roommateListAPI.js";
 
 const form  = document.getElementById('signup');
 
