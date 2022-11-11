@@ -192,6 +192,16 @@ export function reOpenChore(id){
     localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
 }
 
+/**
+ * clearArchive focues on reinitializing the archived array with a new empty
+ * array, so that we can clear out our backlog of issues.
+ */
+export function clearArchive(){
+    let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
+    choresAPIData["archived"] = [];
+    choresAPIData["closedChoresCount"] = 0;
+    localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
+}
 //TO DO IF SPECIFIC DATA IS NEEDED
 export function updateChoreCounterForRoommate(roommateId){
 
