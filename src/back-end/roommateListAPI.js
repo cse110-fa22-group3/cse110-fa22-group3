@@ -35,13 +35,13 @@ export function createRoommate(formData){
 export function updateRoommate(formData){
     //gather data inputted from form
     let roommateInfo = formData
-    let roommateList = JSON.parse(localStorage.getItem('RoommateListData'))["Roommates"];
-    for(let i = 0; i < roommateList.length; i++){
-        if(roommateList[i]["name"] == roommateInfo["name"]){
-            roommateList[i] = roommateInfo;
+    let roommateData = JSON.parse(localStorage.getItem('RoommateListData'));
+    for(let i = 0; i < roommateData['Roommates'].length; i++){
+        if(roommateData['Roommates'][i]["id"] == roommateInfo["id"]){
+            roommateData['Roommates'][i] = roommateInfo;
         }
     }
-    localStorage.setItem("RoommateListData", JSON.stringify(roommateList))
+    localStorage.setItem("RoommateListData", JSON.stringify(roommateData))
 }
 
 /**
@@ -81,7 +81,7 @@ export function deleteRoommate(id)
     const roommateList = JSON.parse(localStorage.getItem('RoommateListData'));
     //get the list of roommates from RoommateListData
     const roommates = roommateList['Roommates'];
-
+    // console.log(roommates);
     //iterate through the list of roommates
     for (let i = 0; i < roommates.length; i++)
     {
@@ -90,12 +90,13 @@ export function deleteRoommate(id)
         {
             //remove the roommate from the list of roommates
             roommates.splice(i, 1);
-            return;
+            break;
         }
     }
-
+    
     //replace the old list of roommates
     roommateList["Roommates"] = roommates;
+    console.log(roommateList);
     //replace the RoommateListData in local storage
     localStorage.setItem("RoommateListData", JSON.stringify(roommateList));
 }
