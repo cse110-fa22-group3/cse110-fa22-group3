@@ -1,7 +1,7 @@
 //test.js
 
 //Supplies the information for the create API for roommateList
-import { createRoommate } from "../back-end/roommateListAPI.js";
+import { createRoommate, deleteRoommate } from "../../back-end/roommateListAPI.js";
 
 const form  = document.getElementById('signup');
 
@@ -19,3 +19,7 @@ form.addEventListener('submit', (event) => {
     console.log(formData)
     createRoommate(formData);
 });
+
+document.getElementById("delete-button").addEventListener('click', (event) =>{
+    deleteRoommate(1);
+})
