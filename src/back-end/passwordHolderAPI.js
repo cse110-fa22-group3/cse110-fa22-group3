@@ -1,4 +1,11 @@
 //passwordHolderAPI.js
+
+/**
+ * readPasswords handles populating the password information commonly
+ * shared by all roommates in a group. First function called within the
+ * init function when initializing the passwordHolder page.
+ * @returns {Array<object>} with the JSON data of each password. 
+ */
 export function readPasswords(){
     if(localStorage.getItem("PasswordHolderData")  === null){
         let firstPasswordList = {
@@ -12,6 +19,14 @@ export function readPasswords(){
         return JSON.parse(localStorage.getItem('PasswordHolderData'))["Passwords"];
     }
 }
+
+/**
+ * createPassword handles adding a new commonly shared password into the
+ * localStorage so that we can store a new password for the rooommate group
+ * Establishes the data we are tracking for a commonly shared password.
+ * @param {Object} formData provided by JS file that gives us the data for 
+ * fields of a new password.
+ */
 export function createPassword(formData){
     let apiData = JSON.parse(localStorage.getItem('PasswordHolderData'));
     let newPassword = {
@@ -25,6 +40,13 @@ export function createPassword(formData){
     localStorage.setItem("PasswordHolderData",JSON.stringify(apiData));
 }
 
+/**
+ * updatePassword handles editing an existing commonly shared password and
+ * putting the changes into the localStorage so that we can store an
+ * updated password for the rooommate group.
+ * @param {Object} formData provided by JS file that gives us the fields
+ * @param {Int} id that indicates which password we are trying to update
+ */
 export function updatePassword(id,formData){
     let apiData = JSON.parse(localStorage.getItem('PasswordHolderData'));
     for(let i = 0; i < apiData["Passwords"];i++){
@@ -38,6 +60,12 @@ export function updatePassword(id,formData){
     localStorage.setItem("PasswordHolderData",JSON.stringify(apiData));
 }
 
+/**
+ * deletePassword handles deleting an existing commonly shared password and
+ * putting the changes into the localStorage so that we can remove a 
+ * password for the rooommate group.
+ * @param {Int} id that indicates which password we are trying to delete
+ */
 export function deletePassword(id){
     let apiData = JSON.parse(localStorage.getItem('PasswordHolderData'));
     for(let i = 0; i < apiData["Passwords"];i++){
