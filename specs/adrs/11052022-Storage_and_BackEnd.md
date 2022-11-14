@@ -1,7 +1,7 @@
 ## Context and Problem Statement
 
-How to handle storage locally? 
-How to modify backend operation? 
+- How to handle storage locally? 
+- How to modify backend operation? 
 
 ## Decision 
 
