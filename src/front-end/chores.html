@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Chores List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .float-container {
+            border: 3px solid #fff;
+            padding: 20px;
+            background-color: gray;
+        }
+        
+        .float-child {
+            width: 30%;
+            float: left;
+            padding: 20px;
+            border: 2px solid red;
+            background-color: beige;
+        }
+        
+        p,
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+        }
+        
+        #back {
+            position: fixed;
+            left: 10;
+            top: 10;
+            border: 3px solid black;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body style="background-color:grey;">
+    <div id="back">
+        <p>Go Back</p>
+        <!--"home" button-->
+    </div>
+    <div class="float-container">
+        <h1>List of Chores</h1>
+        <div class="float-child">
+            <p>
+                <h2>Laundry</h2>
+                <h3>Roomate 1</h3>
+            </p>
+        </div>
+        <div class="float-child">
+            <p>
+                <h2>Cleaning Bathroom</h2>
+                <h3>Roomate 1</h3>
+            </p>
+        </div>
+        <div class="float-child">
+            <p>
+                <h2>Cleaning Kitchen</h2>
+                <h3>Roomate 1</h3>
+            </p>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
