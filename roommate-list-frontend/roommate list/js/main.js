@@ -12,7 +12,7 @@ function initPage(roommates){
 	const row = document.querySelector('.row');
 
 	roommates.forEach(roommate => {
-		const entry = document.createElement('roommate');
+		const entry = document.createElement('roommate-card');
 		entry.data = roommate;
 		row.insertBefore(entry, document.querySelector('#new'));
 	});
@@ -59,7 +59,7 @@ export function initFormHandler(){
 		/*console.log(formdata.entries())
 		for(let pair of formdata.entries())
 			data[pair[0]]=pair[1]
-		let roommate=document.createElement('roommate')
+		let roommate=document.createElement('roommate-card')
 		roommate.data=data*/
 		/////////////////EDIT THIS
 		//document.querySelector('.row').insertBefore(roommate,document.querySelector('#new'))

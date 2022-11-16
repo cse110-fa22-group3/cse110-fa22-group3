@@ -58,4 +58,4 @@ class Roommate extends HTMLElement {
         `
     }
 }
-customElements.define('roommate',Roommate)
+customElements.define('roommate-card', Roommate)
