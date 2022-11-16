@@ -2,8 +2,8 @@ import {createRoommate, readRoommate, deleteRoommate, updateRoommate} from './ro
 
 window.addEventListener('DOMContentLoaded', init);
 
-/**
- * 
+/** Starts the program, all our function calls 
+ *  come from our init function
  */
 function init() {
 	//load the cards in the page with the current list of roommates
@@ -13,8 +13,9 @@ function init() {
 	initFormHandler();
 }
 
-/**
- * 
+/** initPage, reads in our roommates from the local storage 
+ *  creates a new element for each roommate that'll
+ *  be present on the page when it is loaded in
  * @param {*} roommates 
  */
 function initPage(roommates){
@@ -39,8 +40,10 @@ function initPage(roommates){
 	updateDelHandler();
 }	
 
-/**
- * 
+/** initFormHandler, adds the needed event handlers
+ * 	for when the submit button and creates a new roommate
+ * 	when it is is clicked and will also brings up a 
+ *  popup when it is clicked
  */
 function initFormHandler(){
 	//nodes for the add form, form popup, add, and close buttons
@@ -69,8 +72,9 @@ function initFormHandler(){
 	}
 }
 
-/**
- * 
+/** updateDelHandler, handles when a roommate-card gets deleted or updated 
+ *  will add the updated roommate list to localstorage. Provides a popup where 
+ *  people can input information for roommate update and delete
  */
 function updateDelHandler(){
 	//nodes for roommate cards, update form, form popup, delete, save, and close buttons
