@@ -49,10 +49,11 @@ function initFormHandler(){
 	let addBtn = document.querySelector('#new.item');
 	let closeBtn = document.getElementById('close_button_1');
 
-	//when submit button is clicked, submit the form and make a new roommate
+	//when submit button is clicked, submit the form and make a new roommate, hide the popup
 	addForm.addEventListener('submit', (event) =>
 	{
 		event.preventDefault();
+		addPopup.style.display = "none";
 		createRoommate(new FormData(addForm));
 		initPage(readRoommate());
 	});
@@ -92,8 +93,9 @@ function updateDelHandler(){
 				updatePopup.style.display = "none";
 			}
 
-			//when the delete button is clicked, delete the roommate
+			//when the delete button is clicked, delete the roommate, hide the popup
 			delBtn.onclick = function() {
+				updatePopup.style.display = "none";
 				deleteRoommate(event.target.id);
 				initPage(readRoommate());
 			}
