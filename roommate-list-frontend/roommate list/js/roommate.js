@@ -52,6 +52,9 @@ class Roommate extends HTMLElement {
             <div class="text">
                 <p>${data.hobbies}</p>
             </div>
+            <div class="text">
+                <p>${data.notes}</p>
+            </div>
         `
     }
 }

@@ -7,7 +7,6 @@ function init() {
 	let roommates = readRoommate();
 	initPage(roommates);
 	initFormHandler();
-
 }
 
 function initPage(roommates){
@@ -17,7 +16,6 @@ function initPage(roommates){
 		const entry = document.createElement('room-mate');
 		entry.data = roommate;
 		row.insertBefore(entry, document.querySelector('#new'));
-
 	});
 }	
 
