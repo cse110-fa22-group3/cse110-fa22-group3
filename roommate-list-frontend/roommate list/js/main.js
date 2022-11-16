@@ -78,12 +78,17 @@ function updateDelHandler(){
 	let updateForm = document.querySelector('form.update');
 	let updatePopup = document.querySelector('#background.update');
 	let delBtn = document.getElementById('delete_button');
-	let saveBtn = document.getElementById('save_button');
 	let closeBtn = document.getElementById('close_button_2');
 
 	//creating an event listener for each card
 	cards.forEach(card => {
 		card.addEventListener('click', (event) => {
+
+			//when submit button is clicked, submit the form and update the roommate, hide the popup
+			updateForm.addEventListener('submit', () => {
+				updateRoommate(new FormData(updateForm), event.target.id);
+				initPage(readRoommate());
+			})
 
 			//when the a card is clicked, show the popup
 			updatePopup.style.display = "block";
@@ -97,12 +102,6 @@ function updateDelHandler(){
 			delBtn.onclick = function() {
 				updatePopup.style.display = "none";
 				deleteRoommate(event.target.id);
-				initPage(readRoommate());
-			}
-
-			//when the update button is clicked, update the roommate
-			saveBtn.onclick = function() {
-				updateRoommate(new FormData(updateForm), event.target.id);
 				initPage(readRoommate());
 			}
 		});
