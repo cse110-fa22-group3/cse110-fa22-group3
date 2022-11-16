@@ -1,4 +1,4 @@
-import {createRoommate, readRoommate, deleteRoommate} from './roommateListAPI.js'
+import {createRoommate, readRoommate, deleteRoommate, updateRoommate} from './roommateListAPI.js'
 
 window.addEventListener('DOMContentLoaded', init);
 
@@ -70,6 +70,8 @@ function editDeleteHandler(){
 
 	let div = document.querySelector('.back2')
 	let btn_close = document.getElementById('close-button2')
+	let btn2 = document.getElementById('btn2')
+	let form_update = document.querySelector('form.update')
 
 	cards.forEach(card => {
 		card.addEventListener('click', (event) => {
@@ -81,6 +83,10 @@ function editDeleteHandler(){
 			btn_close.onclick = function close() {
 				div.style.display = "none";
 			}
+			btn2.onclick = function() {
+				updateRoommate(new FormData(form_update), event.target.id);
+				initPage(readRoommate());
+		}
 		});
 	});
 

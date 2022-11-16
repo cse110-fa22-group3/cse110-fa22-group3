@@ -40,13 +40,20 @@ export function createRoommate(formData){
  * Then stores this information within the localStorage API.
  * @param {Object} formData An object with form data regarding new roommate
  */
-export function updateRoommate(formData){
+export function updateRoommate(formData, id){
     //gather data inputted from form
-    let roommateInfo = formData
+    let roommate = {};
+    
+    for (let [key, value] of formData)
+    {
+            roommate[key] = value;
+    }
+
     let roommateData = JSON.parse(localStorage.getItem('RoommateListData'));
+
     for(let i = 0; i < roommateData['Roommates'].length; i++){
-        if(roommateData['Roommates'][i]["id"] == roommateInfo["id"]){
-            roommateData['Roommates'][i] = roommateInfo;
+        if(roommateData['Roommates'][i]["id"] == id){
+            roommateData['Roommates'][i] = roommate;
         }
     }
     localStorage.setItem("RoommateListData", JSON.stringify(roommateData))
