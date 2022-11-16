@@ -44,6 +44,7 @@ export function updateRoommate(formData, id){
     //gather data inputted from form
     let roommate = {};
     
+    roommate["id"] = id;
     for (let [key, value] of formData)
     {
             roommate[key] = value;

@@ -70,18 +70,23 @@ function editDeleteHandler(){
 
 	let div = document.querySelector('.back2')
 	let btn_close = document.getElementById('close-button2')
+	let btn_del = document.getElementById('del-button')
 	let btn2 = document.getElementById('btn2')
 	let form_update = document.querySelector('form.update')
 
 	cards.forEach(card => {
 		card.addEventListener('click', (event) => {
-			//deleteRoommate(event.target.id);
-			//initPage(readRoommate());
+
 
 			div.style.display = "block";
 			
 			btn_close.onclick = function close() {
 				div.style.display = "none";
+			}
+
+			btn_del.onclick = function() {
+				deleteRoommate(event.target.id);
+				initPage(readRoommate());
 			}
 			btn2.onclick = function() {
 				updateRoommate(new FormData(form_update), event.target.id);
