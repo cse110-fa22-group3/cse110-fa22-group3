@@ -1,12 +1,15 @@
+import './roomateListAPI.js'
+
 window.addEventListener('DOMContentLoaded', init);
+
 function init() {
 	//TODO:get data from backend and display,probably use an array?
-	addListeners()
-
+	let roommates = readRoommate();
+	initFormHandler();
 }
 
 // import {roommate} from './roommate'
-export function addListeners(){
+export function initFormHandler(){
 	let newBox=document.querySelector('#new.item')
 	let div = document.getElementById('background')
 	let btn_close = document.getElementById('close-button')
@@ -40,11 +43,19 @@ export function addListeners(){
 		e.preventDefault()//prevent page refreshing
 		let formdata=new FormData(form_create);
 		let data={}
+
+		////////////////EDIT THIS
 		console.log(formdata.entries())
 		for(let pair of formdata.entries())
 			data[pair[0]]=pair[1]
 		let roommate=document.createElement('room-mate')
 		roommate.data=data
+		/////////////////EDIT THIS
+	}
+}
+
+
+		/*
 		// TODO:stringify and store to backend
 		// below is directly inserting to DOM for showing how it works. 
 		// Maybe we want all the to be in an array and display the array
@@ -57,6 +68,4 @@ export function addListeners(){
 		//TODO: store updated data to backend
 	}
 	function del(e){
-
-	}
-}
+*/
