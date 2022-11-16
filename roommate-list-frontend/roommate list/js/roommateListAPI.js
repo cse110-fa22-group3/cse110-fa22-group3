@@ -4,7 +4,7 @@
  * Then stores this information within the localStorage API.
  * @param {Object} formData An object with form data regarding new roommate
  */
-export function createRoommate(formData){
+ export function createRoommate(formData){
     //Check if the RoommateListData key is contained within local storage
     //If not then create it, otherwise just append to roommates list and update id
     if(localStorage.getItem("RoommateListData")  === null){
