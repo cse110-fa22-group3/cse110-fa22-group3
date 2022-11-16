@@ -18,13 +18,6 @@ export function createRoommate(formData){
         localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
     }
     else{
-        /*let roommateInfo = formData
-        let apiData = JSON.parse(localStorage.getItem("RoommateListData"));
-        roommateInfo["id"] = apiData["idCount"];
-        apiData["idCount"] += 1;
-        apiData["Roommates"].push(roommateInfo);
-        localStorage.setItem("RoommateListData", JSON.stringify(apiData))*/
-
         let apiData = JSON.parse(localStorage.getItem("RoommateListData"));
         let roommate = {};
 

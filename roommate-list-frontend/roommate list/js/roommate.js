@@ -30,7 +30,7 @@ class Roommate extends HTMLElement {
             font-size: 25px;
           }
           h3 {
-            text-align: left;
+            text-align: center;
             font-size: 35px;
             margin-bottom: 20px;
           }

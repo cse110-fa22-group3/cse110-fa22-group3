@@ -18,7 +18,7 @@ function initPage(roommates){
 	roommates.forEach(roommate => {
 		const entry = document.createElement('roommate-card');
 		entry.data = roommate;
-		row.insertBefore(entry, document.querySelector('#new'));
+		row.insertBefore(entry, document.querySelector('#new.item'));
 	});
 }	
 
@@ -30,7 +30,20 @@ export function initFormHandler(){
 	let form_create = document.querySelector('form.create')
 	//let form_edit = document.querySelector('form.edit')
 
-	form_create.addEventListener('submit',create)
+	form_create.addEventListener('submit', (event) =>
+	{
+		event.preventDefault();
+		createRoommate(new FormData(form_create));
+		initPage(readRoommate());
+	});
+
+	newBox.onclick=function show() {
+		div.style.display = "block";
+	}
+	btn_close.onclick = function close() {
+		div.style.display = "none";
+	}
+
 	//form_edit.addEventListener('submit',edit)
 
 	//if we have an array, loop through the array to add edit and del event listener to each roommate
@@ -44,31 +57,6 @@ export function initFormHandler(){
 	// 	}
 	//  
 	// }
-
-	newBox.onclick=function show() {
-		div.style.display = "block";
-	}
-	btn_close.onclick = function close() {
-		div.style.display = "none";
-	}
-	function create(e){
-		// let birthday = document.querySelector('form #birthday').value
-		// TODO:create roommate element and save to backend
-		e.preventDefault()//prevent page refreshing
-		let formdata=new FormData(form_create);
-		//let data={}
-		createRoommate(formdata);
-		initPage(readRoommate());
-		//initPage(readRoommate());
-		////////////////EDIT THIS
-		/*console.log(formdata.entries())
-		for(let pair of formdata.entries())
-			data[pair[0]]=pair[1]
-		let roommate=document.createElement('roommate-card')
-		roommate.data=data*/
-		/////////////////EDIT THIS
-		//document.querySelector('.row').insertBefore(roommate,document.querySelector('#new'))
-	}
 }
 
 
