@@ -3,13 +3,17 @@ import {createRoommate, readRoommate} from './roommateListAPI.js'
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
-	let roommates = readRoommate();
-	initPage(roommates);
+	initPage(readRoommate());
 	initFormHandler();
 }
 
 function initPage(roommates){
 	const row = document.querySelector('.row');
+
+	while (row.childElementCount > 1)
+	{
+		row.removeChild(row.firstElementChild);
+	}
 
 	roommates.forEach(roommate => {
 		const entry = document.createElement('roommate-card');
@@ -54,6 +58,7 @@ export function initFormHandler(){
 		let formdata=new FormData(form_create);
 		//let data={}
 		createRoommate(formdata);
+		initPage(readRoommate());
 		//initPage(readRoommate());
 		////////////////EDIT THIS
 		/*console.log(formdata.entries())
