@@ -24,11 +24,11 @@
         </div>
     </div>
     <!-- popup starts -->
-    <div id="background" class="back">
+    <div id="background" class="back1">
         <div id="div1" class="content">
             <div id="close">
-                <span id="close-button">×</span>
-                <h2>header</h2>
+                <span id="close-button1">x</span>
+                <h2>ADD</h2>
             </div>
             <div id="div2">
                 <form HaochenComment="we can use action attribute to store user info locally if needed" class="create">
@@ -53,7 +53,7 @@
                         Hobbies:
                         <input type="text" id="hobbies"  name="hobbies" placeholder="hobby, hobby, etc.">
                     </label>
-                    <label for="hobbies">
+                    <label for="Notes">
                         Notes:
                         <input type="text" id="notes"  name="notes" placeholder="...">
                     </label>
@@ -63,6 +63,44 @@
         </div>
     </div>
     <!-- popup ends -->
-   
+
+    <div id="background" class="back2">
+        <div id="div1" class="content">
+            <div id="close">
+                <span id="close-button2">x</span>
+                <h2>UPDATE</h2>
+            </div>
+            <div id="div2">
+                <form HaochenComment="we can use action attribute to store user info locally if needed" class="create">
+                    <!-- various types of input we can use -->
+                    <!-- <fieldset>jjk</fieldset>
+                    <input type="text">
+                    <textarea name="a" id="b" cols="30" rows="10">jjk</textarea>
+                    <datalist>
+                        <option value="e">jjk</option>
+                    </datalist>
+                    <select name="c" id="d"></select>
+                    <button>jjk</button> -->
+                    <label for="name">
+                        Name:
+                        <input type="text" id="name"  name="name" placeholder="First Last" required>
+                    </label>
+                    <label for="birthday">
+                        Birthday:
+                        <input type="text" id="birthday"  name="birthday" placeholder="mm/dd/yyyy" pattern="\d\d/\d\d/\d\d\d\d" required>
+                    </label>
+                    <label for="hobbies">
+                        Hobbies:
+                        <input type="text" id="hobbies"  name="hobbies" placeholder="hobby, hobby, etc.">
+                    </label>
+                    <label for="Notes">
+                        Notes:
+                        <input type="text" id="notes"  name="notes" placeholder="...">
+                    </label>
+                    <button type="submit">create roommate</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

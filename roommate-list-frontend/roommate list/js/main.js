@@ -1,4 +1,4 @@
-import {createRoommate, readRoommate} from './roommateListAPI.js'
+import {createRoommate, readRoommate, deleteRoommate} from './roommateListAPI.js'
 
 window.addEventListener('DOMContentLoaded', init);
 
@@ -28,8 +28,10 @@ function initPage(roommates){
 // import {roommate} from './roommate'
 function initFormHandler(){
 	let newBox=document.querySelector('#new.item')
-	let div = document.getElementById('background')
-	let btn_close = document.getElementById('close-button')
+	//let div = document.getElementById('background')
+	//let btn_close = document.getElementById('close-button')
+	let div = document.querySelector('.back1')
+	let btn_close = document.getElementById('close-button1')
 	let form_create = document.querySelector('form.create')
 	//let form_edit = document.querySelector('form.edit')
 
@@ -66,11 +68,23 @@ function initFormHandler(){
 function editDeleteHandler(){
 	let cards = document.querySelectorAll("roommate-card");
 
+	let div = document.querySelector('.back2')
+	let btn_close = document.getElementById('close-button2')
+
 	cards.forEach(card => {
 		card.addEventListener('click', (event) => {
-			console.log(event.target.id);
+			//deleteRoommate(event.target.id);
+			//initPage(readRoommate());
+
+			div.style.display = "block";
+			
+			btn_close.onclick = function close() {
+				div.style.display = "none";
+			}
 		});
 	});
+
+
 }
 
 		/*
