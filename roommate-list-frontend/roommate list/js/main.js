@@ -29,14 +29,14 @@ function initPage(roommates){
 
 	//add a card for each roommate in the list
 	roommates.forEach(roommate => {
-		const card = document.createElement('roommate_card');
+		const card = document.createElement('roommate-card');
 		card.setAttribute('id', roommate["id"]);
 		card.data = roommate;
 		row.insertBefore(card, document.querySelector('#new.item'));
 	});
 
-	//initialize the edit/delete functionality for when the card is clicked
-	editDeleteHandler();
+	//initialize the update/delete functionality for when the card is clicked
+	updateDelHandler();
 }	
 
 /**
@@ -71,11 +71,11 @@ function initFormHandler(){
 /**
  * 
  */
-function editDeleteHandler(){
-	//nodes for roommate cards, edit form, form popup, delete, save, and close buttons
-	let cards = document.querySelectorAll('roommate_card');
-	let editForm = document.querySelector('form.update');
-	let editPopup = document.querySelector('#background.update');
+function updateDelHandler(){
+	//nodes for roommate cards, update form, form popup, delete, save, and close buttons
+	let cards = document.querySelectorAll('roommate-card');
+	let updateForm = document.querySelector('form.update');
+	let updatePopup = document.querySelector('#background.update');
 	let delBtn = document.getElementById('delete_button');
 	let saveBtn = document.getElementById('save_button');
 	let closeBtn = document.getElementById('close_button_2');
@@ -85,11 +85,11 @@ function editDeleteHandler(){
 		card.addEventListener('click', (event) => {
 
 			//when the a card is clicked, show the popup
-			editPopup.style.display = "block";
+			updatePopup.style.display = "block";
 			
 			//when the close button is clicked, hide the popup
 			closeBtn.onclick = function close() {
-				editPopup.style.display = "none";
+				updatePopup.style.display = "none";
 			}
 
 			//when the delete button is clicked, delete the roommate
@@ -100,7 +100,7 @@ function editDeleteHandler(){
 
 			//when the update button is clicked, update the roommate
 			saveBtn.onclick = function() {
-				updateRoommate(new FormData(editForm), event.target.id);
+				updateRoommate(new FormData(updateForm), event.target.id);
 				initPage(readRoommate());
 			}
 		});
