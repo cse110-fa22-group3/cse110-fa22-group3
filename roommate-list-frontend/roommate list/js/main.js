@@ -83,6 +83,48 @@ function updateDelHandler(){
 	//creating an event listener for each card
 	cards.forEach(card => {
 		card.addEventListener('click', (event) => {
+			//roommate variables
+			let roommates = readRoommate();
+			let roommate;
+
+			//grabbing the right specific roommate
+			for (let i = 0; i < roommates.length; i++)
+			{
+
+				if (roommates[i]['id'] == event.target.id)
+				{
+					roommate = roommates[i];
+					break;
+				}
+			}
+
+			//updating the form HTML to prefill it with the roommate's data
+			updateForm.innerHTML = 
+			`<fieldset>
+				<label for="name">
+					Name:
+					<input type="text" id="name"  name="name" value = "${roommate.name}" placeholder="First Last" required>
+				</label>
+			</fieldset>
+			<fieldset>
+				<label for="birthday">
+					Birthday:
+					<input type="text" id="birthday"  name="birthday" value = "${roommate.birthday}" placeholder="mm/dd/yyyy" pattern="\\d\\d/\\d\\d/\\d\\d\\d\\d" required>
+				</label>
+			</fieldset>
+			<fieldset>
+				<label for="hobbies">
+					Hobbies:
+					<input type="text" id="hobbies"  name="hobbies" value = "${roommate.hobbies}" placeholder="hobby, hobby, etc.">
+				</label>
+			</fieldset>
+			<fieldset>
+				<label for="notes">
+					Notes:
+					<input type="text" id="notes"  name="notes" value = "${roommate.notes}" placeholder="...">
+				</label>
+			</fieldset>
+			<button type="submit" id="save_button">SAVE</button>`;
 
 			//when submit button is clicked, submit the form and update the roommate, hide the popup
 			updateForm.addEventListener('submit', () => {
