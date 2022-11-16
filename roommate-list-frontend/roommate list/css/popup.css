@@ -38,7 +38,19 @@
     flex-direction: column;
     justify-content: space-between;
 }
+form #name{
+    height: 30px;
+    font-size: x-large;
+}
 form #birthday{
+    height: 30px;
+    font-size: x-large;
+}
+form #hobbies{
+    height: 30px;
+    font-size: x-large;
+}
+form #notes{
     height: 30px;
     font-size: x-large;
 }
