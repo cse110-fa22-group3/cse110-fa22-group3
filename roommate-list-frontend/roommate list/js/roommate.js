@@ -41,14 +41,17 @@ class Roommate extends HTMLElement {
         this.shadow.append(style)
     }
     set data(data){
+      if (!data) return;
         let roommate=this.shadow.querySelector('div')
         roommate.innerHTML=`
-            <h3>People 3</h3>
+            <h3>${data.name}</h3>
             <div class="text">
                 <img src="./images/icon-1.png" alt="">
-                <p>Birthday</p>
+                <p>${data.birthday}</p>
             </div>
-            <span>${data.birthday}</span>
+            <div class="text">
+                <p>${data.hobbies}</p>
+            </div>
         `
     }
 }
