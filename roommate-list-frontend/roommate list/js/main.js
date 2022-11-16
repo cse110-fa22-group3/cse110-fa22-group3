@@ -1,12 +1,13 @@
-import {readRoommate} from './roommateListAPI.js'
+import {createRoommate, readRoommate} from './roommateListAPI.js'
 
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
 	//TODO:get data from backend and display,probably use an array?
-	//let roommates = readRoommate();
+	let roommates = readRoommate();
+	initPage(roommates);
 	initFormHandler();
-	//initPage(roommates);
+
 }
 
 function initPage(roommates){
@@ -15,7 +16,7 @@ function initPage(roommates){
 	roommates.forEach(roommate => {
 		const entry = document.createElement('room-mate');
 		entry.data = roommate;
-		roommate.insertBefore(roommate, document.querySelector('#new'));
+		row.insertBefore(entry, document.querySelector('#new'));
 
 	});
 }	
@@ -54,16 +55,16 @@ export function initFormHandler(){
 		// TODO:create roommate element and save to backend
 		e.preventDefault()//prevent page refreshing
 		let formdata=new FormData(form_create);
-		let data={}
-
+		//let data={}
+		createRoommate(formdata);
 		////////////////EDIT THIS
-		console.log(formdata.entries())
+		/*console.log(formdata.entries())
 		for(let pair of formdata.entries())
 			data[pair[0]]=pair[1]
 		let roommate=document.createElement('room-mate')
-		roommate.data=data
+		roommate.data=data*/
 		/////////////////EDIT THIS
-		document.querySelector('.row').insertBefore(roommate,document.querySelector('#new'))
+		//document.querySelector('.row').insertBefore(roommate,document.querySelector('#new'))
 	}
 }
 
