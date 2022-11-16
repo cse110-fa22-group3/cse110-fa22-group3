@@ -11,17 +11,35 @@
         }
         
         .float-container {
-            border: 3px solid #fff;
             padding: 20px;
-            background-color: gray;
+        }
+
+        .chores-container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .float-child:hover {
+            cursor: pointer;
         }
         
         .float-child {
-            width: 30%;
-            float: left;
-            padding: 20px;
-            border: 2px solid red;
-            background-color: beige;
+            width: 25%;
+            
+            padding: 10px;
+            border: 3px solid black;
+            box-shadow: 0px 5px black;
+            border-radius: 30px;
+            background-color: white;
+            margin: 20px;
+        }
+
+        .add-chore {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         p,
@@ -36,35 +54,69 @@
             left: 10;
             top: 10;
             border: 3px solid black;
+            border-radius: 10px;
             background-color: white;
+            color: black;
+            text-decoration: none;
+            padding: 0px 20px;
+            box-shadow: 0px 5px black;
         }
     </style>
 </head>
 
-<body style="background-color:grey;">
-    <div id="back">
+<body style="background-color:lightblue;">
+    <a id="back" href="index.html">
         <p>Go Back</p>
         <!--"home" button-->
-    </div>
+    </a>
     <div class="float-container">
         <h1>List of Chores</h1>
-        <div class="float-child">
-            <p>
-                <h2>Laundry</h2>
-                <h3>Roomate 1</h3>
-            </p>
-        </div>
-        <div class="float-child">
-            <p>
-                <h2>Cleaning Bathroom</h2>
-                <h3>Roomate 1</h3>
-            </p>
-        </div>
-        <div class="float-child">
-            <p>
-                <h2>Cleaning Kitchen</h2>
-                <h3>Roomate 1</h3>
-            </p>
+        <div class="chores-container">
+            <div class="float-child edit-chore">
+                <p>
+                    <h2>Laundry</h2>
+                    <h3>Roomate 1</h3>
+                </p>
+            </div>
+            <div class="float-child edit-chore">
+                <p>
+                    <h2>Cleaning Bathroom</h2>
+                    <h3>Roomate 1</h3>
+                </p>
+            </div>
+            <div class="float-child edit-chore">
+                <p>
+                    <h2>Cleaning Kitchen</h2>
+                    <h3>Roomate 1</h3>
+                </p>
+            </div>
+            <div class="float-child edit-chore">
+                <p>
+                    <h2>Laundry</h2>
+                    <h3>Roomate 1</h3>
+                </p>
+            </div>
+            <div class="float-child edit-chore">
+                <p>
+                    <h2>Cleaning Bathroom</h2>
+                    <h3>Roomate 1</h3>
+                </p>
+            </div>
+            <div class="float-child edit-chore">
+                <p>
+                    <h2>Cleaning Kitchen</h2>
+                    <h3>Roomate 1</h3>
+                </p>
+            </div>
+            <div class="float-child edit-chore">
+                <p>
+                    <h2>Cleaning Kitchen</h2>
+                    <h3>Roomate 1</h3>
+                </p>
+            </div>
+            <div class="float-child add-chore">
+                <h1>+</h1>
+            </div>
         </div>
     </div>
 
