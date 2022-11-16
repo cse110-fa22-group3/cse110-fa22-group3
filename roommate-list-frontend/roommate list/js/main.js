@@ -17,6 +17,7 @@ function initPage(roommates){
 
 	roommates.forEach(roommate => {
 		const entry = document.createElement('roommate-card');
+		entry.setAttribute('id', roommate["id"]);
 		entry.data = roommate;
 		row.insertBefore(entry, document.querySelector('#new.item'));
 	});
@@ -44,6 +45,13 @@ export function initFormHandler(){
 		div.style.display = "none";
 	}
 
+	let cards = document.querySelectorAll("roommate-card");
+
+	cards.forEach(card => {
+		card.addEventListener('click', (event) => {
+			console.log(event.target.id);
+		});
+	});
 	//form_edit.addEventListener('submit',edit)
 
 	//if we have an array, loop through the array to add edit and del event listener to each roommate
