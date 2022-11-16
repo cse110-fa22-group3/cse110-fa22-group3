@@ -1,12 +1,24 @@
-import './roomateListAPI.js'
+import {readRoommate} from './roommateListAPI.js'
 
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
 	//TODO:get data from backend and display,probably use an array?
-	let roommates = readRoommate();
+	//let roommates = readRoommate();
 	initFormHandler();
+	//initPage(roommates);
 }
+
+function initPage(roommates){
+	const row = document.querySelector('.row');
+
+	roommates.forEach(roommate => {
+		const entry = document.createElement('room-mate');
+		entry.data = roommate;
+		roommate.insertBefore(roommate, document.querySelector('#new'));
+
+	});
+}	
 
 // import {roommate} from './roommate'
 export function initFormHandler(){
@@ -51,6 +63,7 @@ export function initFormHandler(){
 		let roommate=document.createElement('room-mate')
 		roommate.data=data
 		/////////////////EDIT THIS
+		document.querySelector('.row').insertBefore(roommate,document.querySelector('#new'))
 	}
 }
 
