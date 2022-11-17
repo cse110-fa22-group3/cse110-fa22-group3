@@ -1,12 +1,12 @@
 ## Context and Problem Statement
 
-- How to handle storage locally? 
-- How to modify backend operation? 
+- How to handle storage locally?
+- How to modify backend operation?
 
-## Decision 
+## Decision
 
 - BackEnd: Use JavaScript to interact with localStorage API.
-- Storage Implementation: Utilize localStorage API.  
+- Storage Implementation: Utilize localStorage API.
 
 ## Pros Considered
 
