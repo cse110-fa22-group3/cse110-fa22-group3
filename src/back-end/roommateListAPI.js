@@ -4,35 +4,31 @@
  * Then stores this information within the localStorage API.
  * @param {Object} formData An object with form data regarding new roommate
  */
- export function createRoommate(formData){
-    //Check if the RoommateListData key is contained within local storage
-    //If not then create it, otherwise just append to roommates list and update id
-    if(localStorage.getItem("RoommateListData")  === null){
-        formData["id"] = 0;
-        let firstRoommate = {
-            "Roommates" : [
-                formData  
-            ],
-            "idCount" : 1
-        };
-        localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
+export function createRoommate(formData) {
+  //Check if the RoommateListData key is contained within local storage
+  //If not then create it, otherwise just append to roommates list and update id
+  if (localStorage.getItem("RoommateListData") === null) {
+    formData["id"] = 0;
+    let firstRoommate = {
+      Roommates: [formData],
+      idCount: 1,
+    };
+    localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
+  } else {
+    let apiData = JSON.parse(localStorage.getItem("RoommateListData"));
+    let roommate = {};
+
+    roommate["id"] = apiData["idCount"];
+    apiData["idCount"] += 1;
+
+    for (let [key, value] of formData) {
+      roommate[key] = value;
     }
-    else{
-        let apiData = JSON.parse(localStorage.getItem("RoommateListData"));
-        let roommate = {};
 
-        roommate["id"] = apiData["idCount"];
-        apiData["idCount"] += 1;
+    apiData["Roommates"].push(roommate);
 
-        for (let [key, value] of formData)
-        {
-            roommate[key] = value;
-        }
-
-        apiData["Roommates"].push(roommate);
-
-        localStorage.setItem("RoommateListData", JSON.stringify(apiData));
-    }
+    localStorage.setItem("RoommateListData", JSON.stringify(apiData));
+  }
 }
 
 /**
@@ -40,23 +36,22 @@
  * Then stores this information within the localStorage API.
  * @param {Object} formData An object with form data regarding new roommate
  */
-export function updateRoommate(formData, id){
-    //gather data inputted from form
-    let roommate = {};
-    
-    roommate["id"] = id;
-    for (let [key, value] of formData)
-    {
-            roommate[key] = value;
-    }
+export function updateRoommate(formData, id) {
+  //gather data inputted from form
+  let roommate = {};
 
-    let roommateData = JSON.parse(localStorage.getItem('RoommateListData'));
+  roommate["id"] = id;
+  for (let [key, value] of formData) {
+    roommate[key] = value;
+  }
 
-    for(let i = 0; i < roommateData['Roommates'].length; i++){
-        if(roommateData['Roommates'][i]["id"] == id){
-            roommateData['Roommates'][i] = roommate;
-        }
+  let roommateData = JSON.parse(localStorage.getItem("RoommateListData"));
+
+  for (let i = 0; i < roommateData["Roommates"].length; i++) {
+    if (roommateData["Roommates"][i]["id"] == id) {
+      roommateData["Roommates"][i] = roommate;
     }
+  }
   localStorage.setItem("RoommateListData", JSON.stringify(roommateData));
 }
 
