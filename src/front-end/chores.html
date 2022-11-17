@@ -5,6 +5,9 @@
     <title>Chores List</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="modules/chores-list/css/popup.css">
+    <script src="./modules/chores-list/scripts/main.js" type="module"></script>
+    <script src="./modules/chores-list/scripts/chore.js" type="module"></script>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -21,11 +24,11 @@
             justify-content: center;
         }
 
-        .float-child:hover {
+        .chore-box:hover {
             cursor: pointer;
         }
         
-        .float-child {
+        .chore-box {
             width: 25%;
             
             padding: 10px;
@@ -36,10 +39,32 @@
             margin: 20px;
         }
 
-        .add-chore {
+        chore-card:hover {
+            cursor: pointer;
+        }
+        
+        chore-card {
+            width: 25%;
+            
+            padding: 10px;
+            border: 3px solid black;
+            box-shadow: 0px 5px black;
+            border-radius: 30px;
+            background-color: white;
+            margin: 20px;
+
+            text-align: center;
+        }
+
+        #add-chore {
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        #add-chore:hover {
+            background-color: lightgreen;
         }
         
         p,
@@ -61,6 +86,25 @@
             padding: 0px 20px;
             box-shadow: 0px 5px black;
         }
+
+        .assignees-list {
+            width: 100%;
+            background-color: white;
+        }
+
+        .assignee-box-and-label {
+            display: flex;
+            float: left;
+            width: 100%;
+        }
+
+        .assignee-box-and-label .assignee-checkbox {
+            width: 30px;
+        }
+
+        .assignee-box-and-label label {
+            font-size: 15px;
+        }
     </style>
 </head>
 
@@ -72,54 +116,126 @@
     <div class="float-container">
         <h1>List of Chores</h1>
         <div class="chores-container">
-            <div class="float-child edit-chore">
-                <p>
-                    <h2>Laundry</h2>
-                    <h3>Roomate 1</h3>
-                </p>
-            </div>
-            <div class="float-child edit-chore">
-                <p>
-                    <h2>Cleaning Bathroom</h2>
-                    <h3>Roomate 1</h3>
-                </p>
-            </div>
-            <div class="float-child edit-chore">
-                <p>
-                    <h2>Cleaning Kitchen</h2>
-                    <h3>Roomate 1</h3>
-                </p>
-            </div>
-            <div class="float-child edit-chore">
-                <p>
-                    <h2>Laundry</h2>
-                    <h3>Roomate 1</h3>
-                </p>
-            </div>
-            <div class="float-child edit-chore">
-                <p>
-                    <h2>Cleaning Bathroom</h2>
-                    <h3>Roomate 1</h3>
-                </p>
-            </div>
-            <div class="float-child edit-chore">
-                <p>
-                    <h2>Cleaning Kitchen</h2>
-                    <h3>Roomate 1</h3>
-                </p>
-            </div>
-            <div class="float-child edit-chore">
-                <p>
-                    <h2>Cleaning Kitchen</h2>
-                    <h3>Roomate 1</h3>
-                </p>
-            </div>
-            <div class="float-child add-chore">
+            <div class="chore-box" id="add-chore">
                 <h1>+</h1>
             </div>
         </div>
     </div>
+    <!-- popup starts -->
+    <div id="create-background" class="background">
+        <div id="create-popup" class="content popup">
+            <div id="close" class="close">
+                <span id="create-close">x</span>
+            </div>
+            <h2>Create Chore</h2>
+            <div id="create-form-box" class="form-box">
+                <form id="create">
+                    <label for="choreName">
+                        Chore<br>
+                        <input type="text" id="choreName" name="choreName" placeholder="" required >
+                    </label>
+                    <br>
+                    <label for="roommateName">
+                        Roommate<br>
+                        <input type="text" id="roommateName"  name="roommateName" required >
+                    </label>
+                    <br>
+                    <button type="submit">Continue</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
+    <!-- popup starts -->
+    <div id="assign-background" class="background">
+        <div id="assign-popup" class="content popup">
+            <div id="close" class="close">
+                <span id="assign-close">x</span>
+            </div>
+            <h2>Create Chore</h2>
+            <div id="assign-form-box" class="form-box">
+                <form id="assign">
+                    <label for="assignees">
+                        Assignees<br>
+                        <div class="assignees-list">
+                            <div class="assignee-box-and-label">
+                                <input class="assignee-checkbox" type="checkbox" id="chasepeterson" name="assignees" value="Chase Peterson" checked><br>
+                                <label class="assignee-name" for="chasepeterson">Chase Peterson</label><br>
+                            </div>
+                            <div class="assignee-box-and-label">
+                                <input class="assignee-checkbox" type="checkbox" id="kalyansunkara" name="assignees" value="Kalyan Sunkara" checked><br>
+                                <label class="assignee-name" for="kalyansunkara">Kalyan Sunkara</label><br>
+                            </div>
+                            <div class="assignee-box-and-label">
+                                <input class="assignee-checkbox" type="checkbox" id="kyleyee" name="assignees" value="Kyle Yee" checked><br>
+                                <label class="assignee-name" for="kyleyee">Kyle Yee</label><br>
+                            </div>
+                        </div>
+                    </label>
+                    <button type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- popup starts -->
+    <div id="edit-background" class="background">
+        <div id="edit-popup" class="content popup">
+            <div id="close" class="close">
+                <span id="edit-close">x</span>
+            </div>
+            <h2>Edit Chore</h2>
+            <div id="edit-form-box" class="form-box">
+                <form id="edit">
+                    <label for="choreName">
+                        Chore<br>
+                        <input type="text" id="choreName" name="choreName" placeholder="" required >
+                    </label>
+                    <br>
+                    <label for="roommateName">
+                        Roommate<br>
+                        <input type="text" id="roommateName"  name="roommateName" required >
+                    </label>
+                    <br>
+                    <button type="submit">Continue</button>
+                    <button type="button" id="delete-1">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- popup starts -->
+    <div id="edit-assign-background" class="background">
+        <div id="edit-assign-popup" class="content popup">
+            <div id="close" class="close">
+                <span id="edit-assign-close">x</span>
+            </div>
+            <h2>Edit Chore</h2>
+            <div id="edit-assign-form-box" class="form-box">
+                <form id="edit-assign">
+                    <label for="assignees">
+                        Assignees<br>
+                        <div class="assignees-list">
+                            <div class="assignee-box-and-label">
+                                <input class="assignee-checkbox" type="checkbox" id="chasepeterson" name="assignees" value="Chase Peterson" checked><br>
+                                <label class="assignee-name" for="chasepeterson">Chase Peterson</label><br>
+                            </div>
+                            <div class="assignee-box-and-label">
+                                <input class="assignee-checkbox" type="checkbox" id="kalyansunkara" name="assignees" value="Kalyan Sunkara" checked><br>
+                                <label class="assignee-name" for="kalyansunkara">Kalyan Sunkara</label><br>
+                            </div>
+                            <div class="assignee-box-and-label">
+                                <input class="assignee-checkbox" type="checkbox" id="kyleyee" name="assignees" value="Kyle Yee" checked><br>
+                                <label class="assignee-name" for="kyleyee">Kyle Yee</label><br>
+                            </div>
+                        </div>
+                    </label>
+                    <button type="submit">Edit</button>
+                    <button type="button" id="delete-2">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </body>
 
