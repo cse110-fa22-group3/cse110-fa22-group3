@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', init);
+window.addEventListener("DOMContentLoaded", init);
 
 let chores_var = [];
 
@@ -6,248 +6,245 @@ let currentId = 0;
 let selectedChore = 0;
 
 function init() {
-	initPage(chores_var);
-	initFormHandler();
+  initPage(chores_var);
+  initFormHandler();
 }
 
 function initPage(chores) {
-	const chores_container = document.querySelector('.chores-container');
+  const chores_container = document.querySelector(".chores-container");
 
-	while (chores_container.childElementCount > 1)
-	{
-		chores_container.removeChild(chores_container.firstElementChild);
-	}
+  while (chores_container.childElementCount > 1) {
+    chores_container.removeChild(chores_container.firstElementChild);
+  }
 
-	chores.forEach(chore => {
-		const card = document.createElement('chore-card');
-		card.setAttribute('id', chore["id"]);
-		card.data = chore;
-		chores_container.insertBefore(card, document.querySelector('#add-chore'));
-	});
-	
-	let choreBoxes = document.querySelectorAll('chore-card');
-	let edit_div = document.querySelector('#edit-background');
-	let edit_chore_name = document.querySelector('form#edit input#choreName');
-	let edit_roommate_name = document.querySelector('form#edit input#roommateName');
-	
-	choreBoxes.forEach(card => {
-		card.addEventListener('click', (event) => {
-			selectedChore = card.getAttribute('id');
-			edit_div.style.display = "block";
+  chores.forEach((chore) => {
+    const card = document.createElement("chore-card");
+    card.setAttribute("id", chore["id"]);
+    card.data = chore;
+    chores_container.insertBefore(card, document.querySelector("#add-chore"));
+  });
 
-			for (let i = 0; i < chores_var.length; i++) {
-				if (chores_var[i]['id'] == selectedChore) {
-					edit_chore_name.value = chores_var[i]['choreName'];
-					edit_roommate_name.value = chores_var[i]['roommateName'];
-				}
-			}
-		});
-	})
+  let choreBoxes = document.querySelectorAll("chore-card");
+  let edit_div = document.querySelector("#edit-background");
+  let edit_chore_name = document.querySelector("form#edit input#choreName");
+  let edit_roommate_name = document.querySelector(
+    "form#edit input#roommateName"
+  );
 
-	editDeleteHandler();
-}	
+  choreBoxes.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      selectedChore = card.getAttribute("id");
+      edit_div.style.display = "block";
+
+      for (let i = 0; i < chores_var.length; i++) {
+        if (chores_var[i]["id"] == selectedChore) {
+          edit_chore_name.value = chores_var[i]["choreName"];
+          edit_roommate_name.value = chores_var[i]["roommateName"];
+        }
+      }
+    });
+  });
+
+  editDeleteHandler();
+}
 
 // import {roommate} from './roommate'
-function initFormHandler(){
-	let newBox=document.querySelector('#add-chore')
-	//let div = document.getElementById('background')
-	//let btn_close = document.getElementById('close-button')
-	let create_div = document.querySelector('#create-background')
-	let create_close = document.getElementById('create-close')
-	let create_form = document.getElementById('create')
+function initFormHandler() {
+  let newBox = document.querySelector("#add-chore");
+  //let div = document.getElementById('background')
+  //let btn_close = document.getElementById('close-button')
+  let create_div = document.querySelector("#create-background");
+  let create_close = document.getElementById("create-close");
+  let create_form = document.getElementById("create");
 
-	
-	let assign_div = document.querySelector('#assign-background')
-	let assign_close = document.getElementById('assign-close')
-	let assign_form = document.getElementById('assign')
+  let assign_div = document.querySelector("#assign-background");
+  let assign_close = document.getElementById("assign-close");
+  let assign_form = document.getElementById("assign");
 
-	
-	let edit_div = document.querySelector('#edit-background')
-	let edit_close = document.getElementById('edit-close')
-	let edit_form = document.getElementById('edit')
-	let edit_delete = document.getElementById('delete-1');
+  let edit_div = document.querySelector("#edit-background");
+  let edit_close = document.getElementById("edit-close");
+  let edit_form = document.getElementById("edit");
+  let edit_delete = document.getElementById("delete-1");
 
-	
-	let edit_assign_div = document.querySelector('#edit-assign-background')
-	let edit_assign_close = document.getElementById('edit-assign-close')
-	let edit_assign_form = document.getElementById('edit-assign')
-	let edit_assign_delete = document.getElementById('delete-2');
-	//let form_edit = document.querySelector('form.edit')
+  let edit_assign_div = document.querySelector("#edit-assign-background");
+  let edit_assign_close = document.getElementById("edit-assign-close");
+  let edit_assign_form = document.getElementById("edit-assign");
+  let edit_assign_delete = document.getElementById("delete-2");
+  //let form_edit = document.querySelector('form.edit')
 
-	var createData;
+  var createData;
 
-	create_form.addEventListener('submit', (event) =>
-	{
-		event.preventDefault();
-		//createChore(new FormData(form_create));
+  create_form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    //createChore(new FormData(form_create));
 
-		createData = new FormData(create_form);
+    createData = new FormData(create_form);
 
-		create_form.reset();
-		initPage(chores_var);
-		create_div.style.display = "none";
-		assign_div.style.display = "block";
-	});
+    create_form.reset();
+    initPage(chores_var);
+    create_div.style.display = "none";
+    assign_div.style.display = "block";
+  });
 
-	newBox.onclick=function show() {
-		create_div.style.display = "block";
-	}
-	
-	create_close.onclick = function close() {
-		create_div.style.display = "none";
-		assign_div.style.display = "none";
-		create_form.reset();
-		assign_form.reset();
-	}
+  newBox.onclick = function show() {
+    create_div.style.display = "block";
+  };
 
-	assign_form.addEventListener('submit', (event) =>
-	{
-		event.preventDefault();
-		//createChore(new FormData(form_create));
+  create_close.onclick = function close() {
+    create_div.style.display = "none";
+    assign_div.style.display = "none";
+    create_form.reset();
+    assign_form.reset();
+  };
 
-		let assignData = new FormData(create_form);
+  assign_form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    //createChore(new FormData(form_create));
 
-		currentId++;
-		let new_chore = {id: currentId, choreName: createData.get('choreName'), roommateName: createData.get('roommateName')};
+    let assignData = new FormData(create_form);
 
-		chores_var.push(new_chore);
+    currentId++;
+    let new_chore = {
+      id: currentId,
+      choreName: createData.get("choreName"),
+      roommateName: createData.get("roommateName"),
+    };
 
-		assign_form.reset();
-		initPage(chores_var);
-		assign_div.style.display = "none";
-	});
+    chores_var.push(new_chore);
 
-	assign_close.onclick = function close() {
-		create_div.style.display = "none";
-		assign_div.style.display = "none";
-		create_form.reset();
-		assign_form.reset();
-	}
+    assign_form.reset();
+    initPage(chores_var);
+    assign_div.style.display = "none";
+  });
 
-	edit_form.addEventListener('submit', (event) =>
-	{
-		event.preventDefault();
-		//createChore(new FormData(form_create));
+  assign_close.onclick = function close() {
+    create_div.style.display = "none";
+    assign_div.style.display = "none";
+    create_form.reset();
+    assign_form.reset();
+  };
 
-		createData = new FormData(edit_form);
+  edit_form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    //createChore(new FormData(form_create));
 
-		edit_form.reset();
-		initPage(chores_var);
-		edit_div.style.display = "none";
-		edit_assign_div.style.display = "block";
-	});
+    createData = new FormData(edit_form);
 
-	edit_close.onclick = function close() {
-		edit_div.style.display = "none";
-		edit_assign_div.style.display = "none";
-		edit_form.reset();
-		edit_assign_form.reset();
-	}
+    edit_form.reset();
+    initPage(chores_var);
+    edit_div.style.display = "none";
+    edit_assign_div.style.display = "block";
+  });
 
-	edit_delete.onclick = function close() {
-		for (let i = 0; i < chores_var.length; i++) {
-			if (chores_var[i]['id'] == selectedChore) {
-				chores_var.splice(i, 1);
-				edit_div.style.display = "none";
-				edit_assign_div.style.display = "none";
-				edit_form.reset();
-				edit_assign_form.reset();
-				initPage(chores_var);
-			}
-		}
-	}
+  edit_close.onclick = function close() {
+    edit_div.style.display = "none";
+    edit_assign_div.style.display = "none";
+    edit_form.reset();
+    edit_assign_form.reset();
+  };
 
-	edit_assign_form.addEventListener('submit', (event) =>
-	{
-		event.preventDefault();
-		//createChore(new FormData(form_create));
+  edit_delete.onclick = function close() {
+    for (let i = 0; i < chores_var.length; i++) {
+      if (chores_var[i]["id"] == selectedChore) {
+        chores_var.splice(i, 1);
+        edit_div.style.display = "none";
+        edit_assign_div.style.display = "none";
+        edit_form.reset();
+        edit_assign_form.reset();
+        initPage(chores_var);
+      }
+    }
+  };
 
-		let assignData = new FormData(edit_form);
+  edit_assign_form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    //createChore(new FormData(form_create));
 
-		let new_chore = {id: currentId, choreName: createData.get('choreName'), roommateName: createData.get('roommateName')};
+    let assignData = new FormData(edit_form);
 
-		for (let i = 0; i < chores_var.length; i++) {
-			if (chores_var[i]['id'] == selectedChore) {
-				chores_var[i].choreName = createData.get('choreName');
-				chores_var[i].roommateName = createData.get('roommateName');
-			}
-		}
+    let new_chore = {
+      id: currentId,
+      choreName: createData.get("choreName"),
+      roommateName: createData.get("roommateName"),
+    };
 
-		edit_assign_form.reset();
-		initPage(chores_var);
-		edit_assign_div.style.display = "none";
-	});
+    for (let i = 0; i < chores_var.length; i++) {
+      if (chores_var[i]["id"] == selectedChore) {
+        chores_var[i].choreName = createData.get("choreName");
+        chores_var[i].roommateName = createData.get("roommateName");
+      }
+    }
 
-	edit_assign_close.onclick = function close() {
-		edit_div.style.display = "none";
-		edit_assign_div.style.display = "none";
-		edit_form.reset();
-		edit_assign_form.reset();
-	}
+    edit_assign_form.reset();
+    initPage(chores_var);
+    edit_assign_div.style.display = "none";
+  });
 
-	edit_assign_delete.onclick = function close() {
-		for (let i = 0; i < chores_var.length; i++) {
-			if (chores_var[i]['id'] == selectedChore) {
-				chores_var.splice(i, 1);
-				edit_div.style.display = "none";
-				edit_assign_div.style.display = "none";
-				edit_form.reset();
-				edit_assign_form.reset();
-				initPage(chores_var);
-			}
-		}
-	}
+  edit_assign_close.onclick = function close() {
+    edit_div.style.display = "none";
+    edit_assign_div.style.display = "none";
+    edit_form.reset();
+    edit_assign_form.reset();
+  };
 
+  edit_assign_delete.onclick = function close() {
+    for (let i = 0; i < chores_var.length; i++) {
+      if (chores_var[i]["id"] == selectedChore) {
+        chores_var.splice(i, 1);
+        edit_div.style.display = "none";
+        edit_assign_div.style.display = "none";
+        edit_form.reset();
+        edit_assign_form.reset();
+        initPage(chores_var);
+      }
+    }
+  };
 
-	//form_edit.addEventListener('submit',edit)
+  //form_edit.addEventListener('submit',edit)
 
-	//if we have an array, loop through the array to add edit and del event listener to each roommate
-	// demo for edit below
+  //if we have an array, loop through the array to add edit and del event listener to each roommate
+  // demo for edit below
 
-	// for(let roommate of roommates){
-	// 	roommate.onclick=function displayForm(){
-	// 		TODO: get the clicked roommate's data and display on the form
-	// 		form.innerHTML=``//fill in
-	// 		div.style.display = "block";//popup
-	// 	}
-	//  
-	// }
+  // for(let roommate of roommates){
+  // 	roommate.onclick=function displayForm(){
+  // 		TODO: get the clicked roommate's data and display on the form
+  // 		form.innerHTML=``//fill in
+  // 		div.style.display = "block";//popup
+  // 	}
+  //
+  // }
 }
 
-function editDeleteHandler(){
-	let cards = document.querySelectorAll("roommate-card");
+function editDeleteHandler() {
+  let cards = document.querySelectorAll("roommate-card");
 
-	let div = document.querySelector('.back2')
-	let btn_close = document.getElementById('close-button2')
-	let btn_del = document.getElementById('del-button')
-	let btn2 = document.getElementById('btn2')
-	let form_update = document.querySelector('form.update')
+  let div = document.querySelector(".back2");
+  let btn_close = document.getElementById("close-button2");
+  let btn_del = document.getElementById("del-button");
+  let btn2 = document.getElementById("btn2");
+  let form_update = document.querySelector("form.update");
 
-	cards.forEach(card => {
-		card.addEventListener('click', (event) => {
+  cards.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      div.style.display = "block";
 
+      btn_close.onclick = function close() {
+        div.style.display = "none";
+      };
 
-			div.style.display = "block";
-			
-			btn_close.onclick = function close() {
-				div.style.display = "none";
-			}
-
-			btn_del.onclick = function() {
-				deleteRoommate(event.target.id);
-				initPage(readRoommate());
-			}
-			btn2.onclick = function() {
-				updateRoommate(new FormData(form_update), event.target.id);
-				initPage(readRoommate());
-		}
-		});
-	});
-
-
+      btn_del.onclick = function () {
+        deleteRoommate(event.target.id);
+        initPage(readRoommate());
+      };
+      btn2.onclick = function () {
+        updateRoommate(new FormData(form_update), event.target.id);
+        initPage(readRoommate());
+      };
+    });
+  });
 }
 
-		/*
+/*
 		// TODO:stringify and store to backend
 		// below is directly inserting to DOM for showing how it works. 
 		// Maybe we want all the to be in an array and display the array

@@ -1,9 +1,11 @@
 # Team 3 - Plastic Triangle
+
 ## Brainstorm Meeting 1
 
---------
+---
 
 ### Members Present
+
 - Chase Peterson
 - Kalyan Sunkara
 - Bryce Beeson
@@ -16,29 +18,38 @@
 - Jun Ye
 
 ### Meeting Time & Location
+
 8:00 PM on 10/19/22 over Zoom.
 
---------
+---
 
 ## Tools Used
+
 - Zoom (Used for video conferencing)
 - Google docs (Used for writing down ideas)
 
---------
+---
 
 ## Agenda
+
 ### Unfinished Business
+
 - N/A
+
 ### New Business
+
 - Brainstorm a lot of ideas.
+
 ### Save For Next Meeting
+
 - Narrow down on 3 ideas over Slack before next meeting.
 - Brainstorm 3 ideas thoroughly.
 - Decide on best idea.
 
---------
+---
 
 ## Decisions Made
+
 - Brainstormed many ideas:
   - Music sharing playlist (transferring)
     - A site built to sync songs between different music services such as Spotify and Apple Music.
@@ -62,7 +73,8 @@
     - A game where different users would vote on some question(s). Something in the style of Kahoot or Jackbox, but users would be polled for subjective answers instead of quizzed on objective answers.
 - Agreed to vote on 3 ideas over Slack by 10/20 at 3:00 PM.
 
---------
+---
 
 ## Meeting Finished
+
 9:10 PM

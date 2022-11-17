@@ -15,7 +15,7 @@
 
 ## Value Rules
 
---------
+---
 
 - Communicate with your Teammates
 
@@ -29,43 +29,44 @@
 
 ## Logistical Rules
 
---------
+---
 
-- Unless there's an emergency, contact Chase or Kalyan 6 hours in advance if there’s any type of scheduling conflict. 
+- Unless there's an emergency, contact Chase or Kalyan 6 hours in advance if there’s any type of scheduling conflict.
 
-- Upon any conflicts, must let Chase or Kalyan know first so that team leads can resolve the situation immediately. 
+- Upon any conflicts, must let Chase or Kalyan know first so that team leads can resolve the situation immediately.
 
 ## Technical Rules
 
---------
+---
 
-- All code that will merged must be from a branch 
+- All code that will merged must be from a branch
 
 - All pull requests should have at least one reviewer relevant to the pull request
-  - Ex. working frontend, have someone working from end  review it  
- 
+
+  - Ex. working frontend, have someone working from end review it
+
 - All code being merged should be related to a Github issue
- 
+
 - Everyone should be available for technical questions or advice
- 
+
 - No code should be merged if it doesn’t pass a Github actions build
- 
+
 - All Java functions should have Javadocs
- 
+
 - All Pull Requests should be well described about its purpose and details
 
 ## Consequences for Breaking Rules
 
---------
+---
 
-1. A conversation with the person who was wrong 
- 
+1. A conversation with the person who was wrong
+
 2. Team Leads individually talk to the person who was wrong
- 
-3. Have TA Intervention with that person  
 
-4. A Formal complaint with the TA 
+3. Have TA Intervention with that person
 
---------
+4. A Formal complaint with the TA
+
+---
 
 ## Signature
