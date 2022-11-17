@@ -1,9 +1,11 @@
 # Team 3 - Plastic Triangle
+
 ## Brainstorm Meeting 2
 
---------
+---
 
 ### Members Present
+
 - Chase Peterson
 - Kalyan Sunkara
 - Bryce Beeson
@@ -16,30 +18,39 @@
 - Jun Ye (Virtually)
 
 ### Meeting Time & Location
+
 4:00 PM on 10/21/22 at WongAvery Library.
 
---------
+---
 
 ## Tools Used
+
 - Zoom (Used for video conferencing with Tatsuo and Jun)
 - Google docs (Used for writing down notes)
 - Pencil & Paper (Used for drawing out ideas)
 
---------
+---
 
 ## Agenda
+
 ### Unfinished Business
+
 - Reveal top 3 ideas.
+
 ### New Business
+
 - Brainstorm 3 ideas thoroughly.
 - Decide on best idea.
+
 ### Save For Next Meeting
+
 - Plan out chosen project idea in detail.
 - Create diagrams for website flow, etc.
 
---------
+---
 
 ## Decisions Made
+
 - Revealed top 3 ideas:
   - Music sharing app.
   - Voting game.
@@ -81,9 +92,10 @@
     - Password holder: Would show the wifi network name & password for anyone who needs it.
     - Image gallery: Could store memories from the past, possibly with captions, dates, etc.
 
---------
+---
 
 ## Specs
+
 ![Voting Game](../specs/../../specs/brainstorm/votinggame.jpg)
 Simple diagram of voting game.
 ![Roommates App Todo Design 1](../specs/../../specs/brainstorm/roommates-1.jpg)
@@ -91,7 +103,8 @@ Possible model for roommate app to-do list.
 ![Roommates App Todo Design 2](../specs/../../specs/brainstorm/roommates-2.jpg)
 Another possible model for the roommate app to-do list.
 
---------
+---
 
 ## Meeting Finished
+
 4:50 PM
