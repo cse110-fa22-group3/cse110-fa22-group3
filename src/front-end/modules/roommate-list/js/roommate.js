@@ -46,7 +46,7 @@ class Roommate extends HTMLElement {
         roommate.innerHTML=`
             <h3>${data.name}</h3>
             <div class="text">
-                <img src="./images/icon-1.png" alt="">
+                <img src="./modules/roommate-list/images/icon-1.png" alt="">
                 <p>${data.birthday}</p>
             </div>
             <div class="text">

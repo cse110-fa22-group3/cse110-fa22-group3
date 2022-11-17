@@ -1,4 +1,4 @@
-import {createRoommate, readRoommate, deleteRoommate, updateRoommate} from './roommateListAPI.js'
+import {createRoommate, readRoommate, deleteRoommate, updateRoommate} from '../../../../back-end/roommateListAPI.js'
 
 window.addEventListener('DOMContentLoaded', init);
 
