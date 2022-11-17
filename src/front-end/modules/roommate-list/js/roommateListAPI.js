@@ -4,7 +4,7 @@
  * Then stores this information within the localStorage API.
  * @param {Object} formData An object with form data regarding new roommate
  */
-export function createRoommate(formData){
+ export function createRoommate(formData){
     //Check if the RoommateListData key is contained within local storage
     //If not then create it, otherwise just append to roommates list and update id
     if(localStorage.getItem("RoommateListData")  === null){
@@ -18,12 +18,20 @@ export function createRoommate(formData){
         localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
     }
     else{
-        let roommateInfo = formData
         let apiData = JSON.parse(localStorage.getItem("RoommateListData"));
-        roommateInfo["id"] = apiData["idCount"];
+        let roommate = {};
+
+        roommate["id"] = apiData["idCount"];
         apiData["idCount"] += 1;
-        apiData["Roommates"].push(roommateInfo);
-        localStorage.setItem("RoommateListData", JSON.stringify(apiData))
+
+        for (let [key, value] of formData)
+        {
+            roommate[key] = value;
+        }
+
+        apiData["Roommates"].push(roommate);
+
+        localStorage.setItem("RoommateListData", JSON.stringify(apiData));
     }
 }
 
@@ -32,13 +40,21 @@ export function createRoommate(formData){
  * Then stores this information within the localStorage API.
  * @param {Object} formData An object with form data regarding new roommate
  */
-export function updateRoommate(formData){
+export function updateRoommate(formData, id){
     //gather data inputted from form
-    let roommateInfo = formData
+    let roommate = {};
+    
+    roommate["id"] = id;
+    for (let [key, value] of formData)
+    {
+            roommate[key] = value;
+    }
+
     let roommateData = JSON.parse(localStorage.getItem('RoommateListData'));
+
     for(let i = 0; i < roommateData['Roommates'].length; i++){
-        if(roommateData['Roommates'][i]["id"] == roommateInfo["id"]){
-            roommateData['Roommates'][i] = roommateInfo;
+        if(roommateData['Roommates'][i]["id"] == id){
+            roommateData['Roommates'][i] = roommate;
         }
     }
     localStorage.setItem("RoommateListData", JSON.stringify(roommateData))
