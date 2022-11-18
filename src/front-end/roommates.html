@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./modules/roommate-list/css/style.css">
+    <link rel="stylesheet" href="./modules/roommate-list/css/popup.css">
+    <script src="./modules/roommate-list/js/roommate.js" type="module"></script>
+    <script src="./modules/roommate-list/js/main.js" type="module"></script>
+</head>
+<body>
+    <div class="content">
+        <div class="head">
+            <a href="#" class="back">
+                <img src="./modules/roommate-list/images/icon-back.png" alt="">
+            </a>
+        </div>
+        <div class="row">
+            <div class="item" id="new">
+                Add+
+            </div>
+        </div>
+    </div>
+    <!-- popup starts -->
+    <div id="background" class="add">
+        <div id="div1" class="content">
+            <div id="close">
+                <span id="close_button_1">x</span>
+                <h2>ADD</h2>
+            </div>
+            <div id="div2">
+                <form class="add">
+                    <!-- various types of input we can use -->
+                    <!-- <fieldset>jjk</fieldset>
+                    <input type="text">
+                    <textarea name="a" id="b" cols="30" rows="10">jjk</textarea>
+                    <datalist>
+                        <option value="e">jjk</option>
+                    </datalist>
+                    <select name="c" id="d"></select>
+                    <button>jjk</button> -->
+                    <fieldset>
+                        <label for="name">
+                            Name:
+                            <input type="text" id="name"  name="name" placeholder="First Last" required>
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <label for="birthday">
+                            Birthday:
+                            <input type="text" id="birthday"  name="birthday" placeholder="mm/dd/yyyy" pattern="\d\d/\d\d/\d\d\d\d" required>
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <label for="hobbies">
+                            Hobbies:
+                            <input type="text" id="hobbies"  name="hobbies" placeholder="hobby, hobby, etc.">
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <label for="notes">
+                            Notes:
+                            <input type="text" id="notes"  name="notes" placeholder="...">
+                        </label>
+                    </fieldset>
+                    <button type="submit">ADD</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- popup ends -->
+
+    <div id="background" class="update">
+        <div id="div1" class="content">
+            <div id="close">
+                <span id="close_button_2">x</span>
+                <span id="delete_button">DEL</span>
+                <h2>UPDATE</h2>
+            </div>
+            <div id="div2">
+                <form class="update">
+                    <!-- various types of input we can use -->
+                    <!-- <fieldset>jjk</fieldset>
+                    <input type="text">
+                    <textarea name="a" id="b" cols="30" rows="10">jjk</textarea>
+                    <datalist>
+                        <option value="e">jjk</option>
+                    </datalist>
+                    <select name="c" id="d"></select>
+                    <button>jjk</button> -->
+                    <fieldset>
+                        <label for="name">
+                            Name:
+                            <input type="text" id="name"  name="name" placeholder="First Last" required>
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <label for="birthday">
+                            Birthday:
+                            <input type="text" id="birthday"  name="birthday" placeholder="mm/dd/yyyy" pattern="\d\d/\d\d/\d\d\d\d" required>
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <label for="hobbies">
+                            Hobbies:
+                            <input type="text" id="hobbies"  name="hobbies" placeholder="hobby, hobby, etc.">
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <label for="notes">
+                            Notes:
+                            <input type="text" id="notes"  name="notes" placeholder="...">
+                        </label>
+                    </fieldset>
+                    <button type="submit">SAVE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
