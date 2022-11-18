@@ -26,9 +26,9 @@ function initPage(chores) {
 
   let choreBoxes = document.querySelectorAll("chore-card");
   let edit_div = document.querySelector("#edit-background");
-  let edit_chore_name = document.querySelector("form#edit input#e-choreName");
+  let edit_chore_name = document.querySelector("form#edit input#e-chore-name");
   let edit_roommate_name = document.querySelector(
-    "form#edit input#e-roommateName"
+    "form#edit input#e-roommate-name"
   );
 
   choreBoxes.forEach((card) => {

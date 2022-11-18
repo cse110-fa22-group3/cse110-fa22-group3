@@ -32,7 +32,7 @@
 }
 
 .form-box {
-  background:#eeeeee;
+  background: #eee;
   margin-top: 10px;
   height: 300px;
   padding: 0 20px;
@@ -67,7 +67,6 @@
 }
 
 .background h3 {
-  margin: 0 0px;
+  margin: 0 0;
   padding-top: 15px;
 }
-
