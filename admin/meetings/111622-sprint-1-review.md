@@ -1,0 +1,59 @@
+# Team 3 - Plastic Triangle 
+## **Spring 1 Review**
+
+### **Members Present**
+- Chase peterson
+- Kalyan Sunkara
+- Bryce Beeson
+- Haochen Wang
+- Kyle Yee
+- Xun Liu (Mark)
+- Raymond Romero
+- Thomas Joel
+- Tatsuo Kumamoto
+
+### **Meeting Time & Location**
+8:00 - 9:03 PM on 11/016/22 via Zoom
+
+### **Update from Last week**
+- Chase Peterson
+  - I worked with Kyle to build the front-end for the chores list, where the majority of my work was on the JavaScript. I also built some basic styling for the chores list and homepage
+- Kalyan Sunkara
+- Bryce Beeson
+  - I helped Thomas with the backend for RoommateList integration between the frontend and backend. I documented the functions in the javascript function we worked on and did some light testing for the integration to ensure that it functioned as expected. I plan to be working with Thomas in this next part of the sprint to handle the integration between frontend and backend. We will be meeting with Chase and Kyle to make sure that we can get all the information from the front end and construct what we need for backend to function properly.
+- Haochen Wang
+- Kyle Yee
+  - rough website for the chores list and did basic styling
+- Xun Liu (Mark)
+  - Worked with Raymond
+  - Completed linting and HTML validation with superlinter
+  - Worked on Doc generation, successfully used JSDoc locally, stuck at automation
+- Raymond Romero
+  - Worked with Mark
+  - I worked on the ci/cd pipeline with mark and we got the linter and the prettier done and pushed to the repo. We are still working on getting the documentation automation and will be trying to get that done this week. I will also be working on unit testing for the frontend this week
+- Thomas Joel
+  - This week I did integration work between front-end and back-end for the roommate list. I talked to Haochen and worked with Bryce to make sure the buttons on the html/javascript worked and interacted with CRUD functions so we can keep roommate data in local storage.
+- Tatsuo Kumamoto
+  - I studied CSS and Bootstrap mainly using API and just YouTube tutorials
+- Jun Ye
+
+### **Plans for Next Sprint**
+- Chase Peterson
+  - 
+- Kalyan Sunkara
+- Bryce Beeson and Thomas Joel
+  - integration between frontend and backend 
+  - meeting with Chase and Kyle to get all the information from the front end and construct what we need for backend to function properly.
+- Haochen Wang
+- Kyle Yee
+  - Finishing off Chores List
+- Xun Liu (Mark) and Raymond Romero
+  - Figure out JSDoc Automation
+  - Unit Testing
+  - code quality and CI/CD Pipeline Documentation
+- Thomas Joel
+  - Working with Bryce, Chase, and Kyle on front-end/back-end integration for the chores list
+- Tatsuo Kumamoto
+  - Work with Chase on homepage styling
+  - Implementing Bootstrap
+  - Markdown files for sprint reviews

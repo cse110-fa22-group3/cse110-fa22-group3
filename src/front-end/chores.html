@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 
 <head>
     <title>Chores List</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Link to Bootstrap Styling -->
+    <link rel="stylesheet"
+          type="text/css"
+          href="css/bootstrap.css" />
+
+    <link rel="stylesheet" href="modules/chores-list/css/home.css">
     <link rel="stylesheet" href="modules/chores-list/css/popup.css">
+    
     <script src="./modules/chores-list/scripts/main.js" type="module"></script>
     <script src="./modules/chores-list/scripts/chore.js" type="module"></script>
     <style>
@@ -108,135 +115,159 @@
     </style>
 </head>
 
-<body style="background-color:lightblue;">
-    <a id="back" href="index.html">
-        <p>Go Back</p>
-        <!--"home" button-->
-    </a>
-    <div class="float-container">
-        <h1>List of Chores</h1>
-        <div class="chores-container">
-            <div class="chore-box" id="add-chore">
-                <h1>+</h1>
+<body class="d-flex h-100 text-center text-bg-dar" style="background-color:burlywood;">
+    <div class="cover-container d-flex w-100 h-100 p-4 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <!-- Nav Bar -->
+            <div class="inner d-flex justify-content-between">
+            <h3 class="masthead brand">My Roomate Hub</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link fw-bold py-1 px-0"  href="index.html">My House</a>
+                <a class="nav-link fw-bold py-1 px-0 active" aria-current="page">Chores</a>
+                <a class="nav-link fw-bold py-1 px-0" href="#">Divider</a>
+                <a class="nav-link fw-bold py-1 px-0" href="#">Reminder</a>
+                <a class="nav-link fw-bold py-1 px-0" href="#">Passwords</a>
+                <a class="nav-link fw-bold py-1 px-0" href="#">Others</a>
+            </nav>
+            </div>
+            <!-- Nav Bar -->
+        </header>
+        <!--<a id="back" href="index.html">
+            <p>Go Back</p>
+            "home" button
+        </a>-->
+        <div class="float-container">
+            <h1>List of Chores</h1>
+            <div class="chores-container">
+                <div class="chore-box" id="add-chore">
+                    <h1>+</h1>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- popup starts -->
-    <div id="create-background" class="background">
-        <div id="create-popup" class="content popup">
-            <div id="close" class="close">
-                <span id="create-close">x</span>
-            </div>
-            <h2>Create Chore</h2>
-            <div id="create-form-box" class="form-box">
-                <form id="create">
-                    <label for="choreName">
-                        Chore<br>
-                        <input type="text" id="choreName" name="choreName" placeholder="" required >
-                    </label>
-                    <br>
-                    <label for="roommateName">
-                        Roommate<br>
-                        <input type="text" id="roommateName"  name="roommateName" required >
-                    </label>
-                    <br>
-                    <button type="submit">Continue</button>
-                </form>
+        <!-- popup starts -->
+        <div id="create-background" class="background">
+            <div id="create-popup" class="content popup">
+                <div id="close" class="close">
+                    <span id="create-close">x</span>
+                </div>
+                <h2>Create Chore</h2>
+                <div id="create-form-box" class="form-box">
+                    <form id="create">
+                        <label for="choreName">
+                            Chore<br>
+                            <input type="text" id="choreName" name="choreName" placeholder="" required >
+                        </label>
+                        <br>
+                        <label for="roommateName">
+                            Roommate<br>
+                            <input type="text" id="roommateName"  name="roommateName" required >
+                        </label>
+                        <br>
+                        <button type="submit">Continue</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- popup starts -->
-    <div id="assign-background" class="background">
-        <div id="assign-popup" class="content popup">
-            <div id="close" class="close">
-                <span id="assign-close">x</span>
+        <!-- popup starts -->
+        <div id="assign-background" class="background">
+            <div id="assign-popup" class="content popup">
+                <div id="close" class="close">
+                    <span id="assign-close">x</span>
+                </div>
+                <h2>Create Chore</h2>
+                <div id="assign-form-box" class="form-box">
+                    <form id="assign">
+                        <label for="assignees">
+                            Assignees<br>
+                            <div class="assignees-list">
+                                <div class="assignee-box-and-label">
+                                    <input class="assignee-checkbox" type="checkbox" id="chasepeterson" name="assignees" value="Chase Peterson" checked><br>
+                                    <label class="assignee-name" for="chasepeterson">Chase Peterson</label><br>
+                                </div>
+                                <div class="assignee-box-and-label">
+                                    <input class="assignee-checkbox" type="checkbox" id="kalyansunkara" name="assignees" value="Kalyan Sunkara" checked><br>
+                                    <label class="assignee-name" for="kalyansunkara">Kalyan Sunkara</label><br>
+                                </div>
+                                <div class="assignee-box-and-label">
+                                    <input class="assignee-checkbox" type="checkbox" id="kyleyee" name="assignees" value="Kyle Yee" checked><br>
+                                    <label class="assignee-name" for="kyleyee">Kyle Yee</label><br>
+                                </div>
+                            </div>
+                        </label>
+                        <button type="submit">Create</button>
+                    </form>
+                </div>
             </div>
-            <h2>Create Chore</h2>
-            <div id="assign-form-box" class="form-box">
-                <form id="assign">
-                    <label for="assignees">
-                        Assignees<br>
-                        <div class="assignees-list">
-                            <div class="assignee-box-and-label">
-                                <input class="assignee-checkbox" type="checkbox" id="chasepeterson" name="assignees" value="Chase Peterson" checked><br>
-                                <label class="assignee-name" for="chasepeterson">Chase Peterson</label><br>
+        </div>
+
+        <!-- popup starts -->
+        <div id="edit-background" class="background">
+            <div id="edit-popup" class="content popup">
+                <div id="close" class="close">
+                    <span id="edit-close">x</span>
+                </div>
+                <h2>Edit Chore</h2>
+                <div id="edit-form-box" class="form-box">
+                    <form id="edit">
+                        <label for="choreName">
+                            Chore<br>
+                            <input type="text" id="choreName" name="choreName" placeholder="" required >
+                        </label>
+                        <br>
+                        <label for="roommateName">
+                            Roommate<br>
+                            <input type="text" id="roommateName"  name="roommateName" required >
+                        </label>
+                        <br>
+                        <button type="submit">Continue</button>
+                        <button type="button" id="delete-1">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- popup starts -->
+        <div id="edit-assign-background" class="background">
+            <div id="edit-assign-popup" class="content popup">
+                <div id="close" class="close">
+                    <span id="edit-assign-close">x</span>
+                </div>
+                <h2>Edit Chore</h2>
+                <div id="edit-assign-form-box" class="form-box">
+                    <form id="edit-assign">
+                        <label for="assignees">
+                            Assignees<br>
+                            <div class="assignees-list">
+                                <div class="assignee-box-and-label">
+                                    <input class="assignee-checkbox" type="checkbox" id="chasepeterson" name="assignees" value="Chase Peterson" checked><br>
+                                    <label class="assignee-name" for="chasepeterson">Chase Peterson</label><br>
+                                </div>
+                                <div class="assignee-box-and-label">
+                                    <input class="assignee-checkbox" type="checkbox" id="kalyansunkara" name="assignees" value="Kalyan Sunkara" checked><br>
+                                    <label class="assignee-name" for="kalyansunkara">Kalyan Sunkara</label><br>
+                                </div>
+                                <div class="assignee-box-and-label">
+                                    <input class="assignee-checkbox" type="checkbox" id="kyleyee" name="assignees" value="Kyle Yee" checked><br>
+                                    <label class="assignee-name" for="kyleyee">Kyle Yee</label><br>
+                                </div>
                             </div>
-                            <div class="assignee-box-and-label">
-                                <input class="assignee-checkbox" type="checkbox" id="kalyansunkara" name="assignees" value="Kalyan Sunkara" checked><br>
-                                <label class="assignee-name" for="kalyansunkara">Kalyan Sunkara</label><br>
-                            </div>
-                            <div class="assignee-box-and-label">
-                                <input class="assignee-checkbox" type="checkbox" id="kyleyee" name="assignees" value="Kyle Yee" checked><br>
-                                <label class="assignee-name" for="kyleyee">Kyle Yee</label><br>
-                            </div>
-                        </div>
-                    </label>
-                    <button type="submit">Create</button>
-                </form>
+                        </label>
+                        <button type="submit">Edit</button>
+                        <button type="button" id="delete-2">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- popup starts -->
-    <div id="edit-background" class="background">
-        <div id="edit-popup" class="content popup">
-            <div id="close" class="close">
-                <span id="edit-close">x</span>
-            </div>
-            <h2>Edit Chore</h2>
-            <div id="edit-form-box" class="form-box">
-                <form id="edit">
-                    <label for="choreName">
-                        Chore<br>
-                        <input type="text" id="choreName" name="choreName" placeholder="" required >
-                    </label>
-                    <br>
-                    <label for="roommateName">
-                        Roommate<br>
-                        <input type="text" id="roommateName"  name="roommateName" required >
-                    </label>
-                    <br>
-                    <button type="submit">Continue</button>
-                    <button type="button" id="delete-1">Delete</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- popup starts -->
-    <div id="edit-assign-background" class="background">
-        <div id="edit-assign-popup" class="content popup">
-            <div id="close" class="close">
-                <span id="edit-assign-close">x</span>
-            </div>
-            <h2>Edit Chore</h2>
-            <div id="edit-assign-form-box" class="form-box">
-                <form id="edit-assign">
-                    <label for="assignees">
-                        Assignees<br>
-                        <div class="assignees-list">
-                            <div class="assignee-box-and-label">
-                                <input class="assignee-checkbox" type="checkbox" id="chasepeterson" name="assignees" value="Chase Peterson" checked><br>
-                                <label class="assignee-name" for="chasepeterson">Chase Peterson</label><br>
-                            </div>
-                            <div class="assignee-box-and-label">
-                                <input class="assignee-checkbox" type="checkbox" id="kalyansunkara" name="assignees" value="Kalyan Sunkara" checked><br>
-                                <label class="assignee-name" for="kalyansunkara">Kalyan Sunkara</label><br>
-                            </div>
-                            <div class="assignee-box-and-label">
-                                <input class="assignee-checkbox" type="checkbox" id="kyleyee" name="assignees" value="Kyle Yee" checked><br>
-                                <label class="assignee-name" for="kyleyee">Kyle Yee</label><br>
-                            </div>
-                        </div>
-                    </label>
-                    <button type="submit">Edit</button>
-                    <button type="button" id="delete-2">Delete</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
+    <!--Enable jquery.js-->
+    <script type="text/javascript"
+            href="js/jquery-3.6.1.js">
+    </script>
+    <!--Enable Bootstrap.js-->
+    <script type="text/javascript"
+    href="js/bootstrap.min.js">
+    </script> 
 </body>
 
 </html>
