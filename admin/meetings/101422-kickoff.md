@@ -1,9 +1,11 @@
 # Team 3 - Plastic Triangle
+
 ## Kickoff Meeting
 
---------
+---
 
 ### Members Present
+
 - Chase Peterson
 - Kalyan Sunkara
 - Bryce Beeson
@@ -15,25 +17,33 @@
 - Tatsuo Kumamoto
 
 ### Meeting Time & Location
+
 6:30 PM on 10/14/22 at Kalyan's house.
 
---------
+---
 
 ## Agenda
+
 ### Unfinished Business
+
 - N/A
+
 ### New Business
+
 - Decide team name & brand.
 - Decide team roles.
 - Create logo.
 - Create team video.
 - Create group contract.
+
 ### Save For Next Meeting
+
 - Decide on project idea.
 
---------
+---
 
 ## Decisions Made
+
 - Decided team name & brand will be "Plastic Triangle".
   - Reasoning: We're team 3. A triangle has 3 sides. The Iron Triangle is a concept from class. We made it plastic because we're flexible! Plastic will be our main branding.
 - Decided team roles.
@@ -48,7 +58,8 @@
 - Everyone needs to submit a contract.
 - We need to create a README.md and link to team.md.
 
---------
+---
 
 ## Meeting Finished
+
 9:00 PM
