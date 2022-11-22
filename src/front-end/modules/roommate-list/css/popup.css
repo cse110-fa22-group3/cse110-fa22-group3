@@ -11,7 +11,7 @@
   background-color: rgb(0 0 0 / 50%);
 }
 
-#div1 {
+.div1 {
   background: #eee;
   width: 70%;
   z-index: 1;
@@ -26,7 +26,7 @@
   padding-right: 15px;
 }
 
-#div2 {
+.div2 {
   background: #eee;
   margin-top: 30px;
   height: 300px;
@@ -34,7 +34,7 @@
   font-size: x-large;
 }
 
-#div2 form {
+.div2 form {
   display: flexbox;
   flex-direction: column;
   justify-content: space-between;
