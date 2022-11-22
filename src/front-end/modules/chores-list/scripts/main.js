@@ -26,7 +26,9 @@ function initPage (chores) {
 
   const choreBoxes = document.querySelectorAll('chore-card')
   const edit_div = document.querySelector('#edit-background')
-  const edit_chore_name = document.querySelector('form#edit input#e-chore-name')
+  const edit_chore_name = document.querySelector(
+    'form#edit input#e-chore-name'
+  )
   const edit_roommate_name = document.querySelector(
     'form#edit input#e-roommate-name'
   )
@@ -136,9 +138,25 @@ function initFormHandler () {
     edit_assign_div.style.display = 'block'
   })
 
-  edit_close.onclick = close;
+  edit_close.onclick = function close () {
+    edit_div.style.display = 'none'
+    edit_assign_div.style.display = 'none'
+    edit_form.reset()
+    edit_assign_form.reset()
+  }
 
-  edit_delete.onclick = close;
+  edit_delete.onclick = function close () {
+    for (let i = 0; i < chores_var.length; i++) {
+      if (chores_var[i].id == selectedChore) {
+        chores_var.splice(i, 1)
+        edit_div.style.display = 'none'
+        edit_assign_div.style.display = 'none'
+        edit_form.reset()
+        edit_assign_form.reset()
+        initPage(chores_var)
+      }
+    }
+  }
 
   edit_assign_form.addEventListener('submit', (event) => {
     event.preventDefault()
