@@ -19,6 +19,7 @@ export function readChores() {
     localStorage.setItem("ChoresListData", JSON.stringify(chores));
     return JSON.parse(localStorage.getItem("ChoresListData"));
   } else {
+    checkDate();
     return JSON.parse(localStorage.getItem("ChoresListData"));
   }
 }
@@ -72,8 +73,9 @@ export function createChore(formData) {
     title: formData["title"],
     description: formData["description"],
     assignee: formData["assignee"],
-    dueDate: formData["dueDate"],
+    assignedDate: formData["assignedDate"],
     status: "open",
+    currRoommate: assignee[0], 
   };
   choresAPIData["choresCounterId"] += 1;
   choresAPIData["openChoresCount"] += 1;
@@ -113,7 +115,7 @@ export function updateChore(id, listToQuery, formData) {
         choresAPIData["archived"][i]["title"] = formData["title"];
         choresAPIData["archived"][i]["description"] = formData["description"];
         choresAPIData["archived"][i]["assignee"] = formData["assignee"];
-        choresAPIData["archived"][i]["dueDate"] = formData["dueDate"];
+        choresAPIData["archived"][i]["assignedDate"] = formData["assignedDate"];
         choresAPIData["archived"][i]["status"] = formData["status"];
         break;
       }
@@ -133,7 +135,7 @@ export function updateChore(id, listToQuery, formData) {
         choresAPIData["chores"][i]["title"] = formData["title"];
         choresAPIData["chores"][i]["description"] = formData["description"];
         choresAPIData["chores"][i]["assignee"] = formData["assignee"];
-        choresAPIData["chores"][i]["dueDate"] = formData["dueDate"];
+        choresAPIData["chores"][i]["assignedDate"] = formData["assignedDate"];
         choresAPIData["chores"][i]["status"] = formData["status"];
         break;
       }
@@ -207,3 +209,159 @@ export function updateChoreCounterForRoommate(roommateId) {}
 export function updateChoreStatus(id, status) {}
 //TO DO IF SPECIFIC DATA IS NEEDED
 export function updateChoreOwner(choreId, oldOwnerID, newOwnerId) {}
+
+/**
+ * checkDate will change the dates assigned if needed and change the assigned
+ * roommates when called from readChores
+ */
+export function checkDate(){
+  let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
+
+  const date = new Date();
+
+  const day = date.getDate();
+
+  const month = date.getMonth() + 1;
+
+  const year = date.getFullYear();
+
+  const nextWeek = new Date();
+
+  nextWeek.setDate(nextWeek.getDate() + 7);
+
+  const nextDay = date.getDate();
+
+  const nextMonth = date.getMonth() + 1;
+
+  const nextYear = date.getFullYear();
+
+  const string = `${nextMonth}/${nextDay}/${nextYear}`;
+
+
+  nextRoommate = NULL;
+  
+  //loops inside of the archived chores
+  for (let i = 0; i < choresAPIData["archived"].length(); i++) {
+    let archivedChore = choresAPIData["archived"][i];
+
+    for(let j = 0; j < archivedChore["assignee"].length(); j++){
+        if(archivedChore["assignee"][j] == archivedChore["currRoommate"]){
+          
+          nextRoommate = archivedChore["assignee"][(j+1) % archivedChore["assignee"].length()];
+
+        }
+    }
+
+    const currDate = archivedChore["assignedDate"].split("/").map(Number);
+
+    if(currDate[2] > year){
+
+      archivedChore["assignedDate"] = string;
+      archivedChore["currRoommate"] = nextRoommate;
+
+
+    }else if(currDate < year){
+      //we are looking at an assigned year date 
+      //that is greater than our current year
+      continue;
+    }else{
+      if(currDate[0] > month){
+
+        archivedChore["assignedDate"] = string;
+        archivedChore["currRoommate"] = nextRoommate;
+
+
+      }else if(currDate[0] < month){
+        //we are looking at an assigned month date 
+        //that is greater than the curr month
+        continue;
+
+      }else{
+        if(currDate[1] > day){
+          if( 7 >= (currDate[1] - day)){
+            //where we change the assigned date to be updated with new date
+
+            archivedChore["assignedDate"] = string;
+            archivedChore["currRoommate"] = nextRoommate;
+
+          }
+        }else if(currDate[1] < day){
+          //we are looking at an assigned day which is greater than the curr day
+          continue;
+        
+        }else{
+            //date is the same day so we dont care
+            continue;
+        }
+      }
+    }
+
+    choresAPIData["archived"][i] = archivedChore;
+
+  }
+
+  //loops inside of the open chores
+  for (let i = 0; i < choresAPIData["chores"].length(); i++) {
+    let openChore = choresAPIData["chores"][i];
+
+    const currDate = openChore["assignedDate"].split("/").map(Number);
+
+    for(let j = 0; j < openChore["assignee"].length(); j++){
+      if(openChore["assignee"][j] == openChore["currRoommate"]){
+        
+        nextRoommate = openChore["assignee"][(j+1) % openChore["assignee"].length()];
+
+      }
+    }
+
+
+    if(currDate[2] > year){
+      
+      openChore["assignedDate"] = string;
+      openChore["currRoommate"] = nextRoommate;
+
+
+    }else if(currDate < year){
+      //we are looking at an assigned year date 
+      //that is greater than our current year
+      continue;
+    }else{
+      if(currDate[0] > month){
+        
+        openChore["assignedDate"] = string;
+        openChore["currRoommate"] = nextRoommate;
+
+
+      }else if(currDate[0] < month){
+        //we are looking at an assigned month date 
+        //that is greater than the curr month
+        continue;
+
+      }else{
+        if(currDate[1] > day){
+          if( 7 >= (currDate[1] - day)){
+            //where we change the assigned date to be updated with new date
+
+            openChore["assignedDate"] = string;
+            openChore["currRoommate"] = nextRoommate;
+
+
+          }
+        }else if(currDate[1] < day){
+          //we are looking at an assigned day which is greater than the curr day
+          continue;
+        
+        }else{
+            //date is the same day so we dont care
+            continue;
+        }
+      }
+    }
+
+    choresAPIData["chores"][i] = openChore;
+
+  }
+
+  localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
+
+}
