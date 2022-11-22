@@ -52,9 +52,9 @@ function initPage(roommates) {
 function initFormHandler() {
   //nodes for the add form, form popup, add, and close buttons
   let addForm = document.querySelector("form.add");
-  let addPopup = document.querySelector("#background.add");
+  let addPopup = document.querySelector(".background.add");
   let addBtn = document.querySelector("#new.item");
-  let closeBtn = document.getElementById("close_button_1");
+  let closeBtn = document.getElementById("close-button-1");
 
   //when submit button is clicked, submit the form and make a new roommate, hide the popup
   addForm.addEventListener("submit", (event) => {
@@ -83,9 +83,9 @@ function updateDelHandler() {
   //nodes for roommate cards, update form, form popup, delete, save, and close buttons
   let cards = document.querySelectorAll("roommate-card");
   let updateForm = document.querySelector("form.update");
-  let updatePopup = document.querySelector("#background.update");
-  let delBtn = document.getElementById("delete_button");
-  let closeBtn = document.getElementById("close_button_2");
+  let updatePopup = document.querySelector(".background.update");
+  let delBtn = document.getElementById("delete-button");
+  let closeBtn = document.getElementById("close-button-2");
 
   //creating an event listener for each card
   cards.forEach((card) => {
