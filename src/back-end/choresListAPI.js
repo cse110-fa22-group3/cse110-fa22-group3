@@ -40,9 +40,9 @@ export function queryChore (listToQuery, id) {
   const choresAPIData = JSON.parse(localStorage.getItem('ChoresListData'))
 
   // Check which list to search from, and do a linear search for object
-  if (listToQuery == 'archived') {
+  if (listToQuery = 'archived') {
     for (let i = 0; i < choresAPIData.archived.length(); i++) {
-      if (choresAPIData.archived[i].id == id) {
+      if (choresAPIData.archived[i].id === id) {
         return choresAPIData.archived[i]
       }
     }
@@ -50,7 +50,7 @@ export function queryChore (listToQuery, id) {
     return {}
   } else {
     for (let i = 0; i < choresAPIData.chores.length(); i++) {
-      if (choresAPIData.chores[i].id == id) {
+      if (choresAPIData.chores[i].id === id) {
         return choresAPIData.chores[i]
       }
     }
@@ -98,13 +98,13 @@ export function updateChore (id, listToQuery, formData) {
   let switchToClosed = false
 
   // Do a check to see which list we should iterate through
-  if (listToQuery == 'archive') {
+  if (listToQuery === 'archive') {
     for (let i = 0; i < choresAPIData.archived.length(); i++) {
-      if (choresAPIData.archived[i].id == id) {
+      if (choresAPIData.archived[i].id === id) {
         // set flag to indicate we need to put the chore in the other list
         if (
-          formData.status == 'open' &&
-          choresAPIData.chores[i].status == 'closed'
+          formData.status === 'open' &&
+          choresAPIData.chores[i].status === 'closed'
         ) {
           choresAPIData.archived[i].status = formData.open
           switchToOpen = true
@@ -120,11 +120,11 @@ export function updateChore (id, listToQuery, formData) {
     }
   } else {
     for (let i = 0; i < choresAPIData.chores.length(); i++) {
-      if (choresAPIData.chores[i].id == id) {
+      if (choresAPIData.chores[i].id === id) {
         // set flag to indicate we need to put the chore in the other list
         if (
-          formData.status == 'closed' &&
-          choresAPIData.chores[i].status == 'open'
+          formData.status === 'closed' &&
+          choresAPIData.chores[i].status === 'open'
         ) {
           choresAPIData.chores[i].status = formData.open
           switchToClosed = true
@@ -140,10 +140,10 @@ export function updateChore (id, listToQuery, formData) {
     }
   }
   // handle switching lists utilizing helper functions
-  if (switchToClosed == true) {
+  if (switchToClosed === true) {
     closeChore(id)
   }
-  if (switchToOpen == true) {
+  if (switchToOpen === true) {
     reOpenChore(id)
   }
   // update our localStorage
@@ -158,7 +158,7 @@ export function updateChore (id, listToQuery, formData) {
 export function closeChore (id) {
   const choresAPIData = JSON.parse(localStorage.getItem('ChoresListData'))
   for (let i = 0; i < choresAPIData.chores.length(); i++) {
-    if (choresAPIData.chores[i].id == id) {
+    if (choresAPIData.chores[i].id === id) {
       const archivedChore = choresAPIData.chores[i]
       archivedChore.status = 'closed'
       choresAPIData.chores.splice(i, 1)
@@ -179,7 +179,7 @@ export function closeChore (id) {
 export function reOpenChore (id) {
   const choresAPIData = JSON.parse(localStorage.getItem('ChoresListData'))
   for (let i = 0; i < choresAPIData.archived.length(); i++) {
-    if (choresAPIData.archived[i].id == id) {
+    if (choresAPIData.archived[i].id === id) {
       const reOpenChore = choresAPIData.archived[i]
       choresAPIData.archived.splice(i, 1)
       choresAPIData.chores.push(reOpenChore)
