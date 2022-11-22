@@ -365,3 +365,34 @@ export function checkDate(){
   localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
 
 }
+
+/**
+ * returns the roommate currently in charge of the chore (based on time since assigned)
+ * @param {*} id id of the chore
+ * @returns the id of the current roommate in charge of the chore
+ */
+export function inCharge(id)
+{
+  //get ChoresListData from localStorage
+  let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
+
+  //check the chores list to see if the chore is there
+  for (let i = 0; i < choresAPIData["chores"].length(); i++)
+  {
+    if (choresAPIData["chores"][i]["id"] == id)
+    {
+      //return the current roommate in charge of the chore
+      return choresAPIData["chores"][i]["currRoommate"];
+    }
+  }
+
+  //check the archived list to see if the chore is there
+  for (let i = 0; i < choresAPIData["archived"].length(); i++)
+  {
+    if (choresAPIData["archived"][i]["id"] == id)
+    {
+      //return the current roommate in charge of the chore
+      return choresAPIData["archived"][i]["currRoommate"];
+    }
+  }
+}
