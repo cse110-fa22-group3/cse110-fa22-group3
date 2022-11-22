@@ -1,5 +1,5 @@
  .background {
-    font-family: Arial,Helvetica,sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 17px;
   text-align: 1.5;
   display: none;
@@ -8,11 +8,11 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgb(0 0 0 / 50%);
 }
 
 #div1 {
-  background:#eeeeee;
+  background: #eee;
   width: 70%;
   z-index: 1;
   margin: 12% auto;
@@ -27,57 +27,57 @@
 }
 
 #div2 {
-    background:#eeeeee;
+  background: #eee;
   margin-top: 30px;
   height: 300px;
   padding: 0 20px;
-    font-size: x-large;
+  font-size: x-large;
 }
 
-#div2 form{
-    display: flexbox;
-    flex-direction: column;
-    justify-content: space-between;
+#div2 form {
+  display: flexbox;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-form #name-1{
-    height: 30px;
-    font-size: x-large;
+form #name-1 {
+  height: 30px;
+  font-size: x-large;
 }
 
-form #birthday-1{
-    height: 30px;
-    font-size: x-large;
+form #birthday-1 {
+  height: 30px;
+  font-size: x-large;
 }
 
-form #hobbies-1{
-    height: 30px;
-    font-size: x-large;
+form #hobbies-1 {
+  height: 30px;
+  font-size: x-large;
 }
 
-form #notes-1{
-    height: 30px;
-    font-size: x-large;
+form #notes-1 {
+  height: 30px;
+  font-size: x-large;
 }
 
-form #name-2{
-    height: 30px;
-    font-size: x-large;
+form #name-2 {
+  height: 30px;
+  font-size: x-large;
 }
 
-form #birthday-2{
-    height: 30px;
-    font-size: x-large;
+form #birthday-2 {
+  height: 30px;
+  font-size: x-large;
 }
 
-form #hobbies-2{
-    height: 30px;
-    font-size: x-large;
+form #hobbies-2 {
+  height: 30px;
+  font-size: x-large;
 }
 
-form #notes-2{
-    height: 30px;
-    font-size: x-large;
+form #notes-2 {
+  height: 30px;
+  font-size: x-large;
 }
 
 .close {
@@ -107,4 +107,3 @@ form #notes-2{
   margin: 0;
   padding-top: 15px;
 }
-
