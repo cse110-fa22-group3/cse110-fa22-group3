@@ -1,11 +1,11 @@
 class Roommate extends HTMLElement {
-  constructor () {
-    super()
-    this.shadow = this.attachShadow({ mode: 'open' })
-    const roommate = document.createElement('div')
-    roommate.className = 'item'
-    this.shadow.append(roommate)
-    const style = document.createElement('style')
+  constructor() {
+    super();
+    this.shadow = this.attachShadow({ mode: "open" });
+    const roommate = document.createElement("div");
+    roommate.className = "item";
+    this.shadow.append(roommate);
+    const style = document.createElement("style");
     style.innerText = `
           .item {
             margin-bottom: 30px;
@@ -37,13 +37,13 @@ class Roommate extends HTMLElement {
           span {
             font-size: 20px;
           }
-          `
-    this.shadow.append(style)
+          `;
+    this.shadow.append(style);
   }
 
-  set data (data) {
-    if (!data) return
-    const roommate = this.shadow.querySelector('div')
+  set data(data) {
+    if (!data) return;
+    const roommate = this.shadow.querySelector("div");
     roommate.innerHTML = `
             <h3>${data.name}</h3>
             <div class="text">
@@ -56,7 +56,7 @@ class Roommate extends HTMLElement {
             <div class="text">
                 <p>${data.notes}</p>
             </div>
-        `
+        `;
   }
 }
-customElements.define('roommate-card', Roommate)
+customElements.define("roommate-card", Roommate);
