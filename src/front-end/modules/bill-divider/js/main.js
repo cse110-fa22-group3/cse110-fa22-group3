@@ -6,7 +6,7 @@ function init() {
     transfer()
     del_history()
 }
-
+let cardBox = document.querySelectorAll('.card')
 let array=[]//array containing data objects
 
 /**
@@ -36,20 +36,19 @@ function init_list(){
         {
             name:"gjcghjv",
             isOwed:0,
-            Owes:{}
+            Owes:{}//filled below 
         }
         ,{
             name:"cyabat",
             isOwed:0,
-            Owes:{}
+            Owes:{}//filled below 
         }
         ,{
             name:"challah",
             isOwed:0,
-            Owes:{}
+            Owes:{}//filled below 
         }
     ]
-    
     let name_list=[]
     initial_data.forEach(data=>{name_list.push(data.name)})
     let radioList=document.querySelectorAll('.select_name')
@@ -128,7 +127,10 @@ function pay(){
         array[index].isOwed+=remainToBePaid-average_cost
         array[index].isOwed=Math.round(array[index].isOwed*100)/100
         display_array(array)
-
+        //return to home page and clear the form
+        cardBox[0].classList.add('active')
+        cardBox[3].classList.remove('active')
+        form_pay.reset()
         //add an record to history
         let record=document.createElement('li')
         record.className='mb-3'
@@ -162,7 +164,8 @@ function transfer(){
                 to_index=x
         }
         //update Owes and is Owed
-        let amount=document.querySelector('input[form="transfer"]').value
+        let input_amount=document.querySelector('input[form="transfer"]')
+        let amount=input_amount.value
         let owed=array[from_index].Owes[array[to_index].name]
         let smaller=Math.min(amount,owed)
         array[from_index].Owes[array[to_index].name]-=smaller
@@ -175,6 +178,12 @@ function transfer(){
         array[from_index].isOwed=Math.round(array[from_index].isOwed*100)/100
         array[to_index].Owes[array[from_index].name]=Math.round(array[to_index].Owes[array[from_index].name]*100)/100
         display_array()
+        //return to home page and clear the form
+        cardBox[0].classList.add('active')
+        cardBox[2].classList.remove('active')
+        form_transfer_from.reset()
+        form_transfer_to.reset()
+        input_amount.value=''
         //add an record to history
         let record=document.createElement('li')
         record.className='mb-3'
