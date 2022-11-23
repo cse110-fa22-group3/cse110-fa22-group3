@@ -143,7 +143,7 @@ function initFormHandler() {
     editAssignForm.reset()
   }
 
-  editDelete.onclick = function close () {
+  function deletePress () {
     for (let i = 0; i < choresVar.length; i++) {
       if (choresVar[i].id == selectedChore) {
         choresVar.splice(i, 1)
@@ -155,6 +155,8 @@ function initFormHandler() {
       }
     }
   };
+
+  editDelete.onclick = deletePress;
 
   editAssignForm.addEventListener('submit', (event) => {
     event.preventDefault()
@@ -180,12 +182,7 @@ function initFormHandler() {
     editAssignDiv.style.display = 'none'
   })
 
-  editAssignClose.onclick = function close () {
-    editDiv.style.display = 'none'
-    editAssignDiv.style.display = 'none'
-    editForm.reset()
-    editAssignForm.reset()
-  }
+  editAssignClose.onclick = deletePress;
 
   editAssignDelete.onclick = function close () {
     for (let i = 0; i < choresVar.length; i++) {
