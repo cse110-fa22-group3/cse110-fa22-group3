@@ -16,5 +16,10 @@ class chore extends HTMLElement {
     </p>
         `
   }
+
+  get data () {
+    const chore = this.shadow.querySelector('div')
+    return chore.innerHTML
+  }
 }
 customElements.define('chore-card', chore)

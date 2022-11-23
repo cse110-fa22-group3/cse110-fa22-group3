@@ -1,47 +1,47 @@
 window.addEventListener('DOMContentLoaded', init)
 
-const chores_var = []
+const choresVar = []
 
 let currentId = 0
 let selectedChore = 0
 
 function init () {
-  initPage(chores_var)
+  initPage(choresVar)
   initFormHandler()
 }
 
 function initPage (chores) {
-  const chores_container = document.querySelector('.chores-container')
+  const choresContainer = document.querySelector('.chores-container')
 
-  while (chores_container.childElementCount > 1) {
-    chores_container.removeChild(chores_container.firstElementChild)
+  while (choresContainer.childElementCount > 1) {
+    choresContainer.removeChild(choresContainer.firstElementChild)
   }
 
   chores.forEach((chore) => {
     const card = document.createElement('chore-card')
     card.setAttribute('id', chore.id)
     card.data = chore
-    chores_container.insertBefore(card, document.querySelector('#add-chore'))
+    choresContainer.insertBefore(card, document.querySelector('#add-chore'))
   })
 
   const choreBoxes = document.querySelectorAll('chore-card')
-  const edit_div = document.querySelector('#edit-background')
-  const edit_chore_name = document.querySelector(
+  const editDiv = document.querySelector('#edit-background')
+  const editChoreName = document.querySelector(
     'form#edit input#e-chore-name'
   )
-  const edit_roommate_name = document.querySelector(
+  const editRoommateName = document.querySelector(
     'form#edit input#e-roommate-name'
   )
 
   choreBoxes.forEach((card) => {
     card.addEventListener('click', (event) => {
       selectedChore = card.getAttribute('id')
-      edit_div.style.display = 'block'
+      editDiv.style.display = 'block'
 
-      for (let i = 0; i < chores_var.length; i++) {
-        if (chores_var[i].id == selectedChore) {
-          edit_chore_name.value = chores_var[i].choreName
-          edit_roommate_name.value = chores_var[i].roommateName
+      for (let i = 0; i < choresVar.length; i++) {
+        if (choresVar[i].id == selectedChore) {
+          editChoreName.value = choresVar[i].choreName
+          editRoommateName.value = choresVar[i].roommateName
         }
       }
     })
@@ -55,55 +55,55 @@ function initFormHandler () {
   const newBox = document.querySelector('#add-chore')
   // let div = document.getElementById('background')
   // let btn_close = document.getElementById('close-button')
-  const create_div = document.querySelector('#create-background')
-  const create_close = document.getElementById('create-close')
-  const create_form = document.getElementById('create')
+  const createDiv = document.querySelector('#create-background')
+  const createClose = document.getElementById('create-close')
+  const createForm = document.getElementById('create')
 
-  const assign_div = document.querySelector('#assign-background')
-  const assign_close = document.getElementById('assign-close')
-  const assign_form = document.getElementById('assign')
+  const assignDiv = document.querySelector('#assign-background')
+  const assignClose = document.getElementById('assign-close')
+  const assignForm = document.getElementById('assign')
 
-  const edit_div = document.querySelector('#edit-background')
-  const edit_close = document.getElementById('edit-close')
-  const edit_form = document.getElementById('edit')
-  const edit_delete = document.getElementById('delete-1')
+  const editDiv = document.querySelector('#edit-background')
+  const editClose = document.getElementById('edit-close')
+  const editForm = document.getElementById('edit')
+  const editDelete = document.getElementById('delete-1')
 
-  const edit_assign_div = document.querySelector('#edit-assign-background')
-  const edit_assign_close = document.getElementById('edit-assign-close')
-  const edit_assign_form = document.getElementById('edit-assign')
-  const edit_assign_delete = document.getElementById('delete-2')
-  // let form_edit = document.querySelector('form.edit')
+  const editAssignDiv = document.querySelector('#edit-assign-background')
+  const editAssignClose = document.getElementById('edit-assign-close')
+  const editAssignForm = document.getElementById('edit-assign')
+  const editAssignDelete = document.getElementById('delete-2')
+  // const formEdit = document.querySelector('form.edit')
 
   let createData
 
-  create_form.addEventListener('submit', (event) => {
+  createForm.addEventListener('submit', (event) => {
     event.preventDefault()
     // createChore(new FormData(form_create));
 
-    createData = new FormData(create_form)
+    createData = new FormData(createForm)
 
-    create_form.reset()
-    initPage(chores_var)
-    create_div.style.display = 'none'
-    assign_div.style.display = 'block'
+    createForm.reset()
+    initPage(choresVar)
+    createDiv.style.display = 'none'
+    assignDiv.style.display = 'block'
   })
 
   newBox.onclick = function show () {
-    create_div.style.display = 'block'
+    createDiv.style.display = 'block'
   }
 
-  create_close.onclick = function close () {
-    create_div.style.display = 'none'
-    assign_div.style.display = 'none'
-    create_form.reset()
-    assign_form.reset()
+  createClose.onclick = function close () {
+    createDiv.style.display = 'none'
+    assignDiv.style.display = 'none'
+    createForm.reset()
+    assignForm.reset()
   }
 
-  assign_form.addEventListener('submit', (event) => {
+  assignForm.addEventListener('submit', (event) => {
     event.preventDefault()
     // createChore(new FormData(form_create));
 
-    const assignData = new FormData(create_form)
+    const assignData = new FormData(createForm)
 
     currentId++
     const new_chore = {
@@ -112,57 +112,57 @@ function initFormHandler () {
       roommateName: createData.get('roommateName')
     }
 
-    chores_var.push(new_chore)
+    choresVar.push(new_chore)
 
-    assign_form.reset()
-    initPage(chores_var)
-    assign_div.style.display = 'none'
+    assignForm.reset()
+    initPage(choresVar)
+    assignDiv.style.display = 'none'
   })
 
-  assign_close.onclick = function close () {
-    create_div.style.display = 'none'
-    assign_div.style.display = 'none'
-    create_form.reset()
-    assign_form.reset()
+  assignClose.onclick = function close () {
+    createDiv.style.display = 'none'
+    assignDiv.style.display = 'none'
+    createForm.reset()
+    assignForm.reset()
   }
 
-  edit_form.addEventListener('submit', (event) => {
+  editForm.addEventListener('submit', (event) => {
     event.preventDefault()
     // createChore(new FormData(form_create));
 
-    createData = new FormData(edit_form)
+    createData = new FormData(editForm)
 
-    edit_form.reset()
-    initPage(chores_var)
-    edit_div.style.display = 'none'
-    edit_assign_div.style.display = 'block'
+    editForm.reset()
+    initPage(choresVar)
+    editDiv.style.display = 'none'
+    editAssignDiv.style.display = 'block'
   })
 
-  edit_close.onclick = function close () {
-    edit_div.style.display = 'none'
-    edit_assign_div.style.display = 'none'
-    edit_form.reset()
-    edit_assign_form.reset()
+  editClose.onclick = function close () {
+    editDiv.style.display = 'none'
+    editAssignDiv.style.display = 'none'
+    editForm.reset()
+    editAssignForm.reset()
   }
 
-  edit_delete.onclick = function close () {
-    for (let i = 0; i < chores_var.length; i++) {
-      if (chores_var[i].id == selectedChore) {
-        chores_var.splice(i, 1)
-        edit_div.style.display = 'none'
-        edit_assign_div.style.display = 'none'
-        edit_form.reset()
-        edit_assign_form.reset()
-        initPage(chores_var)
+  editDelete.onclick = function close () {
+    for (let i = 0; i < choresVar.length; i++) {
+      if (choresVar[i].id == selectedChore) {
+        choresVar.splice(i, 1)
+        editDiv.style.display = 'none'
+        editAssignDiv.style.display = 'none'
+        editForm.reset()
+        editAssignForm.reset()
+        initPage(choresVar)
       }
     }
   }
 
-  edit_assign_form.addEventListener('submit', (event) => {
+  editAssignForm.addEventListener('submit', (event) => {
     event.preventDefault()
     // createChore(new FormData(form_create));
 
-    const assignData = new FormData(edit_form)
+    const assignData = new FormData(editForm)
 
     const new_chore = {
       id: currentId,
@@ -170,34 +170,34 @@ function initFormHandler () {
       roommateName: createData.get('roommateName')
     }
 
-    for (let i = 0; i < chores_var.length; i++) {
-      if (chores_var[i].id == selectedChore) {
-        chores_var[i].choreName = createData.get('choreName')
-        chores_var[i].roommateName = createData.get('roommateName')
+    for (let i = 0; i < choresVar.length; i++) {
+      if (choresVar[i].id == selectedChore) {
+        choresVar[i].choreName = createData.get('choreName')
+        choresVar[i].roommateName = createData.get('roommateName')
       }
     }
 
-    edit_assign_form.reset()
-    initPage(chores_var)
-    edit_assign_div.style.display = 'none'
+    editAssignForm.reset()
+    initPage(choresVar)
+    editAssignDiv.style.display = 'none'
   })
 
-  edit_assign_close.onclick = function close () {
-    edit_div.style.display = 'none'
-    edit_assign_div.style.display = 'none'
-    edit_form.reset()
-    edit_assign_form.reset()
+  editAssignClose.onclick = function close () {
+    editDiv.style.display = 'none'
+    editAssignDiv.style.display = 'none'
+    editForm.reset()
+    editAssignForm.reset()
   }
 
-  edit_assign_delete.onclick = function close () {
-    for (let i = 0; i < chores_var.length; i++) {
-      if (chores_var[i].id == selectedChore) {
-        chores_var.splice(i, 1)
-        edit_div.style.display = 'none'
-        edit_assign_div.style.display = 'none'
-        edit_form.reset()
-        edit_assign_form.reset()
-        initPage(chores_var)
+  editAssignDelete.onclick = function close () {
+    for (let i = 0; i < choresVar.length; i++) {
+      if (choresVar[i].id == selectedChore) {
+        choresVar.splice(i, 1)
+        editDiv.style.display = 'none'
+        editAssignDiv.style.display = 'none'
+        editForm.reset()
+        editAssignForm.reset()
+        initPage(choresVar)
       }
     }
   }
@@ -221,42 +221,29 @@ function editDeleteHandler () {
   const cards = document.querySelectorAll('roommate-card')
 
   const div = document.querySelector('.back2')
-  const btn_close = document.getElementById('close-button2')
-  const btn_del = document.getElementById('del-button')
+  const btnClose = document.getElementById('close-button2')
+  const btnDel = document.getElementById('del-button')
   const btn2 = document.getElementById('btn2')
-  const form_update = document.querySelector('form.update')
+  const formUpdate = document.querySelector('form.update')
 
   cards.forEach((card) => {
     card.addEventListener('click', (event) => {
       div.style.display = 'block'
 
-      btn_close.onclick = function close () {
+      btnClose.onclick = function close () {
         div.style.display = 'none'
       }
 
-      btn_del.onclick = function () {
+      btnDel.onclick = function () {
         deleteRoommate(event.target.id)
         initPage(readRoommate())
       }
       btn2.onclick = function () {
-        updateRoommate(new FormData(form_update), event.target.id)
+        updateRoommate(new FormData(formUpdate), event.target.id)
         initPage(readRoommate())
       }
     })
   })
-}
-
-function close () {
-  for (let i = 0; i < chores_var.length; i++) {
-    if (chores_var[i].id == selectedChore) {
-      chores_var.splice(i, 1)
-      edit_div.style.display = 'none'
-      edit_assign_div.style.display = 'none'
-      edit_form.reset()
-      edit_assign_form.reset()
-      initPage(chores_var)
-    }
-  }
 }
 
 /*

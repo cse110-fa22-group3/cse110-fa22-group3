@@ -40,7 +40,7 @@ export function queryChore (listToQuery, id) {
   const choresAPIData = JSON.parse(localStorage.getItem('ChoresListData'))
 
   // Check which list to search from, and do a linear search for object
-  if (listToQuery = 'archived') {
+  if (listToQuery === 'archived') {
     for (let i = 0; i < choresAPIData.archived.length(); i++) {
       if (choresAPIData.archived[i].id === id) {
         return choresAPIData.archived[i]
@@ -164,7 +164,7 @@ export function closeChore (id) {
       choresAPIData.chores.splice(i, 1)
       choresAPIData.archived.push(archivedChore)
       choresAPIData.closedChoresCount += 1
-      choresAPIDate.openChoressCount -= 1
+      choresAPIData.openChoresCount -= 1
       break
     }
   }
@@ -184,7 +184,7 @@ export function reOpenChore (id) {
       choresAPIData.archived.splice(i, 1)
       choresAPIData.chores.push(reOpenChore)
       choresAPIData.closedChoresCount -= 1
-      choresAPIDate.openChoressCount += 1
+      choresAPIData.openChoresCount += 1
       break
     }
   }
