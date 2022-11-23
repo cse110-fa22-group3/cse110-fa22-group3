@@ -18,6 +18,7 @@ jobs:
         with:
           source_dir: ./src
           output_dir: ./out
+          recurse: true
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
