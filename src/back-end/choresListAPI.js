@@ -40,7 +40,7 @@ export function queryChore (listToQuery, id) {
   const choresAPIData = JSON.parse(localStorage.getItem('ChoresListData'))
 
   // Check which list to search from, and do a linear search for object
-  if (listToQuery === "archived") {
+  if (listToQuery === 'archived') {
     for (let i = 0; i < choresAPIData.archived.length(); i++) {
       if (choresAPIData.archived[i].id === id) {
         return choresAPIData.archived[i]
@@ -159,13 +159,13 @@ export function closeChore (id) {
   const choresAPIData = JSON.parse(localStorage.getItem('ChoresListData'))
   for (let i = 0; i < choresAPIData.chores.length(); i++) {
     if (choresAPIData.chores[i].id === id) {
-      const archivedChore = choresAPIData.chores[i];
-      archivedChore.status = "closed";
-      choresAPIData.chores.splice(i, 1);
-      choresAPIData.archived.push(archivedChore);
-      choresAPIData.closedChoresCount += 1;
-      choresAPIData.openChoresCount -= 1;
-      break;
+      const archivedChore = choresAPIData.chores[i]
+      archivedChore.status = 'closed'
+      choresAPIData.chores.splice(i, 1)
+      choresAPIData.archived.push(archivedChore)
+      choresAPIData.closedChoresCount += 1
+      choresAPIData.openChoresCount -= 1
+      break
     }
   }
   localStorage.setItem('ChoresListData', JSON.stringify(choresAPIData))
@@ -180,12 +180,12 @@ export function reOpenChore (id) {
   const choresAPIData = JSON.parse(localStorage.getItem('ChoresListData'))
   for (let i = 0; i < choresAPIData.archived.length(); i++) {
     if (choresAPIData.archived[i].id === id) {
-      const reOpenChore = choresAPIData.archived[i];
-      choresAPIData.archived.splice(i, 1);
-      choresAPIData.chores.push(reOpenChore);
-      choresAPIData.closedChoresCount -= 1;
-      choresAPIData.openChoresCount += 1;
-      break;
+      const reOpenChore = choresAPIData.archived[i]
+      choresAPIData.archived.splice(i, 1)
+      choresAPIData.chores.push(reOpenChore)
+      choresAPIData.closedChoresCount -= 1
+      choresAPIData.openChoresCount += 1
+      break
     }
   }
   localStorage.setItem('ChoresListData', JSON.stringify(choresAPIData))
