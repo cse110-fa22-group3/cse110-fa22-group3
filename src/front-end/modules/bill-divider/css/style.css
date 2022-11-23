@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+img {
+  width: 100%;
+  vertical-align: middle;
+}
+input,
+textarea {
+  height: 35px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  border: 2px solid #000;
+}
+.w {
+  width: 500px;
+  margin: 0 auto;
+}
+.mb-3 {
+  margin-bottom: 15px;
+}
+.card {
+  display: none;
+  margin: 30px auto;
+  padding: 15px;
+  background: #fff;
+  border-radius: 25px;
+  border: 3px solid #000;
+}
+.card.active {
+  display: block;
+}
+.card .tit {
+  position: relative;
+  display: flex;
+  margin-bottom: 15px;
+}
+.card .tit .back {
+  width: 35px;
+}
+.card .tit h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.list li {
+  margin-bottom: 5px;
+  padding: 15px;
+  border-radius: 15px;
+  background: #e9e9e9;
+  box-shadow: 0 0 2px #e9e9e9;
+}
+.list li h3 {
+  font-size: 25px;
+}
+.list li p {
+  color: #59a54c;
+}
+.list li span {
+  color: red;
+}
+.btnList {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.btnList button {
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.transferList {
+  margin: 0 auto;
+  width: 450px;
+}
+.transferList li {
+  display: flex;
+  align-items: center;
+  padding: 0 10%;
+}
+.transferList li span,
+.transferList li p {
+  width: 150px;
+  font-weight: 600;
+  font-size: 20px;
+}
+.transferList li input[type="text"],
+.transferList li input[type="number"]
+{
+  position: relative;
+  left: -42px;
+  width: 215px;
+}
+.transferList li textarea {
+  padding: 15px;
+  width: 360px;
+  min-height: 150px;
+  box-sizing: border-box;
+}
+.historyList li {
+  display: flex;
+  align-items: center;
+}
+.historyList li input {
+  margin-right: 15px;
+}
+.transferList li input[type="radio"]{
+  position: relative;
+  bottom: -4px;
+  border: 0px;
+  height: 1.5em;
+  width: 50px;
+}
+li.mb-3 .select_name{
+  margin-bottom: 30px;
+  position: relative;
+  left: -60px;
+  bottom: -10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+li.mb-3 .select_name label{
+  font-size: larger;
+}
+input[type="submit"]{
+  position: relative;
+  margin-top: 30px;
+  font-size: 1em;
+  width: 100px;
+  left: 40%;
+}
+
