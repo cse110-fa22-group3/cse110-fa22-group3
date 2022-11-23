@@ -1,9 +1,9 @@
-window.addEventListener("DOMContentLoaded", init);
+window.addEventListener('DOMContentLoaded', init)
 
 const choresVar = []
 
-let currentId = 0;
-let selectedChore = 0;
+let currentId = 0
+let selectedChore = 0
 
 function init () {
   initPage(choresVar)
@@ -44,15 +44,15 @@ function initPage (chores) {
           editRoommateName.value = choresVar[i].roommateName
         }
       }
-    });
-  });
+    })
+  })
 
-  editDeleteHandler();
+  editDeleteHandler()
 }
 
 // import {roommate} from './roommate'
-function initFormHandler() {
-  const newBox = document.querySelector("#add-chore");
+function initFormHandler () {
+  const newBox = document.querySelector('#add-chore')
   // let div = document.getElementById('background')
   // let btn_close = document.getElementById('close-button')
   const createDiv = document.querySelector('#create-background')
@@ -74,7 +74,7 @@ function initFormHandler() {
   const editAssignDelete = document.getElementById('delete-2')
   // const formEdit = document.querySelector('form.edit')
 
-  let createData;
+  let createData
 
   createForm.addEventListener('submit', (event) => {
     event.preventDefault()
@@ -105,12 +105,12 @@ function initFormHandler() {
 
     const assignData = new FormData(createForm)
 
-    currentId++;
+    currentId++
     const new_chore = {
       id: currentId,
-      choreName: createData.get("choreName"),
-      roommateName: createData.get("roommateName"),
-    };
+      choreName: createData.get('choreName'),
+      roommateName: createData.get('roommateName')
+    }
 
     choresVar.push(new_chore)
 
@@ -156,7 +156,7 @@ function initFormHandler() {
         initPage(choresVar)
       }
     }
-  };
+  }
 
   editAssignForm.addEventListener('submit', (event) => {
     event.preventDefault()
@@ -166,9 +166,9 @@ function initFormHandler() {
 
     const new_chore = {
       id: currentId,
-      choreName: createData.get("choreName"),
-      roommateName: createData.get("roommateName"),
-    };
+      choreName: createData.get('choreName'),
+      roommateName: createData.get('roommateName')
+    }
 
     for (let i = 0; i < choresVar.length; i++) {
       if (choresVar[i].id == selectedChore) {
@@ -200,7 +200,7 @@ function initFormHandler() {
         initPage(choresVar)
       }
     }
-  };
+  }
 
   // form_edit.addEventListener('submit',edit)
 
@@ -217,8 +217,8 @@ function initFormHandler() {
   // }
 }
 
-function editDeleteHandler() {
-  const cards = document.querySelectorAll("roommate-card");
+function editDeleteHandler () {
+  const cards = document.querySelectorAll('roommate-card')
 
   const div = document.querySelector('.back2')
   const btnClose = document.getElementById('close-button2')
@@ -227,8 +227,8 @@ function editDeleteHandler() {
   const formUpdate = document.querySelector('form.update')
 
   cards.forEach((card) => {
-    card.addEventListener("click", (event) => {
-      div.style.display = "block";
+    card.addEventListener('click', (event) => {
+      div.style.display = 'block'
 
       btnClose.onclick = function close () {
         div.style.display = 'none'
