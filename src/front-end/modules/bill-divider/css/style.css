@@ -130,7 +130,9 @@ li.mb-3 .select_name{
 li.mb-3 .select_name label{
   font-size: larger;
 }
-input[type="submit"]{
+input[type="submit"],
+#transfer_btn
+{
   position: relative;
   margin-top: 30px;
   font-size: 1em;
