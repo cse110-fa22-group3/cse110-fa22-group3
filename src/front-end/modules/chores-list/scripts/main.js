@@ -143,7 +143,7 @@ function initFormHandler() {
     editAssignForm.reset();
   };
 
-  function deletePress () {
+  function deletePress() {
     for (let i = 0; i < choresVar.length; i++) {
       if (choresVar[i].id == selectedChore) {
         choresVar.splice(i, 1);
@@ -154,12 +154,12 @@ function initFormHandler() {
         initPage(choresVar);
       }
     }
-  };
+  }
 
-  editDelete.onclick = deletePress
+  editDelete.onclick = deletePress;
 
-  editAssignForm.addEventListener('submit', (event) => {
-    event.preventDefault()
+  editAssignForm.addEventListener("submit", (event) => {
+    event.preventDefault();
     // createChore(new FormData(form_create));
 
     const assignData = new FormData(editForm);
@@ -182,7 +182,7 @@ function initFormHandler() {
     editAssignDiv.style.display = "none";
   });
 
-  editAssignClose.onclick = deletePress
+  editAssignClose.onclick = deletePress;
 
   editAssignDelete.onclick = function close() {
     for (let i = 0; i < choresVar.length; i++) {
