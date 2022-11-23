@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: front-end/modules/roommate-list/js/main.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: front-end/modules/roommate-list/js/main.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+  createRoommate,
+  readRoommate,
+  deleteRoommate,
+  updateRoommate,
+} from "../../../../back-end/roommateListAPI.js";
+
+window.addEventListener("DOMContentLoaded", init);
+
+/** Starts the program, all our function calls
+ *  come from our init function
+ */
+function init() {
+  //load the cards in the page with the current list of roommates
+  initPage(readRoommate());
+
+  //initialize the form if the user decides to add
+  initFormHandler();
+}
+
+/** initPage, reads in our roommates from the local storage
+ *  creates a new element for each roommate that'll
+ *  be present on the page when it is loaded in
+ * @param {*} roommates
+ */
+function initPage(roommates) {
+  //find the row element where all of the cards are
+  const row = document.querySelector(".row");
+
+  //remove all of the cards except the add button
+  while (row.childElementCount > 1) {
+    row.removeChild(row.firstElementChild);
+  }
+
+  //add a card for each roommate in the list
+  roommates.forEach((roommate) => {
+    const card = document.createElement("roommate-card");
+    card.setAttribute("id", roommate["id"]);
+    card.data = roommate;
+    row.insertBefore(card, document.querySelector("#new.item"));
+  });
+
+  //initialize the update/delete functionality for when the card is clicked
+  updateDelHandler();
+}
+
+/** initFormHandler, adds the needed event handlers
+ * 	for when the submit button and creates a new roommate
+ * 	when it is is clicked and will also brings up a
+ *  popup when it is clicked
+ */
+function initFormHandler() {
+  //nodes for the add form, form popup, add, and close buttons
+  let addForm = document.querySelector("form.add");
+  let addPopup = document.querySelector("#background.add");
+  let addBtn = document.querySelector("#new.item");
+  let closeBtn = document.getElementById("close_button_1");
+
+  //when submit button is clicked, submit the form and make a new roommate, hide the popup
+  addForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    addPopup.style.display = "none";
+    createRoommate(new FormData(addForm));
+    initPage(readRoommate());
+  });
+
+  //when the add button is clicked, show the popup
+  addBtn.onclick = function show() {
+    addPopup.style.display = "block";
+  };
+
+  //when the close button is clicked, hide the popup
+  closeBtn.onclick = function close() {
+    addPopup.style.display = "none";
+  };
+}
+
+/** updateDelHandler, handles when a roommate-card gets deleted or updated
+ *  will add the updated roommate list to localstorage. Provides a popup where
+ *  people can input information for roommate update and delete
+ */
+function updateDelHandler() {
+  //nodes for roommate cards, update form, form popup, delete, save, and close buttons
+  let cards = document.querySelectorAll("roommate-card");
+  let updateForm = document.querySelector("form.update");
+  let updatePopup = document.querySelector("#background.update");
+  let delBtn = document.getElementById("delete_button");
+  let closeBtn = document.getElementById("close_button_2");
+
+  //creating an event listener for each card
+  cards.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      //roommate variables
+      let roommates = readRoommate();
+      let roommate;
+
+      //grabbing the right specific roommate
+      for (let i = 0; i &lt; roommates.length; i++) {
+        if (roommates[i]["id"] == event.target.id) {
+          roommate = roommates[i];
+          break;
+        }
+      }
+
+      //updating the form HTML to prefill it with the roommate's data
+      updateForm.innerHTML = `&lt;fieldset>
+				&lt;label for="name">
+					Name:
+					&lt;input type="text" id="name"  name="name" value = "${roommate.name}" placeholder="First Last" required>
+				&lt;/label>
+			&lt;/fieldset>
+			&lt;fieldset>
+				&lt;label for="birthday">
+					Birthday:
+					&lt;input type="text" id="birthday"  name="birthday" value = "${roommate.birthday}" placeholder="mm/dd/yyyy" pattern="\\d\\d/\\d\\d/\\d\\d\\d\\d" required>
+				&lt;/label>
+			&lt;/fieldset>
+			&lt;fieldset>
+				&lt;label for="hobbies">
+					Hobbies:
+					&lt;input type="text" id="hobbies"  name="hobbies" value = "${roommate.hobbies}" placeholder="hobby, hobby, etc.">
+				&lt;/label>
+			&lt;/fieldset>
+			&lt;fieldset>
+				&lt;label for="notes">
+					Notes:
+					&lt;input type="text" id="notes"  name="notes" value = "${roommate.notes}" placeholder="...">
+				&lt;/label>
+			&lt;/fieldset>
+			&lt;button type="submit" id="save_button">SAVE&lt;/button>`;
+
+      //when submit button is clicked, submit the form and update the roommate, hide the popup
+      updateForm.addEventListener("submit", () => {
+        updateRoommate(new FormData(updateForm), event.target.id);
+        initPage(readRoommate());
+      });
+
+      //when the a card is clicked, show the popup
+      updatePopup.style.display = "block";
+
+      //when the close button is clicked, hide the popup
+      closeBtn.onclick = function close() {
+        updatePopup.style.display = "none";
+      };
+
+      //when the delete button is clicked, delete the roommate, hide the popup
+      delBtn.onclick = function () {
+        updatePopup.style.display = "none";
+        deleteRoommate(event.target.id);
+        initPage(readRoommate());
+      };
+    });
+  });
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#clearArchive">clearArchive</a></li><li><a href="global.html#closeChore">closeChore</a></li><li><a href="global.html#createChore">createChore</a></li><li><a href="global.html#createRoommate">createRoommate</a></li><li><a href="global.html#deleteRoommate">deleteRoommate</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initFormHandler">initFormHandler</a></li><li><a href="global.html#initPage">initPage</a></li><li><a href="global.html#queryChore">queryChore</a></li><li><a href="global.html#readChores">readChores</a></li><li><a href="global.html#readRoommate">readRoommate</a></li><li><a href="global.html#reOpenChore">reOpenChore</a></li><li><a href="global.html#updateChore">updateChore</a></li><li><a href="global.html#updateDelHandler">updateDelHandler</a></li><li><a href="global.html#updateRoommate">updateRoommate</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Nov 23 2022 02:57:15 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
