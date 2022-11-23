@@ -54,27 +54,29 @@
             </a>
             <h1>Transfer</h1>
         </header>
-        <form id="transfer">
-            <ul class="transferList">
+        <ul class="transferList">
+            <form id="transfer_from">
                 <li class="mb-3">
                     <span>Name:</span>
                     <div class="select_name from">
                         <!-- radio buttons go here -->
                     </div>
                 </li>
+            </form>
                 <li class="mb-3">
                     <span>Pay:</span>
                     <input type="number" form="transfer">
                 </li>
+            <form id="transfer_to">
                 <li class="mb-3">
                     <span>To:</span>
                     <div class="select_name to">
                         <!-- radio buttons go here -->
                     </div>
                 </li>
+            </form>
             </ul>
-            <input type="submit">
-        </form>
+            <input type="button" value="submit" id="transfer_btn">
     </section>
     <section class="card w">
         <header class="tit">

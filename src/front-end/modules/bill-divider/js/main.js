@@ -4,6 +4,7 @@ let array=[]
 function init() {
     init_list()
     pay()
+    transfer()
     del_history()
 }
 function create(data){
@@ -52,8 +53,8 @@ function init_list(){
         let radioTransferFrom = document.createElement('div')
         let radioTransferTo = document.createElement('div')
         let radioPay = document.createElement('div')
-        radioTransferFrom.innerHTML=`<input type="radio" name="roommate" form="transfer"><label>${data.name}</label>`
-        radioTransferTo.innerHTML=`<input type="radio" name="roommate" form="transfer"><label>${data.name}</label>`
+        radioTransferFrom.innerHTML=`<input type="radio" name="roommate" form="transfer_from"><label>${data.name}</label>`
+        radioTransferTo.innerHTML=`<input type="radio" name="roommate" form="transfer_to"><label>${data.name}</label>`
         radioPay.innerHTML=`<input type="radio" name="roommate" form="pay"><label>${data.name}</label>`
         radioList[0].append(radioTransferFrom)
         radioList[1].append(radioTransferTo)
@@ -76,7 +77,7 @@ function pay(){
         //get inputs from submitted form
         let inputs=form_pay.elements;
         let radioLength=array.length
-        let cost=parseInt(inputs[radioLength].value)
+        let cost=inputs[radioLength].value
         let to=inputs[radioLength+1].value
         let description=inputs[radioLength+2].value
 
@@ -87,7 +88,6 @@ function pay(){
             if(inputs[x].checked)
                 index=x;
         let average_cost=cost/radioLength
-        average_cost=average_cost.toFixed(2)//round to 2 decimal points
         let remainToBePaid=cost//used to track how much still need to be paid after offsetting all the current debts
         let Owes_entries=Object.entries(array[index].Owes)//list of [debtor,amount_owed] pairs of the paying roommate (array[index])
         // go over the debtor-amount_owed list to offset the debts
@@ -101,9 +101,14 @@ function pay(){
                 array[x].Owes[payer]+=average_cost-smaller
                 array[x].isOwes-=smaller
                 remainToBePaid-=smaller
+                //round to 2 decimal places, floating point error otherwise
+                array[index].Owes[debtor]=Math.round(array[index].Owes[debtor]*100)/100
+                array[x].Owes[payer]=Math.round(array[x].Owes[payer]*100)/100
+                array[x].isOwes=Math.round(array[x].isOwes*100)/100
             }
         }
         array[index].isOwes+=remainToBePaid-average_cost
+        array[index].isOwes=Math.round(array[index].isOwes*100)/100
         display_array(array)
 
         //add an record to history
@@ -118,24 +123,30 @@ function pay(){
     }
 }
 function transfer(){
-    let form_transfer=document.querySelector('form#transfer')
-    form_transfer.addEventListener('submit',submit)
-
-    function submit(e){
-        e.preventDefault()
-        let inputs=form_transfer.elements;
+    let form_transfer_from=document.querySelector('form#transfer_from')
+    let form_transfer_to=document.querySelector('form#transfer_to')
+    let transfer_btn=document.querySelector('#transfer_btn')
+    transfer_btn.onclick=function(){
+        let radios_from=form_transfer_from.elements
+        let radios_to=form_transfer_to.elements
         let radioLength=array.length
         let from_index=0//index of payer
         let to_index=0//index of receiver
-        for(let x=0;x<radioLength;x++)
-            if(inputs[x].checked)
+        for(let x=0;x<radioLength;x++){
+            if(radios_from[x].checked)
                 from_index=x
-        let amount=parseInt(inputs[radioLength].value)
-        for(let x=radioLength+1;x<inputs.length;x++)
-            if(inputs[x].checked)
+            if(radios_to[x].checked)
                 to_index=x
-        let owed=array[from_index].isOwes[array[to_index].name]
-
+        }
+        let amount=parseInt(document.querySelector('input[form="transfer"]').value)
+        let owed=array[from_index].Owes[array[to_index].name]
+        let smaller=Math.min(amount,owed)
+        array[from_index].Owes[array[to_index].name]-=smaller
+        array[to_index].isOwes-=smaller
+        array[from_index].isOwes+=amount-smaller
+        array[to_index].Owes[array[from_index].name]+=amount-smaller
+        display_array()
+        //add an record to history
         let record=document.createElement('li')
         record.className='mb-3'
         record.innerHTML=`
