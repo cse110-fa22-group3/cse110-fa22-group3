@@ -143,7 +143,7 @@ function initFormHandler() {
     editAssignForm.reset();
   }
 
-  editClose.onclick = editClosePress
+  editClose.onclick = editClosePress;
 
   function deletePress() {
     for (let i = 0; i < choresVar.length; i++) {
@@ -158,7 +158,7 @@ function initFormHandler() {
     }
   }
 
-  editDelete.onclick = deletePress
+  editDelete.onclick = deletePress;
 
   editAssignForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -184,9 +184,9 @@ function initFormHandler() {
     editAssignDiv.style.display = "none";
   });
 
-  editAssignClose.onclick = editClosePress
+  editAssignClose.onclick = editClosePress;
 
-  editAssignDelete.onclick = deletePress
+  editAssignDelete.onclick = deletePress;
 
   // form_edit.addEventListener('submit',edit)
 
