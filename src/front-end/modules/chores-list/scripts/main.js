@@ -136,12 +136,14 @@ function initFormHandler() {
     editAssignDiv.style.display = "block";
   });
 
-  editClose.onclick = function close() {
+  function editClosePress() {
     editDiv.style.display = "none";
     editAssignDiv.style.display = "none";
     editForm.reset();
     editAssignForm.reset();
-  };
+  }
+
+  editClose.onclick = editClosePress
 
   function deletePress() {
     for (let i = 0; i < choresVar.length; i++) {
@@ -156,7 +158,7 @@ function initFormHandler() {
     }
   }
 
-  editDelete.onclick = deletePress;
+  editDelete.onclick = deletePress
 
   editAssignForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -182,20 +184,9 @@ function initFormHandler() {
     editAssignDiv.style.display = "none";
   });
 
-  editAssignClose.onclick = deletePress;
+  editAssignClose.onclick = editClosePress
 
-  editAssignDelete.onclick = function close() {
-    for (let i = 0; i < choresVar.length; i++) {
-      if (choresVar[i].id == selectedChore) {
-        choresVar.splice(i, 1);
-        editDiv.style.display = "none";
-        editAssignDiv.style.display = "none";
-        editForm.reset();
-        editAssignForm.reset();
-        initPage(choresVar);
-      }
-    }
-  };
+  editAssignDelete.onclick = deletePress
 
   // form_edit.addEventListener('submit',edit)
 
