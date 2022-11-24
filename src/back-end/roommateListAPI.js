@@ -32,27 +32,39 @@ export function createRoommate(formData) {
 }
 
 /**
- * Reads formData from the form that updates an existing rooomate.
- * Then stores this information within the localStorage API.
- * @param {Object} formData An object with form data regarding new roommate
+ * Reads formData from the form that updates an existing roommate and
+ * updates the roommates list within the local storage.
+ * @param {*} formData updated data for the roommate
+ * @param {*} id id of the roommate to update
  */
 export function updateRoommate(formData, id) {
-  //gather data inputted from form
-  let roommate = {};
+  //get the RoommateListData from local storage
+  const roommateListData = JSON.parse(localStorage.getItem("RoommateListData"));
+  //get the list of roommates from RoommateListData
+  const roommates = roommateListData["Roommates"];
+  //empty roommate template
+  const roommate = {};
 
-  roommate["id"] = id;
+  //set data inputted from form and set the id
   for (let [key, value] of formData) {
     roommate[key] = value;
   }
+  roommate["id"] = id;
 
-  let roommateData = JSON.parse(localStorage.getItem("RoommateListData"));
-
-  for (let i = 0; i < roommateData["Roommates"].length; i++) {
-    if (roommateData["Roommates"][i]["id"] == id) {
-      roommateData["Roommates"][i] = roommate;
+  //iterate through the list of roommates
+  for (let i = 0; i < roommates.length; i++) {
+    //check we find the roommate with the matching id
+    if (roommates[i]["id"] == id) {
+      //update the roommate's data
+      roommates[i] = roommate;
     }
   }
-  localStorage.setItem("RoommateListData", JSON.stringify(roommateData));
+
+  //replace the old list of roommates
+  roommateListData["Roommates"] = roommates;
+
+  //replace the RoommateListData in local storage
+  localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
 }
 
 /**
@@ -82,7 +94,7 @@ export function readRoommate() {
  * Reads 'RoommateListData' from local storage and removes the instance
  * of a specified roommate based on id from the list of roommates array.
  * No change is made to the array if the id is not found.
- * @param {Int} id Id of the roommate to remove
+ * @param {Int} id id of the roommate to remove
  */
 export function deleteRoommate(id) {
   //get the RoommateListData from local storage
