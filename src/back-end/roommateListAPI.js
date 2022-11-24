@@ -38,21 +38,16 @@ export function updateRoommate(formData, id) {
   const roommateListData = JSON.parse(localStorage.getItem("RoommateListData"));
   //get the list of roommates from RoommateListData
   const roommates = roommateListData["Roommates"];
-  //empty roommate template
-  const roommate = {};
-
-  //set data inputted from form and set the id
-  for (let [key, value] of formData) {
-    roommate[key] = value;
-  }
-  roommate["id"] = id;
-
+  
   //iterate through the list of roommates
   for (let i = 0; i < roommates.length; i++) {
     //check we find the roommate with the matching id
     if (roommates[i]["id"] == id) {
-      //update the roommate's data
-      roommates[i] = roommate;
+      //update data inputted from form
+      for (let [key, value] of formData)
+      {
+        roommates[i][key] = value;
+      }
     }
   }
 
