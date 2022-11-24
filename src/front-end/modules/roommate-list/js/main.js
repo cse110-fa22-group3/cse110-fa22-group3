@@ -93,6 +93,7 @@ function updateDelHandler() {
       //roommate variables
       let roommates = readRoommate();
       let roommate;
+      let id = event.target.id;
 
       //grabbing the right specific roommate
       for (let i = 0; i < roommates.length; i++) {
@@ -130,8 +131,10 @@ function updateDelHandler() {
 			<button type="submit" id="save_button">SAVE</button>`;
 
       //when submit button is clicked, submit the form and update the roommate, hide the popup
-      updateForm.addEventListener("submit", () => {
-        updateRoommate(new FormData(updateForm), event.target.id);
+      updateForm.addEventListener("submit", (event) => {//event) => {
+        event.preventDefault();
+        updatePopup.style.display = "none";
+        updateRoommate(new FormData(updateForm), id);
         initPage(readRoommate());
       });
 
