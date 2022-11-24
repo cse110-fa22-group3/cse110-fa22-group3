@@ -1,4 +1,4 @@
-//choresListAPI.js
+// choresListAPI.js
 
 /**
  * Reads 'ChoresListData' data from local storage
@@ -9,7 +9,7 @@
  */
 export function readChores() {
   if (localStorage.getItem("ChoresListData") === null) {
-    let chores = {
+    const chores = {
       chores: [],
       archived: [],
       openChoresCount: 0,
@@ -37,25 +37,25 @@ export function readChores() {
  * otherwise return an empty object
  */
 export function queryChore(listToQuery, id) {
-  //call for all data from ChoresList feature
-  let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
+  // call for all data from ChoresList feature
+  const choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
 
-  //Check which list to search from, and do a linear search for object
-  if (listToQuery == "archived") {
-    for (let i = 0; i < choresAPIData["archived"].length(); i++) {
-      if (choresAPIData["archived"][i]["id"] == id) {
-        return choresAPIData["archived"][i];
+  // Check which list to search from, and do a linear search for object
+  if (listToQuery === "archived") {
+    for (let i = 0; i < choresAPIData.archived.length(); i++) {
+      if (choresAPIData.archived[i].id === id) {
+        return choresAPIData.archived[i];
       }
     }
-    //not found therefore return empty JSON object
+    // not found therefore return empty JSON object
     return {};
   } else {
-    for (let i = 0; i < choresAPIData["chores"].length(); i++) {
-      if (choresAPIData["chores"][i]["id"] == id) {
-        return choresAPIData["chores"][i];
+    for (let i = 0; i < choresAPIData.chores.length(); i++) {
+      if (choresAPIData.chores[i].id === id) {
+        return choresAPIData.chores[i];
       }
     }
-    //not found therefore return empty JSON object
+    // not found therefore return empty JSON object
     return {};
   }
 }
@@ -77,9 +77,9 @@ export function createChore(formData) {
     status: "open",
     currRoommate: assignee[0], 
   };
-  choresAPIData["choresCounterId"] += 1;
-  choresAPIData["openChoresCount"] += 1;
-  choresAPIData["chores"].push(newChore);
+  choresAPIData.choresCounterId += 1;
+  choresAPIData.openChoresCount += 1;
+  choresAPIData.chores.push(newChore);
   localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
 }
 
@@ -93,22 +93,22 @@ export function createChore(formData) {
  * @param {Object} formData contains the Object info for the chore
  */
 export function updateChore(id, listToQuery, formData) {
-  let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
-  //setup flags so that we can ensure if we change status, it will put the chore
-  //in the correct list: chores(open) or archived.
+  const choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
+  // setup flags so that we can ensure if we change status, it will put the chore
+  // in the correct list: chores(open) or archived.
   let switchToOpen = false;
   let switchToClosed = false;
 
-  //Do a check to see which list we should iterate through
-  if (listToQuery == "archive") {
-    for (let i = 0; i < choresAPIData["archived"].length(); i++) {
-      if (choresAPIData["archived"][i]["id"] == id) {
-        //set flag to indicate we need to put the chore in the other list
+  // Do a check to see which list we should iterate through
+  if (listToQuery === "archive") {
+    for (let i = 0; i < choresAPIData.archived.length(); i++) {
+      if (choresAPIData.archived[i].id === id) {
+        // set flag to indicate we need to put the chore in the other list
         if (
-          formData["status"] == "open" &&
-          choresAPIData["chores"][i]["status"] == "closed"
+          formData.status === "open" &&
+          choresAPIData.chores[i].status === "closed"
         ) {
-          choresAPIData["archived"][i]["status"] = formData["open"];
+          choresAPIData.archived[i].status = formData.open;
           switchToOpen = true;
         }
         //update our chore
@@ -121,14 +121,14 @@ export function updateChore(id, listToQuery, formData) {
       }
     }
   } else {
-    for (let i = 0; i < choresAPIData["chores"].length(); i++) {
-      if (choresAPIData["chores"][i]["id"] == id) {
-        //set flag to indicate we need to put the chore in the other list
+    for (let i = 0; i < choresAPIData.chores.length(); i++) {
+      if (choresAPIData.chores[i].id === id) {
+        // set flag to indicate we need to put the chore in the other list
         if (
-          formData["status"] == "closed" &&
-          choresAPIData["chores"][i]["status"] == "open"
+          formData.status === "closed" &&
+          choresAPIData.chores[i].status === "open"
         ) {
-          choresAPIData["chores"][i]["status"] = formData["open"];
+          choresAPIData.chores[i].status = formData.open;
           switchToClosed = true;
         }
         //update our chore
@@ -141,14 +141,14 @@ export function updateChore(id, listToQuery, formData) {
       }
     }
   }
-  //handle switching lists utilizing helper functions
-  if (switchToClosed == true) {
+  // handle switching lists utilizing helper functions
+  if (switchToClosed === true) {
     closeChore(id);
   }
-  if (switchToOpen == true) {
+  if (switchToOpen === true) {
     reOpenChore(id);
   }
-  //update our localStorage
+  // update our localStorage
   localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
 }
 
@@ -158,15 +158,15 @@ export function updateChore(id, listToQuery, formData) {
  * @param {Int} id An integer indicating chore id
  */
 export function closeChore(id) {
-  let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
-  for (let i = 0; i < choresAPIData["chores"].length(); i++) {
-    if (choresAPIData["chores"][i]["id"] == id) {
-      let archivedChore = choresAPIData["chores"][i];
-      archivedChore["status"] = "closed";
-      choresAPIData["chores"].splice(i, 1);
-      choresAPIData["archived"].push(archivedChore);
-      choresAPIData["closedChoresCount"] += 1;
-      choresAPIDate["openChoressCount"] -= 1;
+  const choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
+  for (let i = 0; i < choresAPIData.chores.length(); i++) {
+    if (choresAPIData.chores[i].id === id) {
+      const archivedChore = choresAPIData.chores[i];
+      archivedChore.status = "closed";
+      choresAPIData.chores.splice(i, 1);
+      choresAPIData.archived.push(archivedChore);
+      choresAPIData.closedChoresCount += 1;
+      choresAPIData.openChoresCount -= 1;
       break;
     }
   }
@@ -179,14 +179,14 @@ export function closeChore(id) {
  * @param {Int} id An integer indicating chore id
  */
 export function reOpenChore(id) {
-  let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
-  for (let i = 0; i < choresAPIData["archived"].length(); i++) {
-    if (choresAPIData["archived"][i]["id"] == id) {
-      let reOpenChore = choresAPIData["archived"][i];
-      choresAPIData["archived"].splice(i, 1);
-      choresAPIData["chores"].push(reOpenChore);
-      choresAPIData["closedChoresCount"] -= 1;
-      choresAPIDate["openChoressCount"] += 1;
+  const choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
+  for (let i = 0; i < choresAPIData.archived.length(); i++) {
+    if (choresAPIData.archived[i].id === id) {
+      const reOpenChore = choresAPIData.archived[i];
+      choresAPIData.archived.splice(i, 1);
+      choresAPIData.chores.push(reOpenChore);
+      choresAPIData.closedChoresCount -= 1;
+      choresAPIData.openChoresCount += 1;
       break;
     }
   }
@@ -198,16 +198,16 @@ export function reOpenChore(id) {
  * array, so that we can clear out our backlog of issues.
  */
 export function clearArchive() {
-  let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
-  choresAPIData["archived"] = [];
-  choresAPIData["closedChoresCount"] = 0;
+  const choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
+  choresAPIData.archived = [];
+  choresAPIData.closedChoresCount = 0;
   localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
 }
-//TO DO IF SPECIFIC DATA IS NEEDED
+// TO DO IF SPECIFIC DATA IS NEEDED
 export function updateChoreCounterForRoommate(roommateId) {}
-//TO DO IF SPECIFIC DATA IS NEEDED
+// TO DO IF SPECIFIC DATA IS NEEDED
 export function updateChoreStatus(id, status) {}
-//TO DO IF SPECIFIC DATA IS NEEDED
+// TO DO IF SPECIFIC DATA IS NEEDED
 export function updateChoreOwner(choreId, oldOwnerID, newOwnerId) {}
 
 /**

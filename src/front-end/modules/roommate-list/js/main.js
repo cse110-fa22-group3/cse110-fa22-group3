@@ -11,10 +11,10 @@ window.addEventListener("DOMContentLoaded", init);
  *  come from our init function
  */
 function init() {
-  //load the cards in the page with the current list of roommates
+  // load the cards in the page with the current list of roommates
   initPage(readRoommate());
 
-  //initialize the form if the user decides to add
+  // initialize the form if the user decides to add
   initFormHandler();
 }
 
@@ -24,23 +24,23 @@ function init() {
  * @param {*} roommates
  */
 function initPage(roommates) {
-  //find the row element where all of the cards are
+  // find the row element where all of the cards are
   const row = document.querySelector(".row");
 
-  //remove all of the cards except the add button
+  // remove all of the cards except the add button
   while (row.childElementCount > 1) {
     row.removeChild(row.firstElementChild);
   }
 
-  //add a card for each roommate in the list
+  // add a card for each roommate in the list
   roommates.forEach((roommate) => {
     const card = document.createElement("roommate-card");
-    card.setAttribute("id", roommate["id"]);
+    card.setAttribute("id", roommate.id);
     card.data = roommate;
     row.insertBefore(card, document.querySelector("#new.item"));
   });
 
-  //initialize the update/delete functionality for when the card is clicked
+  // initialize the update/delete functionality for when the card is clicked
   updateDelHandler();
 }
 
@@ -50,13 +50,13 @@ function initPage(roommates) {
  *  popup when it is clicked
  */
 function initFormHandler() {
-  //nodes for the add form, form popup, add, and close buttons
-  let addForm = document.querySelector("form.add");
-  let addPopup = document.querySelector("#background.add");
-  let addBtn = document.querySelector("#new.item");
-  let closeBtn = document.getElementById("close_button_1");
+  // nodes for the add form, form popup, add, and close buttons
+  const addForm = document.querySelector("form.add");
+  const addPopup = document.querySelector(".background.add");
+  const addBtn = document.querySelector("#new.item");
+  const closeBtn = document.getElementById("close-button-1");
 
-  //when submit button is clicked, submit the form and make a new roommate, hide the popup
+  // when submit button is clicked, submit the form and make a new roommate, hide the popup
   addForm.addEventListener("submit", (event) => {
     event.preventDefault();
     addPopup.style.display = "none";
@@ -64,12 +64,12 @@ function initFormHandler() {
     initPage(readRoommate());
   });
 
-  //when the add button is clicked, show the popup
+  // when the add button is clicked, show the popup
   addBtn.onclick = function show() {
     addPopup.style.display = "block";
   };
 
-  //when the close button is clicked, hide the popup
+  // when the close button is clicked, hide the popup
   closeBtn.onclick = function close() {
     addPopup.style.display = "none";
   };
@@ -80,29 +80,29 @@ function initFormHandler() {
  *  people can input information for roommate update and delete
  */
 function updateDelHandler() {
-  //nodes for roommate cards, update form, form popup, delete, save, and close buttons
-  let cards = document.querySelectorAll("roommate-card");
-  let updateForm = document.querySelector("form.update");
-  let updatePopup = document.querySelector("#background.update");
-  let delBtn = document.getElementById("delete_button");
-  let closeBtn = document.getElementById("close_button_2");
+  // nodes for roommate cards, update form, form popup, delete, save, and close buttons
+  const cards = document.querySelectorAll("roommate-card");
+  const updateForm = document.querySelector("form.update");
+  const updatePopup = document.querySelector(".background.update");
+  const delBtn = document.getElementById("delete-button");
+  const closeBtn = document.getElementById("close-button-2");
 
-  //creating an event listener for each card
+  // creating an event listener for each card
   cards.forEach((card) => {
     card.addEventListener("click", (event) => {
-      //roommate variables
-      let roommates = readRoommate();
+      // roommate variables
+      const roommates = readRoommate();
       let roommate;
 
-      //grabbing the right specific roommate
+      // grabbing the right specific roommate
       for (let i = 0; i < roommates.length; i++) {
-        if (roommates[i]["id"] == event.target.id) {
+        if (roommates[i].id == event.target.id) {
           roommate = roommates[i];
           break;
         }
       }
 
-      //updating the form HTML to prefill it with the roommate's data
+      // updating the form HTML to prefill it with the roommate's data
       updateForm.innerHTML = `<fieldset>
 				<label for="name">
 					Name:
@@ -129,21 +129,21 @@ function updateDelHandler() {
 			</fieldset>
 			<button type="submit" id="save_button">SAVE</button>`;
 
-      //when submit button is clicked, submit the form and update the roommate, hide the popup
+      // when submit button is clicked, submit the form and update the roommate, hide the popup
       updateForm.addEventListener("submit", () => {
         updateRoommate(new FormData(updateForm), event.target.id);
         initPage(readRoommate());
       });
 
-      //when the a card is clicked, show the popup
+      // when the a card is clicked, show the popup
       updatePopup.style.display = "block";
 
-      //when the close button is clicked, hide the popup
+      // when the close button is clicked, hide the popup
       closeBtn.onclick = function close() {
         updatePopup.style.display = "none";
       };
 
-      //when the delete button is clicked, delete the roommate, hide the popup
+      // when the delete button is clicked, delete the roommate, hide the popup
       delBtn.onclick = function () {
         updatePopup.style.display = "none";
         deleteRoommate(event.target.id);

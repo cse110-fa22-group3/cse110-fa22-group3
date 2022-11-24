@@ -1,6 +1,6 @@
-//test.js
+// test.js
 
-//Supplies the information for the create API for roommateList
+// Supplies the information for the create API for roommateList
 import {
   createRoommate,
   deleteRoommate,
@@ -11,13 +11,13 @@ const form = document.getElementById("signup");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const roommateForm = document.getElementById("signup");
-  const name = roommateForm.elements["name"].value;
-  const email = roommateForm.elements["email"].value;
-  const age = roommateForm.elements["age"].value;
+  const name = roommateForm.elements.name.value;
+  const email = roommateForm.elements.email.value;
+  const age = roommateForm.elements.age.value;
   const formData = {
-    name: name,
-    email: email,
-    age: age,
+    name,
+    email,
+    age,
   };
   console.log(formData);
   createRoommate(formData);
