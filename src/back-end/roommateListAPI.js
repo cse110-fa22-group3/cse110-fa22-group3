@@ -87,7 +87,7 @@ export function deleteRoommate(id) {
   const roommateList = JSON.parse(localStorage.getItem("RoommateListData"));
   //get the list of roommates from RoommateListData
   const roommates = roommateList["Roommates"];
-  // console.log(roommates);
+
   //iterate through the list of roommates
   for (let i = 0; i < roommates.length; i++) {
     //check if the name matches our query
@@ -100,7 +100,7 @@ export function deleteRoommate(id) {
 
   //replace the old list of roommates
   roommateList["Roommates"] = roommates;
-  console.log(roommateList);
+
   //replace the RoommateListData in local storage
   localStorage.setItem("RoommateListData", JSON.stringify(roommateList));
 }
