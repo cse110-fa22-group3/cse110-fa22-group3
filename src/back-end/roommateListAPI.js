@@ -1,20 +1,20 @@
 //roommateListAPI.js
 /**
  * Reads formData from the form that creates a new rooomate.
- * Then stores this information within the localStorage API.
- * @param {Object} formData An object with form data regarding new roommate
+ * Then stores this information within the local storage.
+ * @param {Object} formData data for the new roommate
  */
 export function createRoommate(formData) {
   //Check if the RoommateListData key is contained within local storage
   //If not then create it, otherwise just append to roommates list and update id
-  if (localStorage.getItem("RoommateListData") === null) {
+  /*if (localStorage.getItem("RoommateListData") === null) {
     formData["id"] = 0;
     let firstRoommate = {
       Roommates: [formData],
       idCount: 1,
     };
-    localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
-  } else {
+    localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));*/ //doesnt work
+  //} else {
     let apiData = JSON.parse(localStorage.getItem("RoommateListData"));
     let roommate = {};
 
@@ -28,14 +28,14 @@ export function createRoommate(formData) {
     apiData["Roommates"].push(roommate);
 
     localStorage.setItem("RoommateListData", JSON.stringify(apiData));
-  }
+  //}
 }
 
 /**
- * Reads formData from the form that updates an existing roommate and
- * updates the roommates list within the local storage.
+ * Reads formData from the form that updates an existing roommate.
+ * Then updates the roommates list within the local storage.
  * @param {*} formData updated data for the roommate
- * @param {*} id id of the roommate to update
+ * @param {Int} id id of the roommate to update
  */
 export function updateRoommate(formData, id) {
   //get the RoommateListData from local storage
