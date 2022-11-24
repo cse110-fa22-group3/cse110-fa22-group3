@@ -56,24 +56,26 @@ export function updateRoommate(formData, id) {
 }
 
 /**
- * Reads 'RoommateListData' data from local storage
- * and returns an array of all the roommates information
- * found. If nothing in local storage returns empty array
+ * Reads 'RoommateListData' data from local storage and returns 
+ * an array of all the roommates information found. If nothing is 
+ * found in local storage, an empty array is returned.
  * @returns {Array<object>} An array of RoommateListData
  */
 export function readRoommate() {
-  //check to see if this is the first time the user is attempting to add roommates
+  //check to see if RoommateListData does not exist in local storage
   if (localStorage.getItem("RoommateListData") === null) {
-    let firstRoommate = {
-      Roommates: [],
-      idCount: 0,
+    //creating a new RoommateListData
+    const roommateListData = {
+      "Roommates": [],
+      "idCount": 0,
     };
-    localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
-    return JSON.parse(localStorage.getItem("RoommateListData"))["Roommates"];
-  } else {
-    let roommate = JSON.parse(localStorage.getItem("RoommateListData"));
-    return roommate["Roommates"];
-  }
+
+    //adding it to local storage for the first time
+    localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
+  } 
+
+  //returning the Roommates array within RoommateListData
+  return JSON.parse(localStorage.getItem("RoommateListData"))["Roommates"];
 }
 
 /**
