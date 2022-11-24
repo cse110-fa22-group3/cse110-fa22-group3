@@ -5,26 +5,29 @@
  * @param {Object} formData data for the new roommate
  */
 export function createRoommate(formData) {
-    //get the RoommateListData from local storage
-    const roommateListData = JSON.parse(localStorage.getItem("RoommateListData"));
-    //empty roommate template
-    const roommate = {};
+  //make sure RoommateListData exists in local storage
+  dataExist();
 
-    //set data inputted from form and set the id
-    for (let [key, value] of formData) {
-      roommate[key] = value;
-    }
-    roommate["id"] = roommateListData["idCount"];
-    
-    //increment idCount to get the next unique id
-    roommateListData["idCount"] += 1;
+  //get the RoommateListData from local storage
+  const roommateListData = JSON.parse(localStorage.getItem("RoommateListData"));
+  //empty roommate template
+  const roommate = {};
 
-    //add the roommate to the roommates list
-    roommateListData["Roommates"].push(roommate);
+  //set data inputted from form and set the id
+  for (let [key, value] of formData) {
+    roommate[key] = value;
+  }
+  roommate["id"] = roommateListData["idCount"];
+  
+  //increment idCount to get the next unique id
+  roommateListData["idCount"] += 1;
 
-    //replace the RoommateListData in local storage
-    localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
-  //}
+  //add the roommate to the roommates list
+  roommateListData["Roommates"].push(roommate);
+
+  //replace the RoommateListData in local storage
+  localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
+
 }
 
 /**
@@ -34,18 +37,20 @@ export function createRoommate(formData) {
  * @param {Int} id id of the roommate to update
  */
 export function updateRoommate(formData, id) {
+  //make sure RoommateListData exists in local storage
+  dataExist();
+
   //get the RoommateListData from local storage
   const roommateListData = JSON.parse(localStorage.getItem("RoommateListData"));
   //get the list of roommates from RoommateListData
   const roommates = roommateListData["Roommates"];
-  
+
   //iterate through the list of roommates
   for (let i = 0; i < roommates.length; i++) {
     //check we find the roommate with the matching id
     if (roommates[i]["id"] == id) {
       //update data inputted from form
-      for (let [key, value] of formData)
-      {
+      for (let [key, value] of formData) {
         roommates[i][key] = value;
       }
     }
@@ -65,17 +70,8 @@ export function updateRoommate(formData, id) {
  * @returns {Array<object>} An array of RoommateListData
  */
 export function readRoommate() {
-  //check to see if RoommateListData does not exist in local storage
-  if (localStorage.getItem("RoommateListData") === null) {
-    //creating a new RoommateListData
-    const roommateListData = {
-      "Roommates": [],
-      "idCount": 0,
-    };
-
-    //adding it to local storage for the first time
-    localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
-  } 
+  //make sure RoommateListData exists in local storage
+  dataExist();
 
   //returning the Roommates array within RoommateListData
   return JSON.parse(localStorage.getItem("RoommateListData"))["Roommates"];
@@ -88,6 +84,9 @@ export function readRoommate() {
  * @param {Int} id id of the roommate to remove
  */
 export function deleteRoommate(id) {
+  //make sure RoommateListData exists in local storage
+  dataExist();
+
   //get the RoommateListData from local storage
   const roommateListData = JSON.parse(localStorage.getItem("RoommateListData"));
   //get the list of roommates from RoommateListData
@@ -108,4 +107,24 @@ export function deleteRoommate(id) {
 
   //replace the RoommateListData in local storage
   localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
+}
+
+/**
+ * Helper function that checks if the RoommateListData exists in local storage.
+ * If it exists, nothing is done.
+ * If it does not exist, then it is created with an empty list of roommates and idCount of 0.
+ * This function is called at the start of each CRUD function to ensure nothing breaks.
+ */
+function dataExist() {
+  //check to see if RoommateListData does not exist in local storage
+  if (localStorage.getItem("RoommateListData") === null) {
+    //creating a new RoommateListData
+    const roommateListData = {
+      "Roommates": [],
+      "idCount": 0,
+    };
+
+    //adding it to local storage for the first time
+    localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
+  } 
 }
