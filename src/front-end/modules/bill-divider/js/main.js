@@ -136,7 +136,6 @@ function pay(){
                 }
             }
         }
-
         display_array(array)
         //return to home page and clear the form
         cardBox[0].classList.add('active')
