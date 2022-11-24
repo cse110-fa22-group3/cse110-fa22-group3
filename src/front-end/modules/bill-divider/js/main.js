@@ -16,10 +16,9 @@ let array=[]//array containing data objects
  */
 function create(data){
     let wrapper = document.createElement('li')
-    wrapper.innerHTML=`
-    <h3>${data.name}</h3>
-    <p>is Owed $${data.isOwed}</p>
-    `
+    wrapper.innerHTML=`<h3>${data.name}</h3>`
+    if(data.isOwed!=0)
+        wrapper.insertAdjacentHTML('beforeend', `<p>is Owed $${data.isOwed}</p>`)
     for(let [key,value] of Object.entries(data.Owes)){
       if(key!=data.name && value!=0)
         wrapper.insertAdjacentHTML('beforeend', `<span>Owes $${value} to ${key}!</span><br>`)
@@ -36,17 +35,20 @@ function init_list(){
         {
             name:"gjcghjv",
             isOwed:0,
-            Owes:{}//filled below 
+            Owes:{},//filled below 
+            paid:0
         }
         ,{
             name:"cyabat",
             isOwed:0,
-            Owes:{}//filled below 
+            Owes:{},//filled below 
+            paid:0
         }
         ,{
             name:"challah",
             isOwed:0,
-            Owes:{}//filled below 
+            Owes:{},//filled below
+            paid:0 
         }
     ]
     let name_list=[]
@@ -104,28 +106,37 @@ function pay(){
         for(let x=0;x<radioLength;x++)
             if(inputs[x].checked)
                 index=x;
-        let average_cost=cost/radioLength
-        let remainToBePaid=cost//used to track how much still need to be paid to the payer after offsetting all of payer's current debts
-        let Owes_entries=Object.entries(array[index].Owes)//list of [debtor,amount_owed] pairs of the paying roommate (array[index])
-        // go over the debtor-amount_owed list to offset the debts
-        for(let x=0;x<Owes_entries.length;x++){
-            //do nothing at the iteration that looks at the paying roommate himself as debtor.
-            if(x!=index){
-                let [debtor,amount]=Owes_entries[x]
-                let payer=array[index].name
-                let smaller=Math.min(amount,average_cost)
-                array[index].Owes[debtor]-=smaller
-                array[x].Owes[payer]+=average_cost-smaller
-                array[x].isOwed-=smaller
-                remainToBePaid-=smaller
-                //round to 2 decimal places, floating point error otherwise
-                array[index].Owes[debtor]=Math.round(array[index].Owes[debtor]*100)/100
-                array[x].Owes[payer]=Math.round(array[x].Owes[payer]*100)/100
-                array[x].isOwed=Math.round(array[x].isOwed*100)/100
+        cost=parseFloat(cost)//string to float
+        array[index].paid+=cost
+        let total_paid=0
+        let total_debt=0
+        array.forEach(data=>{total_paid+=data.paid})
+        let average_paid=total_paid/array.length
+        let debtors_percentage={}
+        for(let x=0;x<array.length;x++){
+            array[x].isOwed=0
+            if(array[x].paid>average_paid){
+                let debtor_excess=array[x].paid-average_paid
+                debtors_percentage[array[x].name]=debtor_excess//store the actual amount instead of percentage for now, will divide by total debt after we acquired it
+                array[x].isOwed=debtor_excess
+                array[x].isOwed=Math.round(array[x].isOwed*100)/100//round to 2 decimal places
+                total_debt+=debtor_excess
+            }
+            for(let name in array[x].Owes)
+                array[x].Owes[name]=0
+        }
+        for(let name in debtors_percentage){
+            debtors_percentage[name]/=total_debt
+        }
+        for(let x=0;x<array.length;x++){
+            if(array[x].paid<average_paid){
+                for(let name in debtors_percentage){
+                    array[x].Owes[name]=(average_paid-array[x].paid)*debtors_percentage[name]
+                    array[x].Owes[name]=Math.round(array[x].Owes[name]*100)/100//round to 2 decimal places
+                }
             }
         }
-        array[index].isOwed+=remainToBePaid-average_cost
-        array[index].isOwed=Math.round(array[index].isOwed*100)/100
+
         display_array(array)
         //return to home page and clear the form
         cardBox[0].classList.add('active')
