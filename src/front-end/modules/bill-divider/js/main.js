@@ -8,7 +8,7 @@ function init() {
 }
 let cardBox = document.querySelectorAll('.card')
 let array=[]//array containing data objects
-
+let history_array=[]
 /**
  * 
  * @param {Object} data 
@@ -96,18 +96,35 @@ function pay(){
         //get inputs from submitted form
         let inputs=form_pay.elements;
         let radioLength=array.length
-        let cost=inputs[radioLength].value
+        let cost=parseFloat(inputs[radioLength].value)
         let to=inputs[radioLength+1].value
         let description=inputs[radioLength+2].value
 
         //update Owes and is Owed
         let index=0//index of selected roommate's data in array
         //The first array.length inputs are radio buttons. Loop through to find which is selected
-        for(let x=0;x<radioLength;x++)
+        for(let x=0;x<array.length;x++)
             if(inputs[x].checked)
                 index=x;
-        cost=parseFloat(cost)//string to float
-        array[index].paid+=cost
+        pay_update_array(index,cost)
+        //return to home page and clear the form
+        cardBox[0].classList.add('active')
+        cardBox[3].classList.remove('active')
+        form_pay.reset()
+        //add an record to history
+        history_array.push([index,cost])
+        let record=document.createElement('li')
+        record.className='mb-3'
+        record.innerHTML=`
+            <input type="checkbox" form="del_history">
+            <span>${array[index].name} paid ${cost} for ${description}</span>
+        `
+        let historyList=document.querySelector('ul.historyList')
+        historyList.insertBefore(record,historyList.firstChild)
+    }
+}
+function pay_update_array(index,cost){
+    array[index].paid+=cost
         let total_paid=0
         let total_debt=0
         array.forEach(data=>{total_paid+=data.paid})
@@ -136,21 +153,7 @@ function pay(){
                 }
             }
         }
-        display_array(array)
-        //return to home page and clear the form
-        cardBox[0].classList.add('active')
-        cardBox[3].classList.remove('active')
-        form_pay.reset()
-        //add an record to history
-        let record=document.createElement('li')
-        record.className='mb-3'
-        record.innerHTML=`
-            <input type="checkbox" form="del_history">
-            <span>${array[index].name} paid ${cost} for ${description}</span>
-        `
-        let historyList=document.querySelector('ul.historyList')
-        historyList.insertBefore(record,historyList.firstChild)
-    }
+        display_array()
 }
 /**
  * transfer functionality
@@ -175,19 +178,8 @@ function transfer(){
         }
         //update Owes and is Owed
         let input_amount=document.querySelector('input[form="transfer"]')
-        let amount=input_amount.value
-        let owed=array[from_index].Owes[array[to_index].name]
-        let smaller=Math.min(amount,owed)
-        array[from_index].Owes[array[to_index].name]-=smaller
-        array[to_index].isOwed-=smaller
-        array[from_index].isOwed+=amount-smaller
-        array[to_index].Owes[array[from_index].name]+=amount-smaller
-        //round to 2 decimal places, floating point error otherwise
-        array[from_index].Owes[array[to_index].name]=Math.round(array[from_index].Owes[array[to_index].name]*100)/100
-        array[to_index].isOwed=Math.round(array[to_index].isOwed*100)/100
-        array[from_index].isOwed=Math.round(array[from_index].isOwed*100)/100
-        array[to_index].Owes[array[from_index].name]=Math.round(array[to_index].Owes[array[from_index].name]*100)/100
-        display_array()
+        let amount=parseFloat(input_amount.value)
+        transfer_update_array(from_index,amount,to_index)
         //return to home page and clear the form
         cardBox[0].classList.add('active')
         cardBox[2].classList.remove('active')
@@ -195,6 +187,7 @@ function transfer(){
         form_transfer_to.reset()
         input_amount.value=''
         //add an record to history
+        history_array.push([from_index,amount,to_index])
         let record=document.createElement('li')
         record.className='mb-3'
         record.innerHTML=`
@@ -204,6 +197,20 @@ function transfer(){
         let historyList=document.querySelector('ul.historyList')
         historyList.insertBefore(record,historyList.firstChild)
     }
+}
+function transfer_update_array(from_index,amount,to_index){
+    let owed=array[from_index].Owes[array[to_index].name]
+    let smaller=Math.min(amount,owed)
+    array[from_index].Owes[array[to_index].name]-=smaller
+    array[to_index].isOwed-=smaller
+    array[from_index].isOwed+=amount-smaller
+    array[to_index].Owes[array[from_index].name]+=amount-smaller
+    //round to 2 decimal places, floating point error otherwise
+    array[from_index].Owes[array[to_index].name]=Math.round(array[from_index].Owes[array[to_index].name]*100)/100
+    array[to_index].isOwed=Math.round(array[to_index].isOwed*100)/100
+    array[from_index].isOwed=Math.round(array[from_index].isOwed*100)/100
+    array[to_index].Owes[array[from_index].name]=Math.round(array[to_index].Owes[array[from_index].name]*100)/100
+    display_array()
 }
 /**
  * delete history functionality
@@ -218,11 +225,27 @@ function del_history(){
         e.preventDefault()
         let inputs=form_del_history.elements
         let to_del=[]//used to store elements to be deleted
+        let to_del_idx=[]
         for(let x=0;x<inputs.length;x++){
-            if(inputs[x].checked)
+            if(inputs[x].checked){
+                to_del_idx.push(inputs.length-2-x)
                 to_del.push(inputs[x])
+            }
         }
+        to_del_idx.forEach(idx=>{
+            if(history_array[idx].length==3){
+                let [from_index,amount,to_index]=history_array[idx]
+                transfer_update_array(from_index,-amount,to_index)
+            }
+            else{
+                let [index,cost]=history_array[idx]
+                pay_update_array(index,-cost)
+            }
+        })
         to_del.forEach(record=>{list.removeChild(record.parentElement)})
+        //return to home page
+        cardBox[0].classList.add('active')
+        cardBox[1].classList.remove('active')
     }
 }
 
