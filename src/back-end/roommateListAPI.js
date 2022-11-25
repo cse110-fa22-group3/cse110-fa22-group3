@@ -1,4 +1,5 @@
 //roommateListAPI.js
+
 /**
  * Reads formData from the form that creates a new rooomate.
  * Then stores this information within the local storage.
