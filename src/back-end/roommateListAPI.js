@@ -31,43 +31,10 @@ export function createRoommate(formData) {
 }
 
 /**
- * Reads formData from the form that updates an existing roommate.
- * Then updates the roommates list within the local storage.
- * @param {Object} formData updated data for the roommate
- * @param {Int} id id of the roommate to update
- */
-export function updateRoommate(formData, id) {
-  //make sure RoommateListData exists in local storage
-  dataExist();
-
-  //get the RoommateListData from local storage
-  const roommateListData = JSON.parse(localStorage.getItem("RoommateListData"));
-  //get the list of roommates from RoommateListData
-  const roommates = roommateListData["Roommates"];
-
-  //iterate through the list of roommates
-  for (let i = 0; i < roommates.length; i++) {
-    //check we find the roommate with the matching id
-    if (roommates[i]["id"] == id) {
-      //update data inputted from form
-      for (let [key, value] of formData) {
-        roommates[i][key] = value;
-      }
-    }
-  }
-
-  //replace the old list of roommates
-  roommateListData["Roommates"] = roommates;
-
-  //replace the RoommateListData in local storage
-  localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
-}
-
-/**
  * Reads 'RoommateListData' data from local storage and returns 
  * an array of all the roommates information found. If nothing is 
  * found in local storage, an empty array is returned.
- * @returns {Array<object>} An array of RoommateListData
+ * @returns {Array<object>} an array of roommates
  */
 export function readRoommate() {
   //make sure RoommateListData exists in local storage
@@ -99,6 +66,39 @@ export function deleteRoommate(id) {
       //remove the roommate from the list of roommates
       roommates.splice(i, 1);
       break;
+    }
+  }
+
+  //replace the old list of roommates
+  roommateListData["Roommates"] = roommates;
+
+  //replace the RoommateListData in local storage
+  localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
+}
+
+/**
+ * Reads formData from the form that updates an existing roommate.
+ * Then updates the roommates list within the local storage.
+ * @param {Object} formData updated data for the roommate
+ * @param {Int} id id of the roommate to update
+ */
+ export function updateRoommate(formData, id) {
+  //make sure RoommateListData exists in local storage
+  dataExist();
+
+  //get the RoommateListData from local storage
+  const roommateListData = JSON.parse(localStorage.getItem("RoommateListData"));
+  //get the list of roommates from RoommateListData
+  const roommates = roommateListData["Roommates"];
+
+  //iterate through the list of roommates
+  for (let i = 0; i < roommates.length; i++) {
+    //check we find the roommate with the matching id
+    if (roommates[i]["id"] == id) {
+      //update data inputted from form
+      for (let [key, value] of formData) {
+        roommates[i][key] = value;
+      }
     }
   }
 
