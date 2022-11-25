@@ -75,6 +75,8 @@ function addHandler() {
     addPopup.style.display = "none";
     //create a new roommate using the form data
     createRoommate(new FormData(addForm));
+    //clear the entries in the form
+    addForm.reset();
     //reload the cards with the new list of roommates
     loadCards(readRoommate());
   }
