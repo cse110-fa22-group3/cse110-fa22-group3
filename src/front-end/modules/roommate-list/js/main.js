@@ -131,18 +131,28 @@ function updateDelHandler() {
 			<button type="submit" id="save_button">SAVE</button>`;
 
       //when submit button is clicked, submit the form and update the roommate, hide the popup
-      updateForm.addEventListener("submit", (event) => {//event) => {
+      updateForm.addEventListener("submit", update);/*{
         event.preventDefault();
         updatePopup.style.display = "none";
         updateRoommate(new FormData(updateForm), id);
         initPage(readRoommate());
-      });
+      });//, {once : true});*/
+      
+      function update(event)
+      {
+        event.preventDefault();
+        updateForm.removeEventListener("submit", update);
+        updatePopup.style.display = "none";
+        updateRoommate(new FormData(updateForm), id);
+        initPage(readRoommate());
+      }
 
       //when the a card is clicked, show the popup
       updatePopup.style.display = "block";
 
       //when the close button is clicked, hide the popup
       closeBtn.onclick = function close() {
+        updateForm.removeEventListener("submit", update);
         updatePopup.style.display = "none";
       };
 
@@ -153,5 +163,5 @@ function updateDelHandler() {
         initPage(readRoommate());
       };
     });
-  });
+  });//, {once : true});
 }
