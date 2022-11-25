@@ -51,7 +51,7 @@ function loadCards(roommates) {
   updateDelHandler();
 }
 
-/** addHandler, provides the functionality for showing/hiding the 
+/** addHandler, provides the functionality for showing/hiding the
  *  popup, and submitting the new roommate data. This function should
  *  only be executed once, as there is only one add button.
  */

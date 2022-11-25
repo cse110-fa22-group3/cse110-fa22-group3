@@ -19,7 +19,7 @@ export function createRoommate(formData) {
     roommate[key] = value;
   }
   roommate["id"] = roommateListData["idCount"];
-  
+
   //increment idCount to get the next unique id
   roommateListData["idCount"] += 1;
 
@@ -28,12 +28,11 @@ export function createRoommate(formData) {
 
   //replace the RoommateListData in local storage
   localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
-
 }
 
 /**
- * Reads 'RoommateListData' data from local storage and returns 
- * an array of all the roommates information found. If nothing is 
+ * Reads 'RoommateListData' data from local storage and returns
+ * an array of all the roommates information found. If nothing is
  * found in local storage, an empty array is returned.
  * @returns {Array<object>} an array of roommates
  */
@@ -83,7 +82,7 @@ export function deleteRoommate(id) {
  * @param {Object} formData updated data for the roommate
  * @param {Int} id id of the roommate to update
  */
- export function updateRoommate(formData, id) {
+export function updateRoommate(formData, id) {
   //make sure RoommateListData exists in local storage
   dataExist();
 
@@ -121,11 +120,11 @@ function dataExist() {
   if (localStorage.getItem("RoommateListData") === null) {
     //creating a new RoommateListData
     const roommateListData = {
-      "Roommates": [],
-      "idCount": 0,
+      Roommates: [],
+      idCount: 0,
     };
 
     //adding it to local storage for the first time
     localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
-  } 
+  }
 }
