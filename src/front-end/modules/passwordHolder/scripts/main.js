@@ -25,10 +25,11 @@ function initPage(array){
     }
     else{
         for(let i = 0; i < array.length; i++){
-            let card = document.createElement("passwordHolderCard");
+            let card = document.createElement("password-holder-card");
             card.setAttribute("id", array[i]["id"]);
+            // card.setAttribute("class", "whole-password");
             card.data = array[i];
-            // console.log(card.data);
+            console.log(card.data);
             passwordList.appendChild(card);
         }
     }
