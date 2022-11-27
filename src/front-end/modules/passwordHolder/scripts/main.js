@@ -4,6 +4,7 @@ import {
     readPasswords,
     deletePassword,
     updatePassword,
+    queryPasswordInfo,
     readIdCount
   } from "../../../../back-end/passwordHolderAPI.js";
   window.addEventListener("DOMContentLoaded", init);
@@ -56,20 +57,29 @@ function createCard(data){
             deleteButton.setAttribute("class", "btn btn-md btn-outline-danger delete-button");
             deleteButton.setAttribute("id","password-card-delete-id-" + data["id"]);
             deleteButton.setAttribute("data-passwordId",data["id"]);
-            cardButtonDiv.setAttribute("id","password-card-div-delete-" + data["id"]);
+            cardButtonDiv.setAttribute("id","password-card-div-" + data["id"]);
             let deleteButtonText = document.createTextNode("Delete");
 
             deleteButton.appendChild(deleteButtonText);
             card.setAttribute("id", "passwordCard" + data["id"]);
+            card.setAttribute("data-value", data["id"]);
             card.data = data;
             deleteButtonSpan.appendChild(deleteButton);
             cardButtonDiv.appendChild(card);
             cardButtonDiv.appendChild(deleteButtonSpan);
             passwordList.appendChild(cardButtonDiv);
+
             document.getElementById("password-card-delete-id-"+data["id"]).addEventListener("click", deletePasswordClick);
+            document.getElementById("passwordCard" + data["id"]).addEventListener("click",openInfoPasswordClick);
 }
+
+function openInfoPasswordClick(){
+    let info = queryPasswordInfo(this["dataset"]["value"]);
+    alert(`username: ${info.username} \npassword: ${info.password}`);    
+}
+
 function deletePasswordClick(){
-    let cardToBeDeleted = document.getElementById("password-card-div-delete-"+ this.dataset['passwordid'])
+    let cardToBeDeleted = document.getElementById("password-card-div-"+ this.dataset['passwordid'])
     deletePassword(this.dataset['passwordid']);
     cardToBeDeleted.remove();
     if(readPasswords().length == 0){

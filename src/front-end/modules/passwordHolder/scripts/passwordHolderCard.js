@@ -11,29 +11,28 @@ class passwordHolderCard extends HTMLElement {
       const passwordHolderCard = this.shadow.querySelector("div");
       passwordHolderCard.className = "whole-password";
       passwordHolderCard.innerHTML = `<style>.whole-password{
-        background-color: rgba(0, 0, 0, 0);
-        border-radius: 12px;
-        border: solid white 2px;
-        box-shadow: 0 10px 8px rgba(0, 0, 0, 0.5);
-        transition-duration: 0.4s;
-        color:white;
-        height: 50px;
-        margin-top: 15px;
-        padding-left: 20px;
-        padding-bottom: 25px;
-        width: 105vh; 
-        /* display: flex; */
-        /* display: inline-block; */
-      }
-    
-    .whole-password:hover{
-    transform: translateY(-4px);
-    color: black;
-    background-color: white;
-    cursor: pointer;
-    }</style><h2>${data.key}</h2>`;
+          background-color: rgba(0, 0, 0, 0);
+          border-radius: 12px;
+          border: solid white 2px;
+          box-shadow: 0 10px 8px rgba(0, 0, 0, 0.5);
+          transition-duration: 0.4s;
+          color:white;
+          height: 50px;
+          margin-top: 15px;
+          padding-left: 20px;
+          padding-bottom: 25px;
+          width: 115vh; 
+          /* display: flex; */
+          /* display: inline-block; */
+        }
+      
+      .whole-password:hover{
+      transform: translateY(-4px);
+      color: black;
+      background-color: white;
+      cursor: pointer;
+      }</style><h2>${data.key}</h2>`;
     }
-  
     get data() {
       const passwordHolderCard = this.shadow.querySelector("div");
       return passwordHolderCard.innerHTML;

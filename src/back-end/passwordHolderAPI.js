@@ -19,6 +19,14 @@ export function readPasswords(){
         return JSON.parse(localStorage.getItem('PasswordHolderData'))["Passwords"];
     }
 }
+export function queryPasswordInfo(id){
+    let apiData = JSON.parse(localStorage.getItem('PasswordHolderData'));
+    for(let i = 0; i < apiData["Passwords"].length;i++){
+        if(apiData["Passwords"][i]["id"] == id){
+            return apiData["Passwords"][i];
+        }
+    }
+}
 
 export function readIdCount(){
     if(localStorage.getItem("PasswordHolderData")  === null){
