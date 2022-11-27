@@ -21,7 +21,7 @@ class passwordHolderCard extends HTMLElement {
         margin-top: 15px;
         padding-left: 20px;
         padding-bottom: 25px;
-        /* width: 10px; */
+        width: 105vh; 
         /* display: flex; */
         /* display: inline-block; */
       }
