@@ -1,10 +1,13 @@
+//main.js for roommateList
+
 import {
   createRoommate,
   readRoommate,
-  deleteRoommate,
   updateRoommate,
+  deleteRoommate,
 } from "../../../../back-end/roommateListAPI.js";
 
+//page loads, calls init function
 window.addEventListener("DOMContentLoaded", init);
 
 /** Starts the program, all our function calls
@@ -12,18 +15,18 @@ window.addEventListener("DOMContentLoaded", init);
  */
 function init() {
   //load the cards in the page with the current list of roommates
-  initPage(readRoommate());
+  loadCards(readRoommate());
 
-  //initialize the form if the user decides to add
-  initFormHandler();
+  //initialize the add button
+  addHandler();
 }
 
-/** initPage, reads in our roommates from the local storage
- *  creates a new element for each roommate that'll
- *  be present on the page when it is loaded in
- * @param {*} roommates
+/** loadCards, reads in our roommates from the local storage and
+ *  creates a new element roommate-card for each roommate that will
+ *  be present on the page when it is loaded in.
+ * @param {Array<object>} roommates an array of roommates
  */
-function initPage(roommates) {
+function loadCards(roommates) {
   //find the row element where all of the cards are
   const row = document.querySelector(".row");
 
@@ -34,35 +37,49 @@ function initPage(roommates) {
 
   //add a card for each roommate in the list
   roommates.forEach((roommate) => {
+    //create the custom element roommate-card
     const card = document.createElement("roommate-card");
+    //set the attribute as the roommate's unique id
     card.setAttribute("id", roommate["id"]);
+    //set the data of the roommate
     card.data = roommate;
+    //insert it as the first card in the row
     row.insertBefore(card, document.querySelector("#new.item"));
   });
 
-  //initialize the update/delete functionality for when the card is clicked
+  //initialize the update/delete buttons for when any of the cards are clicked
   updateDelHandler();
 }
 
-/** initFormHandler, adds the needed event handlers
- * 	for when the submit button and creates a new roommate
- * 	when it is is clicked and will also brings up a
- *  popup when it is clicked
+/** addHandler, provides the functionality for showing/hiding the
+ *  popup, and submitting the new roommate data. This function should
+ *  only be executed once, as there is only one add button.
  */
-function initFormHandler() {
-  //nodes for the add form, form popup, add, and close buttons
-  let addForm = document.querySelector("form.add");
-  let addPopup = document.querySelector("#background.add");
-  let addBtn = document.querySelector("#new.item");
-  let closeBtn = document.getElementById("close_button_1");
+function addHandler() {
+  //node for the add form
+  const addForm = document.querySelector("form.add");
+  //node for the popup showing the add form
+  const addPopup = document.querySelector("#background.add");
+  //node for the add button in the popup
+  const addBtn = document.querySelector("#new.item");
+  //node for the close button in the popup
+  const closeBtn = document.getElementById("close_button_1");
 
-  //when submit button is clicked, submit the form and make a new roommate, hide the popup
-  addForm.addEventListener("submit", (event) => {
+  //when submit button is clicked, call the add function
+  addForm.addEventListener("submit", add);
+
+  function add(event) {
+    //prevent refreshing the page
     event.preventDefault();
+    //hide the popup
     addPopup.style.display = "none";
+    //create a new roommate using the form data
     createRoommate(new FormData(addForm));
-    initPage(readRoommate());
-  });
+    //clear the entries in the form
+    addForm.reset();
+    //reload the cards with the new list of roommates
+    loadCards(readRoommate());
+  }
 
   //when the add button is clicked, show the popup
   addBtn.onclick = function show() {
@@ -75,26 +92,35 @@ function initFormHandler() {
   };
 }
 
-/** updateDelHandler, handles when a roommate-card gets deleted or updated
- *  will add the updated roommate list to localstorage. Provides a popup where
- *  people can input information for roommate update and delete
+/** updateDelHandler, handles when a roommate-card gets deleted or updated. The function
+ *  will add the updated roommate list to local storage. Provides the functionality to
+ *  show/hide a popup where people can input information for updating or deleting
+ *  a roommate. This function should be executed multiple times, occuring when any
+ *  CRUD operations occur.
  */
 function updateDelHandler() {
-  //nodes for roommate cards, update form, form popup, delete, save, and close buttons
-  let cards = document.querySelectorAll("roommate-card");
-  let updateForm = document.querySelector("form.update");
-  let updatePopup = document.querySelector("#background.update");
-  let delBtn = document.getElementById("delete_button");
-  let closeBtn = document.getElementById("close_button_2");
+  //list of nodes for all of the roommate-card elements
+  const cards = document.querySelectorAll("roommate-card");
+  //node for the update form
+  const updateForm = document.querySelector("form.update");
+  //node for the popup showing the update form
+  const updatePopup = document.querySelector("#background.update");
+  //node for the delete button in the popup
+  const delBtn = document.getElementById("delete_button");
+  //node for the close button in the popup
+  const closeBtn = document.getElementById("close_button_2");
 
   //creating an event listener for each card
   cards.forEach((card) => {
     card.addEventListener("click", (event) => {
-      //roommate variables
-      let roommates = readRoommate();
+      //getting the list of roommates
+      const roommates = readRoommate();
+      //getting the id from the element (must do it now before event gets replaced in a different event listener)
+      const id = event.target.id;
+      //roommate variable
       let roommate;
 
-      //grabbing the right specific roommate
+      //grabbing the roommate with the matching id
       for (let i = 0; i < roommates.length; i++) {
         if (roommates[i]["id"] == event.target.id) {
           roommate = roommates[i];
@@ -129,25 +155,41 @@ function updateDelHandler() {
 			</fieldset>
 			<button type="submit" id="save_button">SAVE</button>`;
 
-      //when submit button is clicked, submit the form and update the roommate, hide the popup
-      updateForm.addEventListener("submit", () => {
-        updateRoommate(new FormData(updateForm), event.target.id);
-        initPage(readRoommate());
-      });
+      //when submit button is clicked, call the submit function
+      updateForm.addEventListener("submit", update);
 
-      //when the a card is clicked, show the popup
+      function update(event) {
+        //prevent refreshing the page
+        event.preventDefault();
+        //remove this specific card's event listener (important, since all the cards use the same form for updating)
+        updateForm.removeEventListener("submit", update);
+        //hide the popup
+        updatePopup.style.display = "none";
+        //update a roommate using the form data and the roommate's id
+        updateRoommate(new FormData(updateForm), id);
+        //reload the cards with the new list of roommates
+        loadCards(readRoommate());
+      }
+
+      //when a card is clicked, show the popup
       updatePopup.style.display = "block";
 
       //when the close button is clicked, hide the popup
       closeBtn.onclick = function close() {
         updatePopup.style.display = "none";
+        //remove this specific card's event listener (important, since all the cards use the same form for updating)
+        updateForm.removeEventListener("submit", update);
       };
 
-      //when the delete button is clicked, delete the roommate, hide the popup
+      //when the delete button is clicked, hide the popup
       delBtn.onclick = function () {
         updatePopup.style.display = "none";
-        deleteRoommate(event.target.id);
-        initPage(readRoommate());
+        //remove this specific card's event listener (not really necessary here, but just in case)
+        updateForm.removeEventListener("submit", update);
+        //delete the roommate with the matching id
+        deleteRoommate(id);
+        //reload the cards with the new list of roommates
+        loadCards(readRoommate());
       };
     });
   });
