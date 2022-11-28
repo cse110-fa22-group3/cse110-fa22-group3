@@ -40,7 +40,7 @@ function initPage(array) {
  * passwords that have been created by the user.
  */
 function createNoPasswordsMessage() {
-  let passwordList = document.getElementById("passwordList");
+  let passwordList = document.getElementById("password-list");
   let noPasswordsMessage = document.createElement("p");
   noPasswordsMessage.setAttribute("id", "no-elements-present");
   noPasswordsMessage.textContent = "No passwords to show";
@@ -69,7 +69,7 @@ function deleteNoPasswordsMessage() {
  */
 function createCard(data) {
   deleteNoPasswordsMessage();
-  let passwordList = document.getElementById("passwordList");
+  let passwordList = document.getElementById("password-list");
   let cardButtonDiv = document.createElement("div");
   cardButtonDiv.setAttribute("class", "input-group");
 
@@ -87,7 +87,7 @@ function createCard(data) {
   editButton.setAttribute("id", "password-card-edit-id-" + data["id"]);
   editButton.setAttribute("data-passwordId", data["id"]);
   editButton.setAttribute("data-bs-toggle", "modal");
-  editButton.setAttribute("data-bs-target", "#editModal");
+  editButton.setAttribute("data-bs-target", "#edit-modal");
   let editButtonText = document.createTextNode("Edit");
   editButton.appendChild(editButtonText);
 
@@ -104,7 +104,7 @@ function createCard(data) {
   card.setAttribute("id", "passwordCard" + data["id"]);
   card.setAttribute("data-value", data["id"]);
   card.setAttribute("data-bs-toggle", "modal");
-  card.setAttribute("data-bs-target", "#infoModal");
+  card.setAttribute("data-bs-target", "#info-modal");
   card.data = data;
 
   buttonsSpan.appendChild(editButton);
