@@ -46,4 +46,5 @@ class passwordHolderCard extends HTMLElement {
       return passwordHolderCard.innerHTML;
     }
   }
-  customElements.define("password-holder-card", passwordHolderCard);
+  
+customElements.define("password-holder-card", passwordHolderCard);

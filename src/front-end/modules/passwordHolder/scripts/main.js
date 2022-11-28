@@ -1,13 +1,13 @@
 //main.js
 import {
-    createPassword,
-    readPasswords,
-    deletePassword,
-    updatePassword,
-    queryPasswordInfo,
-    readIdCount
-  } from "../../../../back-end/passwordHolderAPI.js";
-  window.addEventListener("DOMContentLoaded", init);
+  createPassword,
+  readPasswords,
+  deletePassword,
+  updatePassword,
+  queryPasswordInfo,
+  readIdCount,
+} from "../../../../back-end/passwordHolderAPI.js";
+window.addEventListener("DOMContentLoaded", init);
 
 // empty password array for initialization
 let passwordArray = [];
