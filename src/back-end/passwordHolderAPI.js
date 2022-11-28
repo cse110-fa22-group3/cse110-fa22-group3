@@ -100,7 +100,7 @@ export function deletePassword(id) {
   console.log(id);
   let apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
   for (let i = 0; i < apiData["Passwords"].length; i++) {
-    console.log(apiData["Passwords"])
+    console.log(apiData["Passwords"]);
     if (apiData["Passwords"][i]["id"] == id) {
       apiData["Passwords"].splice(i, 1);
       break;
