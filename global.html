@@ -470,6 +470,146 @@ counter to maintain unique ids for chores and updates the amount of open chores.
     
 
     
+    <h4 class="name" id="createPassword"><span class="type-signature"></span>createPassword<span class="signature">(formData)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    createPassword handles adding a new commonly shared password into the
+localStorage so that we can store a new password for the rooommate group
+Establishes the data we are tracking for a commonly shared password.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>formData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">provided by JS file that gives us the data for 
+fields of a new password.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="back-end_passwordHolderAPI.js.html">back-end/passwordHolderAPI.js</a>, <a href="back-end_passwordHolderAPI.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="createRoommate"><span class="type-signature"></span>createRoommate<span class="signature">(formData)</span><span class="type-signature"></span></h4>
     
 
@@ -573,6 +713,145 @@ Then stores this information within the localStorage API.
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="back-end_roommateListAPI.js.html">back-end/roommateListAPI.js</a>, <a href="back-end_roommateListAPI.js.html#line7">line 7</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="deletePassword"><span class="type-signature"></span>deletePassword<span class="signature">(id)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    deletePassword handles deleting an existing commonly shared password and
+putting the changes into the localStorage so that we can remove a 
+password for the rooommate group.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">that indicates which password we are trying to delete</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="back-end_passwordHolderAPI.js.html">back-end/passwordHolderAPI.js</a>, <a href="back-end_passwordHolderAPI.js.html#line83">line 83</a>
     </li></ul></dd>
     
 
@@ -1367,6 +1646,118 @@ initialized fields
     
 
     
+    <h4 class="name" id="readPasswords"><span class="type-signature"></span>readPasswords<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    readPasswords handles populating the password information commonly
+shared by all roommates in a group. First function called within the
+init function when initializing the passwordHolder page.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="back-end_passwordHolderAPI.js.html">back-end/passwordHolderAPI.js</a>, <a href="back-end_passwordHolderAPI.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    with the JSON data of each password.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="readRoommate"><span class="type-signature"></span>readRoommate<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;object>}</span></h4>
     
 
@@ -1893,6 +2284,168 @@ for the chore, either 'open' or 'closed'</td>
     
 
     
+    <h4 class="name" id="updatePassword"><span class="type-signature"></span>updatePassword<span class="signature">(formData, id)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    updatePassword handles editing an existing commonly shared password and
+putting the changes into the localStorage so that we can store an
+updated password for the rooommate group.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>formData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">provided by JS file that gives us the fields</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">that indicates which password we are trying to update</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="back-end_passwordHolderAPI.js.html">back-end/passwordHolderAPI.js</a>, <a href="back-end_passwordHolderAPI.js.html#line64">line 64</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="updateRoommate"><span class="type-signature"></span>updateRoommate<span class="signature">(formData)</span><span class="type-signature"></span></h4>
     
 
@@ -2041,13 +2594,13 @@ Then stores this information within the localStorage API.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#clearArchive">clearArchive</a></li><li><a href="global.html#closeChore">closeChore</a></li><li><a href="global.html#createChore">createChore</a></li><li><a href="global.html#createRoommate">createRoommate</a></li><li><a href="global.html#deleteRoommate">deleteRoommate</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initFormHandler">initFormHandler</a></li><li><a href="global.html#initPage">initPage</a></li><li><a href="global.html#queryChore">queryChore</a></li><li><a href="global.html#readChores">readChores</a></li><li><a href="global.html#readRoommate">readRoommate</a></li><li><a href="global.html#reOpenChore">reOpenChore</a></li><li><a href="global.html#updateChore">updateChore</a></li><li><a href="global.html#updateDelHandler">updateDelHandler</a></li><li><a href="global.html#updateRoommate">updateRoommate</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#clearArchive">clearArchive</a></li><li><a href="global.html#closeChore">closeChore</a></li><li><a href="global.html#createChore">createChore</a></li><li><a href="global.html#createPassword">createPassword</a></li><li><a href="global.html#createRoommate">createRoommate</a></li><li><a href="global.html#deletePassword">deletePassword</a></li><li><a href="global.html#deleteRoommate">deleteRoommate</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initFormHandler">initFormHandler</a></li><li><a href="global.html#initPage">initPage</a></li><li><a href="global.html#queryChore">queryChore</a></li><li><a href="global.html#readChores">readChores</a></li><li><a href="global.html#readPasswords">readPasswords</a></li><li><a href="global.html#readRoommate">readRoommate</a></li><li><a href="global.html#reOpenChore">reOpenChore</a></li><li><a href="global.html#updateChore">updateChore</a></li><li><a href="global.html#updateDelHandler">updateDelHandler</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#updateRoommate">updateRoommate</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Nov 28 2022 04:50:14 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Nov 28 2022 04:50:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
