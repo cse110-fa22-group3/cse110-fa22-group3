@@ -49,7 +49,6 @@ function createCard(data){
             cardButtonDiv.setAttribute("class","input-group");
 
             let card = document.createElement("password-holder-card");
-
             let deleteButtonSpan = document.createElement("span");
             deleteButtonSpan.setAttribute("class","input-group-btn");
 
@@ -63,6 +62,8 @@ function createCard(data){
             deleteButton.appendChild(deleteButtonText);
             card.setAttribute("id", "passwordCard" + data["id"]);
             card.setAttribute("data-value", data["id"]);
+            card.setAttribute("data-bs-toggle","modal");
+            card.setAttribute("data-bs-target", "#infoModal");
             card.data = data;
             deleteButtonSpan.appendChild(deleteButton);
             cardButtonDiv.appendChild(card);
@@ -75,7 +76,15 @@ function createCard(data){
 
 function openInfoPasswordClick(){
     let info = queryPasswordInfo(this["dataset"]["value"]);
-    alert(`username: ${info.username} \npassword: ${info.password}`);    
+    console.log(info.username);
+    let modalUsernameField = document.getElementById("insert-username-modal");
+    let modalPasswordField = document.getElementById("insert-password-modal");
+    modalUsernameField.setAttribute("hidden","false");
+    modalUsernameField.innerText = info.username;
+    modalPasswordField.innertext = info.password;
+
+    // document.createElement()
+    // alert(`username: ${info.username} \npassword: ${info.password}`);    
 }
 
 function deletePasswordClick(){
