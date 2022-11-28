@@ -30,7 +30,7 @@ export function readPasswords() {
  */
 export function queryPasswordInfo(id) {
   const apiData = JSON.parse(localStorage.getItem('PasswordHolderData'))
-  for (let i = 0 i < apiData.Passwords.length i++) {
+  for (let i = 0; i < apiData.Passwords.length; i++) {
     if (apiData.Passwords[i].id === id) {
       return apiData.Passwords[i]
     }
