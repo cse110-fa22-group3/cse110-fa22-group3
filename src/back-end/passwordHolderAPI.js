@@ -1,4 +1,4 @@
-//passwordHolderAPI.js
+// passwordHolderAPI.js
 
 /**
  * readPasswords handles populating the password information commonly
@@ -6,19 +6,19 @@
  * init function when initializing the passwordHolder page.
  * @returns {Array<object>} with the JSON data of each password.
  */
-export function readPasswords() {
-  if (localStorage.getItem("PasswordHolderData") === null) {
-    let firstPasswordList = {
+export function readPasswords () {
+  if (localStorage.getItem('PasswordHolderData') === null) {
+    const firstPasswordList = {
       Passwords: [],
       idPasswordCount: 0,
-    };
+    }
     localStorage.setItem(
       "PasswordHolderData",
       JSON.stringify(firstPasswordList)
-    );
-    return JSON.parse(localStorage.getItem("PasswordHolderData"))["Passwords"];
+    )
+    return JSON.parse(localStorage.getItem('PasswordHolderData')).Passwords
   } else {
-    return JSON.parse(localStorage.getItem("PasswordHolderData"))["Passwords"];
+    return JSON.parse(localStorage.getItem('PasswordHolderData')).Passwords
   }
 }
 
@@ -28,11 +28,11 @@ export function readPasswords() {
  * @param {Int} id that indicates which password we are trying to query
  * @returns {Object} with the JSON data of the specific password.
  */
-export function queryPasswordInfo(id) {
-  let apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
-  for (let i = 0; i < apiData["Passwords"].length; i++) {
-    if (apiData["Passwords"][i]["id"] == id) {
-      return apiData["Passwords"][i];
+export function queryPasswordInfo (id) {
+  const apiData = JSON.parse(localStorage.getItem('PasswordHolderData'))
+  for (let i = 0; i < apiData.Passwords.length; i++) {
+    if (apiData.Passwords[i].id === id) {
+      return apiData.Passwords[i]
     }
   }
 }
@@ -41,13 +41,13 @@ export function queryPasswordInfo(id) {
  * readIdCount handles providing information for which id number we are on.
  * @returns {Int} with the latest id assigned to a card.
  */
-export function readIdCount() {
-  if (localStorage.getItem("PasswordHolderData") === null) {
-    return 0;
+export function readIdCount () {
+  if (localStorage.getItem('PasswordHolderData') === null) {
+    return 0
   }
-  return JSON.parse(localStorage.getItem("PasswordHolderData"))[
-    "idPasswordCount"
-  ];
+  return JSON.parse(localStorage.getItem('PasswordHolderData'))[
+    'idPasswordCount'
+  ]
 }
 
 /**
@@ -57,17 +57,17 @@ export function readIdCount() {
  * @param {Object} formData provided by JS file that gives us the data for
  * fields of a new password.
  */
-export function createPassword(formData) {
-  let apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
+export function createPassword (formData) {
+  let apiData = JSON.parse(localStorage.getItem('PasswordHolderData'));
   let newPassword = {
-    id: apiData["idPasswordCount"],
-    key: formData["key"],
-    username: formData["username"],
-    password: formData["password"],
+    id: apiData.idPasswordCount,
+    key: formData.key,
+    username: formData.username,
+    password: formData.password,
   };
-  apiData["idPasswordCount"] += 1;
-  apiData["Passwords"].push(newPassword);
-  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
+  apiData['idPasswordCount'] += 1
+  apiData .Passwords.push(newPassword)
+  localStorage.setItem('PasswordHolderData', JSON.stringify(apiData))
 }
 
 /**
@@ -77,17 +77,17 @@ export function createPassword(formData) {
  * @param {Object} formData provided by JS file that gives us the fields
  * @param {Int} id that indicates which password we are trying to update
  */
-export function updatePassword(id, formData) {
-  let apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
-  for (let i = 0; i < apiData["Passwords"].length; i++) {
-    if (apiData["Passwords"][i]["id"] == id) {
-      apiData["Passwords"][i]["key"] = formData["key"];
-      apiData["Passwords"][i]["username"] = formData["username"];
-      apiData["Passwords"][i]["password"] = formData["password"];
-      break;
+export function updatePassword (id, formData) {
+  let apiData = JSON.parse(localStorage.getItem('PasswordHolderData'))
+  for (let i = 0; i < apiData .Passwords.length; i++) {
+    if (apiData .Passwords[i].id === id) {
+      apiData .Passwords[i].key = formData.key
+      apiData .Passwords[i].username = formData.username
+      apiData .Passwords[i].password = formData.password
+      break
     }
   }
-  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
+  localStorage.setItem('PasswordHolderData', JSON.stringify(apiData))
 }
 
 /**
@@ -96,15 +96,13 @@ export function updatePassword(id, formData) {
  * password for the rooommate group.
  * @param {Int} id that indicates which password we are trying to delete
  */
-export function deletePassword(id) {
-  console.log(id);
-  let apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
-  for (let i = 0; i < apiData["Passwords"].length; i++) {
-    console.log(apiData["Passwords"])
-    if (apiData["Passwords"][i]["id"] == id) {
-      apiData["Passwords"].splice(i, 1);
-      break;
+export function deletePassword (id) {
+  let apiData = JSON.parse(localStorage.getItem('PasswordHolderData'))
+  for (let i = 0; i < apiData.Passwords.length; i++) {
+    if (apiData.Passwords[i].id === id) {
+      apiData.Passwords.splice(i, 1)
+      break
     }
   }
-  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
+  localStorage.setItem('PasswordHolderData', JSON.stringify(apiData))
 }

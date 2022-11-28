@@ -159,7 +159,7 @@ function deletePasswordClick() {
   let cardToBeDeleted = document.getElementById(
     "password-card-div-" + this.dataset["passwordid"]
   );
-  deletePassword(this.dataset["passwordid"]);
+  deletePassword(parseInt(this.dataset["passwordid"]));
   cardToBeDeleted.remove();
   if (readPasswords().length == 0) {
     createNoPasswordsMessage();
@@ -184,11 +184,11 @@ function editPasswordForm() {
     username: username,
     password: password,
   };
-  updatePassword(this.dataset["passwordid"], updatedPassword);
+  updatePassword(parseInt(this.dataset["passwordid"]), updatedPassword);
   let card = document.getElementById(
     "passwordCard" + this.dataset["passwordid"]
   );
-  card.data = queryPasswordInfo(this.dataset["passwordid"]);
+  card.data = queryPasswordInfo(parseInt(this.dataset["passwordid"]));
   document.getElementById("edit-account-field").value = "";
   document.getElementById("edit-username-field").value = "";
   document.getElementById("edit-password-field").value = "";
