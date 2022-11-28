@@ -21,6 +21,13 @@ export function readPasswords() {
     return JSON.parse(localStorage.getItem("PasswordHolderData"))["Passwords"];
   }
 }
+
+/**
+ * queryPasswordInfo handles providing information for a specifc password
+ * in the localStorage.
+ * @param {Int} id that indicates which password we are trying to query
+ * @returns {Object} with the JSON data of the specific password.
+ */
 export function queryPasswordInfo(id) {
   let apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
   for (let i = 0; i < apiData["Passwords"].length; i++) {
@@ -30,6 +37,10 @@ export function queryPasswordInfo(id) {
   }
 }
 
+/**
+ * readIdCount handles providing information for which id number we are on.
+ * @returns {Int} with the latest id assigned to a card.
+ */
 export function readIdCount() {
   if (localStorage.getItem("PasswordHolderData") === null) {
     return 0;
@@ -38,6 +49,7 @@ export function readIdCount() {
     "idPasswordCount"
   ];
 }
+
 /**
  * createPassword handles adding a new commonly shared password into the
  * localStorage so that we can store a new password for the rooommate group
@@ -67,11 +79,11 @@ export function createPassword(formData) {
  */
 export function updatePassword(id, formData) {
   let apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
-  for (let i = 0; i < apiData["Passwords"]; i++) {
+  for (let i = 0; i < apiData["Passwords"].length; i++) {
     if (apiData["Passwords"][i]["id"] == id) {
       apiData["Passwords"][i]["key"] = formData["key"];
       apiData["Passwords"][i]["username"] = formData["username"];
-      apiData["Passwords"][i]["username"] = formData["password"];
+      apiData["Passwords"][i]["password"] = formData["password"];
       break;
     }
   }
@@ -92,6 +104,6 @@ export function deletePassword(id) {
       apiData["Passwords"].splice(i, 1);
       break;
     }
+    localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
   }
-  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
 }
