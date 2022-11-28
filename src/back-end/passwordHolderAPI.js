@@ -13,7 +13,7 @@ export function readPasswords () {
       idPasswordCount: 0,
     }
     localStorage.setItem(
-      "PasswordHolderData",
+      'PasswordHolderData',
       JSON.stringify(firstPasswordList)
     )
     return JSON.parse(localStorage.getItem('PasswordHolderData')).Passwords
@@ -81,9 +81,9 @@ export function updatePassword (id, formData) {
   let apiData = JSON.parse(localStorage.getItem('PasswordHolderData'))
   for (let i = 0; i < apiData .Passwords.length; i++) {
     if (apiData .Passwords[i].id === id) {
-      apiData .Passwords[i].key = formData.key
-      apiData .Passwords[i].username = formData.username
-      apiData .Passwords[i].password = formData.password
+      apiData.Passwords[i].key = formData.key
+      apiData.Passwords[i].username = formData.username
+      apiData.Passwords[i].password = formData.password
       break
     }
   }
