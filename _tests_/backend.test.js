@@ -1,3 +1,4 @@
 // backend.test.js
 
-const functions = require('./src/back-end/choresListAPI.js');
+const choresFunctions = require('./src/back-end/choresListAPI.js');
+const roomateFunctions = require('./src/back-end/roommateListAPI.js');
