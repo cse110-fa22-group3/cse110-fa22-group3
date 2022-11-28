@@ -1,7 +1,9 @@
-# Team 3 - Plastic Triangle 
+# Team 3 - Plastic Triangle
+
 ## **Spring 1 Review**
 
 ### **Members Present**
+
 - [X]Chase peterson
 - [X]Kalyan Sunkara
 - [X]Bryce Beeson
@@ -14,9 +16,11 @@
 - [ ]Jun Ye
 
 ### **Meeting Time & Location**
+
 8:00 - 9:03 PM on 11/16/22 via Zoom
 
 ### **Update from Last week**
+
 - Chase Peterson
   - I worked with Kyle to build the front-end for the chores list, where the majority of my work was on the JavaScript. I also built some basic styling for the chores list and homepage
 - Kalyan Sunkara
@@ -43,15 +47,16 @@
 - Tatsuo Kumamoto
   - I studied CSS and Bootstrap mainly using API and just YouTube tutorials
 - Jun Ye
-  - I finished designed UI of  roommate list and wrote HTML for it
+  - I finished designed UI of roommate list and wrote HTML for it
 
 ### **Plans for Next Sprint**
+
 - Chase Peterson
   - Work with Kalyan on linter and choreslist.
 - Kalyan Sunkara
-  - Work with Chase on linter and choreslist. 
+  - Work with Chase on linter and choreslist.
 - Bryce Beeson and Thomas Joel
-  - integration between frontend and backend 
+  - integration between frontend and backend
   - meeting with Chase and Kyle to get all the information from the front end and construct what we need for backend to function properly.
 - Haochen Wang
   - write JS and part of CSS for bill divider
