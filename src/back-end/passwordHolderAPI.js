@@ -7,18 +7,18 @@
  * @returns {Array<object>} with the JSON data of each password.
  */
 export function readPasswords() {
-  if (localStorage.getItem('PasswordHolderData') === null) {
+  if (localStorage.getItem("PasswordHolderData") === null) {
     const firstPasswordList = {
       Passwords: [],
-      idPasswordCount: 0
-    }
+      idPasswordCount: 0,
+    };
     localStorage.setItem(
-      'PasswordHolderData',
+      "PasswordHolderData",
       JSON.stringify(firstPasswordList)
-    )
-    return JSON.parse(localStorage.getItem('PasswordHolderData')).Passwords
+    );
+    return JSON.parse(localStorage.getItem("PasswordHolderData")).Passwords;
   } else {
-    return JSON.parse(localStorage.getItem('PasswordHolderData')).Passwords
+    return JSON.parse(localStorage.getItem("PasswordHolderData")).Passwords;
   }
 }
 
@@ -29,10 +29,10 @@ export function readPasswords() {
  * @returns {Object} with the JSON data of the specific password.
  */
 export function queryPasswordInfo(id) {
-  const apiData = JSON.parse(localStorage.getItem('PasswordHolderData'))
+  const apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
   for (let i = 0; i < apiData.Passwords.length; i++) {
     if (apiData.Passwords[i].id === id) {
-      return apiData.Passwords[i]
+      return apiData.Passwords[i];
     }
   }
 }
@@ -42,10 +42,10 @@ export function queryPasswordInfo(id) {
  * @returns {Int} with the latest id assigned to a card.
  */
 export function readIdCount() {
-  if (localStorage.getItem('PasswordHolderData') === null) {
-    return 0
+  if (localStorage.getItem("PasswordHolderData") === null) {
+    return 0;
   }
-  return JSON.parse(localStorage.getItem('PasswordHolderData')).idPasswordCount
+  return JSON.parse(localStorage.getItem("PasswordHolderData")).idPasswordCount;
 }
 
 /**
@@ -56,16 +56,16 @@ export function readIdCount() {
  * fields of a new password.
  */
 export function createPassword(formData) {
-  const apiData = JSON.parse(localStorage.getItem('PasswordHolderData'))
+  const apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
   const newPassword = {
     id: apiData.idPasswordCount,
     key: formData.key,
     username: formData.username,
-    password: formData.password
-  }
-  apiData.idPasswordCount += 1
-  apiData.Passwords.push(newPassword)
-  localStorage.setItem('PasswordHolderData', JSON.stringify(apiData))
+    password: formData.password,
+  };
+  apiData.idPasswordCount += 1;
+  apiData.Passwords.push(newPassword);
+  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
 }
 
 /**
@@ -76,16 +76,16 @@ export function createPassword(formData) {
  * @param {Int} id that indicates which password we are trying to update
  */
 export function updatePassword(id, formData) {
-  const apiData = JSON.parse(localStorage.getItem('PasswordHolderData'))
+  const apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
   for (let i = 0; i < apiData.Passwords.length; i++) {
     if (apiData.Passwords[i].id === id) {
-      apiData.Passwords[i].key = formData.key
-      apiData.Passwords[i].username = formData.username
-      apiData.Passwords[i].password = formData.password
-      break
+      apiData.Passwords[i].key = formData.key;
+      apiData.Passwords[i].username = formData.username;
+      apiData.Passwords[i].password = formData.password;
+      break;
     }
   }
-  localStorage.setItem('PasswordHolderData', JSON.stringify(apiData))
+  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
 }
 
 /**
@@ -95,12 +95,12 @@ export function updatePassword(id, formData) {
  * @param {Int} id that indicates which password we are trying to delete
  */
 export function deletePassword(id) {
-  const apiData = JSON.parse(localStorage.getItem('PasswordHolderData'))
+  const apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
   for (let i = 0; i < apiData.Passwords.length; i++) {
     if (apiData.Passwords[i].id === id) {
-      apiData.Passwords.splice(i, 1)
-      break
+      apiData.Passwords.splice(i, 1);
+      break;
     }
   }
-  localStorage.setItem('PasswordHolderData', JSON.stringify(apiData))
+  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
 }
