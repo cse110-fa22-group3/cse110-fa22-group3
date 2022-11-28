@@ -2,7 +2,11 @@ name: jsdoc
 on:
   push:
     branches:
-      - main 
+      - main
+      - passwordHolderFeature
+      - billDividerFeature
+      - choresListFeature
+      - roommateListFeature
   pull_request:
 
 jobs:
