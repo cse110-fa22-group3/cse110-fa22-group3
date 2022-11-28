@@ -63,11 +63,11 @@ export function createPassword(formData){
  */
 export function updatePassword(id,formData){
     let apiData = JSON.parse(localStorage.getItem('PasswordHolderData'));
-    for(let i = 0; i < apiData["Passwords"];i++){
+    for(let i = 0; i < apiData["Passwords"].length;i++){
         if(apiData["Passwords"][i]["id"] == id){
             apiData["Passwords"][i]["key"] = formData["key"];
             apiData["Passwords"][i]["username"] = formData["username"];
-            apiData["Passwords"][i]["username"] = formData["password"];
+            apiData["Passwords"][i]["password"] = formData["password"];
             break;
         }
     }
