@@ -47,10 +47,10 @@ extends:
 #########
 rules:
   quotes:
-    - warning
-    - double
+  - warning
+  - double
   semi:
-    - warning
+  - warning
   lines-around-comment:
   - error
   - beforeBlockComment: true
