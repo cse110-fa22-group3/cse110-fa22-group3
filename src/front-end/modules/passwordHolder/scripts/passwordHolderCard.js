@@ -5,7 +5,12 @@ class passwordHolderCard extends HTMLElement {
       const passwordHolderCard = document.createElement("div");
       this.shadow.append(passwordHolderCard);
     }
-  
+
+    /**
+    * Called when the .data property is set on this element.
+    * @param {Object} data which is the JSON passed to the element
+    * from localStorage.
+    */
     set data(data) {
       if (!data) return;
       const passwordHolderCard = this.shadow.querySelector("div");
@@ -33,6 +38,9 @@ class passwordHolderCard extends HTMLElement {
       cursor: pointer;
       }</style><h2>${data.key}</h2>`;
     }
+    /**
+    * Called when the data property is read from the element.
+    */
     get data() {
       const passwordHolderCard = this.shadow.querySelector("div");
       return passwordHolderCard.innerHTML;
