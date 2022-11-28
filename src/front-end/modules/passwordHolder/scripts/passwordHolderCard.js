@@ -1,16 +1,16 @@
 class passwordHolderCard extends HTMLElement {
-    constructor() {
-      super();
-      this.shadow = this.attachShadow({ mode: "open" });
-      const passwordHolderCard = document.createElement("div");
-      this.shadow.append(passwordHolderCard);
-    }
-  
-    set data(data) {
-      if (!data) return;
-      const passwordHolderCard = this.shadow.querySelector("div");
-      passwordHolderCard.className = "whole-password";
-      passwordHolderCard.innerHTML = `<style>.whole-password{
+  constructor() {
+    super();
+    this.shadow = this.attachShadow({ mode: "open" });
+    const passwordHolderCard = document.createElement("div");
+    this.shadow.append(passwordHolderCard);
+  }
+
+  set data(data) {
+    if (!data) return;
+    const passwordHolderCard = this.shadow.querySelector("div");
+    passwordHolderCard.className = "whole-password";
+    passwordHolderCard.innerHTML = `<style>.whole-password{
           background-color: rgba(0, 0, 0, 0);
           border-radius: 12px;
           border: solid white 2px;
@@ -32,10 +32,10 @@ class passwordHolderCard extends HTMLElement {
       background-color: white;
       cursor: pointer;
       }</style><h2>${data.key}</h2>`;
-    }
-    get data() {
-      const passwordHolderCard = this.shadow.querySelector("div");
-      return passwordHolderCard.innerHTML;
-    }
   }
-  customElements.define("password-holder-card", passwordHolderCard);
+  get data() {
+    const passwordHolderCard = this.shadow.querySelector("div");
+    return passwordHolderCard.innerHTML;
+  }
+}
+customElements.define("password-holder-card", passwordHolderCard);
