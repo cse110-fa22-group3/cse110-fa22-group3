@@ -66,14 +66,9 @@ export function readRoommate() {
   if (localStorage.getItem("RoommateListData") === null) {
     let firstRoommate = {
       Roommates: [],
-<<<<<<< HEAD
-    };
-    localStorage.setItem("RoommateListData", JSON.stringify(firstRoomate));
-=======
       idCount: 0,
     };
     localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
->>>>>>> main
     return JSON.parse(localStorage.getItem("RoommateListData"))["Roommates"];
   } else {
     let roommate = JSON.parse(localStorage.getItem("RoommateListData"));
@@ -87,26 +82,11 @@ export function readRoommate() {
  * No change is made to the array if the id is not found.
  * @param {Int} id Id of the roommate to remove
  */
-<<<<<<< HEAD
-export function deleteRoommate(name) {
-=======
 export function deleteRoommate(id) {
->>>>>>> main
   //get the RoommateListData from local storage
   const roommateList = JSON.parse(localStorage.getItem("RoommateListData"));
   //get the list of roommates from RoommateListData
   const roommates = roommateList["Roommates"];
-<<<<<<< HEAD
-
-  //iterate through the list of roommates
-  for (let i = 0; i < roommates.length; i++) {
-    //check if the name matches our query
-    if (roommates[i]["name"] === name) {
-      //remove the roommate from the list of roommates
-      roommates.splice(i, 1);
-      //decrement to make sure we don't skip a roommate
-      i--;
-=======
   // console.log(roommates);
   //iterate through the list of roommates
   for (let i = 0; i < roommates.length; i++) {
@@ -115,16 +95,12 @@ export function deleteRoommate(id) {
       //remove the roommate from the list of roommates
       roommates.splice(i, 1);
       break;
->>>>>>> main
     }
   }
 
   //replace the old list of roommates
   roommateList["Roommates"] = roommates;
-<<<<<<< HEAD
-=======
   console.log(roommateList);
->>>>>>> main
   //replace the RoommateListData in local storage
   localStorage.setItem("RoommateListData", JSON.stringify(roommateList));
 }
