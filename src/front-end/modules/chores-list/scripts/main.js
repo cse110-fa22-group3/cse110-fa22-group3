@@ -1,3 +1,16 @@
+import {
+  readChores,
+  queryChore,
+  createChore,
+  updateChore,
+  closeChore,
+  reOpenChore,
+  clearArchive,
+  checkDate,
+  inCharge,
+  removeFromChore,
+} from "../../../../back-end/ChoresListAPI.js";
+
 window.addEventListener("DOMContentLoaded", init);
 
 const choresVar = [];
@@ -5,18 +18,31 @@ const choresVar = [];
 let currentId = 0;
 let selectedChore = 0;
 
+// The div that contains all the chores
+const choresContainer = document.querySelector(".chores-container");
+
+// The div that contains the edit popup, and the text fields for chore and roommate name
+const editDiv = document.querySelector("#edit-background");
+const editChoreName = document.querySelector("form#edit input#e-chore-name");
+const editRoommateName = document.querySelector("form#edit input#e-roommate-name");
+
+/**
+ * init()
+ */
 function init() {
   initPage(choresVar);
-  initFormHandler();
+  createFormHandler();
+  editFormHandler();
 }
 
 function initPage(chores) {
-  const choresContainer = document.querySelector(".chores-container");
 
+  // Removes all chores from the page
   while (choresContainer.childElementCount > 1) {
     choresContainer.removeChild(choresContainer.firstElementChild);
   }
 
+  // Creates a chore for each chore
   chores.forEach((chore) => {
     const card = document.createElement("chore-card");
     card.setAttribute("id", chore.id);
@@ -24,18 +50,14 @@ function initPage(chores) {
     choresContainer.insertBefore(card, document.querySelector("#add-chore"));
   });
 
+  // Gets all the chore boxes that were made
   const choreBoxes = document.querySelectorAll("chore-card");
-  const editDiv = document.querySelector("#edit-background");
-  const editChoreName = document.querySelector("form#edit input#e-chore-name");
-  const editRoommateName = document.querySelector(
-    "form#edit input#e-roommate-name"
-  );
 
+  // Sets all the chore boxes to respond to "edit" clicking
   choreBoxes.forEach((card) => {
     card.addEventListener("click", (event) => {
       selectedChore = card.getAttribute("id");
       editDiv.style.display = "block";
-
       for (let i = 0; i < choresVar.length; i++) {
         if (choresVar[i].id == selectedChore) {
           editChoreName.value = choresVar[i].choreName;
@@ -44,39 +66,48 @@ function initPage(chores) {
       }
     });
   });
-
-  editDeleteHandler();
 }
 
-// import {roommate} from './roommate'
-function initFormHandler() {
-  const newBox = document.querySelector("#add-chore");
-  // let div = document.getElementById('background')
-  // let btn_close = document.getElementById('close-button')
-  const createDiv = document.querySelector("#create-background");
-  const createClose = document.getElementById("create-close");
-  const createForm = document.getElementById("create");
-
-  const assignDiv = document.querySelector("#assign-background");
-  const assignClose = document.getElementById("assign-close");
-  const assignForm = document.getElementById("assign");
-
-  const editDiv = document.querySelector("#edit-background");
-  const editClose = document.getElementById("edit-close");
-  const editForm = document.getElementById("edit");
-  const editDelete = document.getElementById("delete-1");
-
-  const editAssignDiv = document.querySelector("#edit-assign-background");
-  const editAssignClose = document.getElementById("edit-assign-close");
-  const editAssignForm = document.getElementById("edit-assign");
-  const editAssignDelete = document.getElementById("delete-2");
-  // const formEdit = document.querySelector('form.edit')
-
+function createFormHandler() {
+  
+  // stores the form data
   let createData;
 
+  // the "add" box
+  const newBox = document.querySelector("#add-chore");
+
+  // the divs with the create page 1 and 2 popups
+  const createDiv = document.querySelector("#create-background");
+  const assignDiv = document.querySelector("#assign-background");
+
+  // the divs with the create page 1 and 2 close buttons
+  const createClose = document.getElementById("create-close");
+  const assignClose = document.getElementById("assign-close");
+
+  // the divs with the create page 1 and 2 forms
+  const createForm = document.getElementById("create");
+  const assignForm = document.getElementById("assign");
+
+  // ADD BUTTON functionality
+  newBox.onclick = function show() {
+    createDiv.style.display = "block";
+  };
+
+  // CLOSE BUTTON functionality (create page 1)
+  createClose.onclick = function close() {
+    createDiv.style.display = "none";
+    createForm.reset();
+  };
+
+  // CLOSE BUTTON functionality (create page 2)
+  assignClose.onclick = function close() {
+    assignDiv.style.display = "none";
+    assignForm.reset();
+  };
+
+  // SUBMIT BUTTON functionality (create page 1)
   createForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    // createChore(new FormData(form_create));
 
     createData = new FormData(createForm);
 
@@ -86,20 +117,9 @@ function initFormHandler() {
     assignDiv.style.display = "block";
   });
 
-  newBox.onclick = function show() {
-    createDiv.style.display = "block";
-  };
-
-  createClose.onclick = function close() {
-    createDiv.style.display = "none";
-    assignDiv.style.display = "none";
-    createForm.reset();
-    assignForm.reset();
-  };
-
+  // SUBMIT BUTTON functionality (create page 2)
   assignForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    // createChore(new FormData(form_create));
 
     const assignData = new FormData(createForm);
 
@@ -117,18 +137,35 @@ function initFormHandler() {
     assignDiv.style.display = "none";
   });
 
-  assignClose.onclick = function close() {
-    createDiv.style.display = "none";
-    assignDiv.style.display = "none";
-    createForm.reset();
-    assignForm.reset();
-  };
+}
 
+function editFormHandler() {
+  
+  // the divs that contain the popup boxes for edit page 1 and 2
+  const editDiv = document.querySelector("#edit-background");
+  const editAssignDiv = document.querySelector("#edit-assign-background");
+
+  // the close buttons for edit page 1 and 2
+  const editClose = document.getElementById("edit-close");
+  const editAssignClose = document.getElementById("edit-assign-close");
+
+  // the forms for edit page 1 and 2
+  const editForm = document.getElementById("edit");
+  const editAssignForm = document.getElementById("edit-assign");
+
+  // the delete button for edit page 1 and 2
+  const editDelete = document.getElementById("delete-1");
+  const editAssignDelete = document.getElementById("delete-2");
+
+  // the form data
+  let editData;
+
+  // SUBMIT BUTTON for edit page 1
   editForm.addEventListener("submit", (event) => {
     event.preventDefault();
     // createChore(new FormData(form_create));
 
-    createData = new FormData(editForm);
+    editData = new FormData(editForm);
 
     editForm.reset();
     initPage(choresVar);
@@ -136,16 +173,13 @@ function initFormHandler() {
     editAssignDiv.style.display = "block";
   });
 
-  function editClosePress() {
+  // CLOSE BUTTON for edit page 1
+  editClose.onclick = function editClosePress() {
     editDiv.style.display = "none";
-    editAssignDiv.style.display = "none";
     editForm.reset();
-    editAssignForm.reset();
-  }
+  };
 
-  editClose.onclick = editClosePress;
-
-  function deletePress() {
+  editDelete.onclick = function deletePress() {
     for (let i = 0; i < choresVar.length; i++) {
       if (choresVar[i].id == selectedChore) {
         choresVar.splice(i, 1);
@@ -156,10 +190,9 @@ function initFormHandler() {
         initPage(choresVar);
       }
     }
-  }
+  };
 
-  editDelete.onclick = deletePress;
-
+  // SUBMIT BUTTON for edit page 2
   editAssignForm.addEventListener("submit", (event) => {
     event.preventDefault();
     // createChore(new FormData(form_create));
@@ -168,14 +201,14 @@ function initFormHandler() {
 
     const new_chore = {
       id: currentId,
-      choreName: createData.get("choreName"),
-      roommateName: createData.get("roommateName"),
+      choreName: editData.get("choreName"),
+      roommateName: editData.get("roommateName"),
     };
 
     for (let i = 0; i < choresVar.length; i++) {
       if (choresVar[i].id == selectedChore) {
-        choresVar[i].choreName = createData.get("choreName");
-        choresVar[i].roommateName = createData.get("roommateName");
+        choresVar[i].choreName = editData.get("choreName");
+        choresVar[i].roommateName = editData.get("roommateName");
       }
     }
 
@@ -184,65 +217,22 @@ function initFormHandler() {
     editAssignDiv.style.display = "none";
   });
 
-  editAssignClose.onclick = editClosePress;
+  editAssignClose.onclick = function close() {
+    editAssignDiv.style.display = "none";
+    editAssignForm.reset();
+  };
 
-  editAssignDelete.onclick = deletePress;
+  editAssignDelete.onclick = function deletePress() {
+    for (let i = 0; i < choresVar.length; i++) {
+      if (choresVar[i].id == selectedChore) {
+        choresVar.splice(i, 1);
+        editDiv.style.display = "none";
+        editAssignDiv.style.display = "none";
+        editForm.reset();
+        editAssignForm.reset();
+        initPage(choresVar);
+      }
+    }
+  };
 
-  // form_edit.addEventListener('submit',edit)
-
-  // if we have an array, loop through the array to add edit and del event listener to each roommate
-  // demo for edit below
-
-  // for(let roommate of roommates){
-  // 	roommate.onclick=function displayForm(){
-  // 		TODO: get the clicked roommate's data and display on the form
-  // 		form.innerHTML=``//fill in
-  // 		div.style.display = "block";//popup
-  // 	}
-  //
-  // }
 }
-
-function editDeleteHandler() {
-  const cards = document.querySelectorAll("roommate-card");
-
-  const div = document.querySelector(".back2");
-  const btnClose = document.getElementById("close-button2");
-  const btnDel = document.getElementById("del-button");
-  const btn2 = document.getElementById("btn2");
-  const formUpdate = document.querySelector("form.update");
-
-  cards.forEach((card) => {
-    card.addEventListener("click", (event) => {
-      div.style.display = "block";
-
-      btnClose.onclick = function close() {
-        div.style.display = "none";
-      };
-
-      btnDel.onclick = function () {
-        deleteRoommate(event.target.id);
-        initPage(readRoommate());
-      };
-      btn2.onclick = function () {
-        updateRoommate(new FormData(formUpdate), event.target.id);
-        initPage(readRoommate());
-      };
-    });
-  });
-}
-
-/*
-		// TODO:stringify and store to backend
-		// below is directly inserting to DOM for showing how it works.
-		// Maybe we want all the to be in an array and display the array
-		document.querySelector('.row').insertBefore(roommate,document.querySelector('#new'))
-	}
-	function edit(e){
-		//TODO: read updated data from form submission
-		// e.preventDefault()
-		// let formdata=new FormData(form);
-		//TODO: store updated data to backend
-	}
-	function del(e){
-*/
