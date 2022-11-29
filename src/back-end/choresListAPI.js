@@ -237,10 +237,10 @@ export function checkDate() {
 
   const string = `${nextMonth}/${nextDay}/${nextYear}`;
 
-  nextRoommate = NULL;
+  let nextRoommate = null;
 
   //loops inside of the archived chores
-  for (let i = 0; i < choresAPIData["archived"].length(); i++) {
+  for (let i = 0; i < choresAPIData["archived"].length; i++) {
     let archivedChore = choresAPIData["archived"][i];
 
     for (let j = 0; j < archivedChore["assignee"].length(); j++) {
@@ -291,7 +291,7 @@ export function checkDate() {
   }
 
   //loops inside of the open chores
-  for (let i = 0; i < choresAPIData["chores"].length(); i++) {
+  for (let i = 0; i < choresAPIData["chores"].length; i++) {
     let openChore = choresAPIData["chores"][i];
 
     const currDate = openChore["assignedDate"].split("/").map(Number);
