@@ -2,10 +2,10 @@ class Roommate extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
-    let roommate = document.createElement("div");
+    const roommate = document.createElement("div");
     roommate.className = "item";
     this.shadow.append(roommate);
-    let style = document.createElement("style");
+    const style = document.createElement("style");
     style.innerText = `
           .item {
             margin-bottom: 30px;
@@ -40,9 +40,10 @@ class Roommate extends HTMLElement {
           `;
     this.shadow.append(style);
   }
+
   set data(data) {
     if (!data) return;
-    let roommate = this.shadow.querySelector("div");
+    const roommate = this.shadow.querySelector("div");
     roommate.innerHTML = `
             <h3>${data.name}</h3>
             <div class="text">
