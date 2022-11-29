@@ -26,7 +26,7 @@
         <ul>
             <li>Originally we were planning on having one large team, and assigning roles and duties on a larger scale. This included meetings with all participants and required extensive time on issue assigning where those who had no relation would need to spend time hearing the discussion of back end issues for example.
             The problem with this method revolved around the unnecessary need for all members to know the fine details of issues not related to them.</li>
-            <li>Instead we moved to a system where members were assigned to three groups: backend, frontend, devops. Each have their own slack channel and agendas to operate under, and spearheaded by a specific team lead. 
+            <li>Instead we moved to a system where members were assigned to three groups: backend, frontend, devops. Each have their own slack channel and agendas to operate under, and spearheaded by a specific team lead.
             In this fashion, it boosted communication and interaction as smaller teams seemed more promotive of discussion about issues and features. Furthermore when there needed to be interactions between teams, both parties were more well versed in their individual agendas, so the cohesion between ideas worked out more smoothly</li>
         </ul>
     <li>People centered approach vs feature centered approach </li>
