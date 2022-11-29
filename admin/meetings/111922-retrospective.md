@@ -20,6 +20,7 @@
 8:00 - 8:29 PM on 11/19/22 via Zoom
 
 ### **Retrospective Notes**
+
 <ol>
     <li>Choice of Modular Team Operation</li>
         <ul>
