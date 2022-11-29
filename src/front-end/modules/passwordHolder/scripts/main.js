@@ -131,7 +131,7 @@ function createCard(data) {
  * on.
  */
 function passIdToEditButton() {
-  let buttonEdit = document.getElementById("edit-password-button");
+  let buttonEdit = document.getElementById("edit-password-change");
   buttonEdit.setAttribute("data-passwordId", this.dataset["passwordid"]);
 }
 
@@ -167,7 +167,7 @@ function deletePasswordClick() {
 }
 
 document
-  .getElementById("edit-password-button")
+  .getElementById("edit-password-change")
   .addEventListener("click", editPasswordForm);
 
 /**
@@ -195,7 +195,7 @@ function editPasswordForm() {
 }
 
 document
-  .getElementById("create-password-button")
+  .getElementById("create-password-change")
   .addEventListener("click", createPasswordForm);
 
 /**
