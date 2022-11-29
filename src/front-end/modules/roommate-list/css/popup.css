@@ -1,3 +1,36 @@
+.content {
+  font-size: 1em !important;
+  color: #000 !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+fieldset {
+  margin: 1em 0;
+  border: solid 1px #ccc;
+  min-width: 20px;
+  background-color: #b0aeac;
+}
+
+input {
+  width: 100%;
+}
+
+button {
+  font-size: 16px;
+  border: 2px solid black;
+  border-color: #04aa6d;
+  color: green;
+  padding: 10px 15px;
+  background-color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+button:hover {
+  background-color: #04aa6d;
+  color: white;
+  cursor: pointer;
+}
+
 .background {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 17px;
@@ -8,7 +41,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(0 0 0 / 50%);
+  background-color: rgba(0 0 0 / 50%);
 }
 
 .div1 {
@@ -20,7 +53,7 @@
 }
 
 .background span {
-  color: white;
+  color: black;
   padding-top: 12px;
   cursor: pointer;
   padding-right: 15px;
@@ -29,7 +62,7 @@
 .div2 {
   background: #eee;
   margin-top: 30px;
-  height: 300px;
+  height: 400px;
   padding: 0 20px;
   font-size: x-large;
 }
@@ -58,6 +91,7 @@ form #hobbies-1 {
 form #notes-1 {
   height: 30px;
   font-size: x-large;
+  overflow-wrap: break-word;
 }
 
 form #name-2 {
@@ -78,16 +112,27 @@ form #hobbies-2 {
 form #notes-2 {
   height: 30px;
   font-size: x-large;
+  overflow-wrap: break-word;
 }
 
 .close {
-  padding: 5px;
-  background: violet;
+  background: grey;
+  border-radius: 30px;
 }
 
-.close-button {
+.close h2 {
+  text-align: center;
+  font-size: 50px;
+}
+
+.close span {
   float: right;
   font-size: 30px;
+  right: 50px;
+}
+
+.close span:hover {
+  color: white;
 }
 
 #foot {
@@ -104,6 +149,5 @@ form #notes-2 {
 }
 
 .background h3 {
-  margin: 0;
   padding-top: 15px;
 }

@@ -46,6 +46,11 @@ extends:
 # Rules #
 #########
 rules:
+  quotes:
+  - warning
+  - double
+  semi:
+  - warning
   lines-around-comment:
   - error
   - beforeBlockComment: true
