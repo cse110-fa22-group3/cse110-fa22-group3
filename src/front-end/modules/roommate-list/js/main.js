@@ -131,7 +131,7 @@ function updateDelHandler() {
 
       // when submit button is clicked, submit the form and update the roommate, hide the popup
       updateForm.addEventListener("submit", () => {
-        updateRoommate(new FormData(updateForm), event.target.id);
+        updateRoommate(new FormData(updateForm), parseInt(event.target.id));
         initPage(readRoommate());
       });
 

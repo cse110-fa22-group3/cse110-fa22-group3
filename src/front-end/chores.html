@@ -105,6 +105,21 @@
         .assignee-box-and-label label {
             font-size: 15px;
         }
+
+        .date-button {
+            text-decoration: none;
+            color: black;
+        }
+
+        .date-button:hover {
+            cursor: pointer;
+        }
+
+        #week-header {
+            display: inline-block;
+            inline-size: 350px;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -118,6 +133,10 @@
         </a>
         <div class="float-container">
             <h1>List of Chores</h1>
+            <h2>
+                <a href="javascript: void(0)" id="last-week-button" class="date-button">«</a>
+                <div id="week-header"> Week of 11/27/22 to 12/3/22 </div>
+                <a href="javascript: void(0)" id="next-week-button" class="date-button">»</a></h2>
             <div class="chores-container">
                 <div class="chore-box" id="add-chore">
                     <h1>+</h1>
@@ -141,8 +160,15 @@
                     </label>
                     <br>
                     <label for="c-roommate-name">
-                        Roommate<br>
-                        <input type="text" id="c-roommate-name"  name="roommateName" required >
+                        Assigned Roommate<br>
+                        <select name="roommateName" id="c-roommate-name" required>
+                        </select>
+                        <!-- <input type="text" id="c-roommate-name"  name="roommateName" required > -->
+                    </label>
+                    <br>
+                    <label for="c-description">
+                        Description<br>
+                        <textarea id="c-description" name="choreDescription" placeholder=""></textarea>
                     </label>
                     <br>
                     <button type="submit">Continue</button>
@@ -198,8 +224,14 @@
                     </label>
                     <br>
                     <label for="e-roommate-name">
-                        Roommate<br>
-                        <input type="text" id="e-roommate-name"  name="roommateName" required >
+                        Assigned Roommate<br>
+                        <select name="roommateName" id="e-roommate-name" required>
+                        </select>
+                    </label>
+                    <br>
+                    <label for="e-description">
+                        Description<br>
+                        <textarea id="e-description" name="choreDescription" placeholder=""></textarea>
                     </label>
                     <br>
                     <button type="submit">Continue</button>
