@@ -16,7 +16,17 @@ function dataExist()
 
 export function getContribution(id)
 {
+    const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+    const contributions = billDividerData["contributions"];
 
+    for (let i = 0; i < contributions.length; i++)
+    {
+        if (contributions[i]["id"] == id)
+        {
+            return contributions[i]["contribution"];
+        }
+    }
+    
 }
 
 export function getDebt(id) 
