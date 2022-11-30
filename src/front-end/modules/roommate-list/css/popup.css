@@ -1,84 +1,166 @@
- #background {
-    font-family: Arial,Helvetica,sans-serif;
-	font-size: 17px;
-	text-align: 1.5;
-	display: none;
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0,0,0,0.5);
-}
- 
-#div1 {
-	background:#eeeeee;
-	width: 70%;
-	z-index: 1;
-	margin: 12% auto;
-	overflow: auto;
-}
- 
-#background span {
-	color: white;
-	padding-top: 12px;
-	cursor: pointer;
-	padding-right: 15px;
+.content {
+  font-size: 1em !important;
+  color: #000 !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#div2 {
-    background:#eeeeee;
-	margin-top: 30px;
-	height: 300px;
-	padding: 0 20px;
-    font-size: x-large;
+fieldset {
+  margin: 1em 0;
+  border: solid 3px #ccc;
+  min-width: 20px;
+  background-color: #b0aeac;
 }
-#div2 form{
-    display: flexbox;
-    flex-direction: column;
-    justify-content: space-between;
+
+input {
+  width: 100%;
+  padding: 10px;
 }
-form #name{
-    height: 30px;
-    font-size: x-large;
+
+input [type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
 }
-form #birthday{
-    height: 30px;
-    font-size: x-large;
+
+label {
+  width: 99%;
 }
-form #hobbies{
-    height: 30px;
-    font-size: x-large;
+
+button {
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: 2px solid black;
+  border-color: #04aa6d;
+  color: green;
+  padding: 5px 10px;
+  background-color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-form #notes{
-    height: 30px;
-    font-size: x-large;
+
+button:hover {
+  background-color: #04aa6d;
+  color: white;
+  cursor: pointer;
 }
-#close {
-	padding: 5px;
-	background: violet;
+
+.background {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  text-align: 1.5;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0 0 0 / 50%);
 }
- 
-#close-button {
-	float: right;
-	font-size: 30px;
+
+.div1 {
+  position: relative;
+  top: -60px;
+  background: #eee;
+  width: 70%;
+  z-index: 1;
+  margin: 12% auto;
+  overflow: auto;
 }
- 
+
+.background span {
+  color: black;
+  padding-top: 12px;
+  cursor: pointer;
+  padding-right: 15px;
+}
+
+.div2 {
+  background: #eee;
+  height: 400px;
+  padding: 0 20px;
+  font-size: x-large;
+}
+
+.div2 form {
+  display: flexbox;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+form #name-1 {
+  height: 30px;
+  font-size: x-large;
+}
+
+form #birthday-1 {
+  height: 30px;
+  font-size: x-large;
+}
+
+form #hobbies-1 {
+  height: 30px;
+  font-size: x-large;
+}
+
+form #notes-1 {
+  height: 30px;
+  font-size: x-large;
+  overflow-wrap: break-word;
+}
+
+form #name-2 {
+  height: 30px;
+  font-size: x-large;
+}
+
+form #birthday-2 {
+  height: 30px;
+  font-size: x-large;
+}
+
+form #hobbies-2 {
+  height: 30px;
+  font-size: x-large;
+}
+
+form #notes-2 {
+  height: 30px;
+  font-size: x-large;
+  overflow-wrap: break-word;
+}
+
+.close {
+  background: grey;
+  border-radius: 30px;
+}
+
+.close h2 {
+  text-align: center;
+  font-size: 50px;
+}
+
+.close span {
+  float: right;
+  font-size: 30px;
+  right: 50px;
+}
+
+.close span:hover {
+  color: white;
+}
+
 #foot {
-	padding: 5px 0;
-	text-align: center;
-	background: #5cd31b;
-	color: white;
-}
- 
-#background h2 {
-	margin: 10px 0;
-	color: black;
-	padding-left: 15px;
-}
- 
-#background h3 {
-	margin: 0 0px;
-	padding-top: 15px;
+  padding: 5px 0;
+  text-align: center;
+  background: #5cd31b;
+  color: white;
 }
 
+.background h2 {
+  margin: 10px 0;
+  color: black;
+  padding-left: 15px;
+}
+
+.background h3 {
+  padding-top: 15px;
+}
