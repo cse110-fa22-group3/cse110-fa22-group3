@@ -162,7 +162,10 @@ function pay_update_array(index,cost){
             for(let j=i+1;j<array.length;j++){
                 let amount_fst=array[i].transferred[array[j].name]
                 let amount_scd=array[j].transferred[array[i].name]
-                transfer_update_array(i,amount_fst-amount_scd,j)
+                if(amount_fst>=amount_scd)
+                    transfer_update_array(i,amount_fst-amount_scd,j)
+                else
+                    transfer_update_array(j,amount_scd-amount_fst,i)
             }
         }
         display_array()
