@@ -27,6 +27,10 @@
   - Used to automate the process of creating documentation for all of our code in our codebase
   - Reads all of the headers for every function in all JavaScript files and outputs to Github Pages
 
+- Unit Testing
+  - Used to automate the process of running unit tests for functions that we want to inspect
+  - Currently runs one test file for Password Holder API
+
 ### Diagram:
 
 ![plot](phase1.drawio.png)
@@ -34,10 +38,8 @@
 ### What is in progress
 
 - Unit Testing
-  - Unit testing is currently being developed by the DevOps team
+  - More unit test files are being added by the DevOps team
     - unit testing will be split between testing frontend and backend
-  - Jest and Puppeteer will be used to test code
-  - Testing will be automated using github actions
 
 ### What is planned
 
