@@ -24,6 +24,7 @@
   - Prettier will only format JavaScript code
 
 - JSDoc
+
   - Used to automate the process of creating documentation for all of our code in our codebase
   - Reads all of the headers for every function in all JavaScript files and outputs to Github Pages
 
