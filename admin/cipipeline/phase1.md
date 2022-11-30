@@ -4,7 +4,7 @@
 
 ---
 
-### Notice:
+### Notice
 
 - Branches: **All workflows will run for pull and push requests on the following branches:** _main, passwordHolderFeature, billDividerFeature, choresListFeature, roommateListFeature_
 - Pull Requests
@@ -32,7 +32,7 @@
   - Used to automate the process of running unit tests for functions that we want to inspect
   - Currently runs one test file for Password Holder API
 
-### Diagram:
+### Diagram
 
 ![plot](phase1.drawio.png)
 
