@@ -26,7 +26,7 @@
 - JSDoc
 
   - Used to automate the process of creating documentation for all of our code in our codebase
-  - Reads all of the headers for every function in all JavaScript files and outputs to Github Pages
+  - Reads all of the headers for every function in all JavaScript files and outputs to GitHub Pages
 
 - Unit Testing
   - Used to automate the process of running unit tests for functions that we want to inspect
@@ -46,4 +46,4 @@
 
 - Speed up the CI pipeline
 - Clean up the repository
-- End to end tests
+- End-to-end tests
