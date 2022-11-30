@@ -64,14 +64,27 @@ export function addPayment(text, giver, recipient, amount)
 
 export function getLog()
 {
-
+    return JSON.parse(localStorage.getItem("BillDividerData"))["log"];
 }
 
 export function getTotalContributions()
 {
+    const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+    const contributions = billDividerData["contributions"];
+    let total = 0;
 
+    for (let i = 0; i < contributions.length; i++)
+    {
+        total += contributions[i]["contribution"];
+    }
+    
+    return total;
 }
 
 export function getAvgContribution() 
 {
+    const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+    const contributions = billDividerData["contributions"];
+
+    return getTotalContributions() / contributions.length;
 }
