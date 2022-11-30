@@ -1,3 +1,17 @@
+function dataExist()
+{
+    if (localStorage.getItem("RoommateListData") === null)
+    {
+        const billDividerData = {
+          contributions: [],
+          log: [],
+        };
+    
+        //adding it to local storage for the first time
+        localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+    }
+}
+
 export function getContribution(id)
 {
 
