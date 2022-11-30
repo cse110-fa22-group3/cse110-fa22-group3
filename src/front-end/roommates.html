@@ -1,123 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./modules/roommate-list/css/style.css">
-    <link rel="stylesheet" href="./modules/roommate-list/css/popup.css">
-    <script src="./modules/roommate-list/js/roommate.js" type="module"></script>
-    <script src="./modules/roommate-list/js/main.js" type="module"></script>
-</head>
-<body>
-    <div class="content">
-        <div class="head">
-            <a href="#" class="back">
-                <img src="./modules/roommate-list/images/icon-back.png" alt="">
-            </a>
-        </div>
-        <div class="row">
-            <div class="item" id="new">
-                Add+
-            </div>
-        </div>
-    </div>
-    <!-- popup starts -->
-    <div id="background" class="add">
-        <div id="div1" class="content">
-            <div id="close">
-                <span id="close_button_1">x</span>
-                <h2>ADD</h2>
-            </div>
-            <div id="div2">
-                <form class="add">
-                    <!-- various types of input we can use -->
-                    <!-- <fieldset>jjk</fieldset>
-                    <input type="text">
-                    <textarea name="a" id="b" cols="30" rows="10">jjk</textarea>
-                    <datalist>
-                        <option value="e">jjk</option>
-                    </datalist>
-                    <select name="c" id="d"></select>
-                    <button>jjk</button> -->
-                    <fieldset>
-                        <label for="name">
-                            Name:
-                            <input type="text" id="name"  name="name" placeholder="First Last" required>
-                        </label>
-                    </fieldset>
-                    <fieldset>
-                        <label for="birthday">
-                            Birthday:
-                            <input type="text" id="birthday"  name="birthday" placeholder="mm/dd/yyyy" pattern="\d\d/\d\d/\d\d\d\d" required>
-                        </label>
-                    </fieldset>
-                    <fieldset>
-                        <label for="hobbies">
-                            Hobbies:
-                            <input type="text" id="hobbies"  name="hobbies" placeholder="hobby, hobby, etc.">
-                        </label>
-                    </fieldset>
-                    <fieldset>
-                        <label for="notes">
-                            Notes:
-                            <input type="text" id="notes"  name="notes" placeholder="...">
-                        </label>
-                    </fieldset>
-                    <button type="submit">ADD</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- popup ends -->
 
-    <div id="background" class="update">
-        <div id="div1" class="content">
-            <div id="close">
-                <span id="close_button_2">x</span>
-                <span id="delete_button">DEL</span>
-                <h2>UPDATE</h2>
-            </div>
-            <div id="div2">
-                <form class="update">
-                    <!-- various types of input we can use -->
-                    <!-- <fieldset>jjk</fieldset>
-                    <input type="text">
-                    <textarea name="a" id="b" cols="30" rows="10">jjk</textarea>
-                    <datalist>
-                        <option value="e">jjk</option>
-                    </datalist>
-                    <select name="c" id="d"></select>
-                    <button>jjk</button> -->
-                    <fieldset>
-                        <label for="name">
-                            Name:
-                            <input type="text" id="name"  name="name" placeholder="First Last" required>
-                        </label>
-                    </fieldset>
-                    <fieldset>
-                        <label for="birthday">
-                            Birthday:
-                            <input type="text" id="birthday"  name="birthday" placeholder="mm/dd/yyyy" pattern="\d\d/\d\d/\d\d\d\d" required>
-                        </label>
-                    </fieldset>
-                    <fieldset>
-                        <label for="hobbies">
-                            Hobbies:
-                            <input type="text" id="hobbies"  name="hobbies" placeholder="hobby, hobby, etc.">
-                        </label>
-                    </fieldset>
-                    <fieldset>
-                        <label for="notes">
-                            Notes:
-                            <input type="text" id="notes"  name="notes" placeholder="...">
-                        </label>
-                    </fieldset>
-                    <button type="submit">SAVE</button>
-                </form>
-            </div>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roommate List</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="./modules/roommate-list/css/style.css">
+  <link rel="stylesheet" href="./modules/roommate-list/css/popup.css">
+  <script src="./modules/roommate-list/js/roommate.js" type="module"></script>
+  <script src="./modules/roommate-list/js/main.js" type="module"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">RoommateHub</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar1">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="roommates.html">Roommate List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="chores.html">Chores List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="passwords.html">Password Holder</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+  <div class="bg-light p-5 rounded-lg m-3">
+    <div class="container">
+      <h1>Roommate List</h1>
+      <div class="container">
+        <p>Here is a collection of every roommate.</p>
+        <p>You can get to know a little bit about each person and have some fun facts!</p>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <!--<div class="head">
+      <a href="index.html" class="back">
+        <img src="./modules/roommate-list/images/icon-back.png" alt="">
+      </a>
+    </div>-->
+    <div class="row">
+      <div class="item" id="new">
+        Add+
+      </div>
+    </div>
+
+  </div>
+  <!-- popup starts -->
+  <div id="background-1" class="background add">
+    <div class="div1 content">
+      <div id="close-1" class="close">
+        <span id="close-button-1" class="close-button">x</span>
+        <h2>ADD</h2>
+      </div>
+      <div class="div2">
+        <form class="add">
+          <!-- various types of input we can use -->
+          <!-- <fieldset>jjk</fieldset>
+          <input type="text">
+          <textarea name="a" id="b" cols="30" rows="10">jjk</textarea>
+          <datalist>
+            <option value="e">jjk</option>
+          </datalist>
+          <select name="c" id="d"></select>
+          <button>jjk</button> -->
+          <fieldset>
+            <label for="name-1">
+              Name:
+              <input type="text" id="name-1"  name="name" placeholder="First Last" required>
+            </label>
+          </fieldset>
+          <fieldset>
+            <label for="birthday-1">
+              Birthday:
+              <input type="text" id="birthday-1"  name="birthday" placeholder="mm/dd/yyyy" pattern="\d\d/\d\d/\d\d\d\d" required>
+            </label>
+          </fieldset>
+          <fieldset>
+            <label for="hobbies-1">
+              Hobbies:
+              <input type="text" id="hobbies-1"  name="hobbies" placeholder="hobby, hobby, etc.">
+            </label>
+          </fieldset>
+          <fieldset>
+            <label for="notes-1">
+              Notes:
+              <input type="text" id="notes-1"  name="notes" placeholder="...">
+            </label>
+          </fieldset>
+          <button type="submit">ADD</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- popup ends -->
+
+  <div id="background-2" class="background update">
+    <div class="div1 content">
+      <div id="close-2" class="close">
+        <span id="close-button-2" class="close-button">x</span>
+        <span id="delete-button">DEL</span>
+        <h2>UPDATE</h2>
+      </div>
+      <div class="div2">
+        <form class="update">
+          <!-- various types of input we can use -->
+          <!-- <fieldset>jjk</fieldset>
+          <input type="text">
+          <textarea name="a" id="b" cols="30" rows="10">jjk</textarea>
+          <datalist>
+            <option value="e">jjk</option>
+          </datalist>
+          <select name="c" id="d"></select>
+          <button>jjk</button> -->
+          <fieldset>
+            <label for="name-2">
+              Name:
+              <input type="text" id="name-2"  name="name" placeholder="First Last" required>
+            </label>
+          </fieldset>
+          <fieldset>
+            <label for="birthday-2">
+              Birthday:
+              <input type="text" id="birthday-2"  name="birthday" placeholder="mm/dd/yyyy" pattern="\d\d/\d\d/\d\d\d\d" required>
+            </label>
+          </fieldset>
+          <fieldset>
+            <label for="hobbies-2">
+              Hobbies:
+              <input type="text" id="hobbies-2"  name="hobbies" placeholder="hobby, hobby, etc.">
+            </label>
+          </fieldset>
+          <fieldset>
+            <label for="notes-2">
+              Notes:
+              <input type="text" id="notes-2"  name="notes" placeholder="...">
+            </label>
+          </fieldset>
+          <button type="submit">SAVE</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
