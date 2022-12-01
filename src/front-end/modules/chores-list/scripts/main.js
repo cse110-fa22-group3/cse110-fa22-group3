@@ -294,7 +294,7 @@ function editFormHandler() {
     closeChore(selectedChore);
     weekOffset = 0;
     setupPage(readChores().chores);
-  };
+  }
 
   // DELETE BUTTON for edit page 1
   editDelete.onclick = deletePress;
