@@ -59,11 +59,11 @@ function addHandler() {
   //node for the add form
   const addForm = document.querySelector("form.add");
   //node for the popup showing the add form
-  const addPopup = document.querySelector("#background.add");
+  const addPopup = document.querySelector("#background-1");
   //node for the add button in the popup
   const addBtn = document.querySelector("#new.item");
   //node for the close button in the popup
-  const closeBtn = document.getElementById("close_button_1");
+  const closeBtn = document.getElementById("close-button-1");
 
   //when submit button is clicked, call the add function
   addForm.addEventListener("submit", add);
@@ -104,11 +104,11 @@ function updateDelHandler() {
   //node for the update form
   const updateForm = document.querySelector("form.update");
   //node for the popup showing the update form
-  const updatePopup = document.querySelector("#background.update");
+  const updatePopup = document.querySelector("#background-2");
   //node for the delete button in the popup
-  const delBtn = document.getElementById("delete_button");
+  const delBtn = document.getElementById("delete-button");
   //node for the close button in the popup
-  const closeBtn = document.getElementById("close_button_2");
+  const closeBtn = document.getElementById("close-button-2");
 
   //creating an event listener for each card
   cards.forEach((card) => {
