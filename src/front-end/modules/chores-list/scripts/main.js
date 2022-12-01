@@ -397,7 +397,7 @@ function initRoommateAssignment(selectedRoommate, chore, popup) {
  * Given form data, finds which roommates were assigned in the popup box
  * @param {FormData} formData The form data of assigned roommates
  * @param {number} selectedRoommate The currently selected roommate for the chore
- * @returns 
+ * @returns An array of roommate IDs assigned to the chore
  */
 function getAssignees(formData, selectedRoommate) {
   let roommates = readRoommate();
