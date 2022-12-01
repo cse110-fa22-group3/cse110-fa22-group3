@@ -11,9 +11,7 @@ import {
   removeFromChore,
 } from "../../../../back-end/choresListAPI.js";
 
-import {
-  readRoommate,
-} from "../../../../back-end/roommateListAPI.js";
+import { readRoommate } from "../../../../back-end/roommateListAPI.js";
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -26,8 +24,12 @@ const choresContainer = document.querySelector(".chores-container");
 // The div that contains the edit popup, and the text fields for chore and roommate name
 const editDiv = document.querySelector("#edit-background");
 const editChoreName = document.querySelector("form#edit input#e-chore-name");
-const editRoommateName = document.querySelector("form#edit select#e-roommate-name");
-const editDescription = document.querySelector("form#edit textarea#e-description");
+const editRoommateName = document.querySelector(
+  "form#edit select#e-roommate-name"
+);
+const editDescription = document.querySelector(
+  "form#edit textarea#e-description"
+);
 
 /**
  * init()
@@ -43,38 +45,38 @@ function init() {
  * Initializes the page upon opening
  */
 function initPage() {
-  const lastWeekButton = document.getElementById('last-week-button');
-  const nextWeekButton = document.getElementById('next-week-button');
-  const thisWeekButton = document.getElementById('week-header');
+  const lastWeekButton = document.getElementById("last-week-button");
+  const nextWeekButton = document.getElementById("next-week-button");
+  const thisWeekButton = document.getElementById("week-header");
 
-  const weekHeader = document.getElementById('week-header')
+  const weekHeader = document.getElementById("week-header");
   weekHeader.textContent = getCurrentWeek(weekOffset);
 
-  lastWeekButton.addEventListener('click', () => {
+  lastWeekButton.addEventListener("click", () => {
     weekOffset--;
     weekHeader.textContent = getCurrentWeek(weekOffset);
     setupPage(readChores().chores);
-  })
+  });
 
-  nextWeekButton.addEventListener('click', () => {
+  nextWeekButton.addEventListener("click", () => {
     weekOffset++;
     weekHeader.textContent = getCurrentWeek(weekOffset);
     setupPage(readChores().chores);
-  })
+  });
 
-  thisWeekButton.addEventListener('click', () => {
+  thisWeekButton.addEventListener("click", () => {
     weekOffset = 0;
     weekHeader.textContent = getCurrentWeek(weekOffset);
     setupPage(readChores().chores);
-  })
+  });
 }
 
 /**
  * Sets up the page given a list of chores. Occurs whenever a reload is needed (chores are changed).
- * @param {Array} chores 
+ * @param {Array} chores
  */
 function setupPage(chores) {
-  const weekHeader = document.getElementById('week-header')
+  const weekHeader = document.getElementById("week-header");
   weekHeader.textContent = getCurrentWeek(weekOffset);
 
   // Removes all chores from the page
@@ -90,12 +92,22 @@ function setupPage(chores) {
     if (chore["currRoommate"] != -1) {
       let roommateIndex = chore["assignee"].indexOf(chore["currRoommate"]);
       let totalAssignees = chore["assignee"].length;
-      roommateIndex = (roommateIndex + (weekOffset % totalAssignees) + totalAssignees) % totalAssignees;
+      roommateIndex =
+        (roommateIndex + (weekOffset % totalAssignees) + totalAssignees) %
+        totalAssignees;
 
-      card.data = {choreName: chore["title"], roommateName: getRoommate(chore["assignee"][roommateIndex]).name, description: chore["description"]};
+      card.data = {
+        choreName: chore["title"],
+        roommateName: getRoommate(chore["assignee"][roommateIndex]).name,
+        description: chore["description"],
+      };
       choresContainer.insertBefore(card, document.querySelector("#add-chore"));
     } else {
-      card.data = {choreName: chore["title"], roommateName: "Unassigned", description: chore["description"]};
+      card.data = {
+        choreName: chore["title"],
+        roommateName: "Unassigned",
+        description: chore["description"],
+      };
       choresContainer.insertBefore(card, document.querySelector("#add-chore"));
     }
   });
@@ -119,12 +131,12 @@ function setupPage(chores) {
   for (let i = 0; i < roommates.length; i++) {
     const roommateSelect = document.createElement("option");
     roommateSelect.setAttribute("value", roommates[i]["id"]);
-    roommateSelect.innerText = roommates[i]["name"]
+    roommateSelect.innerText = roommates[i]["name"];
     selectRoommate.appendChild(roommateSelect);
-    
+
     const roommateSelectEdit = document.createElement("option");
     roommateSelectEdit.setAttribute("value", roommates[i]["id"]);
-    roommateSelectEdit.innerText = roommates[i]["name"]
+    roommateSelectEdit.innerText = roommates[i]["name"];
     selectRoommateEdit.appendChild(roommateSelectEdit);
   }
 
@@ -135,9 +147,9 @@ function setupPage(chores) {
       editDiv.style.display = "block";
       for (let i = 0; i < chores.length; i++) {
         if (chores[i].id == selectedChore) {
-          editChoreName.value = chores[i]['title'];
-          editRoommateName.value = chores[i]['currRoommate'];
-          editDescription.value = chores[i]['description'];
+          editChoreName.value = chores[i]["title"];
+          editRoommateName.value = chores[i]["currRoommate"];
+          editDescription.value = chores[i]["description"];
         }
       }
     });
@@ -148,7 +160,6 @@ function setupPage(chores) {
  * Handles the setup of the create form
  */
 function createFormHandler() {
-  
   // stores the form data
   let createData;
 
@@ -195,8 +206,12 @@ function createFormHandler() {
     createData = new FormData(createForm);
 
     createForm.reset();
-    initRoommateAssignment(parseInt(createData.get('roommateName')), 0, "create");
-    
+    initRoommateAssignment(
+      parseInt(createData.get("roommateName")),
+      0,
+      "create"
+    );
+
     createDiv.style.display = "none";
     assignDiv.style.display = "block";
   });
@@ -210,7 +225,10 @@ function createFormHandler() {
     createChore({
       title: createData.get("choreName"),
       description: createData.get("choreDescription"),
-      assignee: getAssignees(assignData, parseInt(createData.get('roommateName'))),
+      assignee: getAssignees(
+        assignData,
+        parseInt(createData.get("roommateName"))
+      ),
       assignedDate: getTodaysDate(),
     });
 
@@ -219,14 +237,12 @@ function createFormHandler() {
     setupPage(readChores().chores);
     assignDiv.style.display = "none";
   });
-
 }
 
 /**
  * Handles the setup of the edit form
  */
 function editFormHandler() {
-  
   // the divs that contain the popup boxes for edit page 1 and 2
   const editDiv = document.querySelector("#edit-background");
   const editAssignDiv = document.querySelector("#edit-assign-background");
@@ -254,7 +270,11 @@ function editFormHandler() {
     editData = new FormData(editForm);
 
     editForm.reset();
-    initRoommateAssignment(parseInt(editData.get('roommateName')), selectedChore, 'edit');
+    initRoommateAssignment(
+      parseInt(editData.get("roommateName")),
+      selectedChore,
+      "edit"
+    );
     editDiv.style.display = "none";
     editAssignDiv.style.display = "block";
   });
@@ -284,12 +304,15 @@ function editFormHandler() {
     const assignData = new FormData(editAssignForm);
 
     updateChore(selectedChore, "update", {
-      title: editData.get('choreName'),
-      description: editData.get('choreDescription'),
-      assignee: getAssignees(assignData, parseInt(editData.get('roommateName'))),
+      title: editData.get("choreName"),
+      description: editData.get("choreDescription"),
+      assignee: getAssignees(
+        assignData,
+        parseInt(editData.get("roommateName"))
+      ),
       assignedDate: getTodaysDate(),
-      status: 'open',
-    })
+      status: "open",
+    });
 
     editAssignForm.reset();
     weekOffset = 0;
@@ -313,7 +336,6 @@ function editFormHandler() {
     weekOffset = 0;
     setupPage(readChores().chores);
   };
-
 }
 
 /**
@@ -346,16 +368,16 @@ function initRoommateAssignment(selectedRoommate, chore, popup) {
     }
     for (let i = 0; i < roommates.length; i++) {
       if (roommates[i].id != selectedRoommate) {
-        let newDiv = document.createElement('div');
-        newDiv.setAttribute('class', 'assignee-box-and-label');
+        let newDiv = document.createElement("div");
+        newDiv.setAttribute("class", "assignee-box-and-label");
         newDiv.innerHTML = `
         <input class="assignee-checkbox" type="checkbox" name="assignees" id="checkbox-${roommates[i].id}" value="${roommates[i].id}"><br>
         <label class="assignee-name" for="checkbox-${roommates[i].id}">${roommates[i].name}</label><br>
         `;
         assignees.append(newDiv);
       } else {
-        let newDiv = document.createElement('div');
-        newDiv.setAttribute('class', 'assignee-box-and-label');
+        let newDiv = document.createElement("div");
+        newDiv.setAttribute("class", "assignee-box-and-label");
         newDiv.innerHTML = `
         <input class="assignee-checkbox" type="checkbox" name="assignees" id="checkbox-${roommates[i].id}" value="${roommates[i].id}" onclick="return false;" checked><br>
         <label class="assignee-name" for="checkbox-${roommates[i].id}"><b>${roommates[i].name}</b></label><br>
@@ -370,19 +392,21 @@ function initRoommateAssignment(selectedRoommate, chore, popup) {
     }
     for (let i = 0; i < roommates.length; i++) {
       if (roommates[i].id != selectedRoommate) {
-        let isSelected = queryChore('open', chore)['assignee'].includes(roommates[i].id);
-        let selectText = isSelected ? ' checked' : '';
+        let isSelected = queryChore("open", chore)["assignee"].includes(
+          roommates[i].id
+        );
+        let selectText = isSelected ? " checked" : "";
 
-        let newDiv = document.createElement('div');
-        newDiv.setAttribute('class', 'assignee-box-and-label');
+        let newDiv = document.createElement("div");
+        newDiv.setAttribute("class", "assignee-box-and-label");
         newDiv.innerHTML = `
         <input class="assignee-checkbox" type="checkbox" name="assignees" id="checkbox-${roommates[i].id}" value="${roommates[i].id}"${selectText}><br>
         <label class="assignee-name" for="checkbox-${roommates[i].id}">${roommates[i].name}</label><br>
         `;
         assignees.append(newDiv);
       } else {
-        let newDiv = document.createElement('div');
-        newDiv.setAttribute('class', 'assignee-box-and-label');
+        let newDiv = document.createElement("div");
+        newDiv.setAttribute("class", "assignee-box-and-label");
         newDiv.innerHTML = `
         <input class="assignee-checkbox" type="checkbox" name="assignees" id="checkbox-${roommates[i].id}" value="${roommates[i].id}" onclick="return false;" checked><br>
         <label class="assignee-name" for="checkbox-${roommates[i].id}"><b>${roommates[i].name}</b></label><br>
@@ -397,12 +421,12 @@ function initRoommateAssignment(selectedRoommate, chore, popup) {
  * Given form data, finds which roommates were assigned in the popup box
  * @param {FormData} formData The form data of assigned roommates
  * @param {number} selectedRoommate The currently selected roommate for the chore
- * @returns 
+ * @returns
  */
 function getAssignees(formData, selectedRoommate) {
   let roommates = readRoommate();
-  let startList = []
-  let endList = []
+  let startList = [];
+  let endList = [];
   let foundSelected = false;
   for (var pair of formData.entries()) {
     if (pair[1] == selectedRoommate) foundSelected = true;
@@ -420,7 +444,7 @@ function getAssignees(formData, selectedRoommate) {
  */
 function getCurrentWeek(offset) {
   let today = new Date();
-  today.setDate(today.getDate() + (offset * 7));
+  today.setDate(today.getDate() + offset * 7);
   let dayOfWeek = today.getDay();
 
   let weekStart = new Date(today);
@@ -429,10 +453,23 @@ function getCurrentWeek(offset) {
   let weekEnd = new Date(weekStart);
   weekEnd.setDate(weekEnd.getDate() + 6);
 
-  let weekStartText = (weekStart.getMonth() + 1) + '/' + weekStart.getDate() + '/' + (weekStart.getFullYear() + "").substring(2,4);
-  let weekEndText = (weekEnd.getMonth() + 1) + '/' + weekEnd.getDate() + '/' + (weekEnd.getFullYear() + "").substring(2,4);
+  let weekStartText =
+    weekStart.getMonth() +
+    1 +
+    "/" +
+    weekStart.getDate() +
+    "/" +
+    (weekStart.getFullYear() + "").substring(2, 4);
+  let weekEndText =
+    weekEnd.getMonth() +
+    1 +
+    "/" +
+    weekEnd.getDate() +
+    "/" +
+    (weekEnd.getFullYear() + "").substring(2, 4);
 
-  if (offset != 0) return "Week of " + weekStartText + " to " + weekEndText + "";
+  if (offset != 0)
+    return "Week of " + weekStartText + " to " + weekEndText + "";
   return "This Week";
 }
 
@@ -442,5 +479,7 @@ function getCurrentWeek(offset) {
  */
 function getTodaysDate() {
   let today = new Date();
-  return (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
+  return (
+    today.getMonth() + 1 + "/" + today.getDate() + "/" + today.getFullYear()
+  );
 }

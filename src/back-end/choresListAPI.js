@@ -248,9 +248,7 @@ export function checkDate() {
     for (let j = 0; j < archivedChore["assignee"].length; j++) {
       if (archivedChore["assignee"][j] == archivedChore["currRoommate"]) {
         nextRoommate =
-          archivedChore["assignee"][
-            (j + 1) % archivedChore["assignee"].length
-          ];
+          archivedChore["assignee"][(j + 1) % archivedChore["assignee"].length];
       }
     }
 
@@ -299,18 +297,24 @@ export function checkDate() {
     const currDate = openChore["assignedDate"].split("/").map(Number);
 
     let choreDate = new Date(currDate[2], currDate[0] - 1, currDate[1]);
-    
+
     let dayOfWeek = date.getDay();
-    let weekStart = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    let weekStart = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
     weekStart.setDate(weekStart.getDate() - dayOfWeek);
 
     while (choreDate < weekStart) {
       choreDate.setDate(choreDate.getDate() + 7);
       let currIndex = openChore["assignee"].indexOf(openChore["currRoommate"]);
-      openChore["currRoommate"] = openChore["assignee"][(currIndex + 1) % openChore["assignee"].length];
+      openChore["currRoommate"] =
+        openChore["assignee"][(currIndex + 1) % openChore["assignee"].length];
     }
 
-    openChore["assignedDate"] = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+    openChore["assignedDate"] =
+      date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
 
     /*
 
@@ -407,8 +411,7 @@ export function removeFromChore(id) {
         if (openChore["currRoommate"] == id) {
           if (openChore["assignee"].length > 0) {
             openChore["currRoommate"] = openChore["assignee"][0];
-          }
-          else {
+          } else {
             openChore["assignee"] = [-1];
             openChore["currRoommate"] = -1;
           }
