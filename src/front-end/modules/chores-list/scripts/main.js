@@ -39,6 +39,9 @@ function init() {
   editFormHandler();
 }
 
+/**
+ * Initializes the page upon opening
+ */
 function initPage() {
   const lastWeekButton = document.getElementById('last-week-button');
   const nextWeekButton = document.getElementById('next-week-button');
@@ -66,6 +69,10 @@ function initPage() {
   })
 }
 
+/**
+ * Sets up the page given a list of chores. Occurs whenever a reload is needed (chores are changed).
+ * @param {Array} chores 
+ */
 function setupPage(chores) {
   const weekHeader = document.getElementById('week-header')
   weekHeader.textContent = getCurrentWeek(weekOffset);
@@ -137,6 +144,9 @@ function setupPage(chores) {
   });
 }
 
+/**
+ * Handles the setup of the create form
+ */
 function createFormHandler() {
   
   // stores the form data
@@ -212,6 +222,9 @@ function createFormHandler() {
 
 }
 
+/**
+ * Handles the setup of the edit form
+ */
 function editFormHandler() {
   
   // the divs that contain the popup boxes for edit page 1 and 2
@@ -303,6 +316,11 @@ function editFormHandler() {
 
 }
 
+/**
+ * Gets a roommate from the roommateListAPI given an ID
+ * @param {number} id The ID of the roommate
+ * @returns The roommate of the ID given
+ */
 function getRoommate(id) {
   let roommates = readRoommate();
 
@@ -313,6 +331,12 @@ function getRoommate(id) {
   return null;
 }
 
+/**
+ * Sets the roommate assignment boxes for the second popup box
+ * @param {number} selectedRoommate The roommate ID currently selected for the chore
+ * @param {number} chore The ID of the chore
+ * @param {string} popup Either "create" or "edit" depending on which popup is being initialized
+ */
 function initRoommateAssignment(selectedRoommate, chore, popup) {
   let roommates = readRoommate();
   if (popup == "create") {
@@ -369,6 +393,12 @@ function initRoommateAssignment(selectedRoommate, chore, popup) {
   }
 }
 
+/**
+ * Given form data, finds which roommates were assigned in the popup box
+ * @param {FormData} formData The form data of assigned roommates
+ * @param {number} selectedRoommate The currently selected roommate for the chore
+ * @returns 
+ */
 function getAssignees(formData, selectedRoommate) {
   let roommates = readRoommate();
   let startList = []
@@ -383,6 +413,11 @@ function getAssignees(formData, selectedRoommate) {
   return startList.concat(endList);
 }
 
+/**
+ * Gets the text for the current week given an offset of weeks
+ * @param {number} offset The offset of weeks
+ * @returns Text representing the current week
+ */
 function getCurrentWeek(offset) {
   let today = new Date();
   today.setDate(today.getDate() + (offset * 7));
@@ -401,6 +436,10 @@ function getCurrentWeek(offset) {
   return "This Week";
 }
 
+/**
+ * Find the current date as a String
+ * @returns The current date as a String
+ */
 function getTodaysDate() {
   let today = new Date();
   return (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
