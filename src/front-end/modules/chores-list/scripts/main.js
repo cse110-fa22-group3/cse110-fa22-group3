@@ -285,8 +285,8 @@ function editFormHandler() {
     editForm.reset();
   };
 
-  // DELETE BUTTON for edit page 1
-  editDelete.onclick = function deletePress() {
+  // DELETE function
+  function deletePress() {
     editDiv.style.display = "none";
     editAssignDiv.style.display = "none";
     editForm.reset();
@@ -295,6 +295,9 @@ function editFormHandler() {
     weekOffset = 0;
     setupPage(readChores().chores);
   };
+
+  // DELETE BUTTON for edit page 1
+  editDelete.onclick = deletePress;
 
   // SUBMIT BUTTON for edit page 2
   editAssignForm.addEventListener("submit", (event) => {
@@ -327,15 +330,7 @@ function editFormHandler() {
   };
 
   // DELETE BUTTON for edit page 2
-  editAssignDelete.onclick = function deletePress() {
-    editDiv.style.display = "none";
-    editAssignDiv.style.display = "none";
-    editForm.reset();
-    editAssignForm.reset();
-    closeChore(selectedChore);
-    weekOffset = 0;
-    setupPage(readChores().chores);
-  };
+  editAssignDelete.onclick = deletePress;
 }
 
 /**
@@ -362,33 +357,33 @@ function getRoommate(id) {
 function initRoommateAssignment(selectedRoommate, chore, popup) {
   let roommates = readRoommate();
   if (popup == "create") {
-    const assignees = document.getElementById("assignees-list-create");
-    while (assignees.firstChild) {
-      assignees.removeChild(assignees.firstChild);
+    const createAssignees = document.getElementById("assignees-list-create");
+    while (createAssignees.firstChild) {
+      createAssignees.removeChild(createAssignees.firstChild);
     }
     for (let i = 0; i < roommates.length; i++) {
       if (roommates[i].id != selectedRoommate) {
-        let newDiv = document.createElement("div");
-        newDiv.setAttribute("class", "assignee-box-and-label");
-        newDiv.innerHTML = `
+        let newCreateDiv = document.createElement("div");
+        newCreateDiv.setAttribute("class", "assignee-box-and-label");
+        newCreateDiv.innerHTML = `
         <input class="assignee-checkbox" type="checkbox" name="assignees" id="checkbox-${roommates[i].id}" value="${roommates[i].id}"><br>
         <label class="assignee-name" for="checkbox-${roommates[i].id}">${roommates[i].name}</label><br>
         `;
-        assignees.append(newDiv);
+        createAssignees.append(newCreateDiv);
       } else {
-        let newDiv = document.createElement("div");
-        newDiv.setAttribute("class", "assignee-box-and-label");
-        newDiv.innerHTML = `
+        let newCreateDiv = document.createElement("div");
+        newCreateDiv.setAttribute("class", "assignee-box-and-label");
+        newCreateDiv.innerHTML = `
         <input class="assignee-checkbox" type="checkbox" name="assignees" id="checkbox-${roommates[i].id}" value="${roommates[i].id}" onclick="return false;" checked><br>
         <label class="assignee-name" for="checkbox-${roommates[i].id}"><b>${roommates[i].name}</b></label><br>
         `;
-        assignees.append(newDiv);
+        createAssignees.append(newCreateDiv);
       }
     }
   } else if (popup == "edit") {
-    const assignees = document.getElementById("assignees-list-edit");
-    while (assignees.firstChild) {
-      assignees.removeChild(assignees.firstChild);
+    const editAssignees = document.getElementById("assignees-list-edit");
+    while (editAssignees.firstChild) {
+      editAssignees.removeChild(editAssignees.firstChild);
     }
     for (let i = 0; i < roommates.length; i++) {
       if (roommates[i].id != selectedRoommate) {
@@ -397,21 +392,21 @@ function initRoommateAssignment(selectedRoommate, chore, popup) {
         );
         let selectText = isSelected ? " checked" : "";
 
-        let newDiv = document.createElement("div");
-        newDiv.setAttribute("class", "assignee-box-and-label");
-        newDiv.innerHTML = `
+        let newEditDiv = document.createElement("div");
+        newEditDiv.setAttribute("class", "assignee-box-and-label");
+        newEditDiv.innerHTML = `
         <input class="assignee-checkbox" type="checkbox" name="assignees" id="checkbox-${roommates[i].id}" value="${roommates[i].id}"${selectText}><br>
         <label class="assignee-name" for="checkbox-${roommates[i].id}">${roommates[i].name}</label><br>
         `;
-        assignees.append(newDiv);
+        editAssignees.append(newEditDiv);
       } else {
-        let newDiv = document.createElement("div");
-        newDiv.setAttribute("class", "assignee-box-and-label");
-        newDiv.innerHTML = `
+        let newEditDiv = document.createElement("div");
+        newEditDiv.setAttribute("class", "assignee-box-and-label");
+        newEditDiv.innerHTML = `
         <input class="assignee-checkbox" type="checkbox" name="assignees" id="checkbox-${roommates[i].id}" value="${roommates[i].id}" onclick="return false;" checked><br>
         <label class="assignee-name" for="checkbox-${roommates[i].id}"><b>${roommates[i].name}</b></label><br>
         `;
-        assignees.append(newDiv);
+        editAssignees.append(newEditDiv);
       }
     }
   }
