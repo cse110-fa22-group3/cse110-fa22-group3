@@ -33,12 +33,40 @@ const editDescription = document.querySelector("form#edit textarea#e-description
  * init()
  */
 function init() {
-  initPage(readChores().chores);
+  initPage();
+  setupPage(readChores().chores);
   createFormHandler();
   editFormHandler();
 }
 
-function initPage(chores) {
+function initPage() {
+  const lastWeekButton = document.getElementById('last-week-button');
+  const nextWeekButton = document.getElementById('next-week-button');
+  const thisWeekButton = document.getElementById('week-header');
+
+  const weekHeader = document.getElementById('week-header')
+  weekHeader.textContent = getCurrentWeek(weekOffset);
+
+  lastWeekButton.addEventListener('click', () => {
+    weekOffset--;
+    weekHeader.textContent = getCurrentWeek(weekOffset);
+    setupPage(readChores().chores);
+  })
+
+  nextWeekButton.addEventListener('click', () => {
+    weekOffset++;
+    weekHeader.textContent = getCurrentWeek(weekOffset);
+    setupPage(readChores().chores);
+  })
+
+  thisWeekButton.addEventListener('click', () => {
+    weekOffset = 0;
+    weekHeader.textContent = getCurrentWeek(weekOffset);
+    setupPage(readChores().chores);
+  })
+}
+
+function setupPage(chores) {
 
   // Removes all chores from the page
   while (choresContainer.childElementCount > 1) {
@@ -49,27 +77,18 @@ function initPage(chores) {
   chores.forEach((chore) => {
     const card = document.createElement("chore-card");
     card.setAttribute("id", chore["id"]);
-    card.data = {choreName: chore["title"], roommateName: getRoommate(chore["currRoommate"]).name, description: chore["description"]};
+
+    // TODO getRoommate
+    let roommateIndex = chore["assignee"].indexOf(chore["currRoommate"]);
+    let totalAssignees = chore["assignee"].length;
+    roommateIndex = (roommateIndex + (weekOffset % totalAssignees) + totalAssignees) % totalAssignees;
+
+    card.data = {choreName: chore["title"], roommateName: getRoommate(chore["assignee"][roommateIndex]).name, description: chore["description"]};
     choresContainer.insertBefore(card, document.querySelector("#add-chore"));
   });
 
   // Gets all the chore boxes that were made
   const choreBoxes = document.querySelectorAll("chore-card");
-
-  const lastWeekButton = document.getElementById('last-week-button');
-  const nextWeekButton = document.getElementById('next-week-button');
-
-  const weekHeader = document.getElementById('week-header')
-
-  lastWeekButton.addEventListener('click', () => {
-    weekOffset--;
-    weekHeader.textContent = getCurrentWeek(weekOffset);
-  })
-
-  nextWeekButton.addEventListener('click', () => {
-    weekOffset++;
-    weekHeader.textContent = getCurrentWeek(weekOffset);
-  })
 
   let roommates = readRoommate();
 
@@ -161,6 +180,7 @@ function createFormHandler() {
 
     createForm.reset();
     initRoommateAssignment(parseInt(createData.get('roommateName')), 0, "create");
+    
     createDiv.style.display = "none";
     assignDiv.style.display = "block";
   });
@@ -179,7 +199,8 @@ function createFormHandler() {
     });
 
     assignForm.reset();
-    initPage(readChores().chores);
+    weekOffset = 0;
+    setupPage(readChores().chores);
     assignDiv.style.display = "none";
   });
 
@@ -232,7 +253,8 @@ function editFormHandler() {
     editForm.reset();
     editAssignForm.reset();
     closeChore(selectedChore);
-    initPage(readChores().chores);
+    weekOffset = 0;
+    setupPage(readChores().chores);
   };
 
   // SUBMIT BUTTON for edit page 2
@@ -250,14 +272,9 @@ function editFormHandler() {
       status: 'open',
     })
 
-    for (var pair of assignData.entries())
-    {
-      console.log(pair[0]+ ', '+ pair[1]); 
-    }
-    console.log(assignData.get('assignees'));
-
     editAssignForm.reset();
-    initPage(readChores().chores);
+    weekOffset = 0;
+    setupPage(readChores().chores);
     editAssignDiv.style.display = "none";
   });
 
@@ -274,7 +291,8 @@ function editFormHandler() {
     editForm.reset();
     editAssignForm.reset();
     closeChore(selectedChore);
-    initPage(readChores().chores);
+    weekOffset = 0;
+    setupPage(readChores().chores);
   };
 
 }
@@ -323,7 +341,6 @@ function initRoommateAssignment(selectedRoommate, chore, popup) {
     for (let i = 0; i < roommates.length; i++) {
       if (roommates[i].id != selectedRoommate) {
         let isSelected = queryChore('open', chore)['assignee'].includes(roommates[i].id);
-        console.log(queryChore('open', chore)['assignee'] + ' ' + roommates[i].id)
         let selectText = isSelected ? ' checked' : '';
 
         let newDiv = document.createElement('div');
@@ -352,13 +369,11 @@ function getAssignees(formData, selectedRoommate) {
   let endList = []
   let foundSelected = false;
   for (var pair of formData.entries()) {
-    console.log(pair[1])
     if (pair[1] == selectedRoommate) foundSelected = true;
 
     if (foundSelected) startList.push(parseInt(pair[1]));
     else endList.push(parseInt(pair[1]));
   }
-  console.log(startList.concat(endList))
   return startList.concat(endList);
 }
 
@@ -376,10 +391,11 @@ function getCurrentWeek(offset) {
   let weekStartText = (weekStart.getMonth() + 1) + '/' + weekStart.getDate() + '/' + (weekStart.getFullYear() + "").substring(2,4);
   let weekEndText = (weekEnd.getMonth() + 1) + '/' + weekEnd.getDate() + '/' + (weekEnd.getFullYear() + "").substring(2,4);
 
-  return " Week of " + weekStartText + " to " + weekEndText + " ";
+  if (offset != 0) return "Week of " + weekStartText + " to " + weekEndText + "";
+  return "This Week";
 }
 
 function getTodaysDate() {
   let today = new Date();
-  return (today.getMonth() + 1) + '/' + today.getDate() + '/' + (today.getFullYear() + "").substring(2,4);
+  return (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
 }

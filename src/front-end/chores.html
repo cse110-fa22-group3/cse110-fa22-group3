@@ -115,10 +115,15 @@
             cursor: pointer;
         }
 
-        #week-header {
+        #week-header-div {
             display: inline-block;
             inline-size: 350px;
             text-align: center;
+        }
+
+        #week-header {
+            text-decoration: none;
+            color: black;
         }
     </style>
 </head>
@@ -135,7 +140,7 @@
             <h1>List of Chores</h1>
             <h2>
                 <a href="javascript: void(0)" id="last-week-button" class="date-button">«</a>
-                <div id="week-header"> Week of 11/27/22 to 12/3/22 </div>
+                <div id="week-header-div"><a href="javascript: void(0)" id="week-header"></a></div>
                 <a href="javascript: void(0)" id="next-week-button" class="date-button">»</a></h2>
             <div class="chores-container">
                 <div class="chore-box" id="add-chore">

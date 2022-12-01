@@ -298,6 +298,22 @@ export function checkDate() {
 
     const currDate = openChore["assignedDate"].split("/").map(Number);
 
+    let choreDate = new Date(currDate[2], currDate[0] - 1, currDate[1]);
+    
+    let dayOfWeek = date.getDay();
+    let weekStart = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    weekStart.setDate(weekStart.getDate() - dayOfWeek);
+
+    while (choreDate < weekStart) {
+      choreDate.setDate(choreDate.getDate() + 7);
+      let currIndex = openChore["assignee"].indexOf(openChore["currRoommate"]);
+      openChore["currRoommate"] = openChore["assignee"][(currIndex + 1) % openChore["assignee"].length];
+    }
+
+    openChore["assignedDate"] = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+
+    /*
+
     for (let j = 0; j < openChore["assignee"].length; j++) {
       if (openChore["assignee"][j] == openChore["currRoommate"]) {
         nextRoommate =
@@ -336,7 +352,7 @@ export function checkDate() {
           continue;
         }
       }
-    }
+    }*/
 
     choresAPIData["chores"][i] = openChore;
   }
