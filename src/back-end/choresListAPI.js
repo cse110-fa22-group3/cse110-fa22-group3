@@ -403,6 +403,17 @@ export function removeFromChore(id) {
       //if the deleted roommate's id is found, remove that roommate
       if (openChore["assignee"][j] == id) {
         openChore["assignee"].splice(j, 1);
+
+        if (openChore["currRoommate"] == id) {
+          if (openChore["assignee"].length > 0) {
+            openChore["currRoommate"] = openChore["assignee"][0];
+          }
+          else {
+            openChore["assignee"] = [-1];
+            openChore["currRoommate"] = -1;
+          }
+        }
+        break;
       }
     }
   }
@@ -419,4 +430,6 @@ export function removeFromChore(id) {
       }
     }
   }
+
+  localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
 }

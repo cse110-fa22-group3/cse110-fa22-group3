@@ -1,4 +1,8 @@
 // roommateListAPI.js
+import {
+  removeFromChore,
+} from "../back-end/choresListAPI.js";
+
 /**
  * Reads formData from the form that creates a new rooomate.
  * Then stores this information within the localStorage API.
@@ -101,6 +105,7 @@ export function deleteRoommate(id) {
   // replace the old list of roommates
   roommateList.Roommates = roommates;
   console.log(roommateList);
+  removeFromChore(id);
   // replace the RoommateListData in local storage
   localStorage.setItem("RoommateListData", JSON.stringify(roommateList));
 }

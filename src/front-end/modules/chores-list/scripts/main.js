@@ -67,6 +67,8 @@ function initPage() {
 }
 
 function setupPage(chores) {
+  const weekHeader = document.getElementById('week-header')
+  weekHeader.textContent = getCurrentWeek(weekOffset);
 
   // Removes all chores from the page
   while (choresContainer.childElementCount > 1) {
@@ -78,13 +80,17 @@ function setupPage(chores) {
     const card = document.createElement("chore-card");
     card.setAttribute("id", chore["id"]);
 
-    // TODO getRoommate
-    let roommateIndex = chore["assignee"].indexOf(chore["currRoommate"]);
-    let totalAssignees = chore["assignee"].length;
-    roommateIndex = (roommateIndex + (weekOffset % totalAssignees) + totalAssignees) % totalAssignees;
+    if (chore["currRoommate"] != -1) {
+      let roommateIndex = chore["assignee"].indexOf(chore["currRoommate"]);
+      let totalAssignees = chore["assignee"].length;
+      roommateIndex = (roommateIndex + (weekOffset % totalAssignees) + totalAssignees) % totalAssignees;
 
-    card.data = {choreName: chore["title"], roommateName: getRoommate(chore["assignee"][roommateIndex]).name, description: chore["description"]};
-    choresContainer.insertBefore(card, document.querySelector("#add-chore"));
+      card.data = {choreName: chore["title"], roommateName: getRoommate(chore["assignee"][roommateIndex]).name, description: chore["description"]};
+      choresContainer.insertBefore(card, document.querySelector("#add-chore"));
+    } else {
+      card.data = {choreName: chore["title"], roommateName: "Unassigned", description: chore["description"]};
+      choresContainer.insertBefore(card, document.querySelector("#add-chore"));
+    }
   });
 
   // Gets all the chore boxes that were made
