@@ -105,23 +105,52 @@
         .assignee-box-and-label label {
             font-size: 15px;
         }
+
+        .date-button {
+            text-decoration: none;
+            color: black;
+        }
+
+        .date-button:hover {
+            cursor: pointer;
+        }
+
+        #week-header-div {
+            display: inline-block;
+            inline-size: 350px;
+            text-align: center;
+        }
+
+        #week-header {
+            text-decoration: none;
+            color: black;
+        }
     </style>
 </head>
 
+<!-- Full page is within this body element -->
 <body style="background-color:lightblue;">
-    <a id="back" href="index.html">
-        <p>Go Back</p>
-        <!--"home" button-->
-    </a>
-    <div class="float-container">
-        <h1>List of Chores</h1>
-        <div class="chores-container">
-            <div class="chore-box" id="add-chore">
-                <h1>+</h1>
+    <!-- chore list (before pop-ups) -->
+    <div>
+        <a id="back" href="index.html">
+            <p>Go Back</p>
+            <!--"home" button-->
+        </a>
+        <div class="float-container">
+            <h1>List of Chores</h1>
+            <h2>
+                <a href="javascript: void(0)" id="last-week-button" class="date-button">«</a>
+                <div id="week-header-div"><a href="javascript: void(0)" id="week-header"></a></div>
+                <a href="javascript: void(0)" id="next-week-button" class="date-button">»</a></h2>
+            <div class="chores-container">
+                <div class="chore-box" id="add-chore">
+                    <h1>+</h1>
+                </div>
             </div>
         </div>
     </div>
-    <!-- popup starts -->
+
+    <!-- create popup starts -->
     <div id="create-background" class="background">
         <div id="create-popup" class="content popup">
             <div id="create-close" class="close">
@@ -136,8 +165,15 @@
                     </label>
                     <br>
                     <label for="c-roommate-name">
-                        Roommate<br>
-                        <input type="text" id="c-roommate-name"  name="roommateName" required >
+                        Assigned Roommate<br>
+                        <select name="roommateName" id="c-roommate-name" required>
+                        </select>
+                        <!-- <input type="text" id="c-roommate-name"  name="roommateName" required > -->
+                    </label>
+                    <br>
+                    <label for="c-description">
+                        Description<br>
+                        <textarea id="c-description" name="choreDescription" placeholder=""></textarea>
                     </label>
                     <br>
                     <button type="submit">Continue</button>
@@ -146,7 +182,7 @@
         </div>
     </div>
 
-    <!-- popup starts -->
+    <!-- create popup 2 starts -->
     <div id="assign-background" class="background">
         <div id="assign-popup" class="content popup">
             <div id="assign-close" class="close">
@@ -178,7 +214,7 @@
         </div>
     </div>
 
-    <!-- popup starts -->
+    <!-- edit popup starts -->
     <div id="edit-background" class="background">
         <div id="edit-popup" class="content popup">
             <div id="edit-close" class="close">
@@ -193,8 +229,14 @@
                     </label>
                     <br>
                     <label for="e-roommate-name">
-                        Roommate<br>
-                        <input type="text" id="e-roommate-name"  name="roommateName" required >
+                        Assigned Roommate<br>
+                        <select name="roommateName" id="e-roommate-name" required>
+                        </select>
+                    </label>
+                    <br>
+                    <label for="e-description">
+                        Description<br>
+                        <textarea id="e-description" name="choreDescription" placeholder=""></textarea>
                     </label>
                     <br>
                     <button type="submit">Continue</button>
@@ -204,7 +246,7 @@
         </div>
     </div>
 
-    <!-- popup starts -->
+    <!-- edit popup 2 starts -->
     <div id="edit-assign-background" class="background">
         <div id="edit-assign-popup" class="content popup">
             <div id="edit-assign-close" class="close">

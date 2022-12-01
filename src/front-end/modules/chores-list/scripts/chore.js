@@ -13,6 +13,7 @@ class chore extends HTMLElement {
     chore.innerHTML = `<p>
         <h2>${data.choreName}</h2>
         <h3>${data.roommateName}</h3>
+        <p>${data.description}</p>
     </p>
         `;
   }

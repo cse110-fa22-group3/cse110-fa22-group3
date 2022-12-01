@@ -42,16 +42,16 @@ export function queryChore(listToQuery, id) {
 
   // Check which list to search from, and do a linear search for object
   if (listToQuery === "archived") {
-    for (let i = 0; i < choresAPIData.archived.length(); i++) {
-      if (choresAPIData.archived[i].id === id) {
+    for (let i = 0; i < choresAPIData.archived.length; i++) {
+      if (choresAPIData.archived[i].id == id) {
         return choresAPIData.archived[i];
       }
     }
     // not found therefore return empty JSON object
     return {};
   } else {
-    for (let i = 0; i < choresAPIData.chores.length(); i++) {
-      if (choresAPIData.chores[i].id === id) {
+    for (let i = 0; i < choresAPIData.chores.length; i++) {
+      if (choresAPIData.chores[i].id == id) {
         return choresAPIData.chores[i];
       }
     }
@@ -69,15 +69,15 @@ export function queryChore(listToQuery, id) {
 export function createChore(formData) {
   let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
   let newChore = {
-    id: choresAPIData["choresCounterId"],
+    id: choresAPIData["choresCountId"],
     title: formData["title"],
     description: formData["description"],
     assignee: formData["assignee"],
     assignedDate: formData["assignedDate"],
     status: "open",
-    currRoommate: assignee[0],
+    currRoommate: formData["assignee"][0],
   };
-  choresAPIData.choresCounterId += 1;
+  choresAPIData.choresCountId += 1;
   choresAPIData.openChoresCount += 1;
   choresAPIData.chores.push(newChore);
   localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
@@ -101,7 +101,7 @@ export function updateChore(id, listToQuery, formData) {
 
   // Do a check to see which list we should iterate through
   if (listToQuery === "archive") {
-    for (let i = 0; i < choresAPIData.archived.length(); i++) {
+    for (let i = 0; i < choresAPIData.archived.length; i++) {
       if (choresAPIData.archived[i].id === id) {
         // set flag to indicate we need to put the chore in the other list
         if (
@@ -117,12 +117,13 @@ export function updateChore(id, listToQuery, formData) {
         choresAPIData["archived"][i]["assignee"] = formData["assignee"];
         choresAPIData["archived"][i]["assignedDate"] = formData["assignedDate"];
         choresAPIData["archived"][i]["status"] = formData["status"];
+        choresAPIData["archived"][i]["currRoommate"] = formData["assignee"][0];
         break;
       }
     }
   } else {
-    for (let i = 0; i < choresAPIData.chores.length(); i++) {
-      if (choresAPIData.chores[i].id === id) {
+    for (let i = 0; i < choresAPIData.chores.length; i++) {
+      if (choresAPIData.chores[i].id == id) {
         // set flag to indicate we need to put the chore in the other list
         if (
           formData.status === "closed" &&
@@ -137,6 +138,7 @@ export function updateChore(id, listToQuery, formData) {
         choresAPIData["chores"][i]["assignee"] = formData["assignee"];
         choresAPIData["chores"][i]["assignedDate"] = formData["assignedDate"];
         choresAPIData["chores"][i]["status"] = formData["status"];
+        choresAPIData["chores"][i]["currRoommate"] = formData["assignee"][0];
         break;
       }
     }
@@ -159,8 +161,8 @@ export function updateChore(id, listToQuery, formData) {
  */
 export function closeChore(id) {
   const choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
-  for (let i = 0; i < choresAPIData.chores.length(); i++) {
-    if (choresAPIData.chores[i].id === id) {
+  for (let i = 0; i < choresAPIData.chores.length; i++) {
+    if (choresAPIData.chores[i].id == id) {
       const archivedChore = choresAPIData.chores[i];
       archivedChore.status = "closed";
       choresAPIData.chores.splice(i, 1);
@@ -180,7 +182,7 @@ export function closeChore(id) {
  */
 export function reOpenChore(id) {
   const choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
-  for (let i = 0; i < choresAPIData.archived.length(); i++) {
+  for (let i = 0; i < choresAPIData.archived.length; i++) {
     if (choresAPIData.archived[i].id === id) {
       const reOpenChore = choresAPIData.archived[i];
       choresAPIData.archived.splice(i, 1);
@@ -237,18 +239,16 @@ export function checkDate() {
 
   const string = `${nextMonth}/${nextDay}/${nextYear}`;
 
-  nextRoommate = NULL;
+  let nextRoommate = null;
 
   //loops inside of the archived chores
-  for (let i = 0; i < choresAPIData["archived"].length(); i++) {
+  for (let i = 0; i < choresAPIData["archived"].length; i++) {
     let archivedChore = choresAPIData["archived"][i];
 
-    for (let j = 0; j < archivedChore["assignee"].length(); j++) {
+    for (let j = 0; j < archivedChore["assignee"].length; j++) {
       if (archivedChore["assignee"][j] == archivedChore["currRoommate"]) {
         nextRoommate =
-          archivedChore["assignee"][
-            (j + 1) % archivedChore["assignee"].length()
-          ];
+          archivedChore["assignee"][(j + 1) % archivedChore["assignee"].length];
       }
     }
 
@@ -291,15 +291,37 @@ export function checkDate() {
   }
 
   //loops inside of the open chores
-  for (let i = 0; i < choresAPIData["chores"].length(); i++) {
+  for (let i = 0; i < choresAPIData["chores"].length; i++) {
     let openChore = choresAPIData["chores"][i];
 
     const currDate = openChore["assignedDate"].split("/").map(Number);
 
-    for (let j = 0; j < openChore["assignee"].length(); j++) {
+    let choreDate = new Date(currDate[2], currDate[0] - 1, currDate[1]);
+
+    let dayOfWeek = date.getDay();
+    let weekStart = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
+    weekStart.setDate(weekStart.getDate() - dayOfWeek);
+
+    while (choreDate < weekStart) {
+      choreDate.setDate(choreDate.getDate() + 7);
+      let currIndex = openChore["assignee"].indexOf(openChore["currRoommate"]);
+      openChore["currRoommate"] =
+        openChore["assignee"][(currIndex + 1) % openChore["assignee"].length];
+    }
+
+    openChore["assignedDate"] =
+      date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
+
+    /*
+
+    for (let j = 0; j < openChore["assignee"].length; j++) {
       if (openChore["assignee"][j] == openChore["currRoommate"]) {
         nextRoommate =
-          openChore["assignee"][(j + 1) % openChore["assignee"].length()];
+          openChore["assignee"][(j + 1) % openChore["assignee"].length];
       }
     }
 
@@ -334,7 +356,7 @@ export function checkDate() {
           continue;
         }
       }
-    }
+    }*/
 
     choresAPIData["chores"][i] = openChore;
   }
@@ -352,7 +374,7 @@ export function inCharge(id) {
   let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
 
   //check the chores list to see if the chore is there
-  for (let i = 0; i < choresAPIData["chores"].length(); i++) {
+  for (let i = 0; i < choresAPIData["chores"].length; i++) {
     if (choresAPIData["chores"][i]["id"] == id) {
       //return the current roommate in charge of the chore
       return choresAPIData["chores"][i]["currRoommate"];
@@ -360,7 +382,7 @@ export function inCharge(id) {
   }
 
   //check the archived list to see if the chore is there
-  for (let i = 0; i < choresAPIData["archived"].length(); i++) {
+  for (let i = 0; i < choresAPIData["archived"].length; i++) {
     if (choresAPIData["archived"][i]["id"] == id) {
       //return the current roommate in charge of the chore
       return choresAPIData["archived"][i]["currRoommate"];
@@ -377,28 +399,40 @@ export function removeFromChore(id) {
   let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
 
   //iterate through the open chores list
-  for (let i = 0; i < choresAPIData["chores"].length(); i++) {
+  for (let i = 0; i < choresAPIData["chores"].length; i++) {
     let openChore = choresAPIData["chores"][i];
 
     //iterate through the assignees the chore
-    for (let j = 0; j < openChore["assignee"].length(); j++) {
+    for (let j = 0; j < openChore["assignee"].length; j++) {
       //if the deleted roommate's id is found, remove that roommate
       if (openChore["assignee"][j] == id) {
         openChore["assignee"].splice(j, 1);
+
+        if (openChore["currRoommate"] == id) {
+          if (openChore["assignee"].length > 0) {
+            openChore["currRoommate"] = openChore["assignee"][0];
+          } else {
+            openChore["assignee"] = [-1];
+            openChore["currRoommate"] = -1;
+          }
+        }
+        break;
       }
     }
   }
 
   //iterate through the archived chores list
-  for (let i = 0; i < choresAPIData["archived"].length(); i++) {
+  for (let i = 0; i < choresAPIData["archived"].length; i++) {
     let archivedChore = choresAPIData["archived"][i];
 
     //iterate through the assignees the chore
-    for (let j = 0; j < archivedChore["assignee"].length(); j++) {
+    for (let j = 0; j < archivedChore["assignee"].length; j++) {
       //if the deleted roommate's id is found, remove that roommate
       if (archivedChore["assignee"][j] == id) {
         archivedChore["assignee"].splice(j, 1);
       }
     }
   }
+
+  localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
 }
