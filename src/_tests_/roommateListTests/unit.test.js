@@ -22,7 +22,7 @@ test("checks if createRoommate adds an empty roommate to local storage", () => {
   const formData = {
     id: 1, 
     name: "",
-    birthday: "",
+    birthday: "_",
     hobbies: "",
     notes: ""
   };
