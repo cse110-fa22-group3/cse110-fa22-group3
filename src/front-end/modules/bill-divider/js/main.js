@@ -84,7 +84,7 @@ function init_list(){
     
     let name_list=[]
     initial_data.forEach(data=>{name_list.push(getRoommate(data.id).name)})
-    let radioList=document.querySelectorAll('.select_name')
+    let radioList=document.querySelectorAll('.select-name')
     //create roommates and their corresponding radio buttons
     initial_data.forEach(data=>{
         // initialize the Owes attribute of data
@@ -98,8 +98,8 @@ function init_list(){
         let radioTransferFrom = document.createElement('div')
         let radioTransferTo = document.createElement('div')
         let radioPay = document.createElement('div')
-        radioTransferFrom.innerHTML=`<input type="radio" name="roommate" form="transfer_from"><label>${getRoommate(data.id).name}</label>`
-        radioTransferTo.innerHTML=`<input type="radio" name="roommate" form="transfer_to"><label>${getRoommate(data.id).name}</label>`
+        radioTransferFrom.innerHTML=`<input type="radio" name="roommate" form="transfer-from"><label>${getRoommate(data.id).name}</label>`
+        radioTransferTo.innerHTML=`<input type="radio" name="roommate" form="transfer-to"><label>${getRoommate(data.id).name}</label>`
         radioPay.innerHTML=`<input type="radio" name="roommate" form="pay"><label>${getRoommate(data.id).name}</label>`
         radioList[0].append(radioTransferFrom)
         radioList[1].append(radioTransferTo)
@@ -148,7 +148,7 @@ function pay(){
         let record=document.createElement('li')
         record.className='mb-3'
         record.innerHTML=`
-            <input type="checkbox" form="del_history">
+            <input type="checkbox" form="del-history">
             <span>${getRoommate(array[index].id).name} paid ${cost} for ${description}</span>
         `
         let historyList=document.querySelector('ul.historyList')
@@ -204,9 +204,9 @@ function pay_update_array(index,cost){
  * If extra amount is paid, B owes to A.
  */
 function transfer(){
-    let form_transfer_from=document.querySelector('form#transfer_from')
-    let form_transfer_to=document.querySelector('form#transfer_to')
-    let transfer_btn=document.querySelector('#transfer_btn')
+    let form_transfer_from=document.querySelector('form#transfer-from')
+    let form_transfer_to=document.querySelector('form#transfer-to')
+    let transfer_btn=document.querySelector('#transfer-btn')
     transfer_btn.onclick=function(){
         let radios_from=form_transfer_from.elements
         let radios_to=form_transfer_to.elements
@@ -235,7 +235,7 @@ function transfer(){
         let record=document.createElement('li')
         record.className='mb-3'
         record.innerHTML=`
-            <input type="checkbox" form="del_history">
+            <input type="checkbox" form="del-history">
             <span>${getRoommate(array[from_index].id).name} transferred ${amount} to ${getRoommate(array[to_index].id).name}</span>
         `
         let historyList=document.querySelector('ul.historyList')
@@ -261,7 +261,7 @@ function transfer_update_array(from_index,amount,to_index){
  * check the checkboxes of the records you want to delete and click on delete button to delete them
  */
 function del_history(){
-    let form_del_history=document.querySelector('form#del_history')
+    let form_del_history=document.querySelector('form#del-history')
     let list=document.querySelector('ul.historyList')
     form_del_history.addEventListener("submit",submit)
     function submit(e){
