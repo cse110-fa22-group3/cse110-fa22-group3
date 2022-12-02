@@ -21,7 +21,7 @@ function dataExist()
 }
 //This is a helper function if you need it; checks to make sure the local storage data
 //is initialized
-//////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////OLD BILL DIVIDER SPECS//////////////////////////////////////////////////
 
 /**
  * Gets the contribution of the roommate with the matching id by accessing
@@ -165,3 +165,61 @@ export function getAvgContribution()
     //return the average (total / # of roommates)
     return getTotalContributions() / contributions.length;
 }
+
+////////////////////////////////////////NEW BILL DIVIDER SPECS//////////////////////////////////////////////////
+/**
+ * Adds a new roommate into the Roommate Array. This will be called in the Roommate List API.
+ * "Owes" and "transferred" arrays should all have a new pair added with the given ID and amount 0
+ * Set "paid" to the average "paid" from the other roommates. I don't know for sure if this is how it works but I'll change it after you're all done if I need to.
+ */
+export function initializeRoommate(id)
+{
+
+}
+
+
+/**
+ * Should remove a given roommate from the Roommate array. Also removes all history of that roommate and all Owes/transferred references.
+ * I think this will work really weird, but I'll take care of that once you guys have your part done. Don't worry about balancing out anything other than what I have written.
+ */
+export function deleteRoommate(id)
+{
+
+}
+
+
+/**
+ * Literally just returns the roommate array as it is.
+ */
+export function getRoommateArray()
+{
+
+}
+
+
+/**
+ * Literally just returns the history array as it is.
+ */
+export function getHistoryArray()
+{
+
+}
+
+
+/**
+ * The front-end JS will modify the array over time and send it back. Be ready to replace the old version with the new version.
+ */
+export function setRoommateArray(array)
+{
+
+}
+
+
+/**
+* The front-end JS will modify the array over time and send it back. Be ready to replace the old version with the new version.
+*/
+export function setHistoryArray(array)
+{
+
+}
+
