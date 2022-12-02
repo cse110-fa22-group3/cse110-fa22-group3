@@ -73,7 +73,6 @@ export function readRoommate() {
     localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
 
     return JSON.parse(localStorage.getItem("RoommateListData")).Roommates;
-
   } else {
     const roommate = JSON.parse(localStorage.getItem("RoommateListData"));
     return roommate.Roommates;
@@ -87,7 +86,6 @@ export function readRoommate() {
  * @param {Int} id Id of the roommate to remove
  */
 export function deleteRoommate(id) {
-
   // get the RoommateListData from local storage
   const roommateList = JSON.parse(localStorage.getItem("RoommateListData"));
   // get the list of roommates from RoommateListData
@@ -103,7 +101,6 @@ export function deleteRoommate(id) {
       break;
     }
   }
-
 
   // replace the old list of roommates
   roommateList.Roommates = roommates;
