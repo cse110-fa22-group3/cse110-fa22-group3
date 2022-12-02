@@ -31,9 +31,9 @@ function createRoommate(formData) {
     roommate.id = apiData.idCount;
     apiData.idCount += 1;
 
-    for (const [key, value] of formData) {
-      roommate[key] = value;
-    }
+  for (const [key, value] of Object.entries(formData)) {
+    roommate[key] = value;
+  }
 
     apiData.Roommates.push(roommate);
 
@@ -52,7 +52,7 @@ function updateRoommate(formData, id) {
   const roommate = {};
 
   roommate.id = id;
-  for (const [key, value] of formData) {
+  for (const [key, value] of Object.entries(formData)) {
     roommate[key] = value;
   }
 

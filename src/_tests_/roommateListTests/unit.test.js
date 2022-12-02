@@ -50,7 +50,7 @@ test("checks if createRoommate adds multiple roommates to local storage", () => 
     birthday: "12/12/1212",
     hobbies: "playing bass",
     notes: ""
-  };
+  }; formData2.id = 1;
   functionAPIs.createRoommate(formData1);
   functionAPIs.createRoommate(formData2);
   const localStorageData = JSON.parse(
