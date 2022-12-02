@@ -1,0 +1,111 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.float-container {
+  padding: 20px;
+}
+
+.chores-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chore-box:hover {
+  cursor: pointer;
+}
+
+.chore-box {
+  width: 25%;
+  padding: 10px;
+  border: 3px solid black;
+  box-shadow: 0px 5px black;
+  border-radius: 30px;
+  background-color: white;
+  margin: 20px;
+}
+
+chore-card:hover {
+  cursor: pointer;
+}
+
+chore-card {
+  width: 25%;
+  padding: 10px;
+  border: 3px solid black;
+  box-shadow: 0px 5px black;
+  border-radius: 30px;
+  background-color: white;
+  margin: 20px;
+  text-align: center;
+}
+
+#add-chore {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+#add-chore:hover {
+  background-color: lightgreen;
+}
+
+h2,
+h3 {
+  text-align: center;
+}
+
+#back {
+  position: fixed;
+  left: 10;
+  top: 10;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  padding: 0px 20px;
+  box-shadow: 0px 5px black;
+}
+
+.assignees-list {
+  width: 100%;
+  background-color: white;
+}
+
+.assignee-box-and-label {
+  display: flex;
+  float: left;
+  width: 100%;
+}
+
+.assignee-box-and-label .assignee-checkbox {
+  width: 30px;
+}
+
+.assignee-box-and-label label {
+  font-size: 15px;
+}
+
+.date-button {
+  text-decoration: none;
+  color: black;
+}
+
+.date-button:hover {
+  cursor: pointer;
+}
+
+#week-header-div {
+  display: inline-block;
+  inline-size: 350px;
+  text-align: center;
+}
+
+#week-header {
+  text-decoration: none;
+  color: black;
+}
