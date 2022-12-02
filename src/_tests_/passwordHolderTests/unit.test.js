@@ -1,13 +1,11 @@
-// unit.test.js
-const functionAPIs = require("../../testSupportFiles/passwordHolderTests/unit-test-passwordHolderAPIs");
-
 /**
  * @jest-environment jsdom
  */
 
+const functionAPIs = require("../../testSupportFiles/passwordHolderTests/unit-test-passwordHolderAPIs");
+
 test("checks if readPasswords returns empty array when localStorage is empty", () => {
   let array = functionAPIs.readPasswords();
-  console.log(localStorage.getItem("PasswordHolderData"));
   expect(array).toStrictEqual([]);
 });
 
