@@ -118,7 +118,7 @@ textarea {
   height: 1.5em;
   width: 50px;
 }
-li.mb-3 .select_name{
+li.mb-3 .select-name{
   margin-bottom: 30px;
   position: relative;
   left: -60px;
@@ -127,11 +127,11 @@ li.mb-3 .select_name{
   flex-direction: column;
   justify-content: space-between;
 }
-li.mb-3 .select_name label{
+li.mb-3 .select-name label{
   font-size: larger;
 }
 input[type="submit"],
-#transfer_btn
+#transfer-btn
 {
   position: relative;
   margin-top: 30px;
