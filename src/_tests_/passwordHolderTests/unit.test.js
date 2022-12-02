@@ -83,9 +83,9 @@ test("create 100 passwords and then delete all the passwords", () => {
   window.localStorage.clear()
   functionAPIs.readPasswords();
   const formData = {
-    key: "Hulu",
-    username: "Kalyan",
-    password: "topSecret1010",
+    key: "Netflix",
+    username: "Chase",
+    password: "something",
   };
   for(let i = 0; i < 100; i++){
     functionAPIs.createPassword(formData);
