@@ -1,3 +1,13 @@
+import {readRoommate} from "../../../../back-end/roommateListAPI.js";
+function getRoommate(id) {
+    let roommates = readRoommate();
+    console.log(roommates)
+    for (let i = 0; i < roommates.length; i++) {
+      if (roommates[i].id == id) return roommates[i];
+    }
+    return null;
+  }
+getRoommate(0)
 //create a roommate item
 window.addEventListener('DOMContentLoaded', init);
 function init() {
@@ -48,6 +58,13 @@ function init_list(){
         }
         ,{
             name:"challah",
+            isOwed:0,
+            Owes:{},//filled below
+            paid:0,
+            transferred:{}
+        }
+        ,{
+            name:"ch435lah",
             isOwed:0,
             Owes:{},//filled below
             paid:0,
@@ -128,7 +145,7 @@ function pay(){
     }
 }
 function pay_update_array(index,cost){
-    array[index].paid+=cost
+        array[index].paid+=cost
         let total_paid=0
         let total_debt=0
         array.forEach(data=>{total_paid+=data.paid})
