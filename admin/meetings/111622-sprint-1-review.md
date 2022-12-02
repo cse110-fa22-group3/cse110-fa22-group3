@@ -1,8 +1,11 @@
 <<<<<<< HEAD
-# Team 3 - Plastic Triangle 
+
+# Team 3 - Plastic Triangle
+
 ## **Spring 1 Review**
 
 ### **Members Present**
+
 - Chase peterson
 - Kalyan Sunkara
 - Bryce Beeson
@@ -14,16 +17,18 @@
 - Tatsuo Kumamoto
 
 ### **Meeting Time & Location**
+
 8:00 - 9:03 PM on 11/016/22 via Zoom
 
 ### **Update from Last week**
+
 - Chase Peterson
   - I worked with Kyle to build the front-end for the chores list, where the majority of my work was on the JavaScript. I also built some basic styling for the chores list and homepage
 - Kalyan Sunkara
 - Bryce Beeson
   - I helped Thomas with the backend for RoommateList integration between the frontend and backend. I documented the functions in the javascript function we worked on and did some light testing for the integration to ensure that it functioned as expected. I plan to be working with Thomas in this next part of the sprint to handle the integration between frontend and backend. We will be meeting with Chase and Kyle to make sure that we can get all the information from the front end and construct what we need for backend to function properly.
-- Haochen Wang
-=======
+- # Haochen Wang
+
 # Team 3 - Plastic Triangle
 
 ## **Spring 1 Review**
@@ -59,7 +64,7 @@
   - I helped Thomas with the backend for RoommateList integration between the frontend and backend. I documented the functions in the javascript function we worked on and did some light testing for the integration to ensure that it functioned as expected. I plan to be working with Thomas in this next part of the sprint to handle the integration between frontend and backend. We will be meeting with Chase and Kyle to make sure that we can get all the information from the front end and construct what we need for backend to function properly.
 - Haochen Wang
   - Created custom element and functionality for adding roommates
->>>>>>> main
+    > > > > > > > main
 - Kyle Yee
   - rough website for the chores list and did basic styling
 - Xun Liu (Mark)
@@ -74,17 +79,16 @@
 - Tatsuo Kumamoto
   - I studied CSS and Bootstrap mainly using API and just YouTube tutorials
 - Jun Ye
-<<<<<<< HEAD
+  <<<<<<< HEAD
 
 ### **Plans for Next Sprint**
-- Chase Peterson
-  - 
+
+- ## Chase Peterson
 - Kalyan Sunkara
 - Bryce Beeson and Thomas Joel
-  - integration between frontend and backend 
+  - integration between frontend and backend
   - meeting with Chase and Kyle to get all the information from the front end and construct what we need for backend to function properly.
-- Haochen Wang
-=======
+- # Haochen Wang
   - I finished designed UI of roommate list and wrote HTML for it
 
 ### **Plans for Next Sprint**
@@ -98,7 +102,7 @@
   - meeting with Chase and Kyle to get all the information from the front end and construct what we need for backend to function properly.
 - Haochen Wang
   - write JS and part of CSS for bill divider
->>>>>>> main
+    > > > > > > > main
 - Kyle Yee
   - Finishing off Chores List
 - Xun Liu (Mark) and Raymond Romero
@@ -110,10 +114,9 @@
 - Tatsuo Kumamoto
   - Work with Chase on homepage styling
   - Implementing Bootstrap
-<<<<<<< HEAD
-  - Markdown files for sprint reviews
-=======
+    <<<<<<< HEAD
+  - # Markdown files for sprint reviews
   - Markdown files for sprint reviews
 - Jun Ye
   - will designed UI of bill divider and wrote HTML and custom element for it
->>>>>>> main
+    > > > > > > > main
