@@ -30,7 +30,8 @@
   - Assist the devops team with build pipeline
   - Implement unique IDs for elements in both Roomate List and Chores List
 - Bryce Beeson
-  - I helped Thomas with the backend for RoommateList integration between the frontend and backend. I documented the functions in the JavaScript function we worked on and did some light testing for the integration to ensure that it functioned as expected. I plan to be working with Thomas in this next part of the sprint to handle the integration between frontend and backend. We will be meeting with Chase and Kyle to make sure that we can get all the information from the frontend and construct what we need for backend to function properly.
+  - I helped Thomas with the backend for RoommateList integration between the frontend and backend. I documented the functions in the JavaScript function we worked on and did some light testing for the integration to ensure that it functioned as expected.
+  - I plan to be working with Thomas in this next part of the sprint to handle the integration between frontend and backend. We will be meeting with Chase and Kyle to make sure that we can get all the information from the frontend and construct what we need for backend to function properly.
 - Haochen Wang
   - Created custom element and functionality for adding roommates
 - Kyle Yee
