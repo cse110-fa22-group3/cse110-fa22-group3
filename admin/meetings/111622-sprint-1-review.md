@@ -83,8 +83,7 @@
 
 ### **Plans for Next Sprint**
 
-- Chase Peterson
-  -
+- ## Chase Peterson
 - Kalyan Sunkara
 - Bryce Beeson and Thomas Joel
   - integration between frontend and backend
