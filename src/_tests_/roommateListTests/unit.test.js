@@ -1,23 +1,34 @@
 // unit.test.js
-const functionAPIs = require("../../back-end/roommateListAPI");
+const functionAPIs = require("../../testSupportFiles/roommateListTests/unit-test-roommateListAPI");
 
-test("checks if readPasswords returns empty array when localStorage is empty", () => {
-  let array = functionAPIs.readPasswords();
-  console.log(window.localStorage.getItem("PasswordHolderData"));
-  expect(array).toStrictEqual([]);
-});
-
-test("checks if createPassword works when adding one element", () => {
+test("checks if createRoommate adds a roommate to local storage", () => {
   const formData = {
-    key: "Hulu",
-    username: "Kalyan",
-    password: "topSecret1010",
+    id: 1, 
+    name: "Xun Liu",
+    birthday: "12/19/2000",
+    hobbies: "playing guitar",
+    notes: ""
   };
-  functionAPIs.createPassword(formData);
+  functionAPIs.createRoommate(formData);
   formData.id = 0;
-
   const localStorageData = JSON.parse(
-    window.localStorage.getItem("PasswordHolderData")
+    window.localStorage.getItem("RoommateListData")
   );
-  expect(localStorageData.Passwords[0]).toStrictEqual(formData);
+  expect(localStorageData.Roommates[0]).toStrictEqual(formData);
 });
+
+// test("checks if createRoommate adds an empty roommate to local storage", () => {
+//   const formData = {
+//     id: 1, 
+//     name: "",
+//     birthday: "_",
+//     hobbies: "",
+//     notes: ""
+//   };
+//   functionAPIs.createRoommate(formData);
+//   formData.id = 0;
+//   const localStorageData = JSON.parse(
+//     window.localStorage.getItem("RoommateListData")
+//   );
+//   expect(localStorageData.Roommates[0]).toStrictEqual(formData);
+// });
