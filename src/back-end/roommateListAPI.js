@@ -71,6 +71,7 @@ export function readRoommate() {
       idCount: 0,
     };
     localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
+
     return JSON.parse(localStorage.getItem("RoommateListData")).Roommates;
   } else {
     const roommate = JSON.parse(localStorage.getItem("RoommateListData"));
@@ -89,6 +90,7 @@ export function deleteRoommate(id) {
   const roommateList = JSON.parse(localStorage.getItem("RoommateListData"));
   // get the list of roommates from RoommateListData
   const roommates = roommateList.Roommates;
+
   // console.log(roommates);
   // iterate through the list of roommates
   for (let i = 0; i < roommates.length; i++) {
@@ -105,5 +107,6 @@ export function deleteRoommate(id) {
   console.log(roommateList);
   removeFromChore(id);
   // replace the RoommateListData in local storage
+
   localStorage.setItem("RoommateListData", JSON.stringify(roommateList));
 }
