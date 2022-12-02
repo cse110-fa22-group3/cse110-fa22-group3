@@ -15,20 +15,22 @@ test("checks if createRoommate adds a roommate to local storage", () => {
     window.localStorage.getItem("RoommateListData")
   );
   expect(localStorageData.Roommates[0]).toStrictEqual(formData);
+  window.localStorage.clear();
 });
 
-// test("checks if createRoommate adds an empty roommate to local storage", () => {
-//   const formData = {
-//     id: 1, 
-//     name: "",
-//     birthday: "_",
-//     hobbies: "",
-//     notes: ""
-//   };
-//   functionAPIs.createRoommate(formData);
-//   formData.id = 0;
-//   const localStorageData = JSON.parse(
-//     window.localStorage.getItem("RoommateListData")
-//   );
-//   expect(localStorageData.Roommates[0]).toStrictEqual(formData);
-// });
+test("checks if createRoommate adds an empty roommate to local storage", () => {
+  const formData = {
+    id: 1, 
+    name: "",
+    birthday: "",
+    hobbies: "",
+    notes: ""
+  };
+  functionAPIs.createRoommate(formData);
+  formData.id = 0;
+  const localStorageData = JSON.parse(
+    window.localStorage.getItem("RoommateListData")
+  );
+  expect(localStorageData.Roommates[0]).toStrictEqual(formData);
+  window.localStorage.clear();
+});
