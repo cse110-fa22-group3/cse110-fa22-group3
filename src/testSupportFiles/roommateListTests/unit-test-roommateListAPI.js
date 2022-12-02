@@ -6,8 +6,8 @@ module.exports = {
   deleteRoommate
 };
 
-import { removeFromChore } from "../back-end/choresListAPI.js";
-
+// import { removeFromChore } from "../back-end/choresListAPI.js";
+const choreAPI = require("../choresListTests/unit-test-choresListAPI.js");
 /**
  * Reads formData from the form that creates a new rooomate.
  * Then stores this information within the localStorage API.
@@ -112,7 +112,7 @@ function deleteRoommate(id) {
 
   // replace the old list of roommates
   roommateList.Roommates = roommates;
-  removeFromChore(id);
+  choreAPI.removeFromChore(id);
   // replace the RoommateListData in local storage
   localStorage.setItem("RoommateListData", JSON.stringify(roommateList));
 }
