@@ -1,13 +1,3 @@
-import {readRoommate} from "../../../../back-end/roommateListAPI.js";
-function getRoommate(id) {
-    let roommates = readRoommate();
-    console.log(roommates)
-    for (let i = 0; i < roommates.length; i++) {
-      if (roommates[i].id == id) return roommates[i];
-    }
-    return null;
-  }
-getRoommate(0)
 //create a roommate item
 window.addEventListener('DOMContentLoaded', init);
 function init() {
