@@ -163,7 +163,7 @@ function pay() {
               getRoommate(array[index].id).name
             } paid ${cost} for ${description}</span>
         `;
-    let historyList = document.querySelector("ul.historyList");
+    let historyList = document.querySelector("ul.history-list");
     historyList.insertBefore(record, historyList.firstChild);
   }
 }
@@ -254,7 +254,7 @@ function transfer() {
       getRoommate(array[to_index].id).name
     }</span>
         `;
-    let historyList = document.querySelector("ul.historyList");
+    let historyList = document.querySelector("ul.history-list");
     historyList.insertBefore(record, historyList.firstChild);
   };
 }
@@ -285,7 +285,7 @@ function transfer_update_array(from_index, amount, to_index) {
  */
 function del_history() {
   let form_del_history = document.querySelector("form#del-history");
-  let list = document.querySelector("ul.historyList");
+  let list = document.querySelector("ul.history-list");
   form_del_history.addEventListener("submit", submit);
   function submit(e) {
     e.preventDefault();

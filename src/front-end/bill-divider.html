@@ -20,7 +20,7 @@
         <ul class="list mb-3">
             <!-- roommates go here -->
         </ul>
-        <div class="btnList">
+        <div class="btn-list">
             <button class="btn1">History</button>
             <button class="btn2">Add Transfer</button>
             <button class="btn3">Add Payment</button>
@@ -28,13 +28,13 @@
     </section>
     <section class="card  w">
         <header class="tit">
-            <a href="#" class="back backBtn">
+            <a href="#" class="back back-btn">
                 <img src="./modules/bill-divider/images/back.png" alt="">
             </a>
             <h1>History</h1>
         </header>
         <form id="del-history">
-            <ul class="historyList">
+            <ul class="history-list">
 
             </ul>
             <input type="submit" value="delete">
@@ -42,12 +42,12 @@
     </section>
     <section class="card w">
         <header class="tit">
-            <a href="#" class="back backBtn">
+            <a href="#" class="back back-btn back-btn-transfer">
                 <img src="./modules/bill-divider/images/back.png" alt="">
             </a>
             <h1>Transfer</h1>
         </header>
-        <ul class="transferList">
+        <ul class="transfer-list">
             <form id="transfer-from">
                 <li class="mb-3">
                     <span>Name:</span>
@@ -73,12 +73,12 @@
     </section>
     <section class="card w">
         <header class="tit">
-            <a href="#" class="back backBtn">
+            <a href="#" class="back back-btn back-btn-payment">
                 <img src="./modules/bill-divider/images/back.png" alt="">
             </a>
         </header>
         <form id="pay">
-            <ul class="transferList">
+            <ul class="transfer-list">
                 <li class="mb-3">
                     <span>Name:</span>
                     <div class="select-name">
@@ -97,7 +97,7 @@
                     <p>Description:</p>
                 </li>
                 <li class="f-col">
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <textarea name="" cols="30" rows="10"></textarea>
                 </li>
             </ul>
             <input type="submit">
@@ -105,7 +105,7 @@
     </section>
 
     <script>
-        let backBtn = document.querySelectorAll('.backBtn')
+        let backBtn = document.querySelectorAll('.back-btn')
         let cardBox = document.querySelectorAll('.card')
         let btn1 = document.querySelector('.btn1')
         let btn2 = document.querySelector('.btn2')
