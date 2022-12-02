@@ -113,8 +113,7 @@ textarea {
 }
 
 .transfer-list li input[type="text"],
-.transfer-list li input[type="number"]
-{
+.transfer-list li input[type="number"] {
   position: relative;
   left: -42px;
   width: 215px;
@@ -139,7 +138,7 @@ textarea {
 .transfer-list li input[type="radio"] {
   position: relative;
   bottom: -4px;
-  border: 0px;
+  border: 0;
   height: 1.5em;
   width: 50px;
 }

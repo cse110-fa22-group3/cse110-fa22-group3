@@ -1,35 +1,6 @@
 # Team 3 - Plastic Triangle
 
-## **Spring 1 Review**
-
-### **Members Present**
-
-- Chase peterson
-- Kalyan Sunkara
-- Bryce Beeson
-- Haochen Wang
-- Kyle Yee
-- Xun Liu (Mark)
-- Raymond Romero
-- Thomas Joel
-- Tatsuo Kumamoto
-
-### **Meeting Time & Location**
-
-8:00 - 9:03 PM on 11/016/22 via Zoom
-
-### **Update from Last week**
-
-- Chase Peterson
-  - I worked with Kyle to build the frontend for the chores list, where the majority of my work was on the JavaScript. I also built some basic styling for the chores list and homepage
-- Kalyan Sunkara
-- Bryce Beeson
-  - I helped Thomas with the backend for RoommateList integration between the frontend and backend. I documented the functions in the JavaScript function we worked on and did some light testing for the integration to ensure that it functioned as expected. I plan to be working with Thomas in this next part of the sprint to handle the integration between frontend and backend. We will be meeting with Chase and Kyle to make sure that we can get all the information from the frontend and construct what we need for backend to function properly.
-- # Haochen Wang
-
-# Team 3 - Plastic Triangle
-
-## **Spring 1 Review**
+## **Sprint 1 Review**
 
 ### **Members Present**
 
@@ -79,16 +50,6 @@
 
 ### **Plans for Next Sprint**
 
-- ## Chase Peterson
-- Kalyan Sunkara
-- Bryce Beeson and Thomas Joel
-  - integration between frontend and backend
-  - meeting with Chase and Kyle to get all the information from the frontend and construct what we need for backend to function properly.
-- # Haochen Wang
-  - I finished designed UI of roommate list and wrote HTML for it
-
-### **Plans for Next Sprint**
-
 - Chase Peterson
   - Work with Kalyan on linter and choreslist.
 - Kalyan Sunkara
@@ -109,7 +70,6 @@
 - Tatsuo Kumamoto
   - Work with Chase on homepage styling
   - Implementing Bootstrap
-  - # Markdown files for sprint reviews
   - Markdown files for sprint reviews
 - Jun Ye
   - will designed UI of bill divider and wrote HTML and custom element for it
