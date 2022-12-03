@@ -13,7 +13,6 @@
   },
   "jest": {
     "preset": "jest-puppeteer",
-    "verbose": true,
-    "testEnvironment": "jsdom"
+    "verbose": true
   }
 }
