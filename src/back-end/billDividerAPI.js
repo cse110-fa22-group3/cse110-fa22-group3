@@ -214,6 +214,8 @@ export function initializeRoommate(id)
  */
 export function deleteRoommate(id)
 {
+    dataExist();
+
     const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
     const roommates = billDividerData["Roommates"];
     const history = billDividerData["History"];
@@ -281,6 +283,23 @@ export function setHistoryArray(newHistory)
 
     localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
 }
+
+
+export function addTransaction(from, amount, to)
+{
+    const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+
+    const transaction = {
+        "from": from,
+        "amount": amount,
+        "to": to,
+    };
+
+    billDividerData["History"].push(transaction);
+
+    localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+}
+
 
 /**
  * Helper function that checks if the BillDividerData exists in local storage.
