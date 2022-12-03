@@ -1,7 +1,9 @@
-# Team 3 - Plastic Triangle 
+# Team 3 - Plastic Triangle
+
 ## **Spring 1 Review**
 
 ### **Members Present**
+
 - Chase peterson
 - Kalyan Sunkara
 - Bryce Beeson
@@ -13,9 +15,11 @@
 - Tatsuo Kumamoto
 
 ### **Meeting Time & Location**
+
 8:00 - 9:03 PM on 11/016/22 via Zoom
 
 ### **Update from Last week**
+
 - Chase Peterson
   - I worked with Kyle to build the front-end for the chores list, where the majority of my work was on the JavaScript. I also built some basic styling for the chores list and homepage
 - Kalyan Sunkara
@@ -38,11 +42,12 @@
 - Jun Ye
 
 ### **Plans for Next Sprint**
+
 - Chase Peterson
-  - 
+  -
 - Kalyan Sunkara
 - Bryce Beeson and Thomas Joel
-  - integration between frontend and backend 
+  - integration between frontend and backend
   - meeting with Chase and Kyle to get all the information from the front end and construct what we need for backend to function properly.
 - Haochen Wang
 - Kyle Yee
