@@ -25,7 +25,6 @@ test("checks if createPassword works when adding one element", () => {
   expect(localStorageData.Passwords[0]).toStrictEqual(formData);
 });
 
-
 test("checks if we can create 100 passwords and that the id count is expected", () => {
   window.localStorage.clear();
   functionAPIs.readPasswords();
