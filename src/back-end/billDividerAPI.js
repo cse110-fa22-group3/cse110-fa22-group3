@@ -214,7 +214,24 @@ export function initializeRoommate(id)
  */
 export function deleteRoommate(id)
 {
+    const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+    const roommates = billDividerData["Roommates"];
+    const history = billDividerData["History"];
 
+    for (let i = 0; i < roommates.length; i++)
+    {
+        delete roommates[i]["owes"][id];
+        delete roommates[i]["transferred"][id];
+    }
+
+    for (let i = 0; i < history.length; i++)
+    {
+        if (history[i]["from"] == id || history[i]["to"] == id)
+        {
+            history.splice(i, 1);
+            i--;
+        }
+    }
 }
 
 
