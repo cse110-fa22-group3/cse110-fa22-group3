@@ -398,33 +398,35 @@ test("checks if updateChore correctly updates multiple non-empty chores in local
   };
 
   const resData = {
-    chores: [{
-      id: 1,
-      title: "Wash Dishses",
-      description: "Wash dishes with hand",
-      assignee: ["Mark", "Park", "Kate"],
-      assignedDate: "11/11/1111",
-      status: "open",
-      currRoommate: "Mark"
-    },
-    {
-      id: 2,
-      title: "Clean roof",
-      description: "Clean roof with vaccum",
-      assignee: ["Park", "Pete", "Kate"],
-      assignedDate: "12/12/1111",
-      status: "open",
-      currRoommate: "Park"
-    },
-    {
-      id: 3,
-      title: "Move closet",
-      description: "Move closet away from there",
-      assignee: ["Kitty", "Pete", "Prince"],
-      assignedDate: "01/19/1112",
-      status: "open",
-      currRoommate: "Kitty"
-    }],
+    chores: [
+      {
+        id: 1,
+        title: "Wash Dishses",
+        description: "Wash dishes with hand",
+        assignee: ["Mark", "Park", "Kate"],
+        assignedDate: "11/11/1111",
+        status: "open",
+        currRoommate: "Mark",
+      },
+      {
+        id: 2,
+        title: "Clean roof",
+        description: "Clean roof with vaccum",
+        assignee: ["Park", "Pete", "Kate"],
+        assignedDate: "12/12/1111",
+        status: "open",
+        currRoommate: "Park",
+      },
+      {
+        id: 3,
+        title: "Move closet",
+        description: "Move closet away from there",
+        assignee: ["Kitty", "Pete", "Prince"],
+        assignedDate: "01/19/1112",
+        status: "open",
+        currRoommate: "Kitty",
+      },
+    ],
     archived: [],
     openChoresCount: 3,
     closedChoresCount: 0,
