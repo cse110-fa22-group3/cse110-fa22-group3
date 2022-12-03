@@ -166,7 +166,7 @@ function updateDelHandler() {
         //hide the popup
         updatePopup.style.display = "none";
         //update a roommate using the form data and the roommate's id
-        updateRoommate(new FormData(updateForm), id);
+        updateRoommate(new FormData(updateForm), parseInt(id));
         //reload the cards with the new list of roommates
         loadCards(readRoommate());
       }
