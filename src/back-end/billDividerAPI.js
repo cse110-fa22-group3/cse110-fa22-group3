@@ -29,7 +29,7 @@
  * @param {Int} id id of the roommate
  * @returns {Float} contribution of the roommate with matching id
  */
-export function getContribution(id) {
+ export function getContribution(id) {
   //get the BillDividerData from local storage
   const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
   //get the list of contributions from BillDividerData
@@ -158,7 +158,8 @@ import { readRoommate } from "../back-end/roommateListAPI.js";
 /**
  * Adds a new roommate into the Roommate Array. This will be called in the Roommate List API.
  * "Owes" and "transferred" arrays should all have a new pair added with the given ID and amount 0
- * Set "paid" to the average "paid" from the other roommates. I don't know for sure if this is how it works but I'll change it after you're all done if I need to.
+ * Set "paid" to the average "paid" from the other roommates.
+ * @param {Int} id 
  */
 export function initializeRoommate(id) {
   dataExist();
@@ -167,7 +168,7 @@ export function initializeRoommate(id) {
   const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
   const roommates = billDividerData["Roommates"];
   const roommate = {
-    id: id,
+    "id": id,
     isOwed: 0.0,
     owes: {},
     paid: 0.0,
@@ -195,8 +196,9 @@ export function initializeRoommate(id) {
 }
 
 /**
- * Should remove a given roommate from the Roommate array. Also removes all history of that roommate and all Owes/transferred references.
- * I think this will work really weird, but I'll take care of that once you guys have your part done. Don't worry about balancing out anything other than what I have written.
+ * Removes a given roommate from the Roommate array. 
+ * Also removes all history of that roommate and all Owes/transferred references.
+ * @param {Int} id 
  */
 export function deleteRoommate(id) {
   dataExist();
@@ -221,7 +223,8 @@ export function deleteRoommate(id) {
 }
 
 /**
- * Literally just returns the roommate array as it is.
+ * Returns the roommate list with id, amount they're owed/owe/paid/transferred.
+ * @returns {Array<object>} an array of roommates
  */
 export function getRoommateArray() {
   dataExist();
@@ -230,7 +233,8 @@ export function getRoommateArray() {
 }
 
 /**
- * Literally just returns the history array as it is.
+ * Returns the history array with all of the transactions.
+ * @returns {Array<object>}
  */
 export function getHistoryArray() {
   dataExist();
@@ -239,7 +243,8 @@ export function getHistoryArray() {
 }
 
 /**
- * The front-end JS will modify the array over time and send it back. Be ready to replace the old version with the new version.
+ * Replaces the old roommates list with the new one in local storage.
+ * @param {Array<object>} newRoommates new roommates list
  */
 export function setRoommateArray(newRoommates) {
   const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
@@ -251,10 +256,16 @@ export function setRoommateArray(newRoommates) {
 }
 
 /**
- * The front-end JS will modify the array over time and send it back. Be ready to replace the old version with the new version.
+ * Replaces the old history list with the new one in local storage.
+ * @param {Array<object>} newHistory new history list 
  */
-export function setHistoryArray(newHistory) {
+export function setHistoryArray(newHistory)
+{
   const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+  
+  //replace the old history array (may not be needed if you use addTransaction)
+  billDividerData["History"] = newHistory;
+
 
   //replace the old history array (may not be needed if you use addTransaction)
   billDividerData["History"] = newHistory;
@@ -262,7 +273,16 @@ export function setHistoryArray(newHistory) {
   localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
 }
 
-export function addTransaction(from, amount, to) {
+
+/**
+ * Adds a transaction (including from, amount, and to information). To
+ * can be -1 if it is not sent to anyone.
+ * @param {Int} from id of the roommate money is sent from
+ * @param {Double} amount amount of money sent
+ * @param {Int} to id of the roommate money is sent to
+ */
+export function addTransaction(from, amount, to)
+{
   const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
 
   //initialize the transaction with argument data (to can be -1)
@@ -280,8 +300,8 @@ export function addTransaction(from, amount, to) {
 /**
  * Helper function that checks if the BillDividerData exists in local storage.
  * If it exists, nothing is done.
- * If it does not exist, then it is created with an empty array of contributions
- * and an empty array of logs.
+ * If it does not exist, then it is created with an empty array of roommates
+ * and an empty array of transaction history.
  */
 function dataExist() {
   //check to see if BillDividerData does not exist in local storage
