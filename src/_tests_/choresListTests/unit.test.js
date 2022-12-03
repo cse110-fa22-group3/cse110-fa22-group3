@@ -382,7 +382,6 @@ test("checks if updateChore correctly updates multiple non-empty chores in local
     assignee: ["Park", "Pete", "Kate"],
     assignedDate: "12/12/1111",
   };
-
   const upData2 = {
     title: "Move closet",
     description: "Move closet away from there",
@@ -393,12 +392,12 @@ test("checks if updateChore correctly updates multiple non-empty chores in local
   const resData = {
     chores: [{
       id: 1,
-      title: "Wash Socks",
-      description: "Wash socks with hand",
-      assignee: ["Pete", "Park", "Kate"],
-      assignedDate: "12/11/1111",
+      title: "Wash Dishses",
+      description: "Wash dishes with hand",
+      assignee: ["Mark", "Park", "Kate"],
+      assignedDate: "11/11/1111",
       status: "open",
-      currRoommate: "Pete"
+      currRoommate: "Mark"
     },
     {
       id: 2,
@@ -427,7 +426,7 @@ test("checks if updateChore correctly updates multiple non-empty chores in local
   functionAPIs.createChore(formData0);
   functionAPIs.createChore(formData1);
   functionAPIs.createChore(formData2);
-  functionAPIs.updateChore(1, "chores", upData0);
+  //functionAPIs.updateChore(1, "chores", upData0);
   functionAPIs.updateChore(2, "chores", upData1);
   functionAPIs.updateChore(3, "chores", upData2);
   const localStorageData = JSON.parse(
