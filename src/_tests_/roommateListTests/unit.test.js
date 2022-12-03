@@ -141,3 +141,37 @@ test("checks if updateRoommate updates the name of the correct roommate", () => 
   expect(localStorageData.Roommates[2]).toStrictEqual(upData);
   window.localStorage.clear();
 });
+
+test("checks if readRoommate returns empty array if there's no roommate", () => {
+  const Reading = functionAPIs.readRoommate();
+  const localStorageData = JSON.parse(
+    window.localStorage.getItem("RoommateListData")
+  );
+  const Roommates = localStorageData.Roommates;
+
+  console.log("local storage:", Roommates);
+  console.log("Reading:", Reading);
+  expect(Roommates).toStrictEqual(Reading);
+  window.localStorage.clear();
+});
+
+test("checks if readRoommate returns a roommate array if there's one roommate", () => {
+  const formData = {
+    name: "Xun Liu",
+    birthday: "12/19/2000",
+    hobbies: "playing guitar",
+    notes: ""
+  };
+  functionAPIs.createRoommate(formData);
+  
+  const Reading = functionAPIs.readRoommate();
+  const localStorageData = JSON.parse(
+    window.localStorage.getItem("RoommateListData")
+  );
+  const Roommates = localStorageData.Roommates;
+
+  console.log("local storage:", Roommates);
+  console.log("Reading:", Reading);
+  expect(Roommates).toStrictEqual(Reading);
+  window.localStorage.clear();
+});
