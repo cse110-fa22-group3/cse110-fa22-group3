@@ -185,10 +185,10 @@ export function initializeRoommate(id)
 {
     dataExist();
 
-    const roommates = readRoommate();
+    const listOfPeople = readRoommate();
 
     const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
-    const finance = {
+    const roommates = {
         "id": id,
         "isOwed": 0.0,
         "owes": {},
@@ -196,13 +196,13 @@ export function initializeRoommate(id)
         "transferred": {},
     };
 
-    for (let i = 0; i < roommates.length; i++)
+    for (let i = 0; i < listOfPeople.length; i++)
     {
-        finance["owes"][roommates[i]["id"]] = 0.0;
-        finance["transferred"][roommates[i]["id"]] = 0.0;
+        roommates["owes"][listOfPeople[i]["id"]] = 0.0;
+        roommates["transferred"][listOfPeople[i]["id"]] = 0.0;
     }
 
-    billDividerData["Finances"].push(finance);
+    billDividerData["Roommates"].push(roommates);
 
     localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
 }
@@ -223,7 +223,9 @@ export function deleteRoommate(id)
  */
 export function getRoommateArray()
 {
+    dataExist();
 
+    return JSON.parse(localStorage.getItem("BillDividerData"))["Roommates"];
 }
 
 
@@ -232,7 +234,9 @@ export function getRoommateArray()
  */
 export function getHistoryArray()
 {
+    dataExist();
 
+    return JSON.parse(localStorage.getItem("BillDividerData"))["History"];
 }
 
 
@@ -266,7 +270,7 @@ export function setHistoryArray(array)
      {
          //creating a new BillDividerData
          const billDividerData = {
-           Finances: [],
+           Roommates: [],
            History: [],
          };
      
