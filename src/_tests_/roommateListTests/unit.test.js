@@ -12,7 +12,7 @@ test("checks if createRoommate adds a roommate to local storage", () => {
     name: "Xun Liu",
     birthday: "12/19/2000",
     hobbies: "playing guitar",
-    notes: ""
+    notes: "",
   };
   functionAPIs.createRoommate(formData);
   const localStorageData = JSON.parse(
@@ -29,7 +29,7 @@ test("checks if createRoommate adds an empty roommate to local storage", () => {
     name: "",
     birthday: "",
     hobbies: "",
-    notes: ""
+    notes: "",
   };
   functionAPIs.createRoommate(formData);
   const localStorageData = JSON.parse(
@@ -46,13 +46,13 @@ test("checks if createRoommate adds multiple roommates to local storage", () => 
     name: "Xun Liu",
     birthday: "12/19/2000",
     hobbies: "playing guitar",
-    notes: ""
+    notes: "",
   };
   const formData1 = {
     name: "John Doe",
     birthday: "12/12/1212",
     hobbies: "playing bass",
-    notes: ""
+    notes: "",
   };
   functionAPIs.createRoommate(formData0);
   functionAPIs.createRoommate(formData1);
@@ -76,7 +76,7 @@ test("checks if updateRoommate updates the properties of a roommate", () => {
     name: "Xun Liu",
     birthday: "12/19/2000",
     hobbies: "playing guitar",
-    notes: ""
+    notes: "",
   };
 
   const id = 0;
@@ -84,12 +84,13 @@ test("checks if updateRoommate updates the properties of a roommate", () => {
     name: "Mark Liu",
     birthday: "12/19/2000",
     hobbies: "playing guitar",
-    notes: "I love Prince!"
+    notes: "I love Prince!",
   };
 
   functionAPIs.createRoommate(formData0);
   functionAPIs.updateRoommate(upData, id);
-  formData0.id = 0; upData.id = 0;
+  formData0.id = 0;
+  upData.id = 0;
   const localStorageData = JSON.parse(
     window.localStorage.getItem("RoommateListData")
   );
@@ -104,26 +105,26 @@ test("checks if updateRoommate updates the properties of the correct roommate", 
     name: "Xun Liu",
     birthday: "12/19/2000",
     hobbies: "playing guitar",
-    notes: ""
+    notes: "",
   };
   const formData1 = {
     name: "Jack Ma",
     birthday: "11/11/1111",
     hobbies: "Making money",
-    notes: "I have no interests in money"
+    notes: "I have no interests in money",
   };
   const formData2 = {
     name: "Ellon Ma",
     birthday: "xx/xx/xxxx",
     hobbies: "Speaking English",
-    notes: "Hello, I'm Ellon Ma"
+    notes: "Hello, I'm Ellon Ma",
   };
 
   const upData = {
     name: "Ellon Mask",
     birthday: "06/28/1971",
     hobbies: "Being successful",
-    notes: "Hello, I'm Ellon Musk."
+    notes: "Hello, I'm Ellon Musk.",
   };
 
   const id = 2;
@@ -165,7 +166,7 @@ test("checks if readRoommate returns a roommate array if there's one roommate", 
     name: "Xun Liu",
     birthday: "12/19/2000",
     hobbies: "playing guitar",
-    notes: ""
+    notes: "",
   };
   functionAPIs.createRoommate(formData);
 
@@ -186,24 +187,26 @@ test("checks if readRoommate returns a roommate array if there're multiple roomm
     name: "Xun Liu",
     birthday: "12/19/2000",
     hobbies: "playing guitar",
-    notes: ""
+    notes: "",
   };
   const formData1 = {
     name: "Xun Liu",
     birthday: "12/19/2000",
     hobbies: "playing guitar",
-    notes: ""
+    notes: "",
   };
   const formData2 = {
     name: "Xun Liu",
     birthday: "12/19/2000",
     hobbies: "playing guitar",
-    notes: ""
+    notes: "",
   };
   functionAPIs.createRoommate(formData0);
   functionAPIs.createRoommate(formData1);
   functionAPIs.createRoommate(formData2);
-  formData0.id = 0; formData1.id = 1; formData2.id = 2;
+  formData0.id = 0;
+  formData1.id = 1;
+  formData2.id = 2;
 
   const Reading = functionAPIs.readRoommate();
   const localStorageData = JSON.parse(
@@ -217,7 +220,6 @@ test("checks if readRoommate returns a roommate array if there're multiple roomm
   window.localStorage.clear();
 });
 
-
 // readRoommate
 test("checks if deleteRoommate deletes a roommate from local storage", () => {
   choreFunctionAPIs.readChores();
@@ -225,7 +227,7 @@ test("checks if deleteRoommate deletes a roommate from local storage", () => {
     name: "Xun Liu",
     birthday: "12/19/2000",
     hobbies: "playing guitar",
-    notes: ""
+    notes: "",
   };
   const id = 0;
   const upData = [];
@@ -247,19 +249,19 @@ test("checks if deleteRoommate deletes multiple roommates from local storage", (
     name: "Xun Liu",
     birthday: "12/19/2000",
     hobbies: "playing guitar",
-    notes: ""
+    notes: "",
   };
   const formData1 = {
     name: "Jack Ma",
     birthday: "11/11/1111",
     hobbies: "Making money",
-    notes: "I have no interests in money"
+    notes: "I have no interests in money",
   };
   const formData2 = {
     name: "Ellon Ma",
     birthday: "xx/xx/xxxx",
     hobbies: "Speaking English",
-    notes: "Hello, I'm Ellon Ma"
+    notes: "Hello, I'm Ellon Ma",
   };
 
   const upData = [];
