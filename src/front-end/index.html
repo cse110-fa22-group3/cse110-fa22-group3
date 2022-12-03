@@ -1,99 +1,153 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="en">
 
 <head>
     <title>Landing Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!--Link to Bootstrap Styling -->
-    <link rel="stylesheet"
-          type="text/css"
-          href="css/bootstrap.css" />
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <style>
-
-    .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-    }
-
-    @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-        font-size: 3.5rem;
+        /*
+        body {
+            font-family: Arial, Helvetica, sans-serif;
         }
-    }
+        
+        .float-container {
+            padding: 20px;
+        }
 
-    .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-    }
+        .pages-container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-    }
+        .float-child:hover {
+            cursor: pointer;
+        }
+        
+        .float-child {
+            width: 25%;
+            
+            padding: 10px;
+            border: 3px solid black;
+            box-shadow: 0px 5px black;
+            border-radius: 30px;
+            background-color: white;
+            margin: 20px;
 
-    .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-    }
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .unfinished {
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        .unfinished:hover {
+            cursor: not-allowed;
+        }
+        
+        
+        p,
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+        }
+        
+        #back {
+            position: fixed;
+            left: 10;
+            top: 10;
+            border: 3px solid black;
+            border-radius: 10px;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            padding: 0px 20px;
+            box-shadow: 0px 5px black;
+        }
+        */
+        
     </style>
-    <link href="modules/chores-list/css/home.css" rel="stylesheet">
 </head>
 
-<body class="d-flex h-100 text-center text-bg-dar" style="background-color: burlywood">  
-        <!--<div class="mask" style="background-color: rgba(0, 0, 0, 0.8);">    -->
-            <div class="cover-container d-flex w-100 h-100 p-4 mx-auto flex-column">
-                <header class="masthead mb-auto">
-                    <!-- Nav Bar -->
-                    <div class="inner d-flex justify-content-between">
-                    <h3 class="masthead brand">My Roommate Hub</h3>
-                    <nav class="nav nav-masthead justify-content-center float-md-end">
-                        <a class="nav-link fw-bold py-1 px-0 active" aria-current="page">My House</a>
-                        <a class="nav-link fw-bold py-1 px-0" href="roommates.html">Roommates</a>
-                        <a class="nav-link fw-bold py-1 px-0" href="chores.html">Chores</a>
-                        <a class="nav-link fw-bold py-1 px-0" href="#">Divider</a>
-                        <a class="nav-link fw-bold py-1 px-0" href="#">Reminder</a>
-                        <a class="nav-link fw-bold py-1 px-0" href="#">Passwords</a>
-                        <a class="nav-link fw-bold py-1 px-0" href="#">Others</a>
-                    </nav>
-                    </div>
-                    <!-- Nav Bar -->
-                </header>
-                <!-- Welcome Content-->
-                <main class="px-3">
-                    <h1>Welcome Back!</h1>
-                    <p class="lead">Let us assist you manage your home.</p>
-                    <!--<p class="lead">
-                    <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
-                    </p>-->
-                </main>
-                <!-- Welcome Content -->
+<body>
+    <!--Nav Bar class and styling-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">RoommateHub</a>
+          <!--Nav Bar icon when window size reduced, no js yet-->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar1">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="roommates.html">Roommate List</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="chores.html">Chores List</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="bill-divider.html">Bill Divider</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="passwords.html">Password Holder</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+    </nav>
+    <!--Middle Section for content Explanation-->
+    <div class="bg-light p-5 rounded-lg m-3">
+        <div class="container">
+            <main class="px-3">
+                <h1>Welcome Back!</h1>
+                <p class="lead">Let us assist you manage your home.</p>
+                <!--<p class="lead">
+                <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
+                </p>-->
+            </main>
+        </div>
+    </div>
+    <!--Bottom Class-->
+    <div class="bg-dark p-5 rounded-lg m-3">
+        <footer class="mt-auto text-white-50">
+            <p>Project by <a href="https://github.com/cse110-fa22-group3/cse110-fa22-group3" class="text-white">Plastic Triangle</a>.</p>
+        </footer> 
+    </div>
 
-                <!-- Creator Reference -->
-                <footer class="mt-auto text-white-50">
-                    <p>Project by <a href="https://github.com/cse110-fa22-group3/cse110-fa22-group3" class="text-white">Plastic Triangle</a>.</p>
-                </footer> 
-                <!-- Creater Reference-->
-            </div>
-            <!--</div>
-        </div>    -->
-        <!--Enable jquery.js-->
-        <script type="text/javascript"
-                href="js/jquery-3.6.1.js">
-        </script>
-        <!--Enable Bootstrap.js-->
-        <script type="text/javascript"
-        href="js/bootstrap.min.js">
-        </script>   
+    <!--
+    <div class="float-container">
+        <h1>My Roommate Hub</h1>
+        <div class="pages-container">
+            <a class="float-child" href="roommates.html">
+                <p>ROOMMATES</p>
+            </a>
+            <a class="float-child" href="chores.html">
+                <p>CHORES</p>
+            </a>
+            <a class="float-child unfinished">
+                <p>DIVIDER</p>
+            </a>
+            <a class="float-child unfinished">
+                <p>REMINDER</p>
+            </a>
+            <a class="float-child" href="passwords.html">
+                <p>PASSWORDS</p>
+            </a>
+            <a class="float-child unfinished">
+                <p>EXTRA</p>
+            </a>
+        </div>
+    </div>
+    -->
+
 </body>
 
 </html>

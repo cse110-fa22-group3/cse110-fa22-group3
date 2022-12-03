@@ -49,7 +49,7 @@
  * Gets the debt of the roommate with the matching id by subtracting their
  * contribution from the average contribution.
  * @param {Int} id
- * @returns
+ * @returns The debt for the roommate with the id given
  */
 export function getDebt(id) {
   return getAvgContribution() - getContribution(id);
