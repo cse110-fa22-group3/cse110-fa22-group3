@@ -188,7 +188,7 @@ export function initializeRoommate(id)
     const listOfPeople = readRoommate();
 
     const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
-    const roommates = {
+    const roommate = {
         "id": id,
         "isOwed": 0.0,
         "owes": {},
@@ -198,11 +198,11 @@ export function initializeRoommate(id)
 
     for (let i = 0; i < listOfPeople.length; i++)
     {
-        roommates["owes"][listOfPeople[i]["id"]] = 0.0;
-        roommates["transferred"][listOfPeople[i]["id"]] = 0.0;
+        roommate["owes"][listOfPeople[i]["id"]] = 0.0;
+        roommate["transferred"][listOfPeople[i]["id"]] = 0.0;
     }
 
-    billDividerData["Roommates"].push(roommates);
+    billDividerData["Roommates"].push(roommate);
 
     localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
 }
@@ -243,18 +243,26 @@ export function getHistoryArray()
 /**
  * The front-end JS will modify the array over time and send it back. Be ready to replace the old version with the new version.
  */
-export function setRoommateArray(array)
+export function setRoommateArray(newRoommates)
 {
+    const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+    
+    billDividerData["Roommates"] = newRoommates;
 
+    localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
 }
 
 
 /**
 * The front-end JS will modify the array over time and send it back. Be ready to replace the old version with the new version.
 */
-export function setHistoryArray(array)
+export function setHistoryArray(newHistory)
 {
+    const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+    
+    billDividerData["History"] = newHistory;
 
+    localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
 }
 
 /**
