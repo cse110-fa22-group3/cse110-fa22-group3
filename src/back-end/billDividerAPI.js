@@ -186,8 +186,8 @@ export function initializeRoommate(id)
     dataExist();
 
     const listOfPeople = readRoommate();
-
     const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+    const roommates = billDividerData["Roommates"];
     const roommate = {
         "id": id,
         "isOwed": 0.0,
@@ -195,13 +195,25 @@ export function initializeRoommate(id)
         "paid": 0.0,
         "transferred": {},
     };
+    let totalPaid = 0;
 
+    //getting the average paid from other roommates (BEFORE THE NEW ONE IS ADDED)
+    for (let i = 0; i < roommates.length; i++)
+    {
+        totalPaid += roommates[i][paid];
+    }
+
+    //assigning the average paid to the new roommate
+    roommate["paid"] = totalPaid / roommates.length;
+
+    //assigning the value the new roommate owes/transferred to other roommates to 0
     for (let i = 0; i < listOfPeople.length; i++)
     {
         roommate["owes"][listOfPeople[i]["id"]] = 0.0;
         roommate["transferred"][listOfPeople[i]["id"]] = 0.0;
     }
 
+    
     billDividerData["Roommates"].push(roommate);
 
     localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
@@ -220,12 +232,14 @@ export function deleteRoommate(id)
     const roommates = billDividerData["Roommates"];
     const history = billDividerData["History"];
 
+    //removing the roommate from the owes and transferred list
     for (let i = 0; i < roommates.length; i++)
     {
         delete roommates[i]["owes"][id];
         delete roommates[i]["transferred"][id];
     }
 
+    //removing the roommate from the history list
     for (let i = 0; i < history.length; i++)
     {
         if (history[i]["from"] == id || history[i]["to"] == id)
@@ -266,6 +280,7 @@ export function setRoommateArray(newRoommates)
 {
     const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
     
+    //replace the old roommates array
     billDividerData["Roommates"] = newRoommates;
 
     localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
@@ -279,6 +294,7 @@ export function setHistoryArray(newHistory)
 {
     const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
     
+    //replace the old history array (may not be needed if you use addTransaction)
     billDividerData["History"] = newHistory;
 
     localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
@@ -289,6 +305,7 @@ export function addTransaction(from, amount, to)
 {
     const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
 
+    //initialize the transaction with argument data (to can be -1)
     const transaction = {
         "from": from,
         "amount": amount,
