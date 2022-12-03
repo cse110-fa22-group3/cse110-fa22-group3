@@ -3,7 +3,7 @@ module.exports = {
   createRoommate,
   updateRoommate,
   readRoommate,
-  deleteRoommate
+  deleteRoommate,
 };
 
 // import { removeFromChore } from "../back-end/choresListAPI.js";
@@ -13,7 +13,7 @@ const choreAPI = require("../choresListTests/unit-test-choresListAPI.js");
  * Then stores this information within the localStorage API.
  * @param {Object} formData An object with form data regarding new roommate
  */
-// export 
+// export
 function createRoommate(formData) {
   // Check if the RoommateListData key is contained within local storage
   // If not then create it, otherwise just append to roommates list and update id
@@ -31,9 +31,9 @@ function createRoommate(formData) {
     roommate.id = apiData.idCount;
     apiData.idCount += 1;
 
-  for (const [key, value] of Object.entries(formData)) {
-    roommate[key] = value;
-  }
+    for (const [key, value] of Object.entries(formData)) {
+      roommate[key] = value;
+    }
 
     apiData.Roommates.push(roommate);
 
@@ -46,7 +46,7 @@ function createRoommate(formData) {
  * Then stores this information within the localStorage API.
  * @param {Object} formData An object with form data regarding new roommate
  */
-// export 
+// export
 function updateRoommate(formData, id) {
   // gather data inputted from form
   const roommate = {};
@@ -72,7 +72,7 @@ function updateRoommate(formData, id) {
  * found. If nothing in local storage returns empty array
  * @returns {Array<object>} An array of RoommateListData
  */
-// export 
+// export
 function readRoommate() {
   // check to see if this is the first time the user is attempting to add roommates
   if (localStorage.getItem("RoommateListData") === null) {
@@ -94,7 +94,7 @@ function readRoommate() {
  * No change is made to the array if the id is not found.
  * @param {Int} id Id of the roommate to remove
  */
-// export 
+// export
 function deleteRoommate(id) {
   // get the RoommateListData from local storage
   const roommateList = JSON.parse(localStorage.getItem("RoommateListData"));
