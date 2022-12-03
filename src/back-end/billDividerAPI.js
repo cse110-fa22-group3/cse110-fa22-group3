@@ -1,27 +1,27 @@
+////////////////////////////////////////OLD BILL DIVIDER SPECS//////////////////////////////////////////////////
 /**
  * Helper function that checks if the BillDividerData exists in local storage.
  * If it exists, nothing is done.
  * If it does not exist, then it is created with an empty array of contributions
  * and an empty array of logs.
  */
-function dataExist()
-{
-    //check to see if BillDividerData does not exist in local storage
-    if (localStorage.getItem("BillDividerData") === null)
-    {
-        //creating a new BillDividerData
-        const billDividerData = {
-          contributions: [],
-          log: [],
-        };
-    
-        //adding it to local storage for the first time
-        localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
-    }
-}
-//This is a helper function if you need it; checks to make sure the local storage data
-//is initialized
-////////////////////////////////////////OLD BILL DIVIDER SPECS//////////////////////////////////////////////////
+ /*function dataExist()
+ {
+     //check to see if BillDividerData does not exist in local storage
+     if (localStorage.getItem("BillDividerData") === null)
+     {
+         //creating a new BillDividerData
+         const billDividerData = {
+           contributions: [],
+           log: [],
+         };
+     
+         //adding it to local storage for the first time
+         localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+     }
+ }*/
+ //This is a helper function if you need it; checks to make sure the local storage data
+ //is initialized
 
 /**
  * Gets the contribution of the roommate with the matching id by accessing
@@ -166,7 +166,16 @@ export function getAvgContribution()
     return getTotalContributions() / contributions.length;
 }
 
+
+
+
+
+
+
 ////////////////////////////////////////NEW BILL DIVIDER SPECS//////////////////////////////////////////////////
+
+import { readRoommate } from "../back-end/roommateListAPI.js";
+
 /**
  * Adds a new roommate into the Roommate Array. This will be called in the Roommate List API.
  * "Owes" and "transferred" arrays should all have a new pair added with the given ID and amount 0
@@ -174,7 +183,28 @@ export function getAvgContribution()
  */
 export function initializeRoommate(id)
 {
+    dataExist();
 
+    const roommates = readRoommate();
+
+    const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+    const finance = {
+        "id": id,
+        "isOwed": 0.0,
+        "owes": {},
+        "paid": 0.0,
+        "transferred": {},
+    };
+
+    for (let i = 0; i < roommates.length; i++)
+    {
+        finance["owes"][roommates[i]["id"]] = 0.0;
+        finance["transferred"][roommates[i]["id"]] = 0.0;
+    }
+
+    billDividerData["Finances"].push(finance);
+
+    localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
 }
 
 
@@ -223,3 +253,24 @@ export function setHistoryArray(array)
 
 }
 
+/**
+ * Helper function that checks if the BillDividerData exists in local storage.
+ * If it exists, nothing is done.
+ * If it does not exist, then it is created with an empty array of contributions
+ * and an empty array of logs.
+ */
+ function dataExist()
+ {
+     //check to see if BillDividerData does not exist in local storage
+     if (localStorage.getItem("BillDividerData") === null)
+     {
+         //creating a new BillDividerData
+         const billDividerData = {
+           Finances: [],
+           History: [],
+         };
+     
+         //adding it to local storage for the first time
+         localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+     }
+ }
