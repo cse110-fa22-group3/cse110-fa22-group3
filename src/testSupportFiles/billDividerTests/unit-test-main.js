@@ -1,13 +1,53 @@
-import { readRoommate } from "../../../../back-end/roommateListAPI.js";
-import {
-  initializeRoommate,
-  deleteRoommateFromDivider,
-  getRoommateArray,
-  getHistoryArray,
-  setRoommateArray,
-  setHistoryArray,
-  addTransaction,
-} from "../../../../back-end/billDividerAPI.js";
+module.exports = {
+  getRoommate,
+  createRoommateCard,
+  initializeList,
+  populateHistory,
+  displayRoommateCards,
+  storeData,
+  pay,
+  processPayment,
+  reevaluateDebt,
+  transfer,
+  processTransfer,
+  deleteHistory,
+  getRoommateIndex,
+  getRoommateId,
+  getRoommateName,
+};
+
+//import { readRoommate } from "../../../../back-end/roommateListAPI.js";
+const roommateAPI = require("../roommateListTests/unit-test-roommateListAPI.js");
+
+module.exports = {
+  getRoommate,
+  init,
+  createRoommateCard,
+  initializeList,
+  populateHistory,
+  displayRoommateCards,
+  storeData,
+  pay,
+  processPayment,
+  reevaluateDebt,
+  transfer,
+  processTransfer,
+  deleteHistory,
+  getRoommateIndex,
+  getRoommateId,
+  getRoommateName,
+};
+
+//import {
+//  initializeRoommate,
+//  deleteRoommateFromDivider,
+//  getRoommateArray,
+//  getHistoryArray,
+//  setRoommateArray,
+//  setHistoryArray,
+//  addTransaction,
+//} from "../../../../back-end/billDividerAPI.js";
+const billDividerAPI = require("../billDividerTests/unit-test-billDividerAPI.js");
 
 /**
  * Gets a given roommate with their ID
@@ -15,9 +55,11 @@ import {
  * @returns The roommate object
  */
 function getRoommate(id) {
-  let roommates = readRoommate();
+  let roommates = roommateAPI.readRoommate();
   for (let i = 0; i < roommates.length; i++) {
-    if (roommates[i].id == id) return roommates[i];
+    if (roommates[i].id == id) {
+      return roommates[i];
+    }
   }
   return null;
 }
@@ -37,8 +79,8 @@ function init() {
 }
 
 let cardBox = document.querySelectorAll(".card");
-let array = getRoommateArray(); //array containing data objects
-let history_array = getHistoryArray();
+let array = billDividerAPI.getRoommateArray(); //array containing data objects
+let history_array = billDividerAPI.getHistoryArray();
 
 /**
  * create a roommate card using information in the input data object
@@ -170,8 +212,8 @@ function displayRoommateCards() {
  * Stores array and history_array in local storage
  */
 function storeData() {
-  setRoommateArray(array);
-  setHistoryArray(history_array);
+  billDividerAPI.setRoommateArray(array);
+  billDividerAPI.setHistoryArray(history_array);
 }
 
 /**
@@ -265,6 +307,8 @@ function processPayment(id, amount) {
  */
 function reevaluateDebt() {
   // CALCULATES THE TOTAL PAYMENTS AND AVERAGE PAYMENT ACROSS ALL THE ROOMMATES
+
+  let array = billDividerAPI.getRoommateArray(); //array containing data objects
 
   let total_paid = 0;
   array.forEach((data) => {
