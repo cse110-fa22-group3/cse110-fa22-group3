@@ -18,8 +18,6 @@ test("checks if readChores initializes fileds correctly if there's no chore", ()
   const localStorageData = JSON.parse(
     window.localStorage.getItem("ChoresListData")
   );
-  console.log("local storage:", localStorageData);
-  console.log("supposed data:", resData);
   expect(localStorageData).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -47,8 +45,6 @@ test("checks if an empty chore is created in local storage", () => {
     window.localStorage.getItem("ChoresListData")
   );
   const chores = localStorageData.chores;
-  console.log("local storage:", chores[0]);
-  console.log("supposed data:", resData);
   expect(chores[0]).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -83,8 +79,6 @@ test("checks readChore returns the correct JSON when empty chore is created in l
   const localStorageData = JSON.parse(
     window.localStorage.getItem("ChoresListData")
   );
-  console.log("local storage:", localStorageData);
-  console.log("supposed data:", resData);
   expect(localStorageData).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -112,8 +106,6 @@ test("check if createChore creates a non-empty chore", () => {
     window.localStorage.getItem("ChoresListData")
   );
   const chores = localStorageData.chores;
-  console.log("local storage:", chores[0]);
-  console.log("supposed data:", formData);
   expect(chores[0]).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -149,8 +141,6 @@ test("checks readChore returns the correct JSON when a non-empty chore is create
   const localStorageData = JSON.parse(
     window.localStorage.getItem("ChoresListData")
   );
-  console.log("local storage:", localStorageData);
-  console.log("supposed data:", resData);
   expect(localStorageData).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -214,8 +204,6 @@ test("check if createChore creates multiple non-empty chore", () => {
     window.localStorage.getItem("ChoresListData")
   );
   const chores = localStorageData.chores;
-  console.log("local storage:", chores);
-  console.log("supposed data:", resData);
   expect(chores).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -284,8 +272,6 @@ test("checks readChore returns the correct JSON when multiple non-empty chores a
   const localStorageData = JSON.parse(
     window.localStorage.getItem("ChoresListData")
   );
-  console.log("local storage:", localStorageData);
-  console.log("supposed data:", resData);
   expect(localStorageData).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -294,8 +280,6 @@ test("check if queryChore returns an empty object when can't find in chores", ()
   functionAPIs.readChores();
   const resData = {};
   const query = functionAPIs.queryChore("chores", 2);
-  console.log("actual: ", query);
-  console.log("supposed: ", resData);
   expect(query).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -304,8 +288,6 @@ test("check if queryChore returns an empty object when can't find in archived", 
   functionAPIs.readChores();
   const resData = {};
   const query = functionAPIs.queryChore("archived", 2);
-  console.log("actual: ", query);
-  console.log("supposed: ", resData);
   expect(query).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -350,8 +332,6 @@ test("check if queryChore returns A JSON with info on a chore when local storage
 
   const query = functionAPIs.queryChore("chores", id);
 
-  console.log("actual: ", query);
-  console.log("supposed: ", resData);
   expect(query).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -442,8 +422,6 @@ test("checks if updateChore correctly updates multiple non-empty chores in local
   const localStorageData = JSON.parse(
     window.localStorage.getItem("ChoresListData")
   );
-  console.log("local storage:", localStorageData);
-  console.log("supposed data:", resData);
   expect(localStorageData).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -515,8 +493,6 @@ test("check if closeChore correctly closes chores and put them to archive", () =
   const localStorageData = JSON.parse(
     window.localStorage.getItem("ChoresListData")
   );
-  console.log("local storage:", localStorageData);
-  console.log("supposed data:", resData);
   expect(localStorageData).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -589,8 +565,6 @@ test("checks if reOpenChore reopens chores that are closed", () => {
   const localStorageData = JSON.parse(
     window.localStorage.getItem("ChoresListData")
   );
-  console.log("local storage:", localStorageData);
-  console.log("supposed data:", resData);
   expect(localStorageData).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -654,8 +628,6 @@ test("checks if clearArchive clears archive", () => {
   const localStorageData = JSON.parse(
     window.localStorage.getItem("ChoresListData")
   );
-  console.log("local storage:", localStorageData);
-  console.log("supposed data:", resData);
   expect(localStorageData).toStrictEqual(resData);
   window.localStorage.clear();
 });
@@ -677,7 +649,6 @@ test("check if checkDate corrects the assignedDate", () => {
 
   // This arrangement can be altered based on how we want the date's format to appear.
   let currentDate = `${month}/${day}/${year}`;
-  console.log(currentDate);
 
   const resData = {
     id: 1,
@@ -692,8 +663,6 @@ test("check if checkDate corrects the assignedDate", () => {
   functionAPIs.createChore(formData);
   const localStorageData = functionAPIs.readChores();
   const chore = localStorageData.chores[0];
-  console.log("local storage:", chore);
-  console.log("supposed data:", resData);
   expect(chore["assignedDate"]).toStrictEqual(currentDate);
   window.localStorage.clear();
 });
@@ -711,7 +680,6 @@ test("checks if inCharge returns the correct roommate that's in charge of a chor
     window.localStorage.getItem("ChoresListData")
   );
   const chore = localStorageData.chores[0];
-  console.log(chore);
   const charge = functionAPIs.inCharge(1);
   expect(charge).toStrictEqual("Mark");
   window.localStorage.clear();
@@ -743,8 +711,6 @@ test("checks if removeFromChore removes the roommate from chores", () => {
   );
   const Roommates = localStorageData.Roommates;
   const chores = localStorageDataC.chores;
-  console.log("Roommates: ", Roommates);
-  console.log("chores: ", chores);
   expect(chores[0]["assignee"]).toStrictEqual([-1]);
   window.localStorage.clear();
 });
