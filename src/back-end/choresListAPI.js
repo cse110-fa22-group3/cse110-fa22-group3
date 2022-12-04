@@ -395,44 +395,47 @@ export function inCharge(id) {
  * @param {*} id id of the roommate that was removed
  */
 export function removeFromChore(id) {
-  //get ChoresListData from localStorage
-  let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
+  if (localStorage.getItem("ChoresListData") === null) {
+  } else {
+    //get ChoresListData from localStorage
+    let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
 
-  //iterate through the open chores list
-  for (let i = 0; i < choresAPIData["chores"].length; i++) {
-    let openChore = choresAPIData["chores"][i];
+    //iterate through the open chores list
+    for (let i = 0; i < choresAPIData["chores"].length; i++) {
+      let openChore = choresAPIData["chores"][i];
 
-    //iterate through the assignees the chore
-    for (let j = 0; j < openChore["assignee"].length; j++) {
-      //if the deleted roommate's id is found, remove that roommate
-      if (openChore["assignee"][j] == id) {
-        openChore["assignee"].splice(j, 1);
+      //iterate through the assignees the chore
+      for (let j = 0; j < openChore["assignee"].length; j++) {
+        //if the deleted roommate's id is found, remove that roommate
+        if (openChore["assignee"][j] == id) {
+          openChore["assignee"].splice(j, 1);
 
-        if (openChore["currRoommate"] == id) {
-          if (openChore["assignee"].length > 0) {
-            openChore["currRoommate"] = openChore["assignee"][0];
-          } else {
-            openChore["assignee"] = [-1];
-            openChore["currRoommate"] = -1;
+          if (openChore["currRoommate"] == id) {
+            if (openChore["assignee"].length > 0) {
+              openChore["currRoommate"] = openChore["assignee"][0];
+            } else {
+              openChore["assignee"] = [-1];
+              openChore["currRoommate"] = -1;
+            }
           }
+          break;
         }
-        break;
       }
     }
-  }
 
-  //iterate through the archived chores list
-  for (let i = 0; i < choresAPIData["archived"].length; i++) {
-    let archivedChore = choresAPIData["archived"][i];
+    //iterate through the archived chores list
+    for (let i = 0; i < choresAPIData["archived"].length; i++) {
+      let archivedChore = choresAPIData["archived"][i];
 
-    //iterate through the assignees the chore
-    for (let j = 0; j < archivedChore["assignee"].length; j++) {
-      //if the deleted roommate's id is found, remove that roommate
-      if (archivedChore["assignee"][j] == id) {
-        archivedChore["assignee"].splice(j, 1);
+      //iterate through the assignees the chore
+      for (let j = 0; j < archivedChore["assignee"].length; j++) {
+        //if the deleted roommate's id is found, remove that roommate
+        if (archivedChore["assignee"][j] == id) {
+          archivedChore["assignee"].splice(j, 1);
+        }
       }
     }
-  }
 
-  localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
+    localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
+  }
 }
