@@ -1,3 +1,21 @@
+module.exports = {
+  getRoommate,
+	createRoommateCard,
+	initializeList,
+	populateHistory,
+	displayRoommateCards,
+	storeData,
+	pay,
+	processPayment,
+	reevaluateDebt,
+	transfer,
+	processTransfer,
+	deleteHistory,
+	getRoommateIndex,
+	getRoommateId,
+	getRoommateName,
+};
+
 //import { readRoommate } from "../../../../back-end/roommateListAPI.js";
 const roommateAPI = require("../roommateListTests/unit-test-roommateListAPI.js");
 
@@ -12,13 +30,13 @@ const roommateAPI = require("../roommateListTests/unit-test-roommateListAPI.js")
 //} from "../../../../back-end/billDividerAPI.js";
 const billDividerAPI = require("../billDividerTests/unit-test-billDividerAPI.js")
 
-let roommates = roommateAPI.readRoommate();
 /**
  * Gets a given roommate with their ID
  * @param {number} id The ID of the roommate
  * @returns The roommate object
  */
 function getRoommate(id) {
+  let roommates = roommateAPI.readRoommate();
   for (let i = 0; i < roommates.length; i++) {
     if (roommates[i].id == id) return roommates[i];
   }

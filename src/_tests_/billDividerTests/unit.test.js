@@ -5,6 +5,7 @@
 // import functions
 const functionAPIs = require("../../testSupportFiles/billDividerTests/unit-test-billDividerAPI");
 const mainAPIs = require("../../testSupportFiles/billDividerTests/unit-test-main");
+const roommatesAPIs = require("../../testSupportFiles/roommateListTests/unit-test-roommateListAPI");
 
 test("what are you testing?", () => {
     //functionAPIs.getHistoryArray();
@@ -32,6 +33,7 @@ test("checks if setRoommateArray successfully replaces the roommate array in loc
     const localStorageData = JSON.parse(window.localStorage.getItem("BillDividerData"));
 
     expect(localStorageData["Roommates"]).toStrictEqual(newRoommates);
+    window.localStorage.clear();
 });
 
 //setHistoryArray
@@ -47,13 +49,28 @@ test("checks if setHistoryArray successfully replaces the roommate array in loca
     const localStorageData = JSON.parse(window.localStorage.getItem("BillDividerData"));
 
     expect(localStorageData["History"]).toStrictEqual(newHistory);
+    window.localStorage.clear();
 });
 
-//processPayment
-//reevaluateDebt
-//transfer
-//processTransfer
-//deleteHistory
-//getRoommateIndex
-//getRoommateId
-//getRoommateName
+//getRoommate (only works if let roommates = roommateAPI.readRoommate(); is in the function)
+test("checks if getRoommate is able to identify if a roommate exists or not", () => {
+    const formData = {
+        name: "Xun Liu",
+        birthday: "12/19/2000",
+        hobbies: "playing guitar",
+        notes: "",
+      };
+      
+    const reference = {
+        name: "Xun Liu",
+        birthday: "12/19/2000",
+        hobbies: "playing guitar",
+        notes: "",
+        id: 0,
+      };
+
+    roommatesAPIs.createRoommate(formData);
+
+    expect(reference).toStrictEqual(mainAPIs.getRoommate(0));
+    window.localStorage.clear();
+});

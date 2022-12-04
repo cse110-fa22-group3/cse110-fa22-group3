@@ -100,6 +100,8 @@ const roommateAPI = require("../roommateListTests/unit-test-roommateListAPI.js")
    * @param {Array<object>} newRoommates new roommates list
    */
   function setRoommateArray(newRoommates) {
+    dataExist();
+    
     const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
   
     //replace the old roommates array
@@ -113,6 +115,8 @@ const roommateAPI = require("../roommateListTests/unit-test-roommateListAPI.js")
    * @param {Array<object>} newHistory new history list
    */
   function setHistoryArray(newHistory) {
+    dataExist();
+
     const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
   
     //replace the old history array (may not be needed if you use addTransaction)
