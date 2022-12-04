@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: testSupportFiles/passwordHolderTests/unit-test-passwordHolderAPIs.js</title>
+    <title>JSDoc: Source: testSupportFiles/billDividerTests/unit-test-billDividerAPI.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: testSupportFiles/passwordHolderTests/unit-test-passwordHolderAPIs.js</h1>
+    <h1 class="page-title">Source: testSupportFiles/billDividerTests/unit-test-billDividerAPI.js</h1>
 
     
 
@@ -26,120 +26,182 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// passwordHolderAPI.js
-
-module.exports = {
-  readPasswords,
-  readIdCount,
-  queryPasswordInfo,
-  deletePassword,
-  createPassword,
-  updatePassword,
+            <pre class="prettyprint source linenums"><code>module.exports = {
+  initializeRoommate,
+  deleteRoommateFromDivider,
+  getRoommateArray,
+  getHistoryArray,
+  setRoommateArray,
+  setHistoryArray,
+  addTransaction,
+  dataExist,
 };
 
-/**
- * readPasswords handles populating the password information commonly
- * shared by all roommates in a group. First function called within the
- * init function when initializing the passwordHolder page.
- * @returns {Array&lt;object>} with the JSON data of each password.
- */
-function readPasswords() {
-  if (localStorage.getItem("PasswordHolderData") === null) {
-    const firstPasswordList = {
-      Passwords: [],
-      idPasswordCount: 0,
-    };
-    localStorage.setItem(
-      "PasswordHolderData",
-      JSON.stringify(firstPasswordList)
-    );
-    return JSON.parse(localStorage.getItem("PasswordHolderData")).Passwords;
-  } else {
-    return JSON.parse(localStorage.getItem("PasswordHolderData")).Passwords;
-  }
-}
+//import { readRoommate } from "../back-end/roommateListAPI.js";
+const roommateAPI = require("../roommateListTests/unit-test-roommateListAPI.js");
 
 /**
- * queryPasswordInfo handles providing information for a specifc password
- * in the localStorage.
- * @param {Int} id that indicates which password we are trying to query
- * @returns {Object} with the JSON data of the specific password.
+ * Adds a new roommate into the Roommate Array. This will be called in the Roommate List API.
+ * "Owes" and "transferred" arrays should all have a new pair added with the given ID and amount 0
+ * Set "paid" to the average "paid" from the other roommates.
+ * @param {Int} id
  */
-function queryPasswordInfo(id) {
-  const apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
-  for (let i = 0; i &lt; apiData.Passwords.length; i++) {
-    if (apiData.Passwords[i].id === id) {
-      return apiData.Passwords[i];
-    }
-  }
-}
+function initializeRoommate(id) {
+  dataExist();
 
-/**
- * readIdCount handles providing information for which id number we are on.
- * @returns {Int} with the latest id assigned to a card.
- */
-function readIdCount() {
-  if (localStorage.getItem("PasswordHolderData") === null) {
-    return 0;
-  }
-  return JSON.parse(localStorage.getItem("PasswordHolderData")).idPasswordCount;
-}
-
-/**
- * createPassword handles adding a new commonly shared password into the
- * localStorage so that we can store a new password for the rooommate group
- * Establishes the data we are tracking for a commonly shared password.
- * @param {Object} formData provided by JS file that gives us the data for
- * fields of a new password.
- */
-function createPassword(formData) {
-  const apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
-  const newPassword = {
-    id: apiData.idPasswordCount,
-    key: formData.key,
-    username: formData.username,
-    password: formData.password,
+  const listOfPeople = roommateAPI.readRoommate();
+  const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+  const roommates = billDividerData["Roommates"];
+  const roommate = {
+    id: id,
+    isOwed: 0.0,
+    paid: 0.0,
   };
-  apiData.idPasswordCount += 1;
-  apiData.Passwords.push(newPassword);
-  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
+  let totalPaid = 0;
+
+  //getting the average paid from other roommates (BEFORE THE NEW ONE IS ADDED)
+  for (let i = 0; i &lt; roommates.length; i++) {
+    totalPaid += roommates[i]["paid"];
+  }
+
+  //assigning the average paid to the new roommate
+  if (roommates.length > 0) roommate["paid"] = totalPaid / roommates.length;
+
+  billDividerData["Roommates"].push(roommate);
+
+  localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
 }
 
 /**
- * updatePassword handles editing an existing commonly shared password and
- * putting the changes into the localStorage so that we can store an
- * updated password for the rooommate group.
- * @param {Object} formData provided by JS file that gives us the fields
- * @param {Int} id that indicates which password we are trying to update
+ * Removes a given roommate from the Roommate array.
+ * Also removes all history of that roommate and all Owes/transferred references.
+ * @param {Int} id
  */
-function updatePassword(id, formData) {
-  const apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
-  for (let i = 0; i &lt; apiData.Passwords.length; i++) {
-    if (apiData.Passwords[i].id === id) {
-      apiData.Passwords[i].key = formData.key;
-      apiData.Passwords[i].username = formData.username;
-      apiData.Passwords[i].password = formData.password;
+function deleteRoommateFromDivider(id) {
+  dataExist();
+
+  const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+  const roommates = billDividerData["Roommates"];
+  const history = billDividerData["History"];
+
+  //removing the roommate from the owes and transferred list, and overall list
+  for (let i = 0; i &lt; roommates.length; i++) {
+    if (roommates[i].id == id) {
+      roommates.splice(i, 1);
       break;
     }
   }
-  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
+
+  //removing the roommate from the history list
+  for (let i = 0; i &lt; history.length; i++) {
+    if (history[i]["from"] == id || history[i]["to"] == id) {
+      history.splice(i, 1);
+      i--;
+    }
+  }
+
+  localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
 }
 
 /**
- * deletePassword handles deleting an existing commonly shared password and
- * putting the changes into the localStorage so that we can remove a
- * password for the rooommate group.
- * @param {Int} id that indicates which password we are trying to delete
+ * Returns the roommate list with id, amount they're owed/owe/paid/transferred.
+ * @returns {Array&lt;object>} an array of roommates
  */
-function deletePassword(id) {
-  const apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
-  for (let i = 0; i &lt; apiData.Passwords.length; i++) {
-    if (apiData.Passwords[i].id === id) {
-      apiData.Passwords.splice(i, 1);
-      break;
+function getRoommateArray() {
+  dataExist();
+
+  return JSON.parse(localStorage.getItem("BillDividerData"))["Roommates"];
+}
+
+/**
+ * Returns the history array with all of the transactions.
+ * @returns {Array&lt;object>}
+ */
+function getHistoryArray() {
+  dataExist();
+
+  return JSON.parse(localStorage.getItem("BillDividerData"))["History"];
+}
+
+/**
+ * Replaces the old roommates list with the new one in local storage.
+ * @param {Array&lt;object>} newRoommates new roommates list
+ */
+function setRoommateArray(newRoommates) {
+  dataExist();
+
+  const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+
+  //replace the old roommates array
+  billDividerData["Roommates"] = newRoommates;
+
+  localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+}
+
+/**
+ * Replaces the old history list with the new one in local storage.
+ * @param {Array&lt;object>} newHistory new history list
+ */
+function setHistoryArray(newHistory) {
+  dataExist();
+
+  const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+
+  //replace the old history array (may not be needed if you use addTransaction)
+  billDividerData["History"] = newHistory;
+
+  //replace the old history array (may not be needed if you use addTransaction)
+  billDividerData["History"] = newHistory;
+
+  localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+}
+
+/**
+ * Adds a transaction (including from, amount, and to information). To
+ * can be -1 if it is not sent to anyone.
+ * @param {Int} from id of the roommate money is sent from
+ * @param {Double} amount amount of money sent
+ * @param {Int} to id of the roommate money is sent to
+ */
+function addTransaction(from, amount, to) {
+  const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+
+  //initialize the transaction with argument data (to can be -1)
+  const transaction = {
+    from: from,
+    amount: amount,
+    to: to,
+  };
+
+  billDividerData["History"].push(transaction);
+
+  localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+}
+
+/**
+ * Helper function that checks if the BillDividerData exists in local storage.
+ * If it exists, nothing is done.
+ * If it does not exist, then it is created with an empty array of roommates
+ * and an empty array of transaction history.
+ */
+function dataExist() {
+  //check to see if BillDividerData does not exist in local storage
+  if (localStorage.getItem("BillDividerData") === null) {
+    //creating a new BillDividerData
+    const billDividerData = {
+      Roommates: [],
+      History: [],
+    };
+
+    let roommates = roommateAPI.readRoommate();
+
+    //adding it to local storage for the first time
+    localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+
+    for (let r = 0; r &lt; roommates.length; r++) {
+      initializeRoommate(roommates[r].id);
     }
   }
-  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
 }
 </code></pre>
         </article>
