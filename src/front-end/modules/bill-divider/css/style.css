@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  vertical-align: middle;
+}
+
+input,
+textarea {
+  height: 35px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  border: 2px solid #000;
+}
+
+.w {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.mb-3 {
+  margin-bottom: 15px;
+}
+
+.card {
+  display: none;
+  margin: 30px auto;
+  padding: 15px;
+  background: #fff;
+  border-radius: 25px;
+  border: 3px solid #000;
+}
+
+.card.active {
+  display: block;
+}
+
+.card .tit {
+  position: relative;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.card .tit .back {
+  width: 35px;
+}
+
+.card .tit h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.list li {
+  margin-bottom: 5px;
+  padding: 15px;
+  border-radius: 15px;
+  background: #e9e9e9;
+  box-shadow: 0 0 2px #e9e9e9;
+}
+
+.list li h3 {
+  font-size: 25px;
+}
+
+.list li p {
+  color: #59a54c;
+}
+
+.list li span {
+  color: red;
+}
+
+.btn-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.btn-list button {
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.transfer-list {
+  margin: 0 auto;
+  width: 450px;
+}
+
+.transfer-list li {
+  display: flex;
+  align-items: center;
+  padding: 0 10%;
+}
+
+.transfer-list li span,
+.transfer-list li p {
+  width: 150px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.transfer-list li input[type="text"],
+.transfer-list li input[type="number"] {
+  position: relative;
+  left: -42px;
+  width: 215px;
+}
+
+.transfer-list li textarea {
+  padding: 15px;
+  width: 360px;
+  min-height: 150px;
+  box-sizing: border-box;
+}
+
+.history-list li {
+  display: flex;
+  align-items: center;
+}
+
+.history-list li input {
+  margin-right: 15px;
+}
+
+.transfer-list li input[type="radio"] {
+  position: relative;
+  bottom: -4px;
+  border: 0;
+  height: 1.5em;
+  width: 50px;
+}
+
+li.mb-3 .select-name {
+  margin-bottom: 30px;
+  position: relative;
+  left: -60px;
+  bottom: -10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+li.mb-3 .select-name label {
+  font-size: larger;
+}
+
+input[type="submit"],
+#transfer-btn {
+  position: relative;
+  margin-top: 30px;
+  font-size: 1em;
+  width: 100px;
+  left: 40%;
+}

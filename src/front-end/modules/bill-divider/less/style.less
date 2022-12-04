@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+input,
+textarea {
+    height: 35px;
+    border-radius: 10px;
+    background: rgb(217, 217, 217);
+    border: 2px solid #000;
+}
+
+.w {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.mb-3 {
+    margin-bottom: 15px;
+}
+
+.card {
+    display: none;
+    margin: 30px auto;
+    padding: 15px;
+    background: #fff;
+    border-radius: 25px;
+    border: 3px solid #000;
+
+    &.active {
+        display: block;
+    }
+
+    .tit {
+        position: relative;
+        display: flex;
+        margin-bottom: 15px;
+
+        .back {
+            width: 35px;
+        }
+
+        h1 {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}
+
+.list {
+    li {
+        margin-bottom: 5px;
+        padding: 15px;
+        border-radius: 15px;
+        background: rgb(233, 233, 233);
+        box-shadow: 0 0 2px rgb(233, 233, 233);
+
+        h3 {
+            font-size: 25px;
+        }
+
+        p {
+            color: rgb(89, 165, 76);
+        }
+
+        span {
+            color: red;
+        }
+    }
+}
+
+.btnList {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    button {
+        padding: 5px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+
+.transferList {
+    margin: 0 auto;
+width: 450px;
+    li {
+        display: flex;
+        align-items: center;
+        padding: 0 10%;
+
+        span,
+        p {
+            width: 150px;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        input {
+            width: 215px;
+        }
+
+        textarea {
+            padding: 15px;
+            width: 360px;
+            min-height: 150px;
+            box-sizing: border-box;
+        }
+    }
+
+}
+
+.historyList {
+    li {
+        display: flex;
+        align-items: center;
+
+        input {
+            margin-right: 15px;
+        }
+    }
+}

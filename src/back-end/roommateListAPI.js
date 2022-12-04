@@ -1,5 +1,9 @@
 //roommateListAPI.js
 import { removeFromChore } from "../back-end/choresListAPI.js";
+import {
+  initializeRoommate,
+  deleteRoommateFromDivider,
+} from "./billDividerAPI.js";
 
 /**
  * Reads formData from the form that creates a new rooomate.
@@ -26,6 +30,9 @@ export function createRoommate(formData) {
 
   //add the roommate to the roommates list
   roommateListData["Roommates"].push(roommate);
+
+  //add the roommate to the bill divider storage
+  initializeRoommate(roommate["id"]);
 
   //replace the RoommateListData in local storage
   localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
@@ -75,6 +82,9 @@ export function deleteRoommate(id) {
 
   //remove the roommate from any chores
   removeFromChore(id);
+  
+  //remove the roommate from the bill divider storage
+  deleteRoommateFromDivider(id);
 
   //replace the RoommateListData in local storage
   localStorage.setItem("RoommateListData", JSON.stringify(roommateListData));
