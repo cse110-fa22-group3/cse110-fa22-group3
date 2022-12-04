@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: front-end/modules/passwordHolder/scripts/passwordHolderCard.js</title>
+    <title>JSDoc: Source: front-end/modules/roommate-list/js/roommate.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: front-end/modules/passwordHolder/scripts/passwordHolderCard.js</h1>
+    <h1 class="page-title">Source: front-end/modules/roommate-list/js/roommate.js</h1>
 
     
 
@@ -26,56 +26,87 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>class passwordHolderCard extends HTMLElement {
-  constructor() {
-    super();
-    this.shadow = this.attachShadow({ mode: "open" });
-    const passwordHolderCard = document.createElement("div");
-    this.shadow.append(passwordHolderCard);
-  }
+            <pre class="prettyprint source linenums"><code>//roommate.js
 
-  /**
-   * Called when the .data property is set on this element.
-   * @param {Object} data which is the JSON passed to the element
-   * from localStorage.
-   */
-  set data(data) {
-    if (!data) return;
-    const passwordHolderCard = this.shadow.querySelector("div");
-    passwordHolderCard.className = "whole-password";
-    passwordHolderCard.innerHTML = `&lt;style>.whole-password{
-          background-color: rgba(0, 0, 0, 0);
-          border-radius: 12px;
-          border: solid white 2px;
-          box-shadow: 0 10px 8px rgba(0, 0, 0, 0.5);
-          transition-duration: 0.4s;
-          color:white;
-          height: 50px;
-          margin-top: 15px;
-          padding-left: 20px;
-          padding-bottom: 25px;
-          width: 115vh; 
-          /* display: flex; */
-          /* display: inline-block; */
-        }
-      
-      .whole-password:hover{
-      transform: translateY(-4px);
-      color: black;
-      background-color: white;
-      cursor: pointer;
-      }&lt;/style>&lt;h2>${data.key}&lt;/h2>`;
+/**
+ * Class Roommate has the functionality to create custom roommate-card
+ * elements and input a consistent style and roommate data from local storage.
+ */
+class Roommate extends HTMLElement {
+  constructor() {
+    //inheret everything from HTMLElement
+    super();
+    //attach shadow DOM
+    this.shadow = this.attachShadow({ mode: "open" });
+
+    //defining the roommate element and appending it
+    const roommate = document.createElement("div");
+    roommate.className = "item";
+    this.shadow.append(roommate);
+
+    //defining the style element and appending it
+    const style = document.createElement("style");
+    style.innerText = `
+          .item {
+            margin-bottom: 30px;
+            padding: 30px;
+            width: 200px;
+            border-radius: 45px;
+            border: 5px solid #000;
+            text-align: center;
+            cursor: pointer;
+          }
+          .text {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .text img {
+            width: 35px;
+            height: auto;
+          }
+          .text p {
+            font-size: 25px;
+          }
+          h3 {
+            text-align: center;
+            font-size: 35px;
+            margin-bottom: 20px;
+          }
+          span {
+            font-size: 20px;
+          }
+          `;
+    this.shadow.append(style);
   }
-  /**
-   * Called when the data property is read from the element.
-   */
-  get data() {
-    const passwordHolderCard = this.shadow.querySelector("div");
-    return passwordHolderCard.innerHTML;
+  //setting the data that we will receive from local storage
+  set data(data) {
+    //if there is no data, return
+    if (!data) return;
+
+    //querying the div element
+    const roommate = this.shadow.querySelector("div");
+
+    //showing the roommate's data in the shadow DOM
+    roommate.innerHTML = `
+            &lt;h3>${data.name}&lt;/h3>
+            &lt;div class="text">
+                &lt;img src="./modules/roommate-list/images/icon-1.png" alt="">
+                &lt;p>${data.birthday}&lt;/p>
+            &lt;/div>
+            &lt;div class="text">
+                &lt;p>${data.hobbies}&lt;/p>
+            &lt;/div>
+            &lt;div class="text">
+                &lt;p>${data.notes}&lt;/p>
+            &lt;/div>
+        `;
   }
 }
 
-customElements.define("password-holder-card", passwordHolderCard);
+//define a new custom element roommate-card
+customElements.define("roommate-card", Roommate);
 </code></pre>
         </article>
     </section>
