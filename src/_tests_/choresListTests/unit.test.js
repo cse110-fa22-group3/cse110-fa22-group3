@@ -449,74 +449,76 @@ test("checks if updateChore correctly updates multiple non-empty chores in local
 });
 
 test("check if closeChore correctly closes chores and put them to archive", () => {
-    functionAPIs.readChores();
-    const formData0 = {
-        title: "Wash Dishses",
-        description: "Wash dishes with hand",
-        assignee: ["Mark", "Park", "Kate"],
-        assignedDate: "11/11/1111",
-    };
-    const formData1 = {
+  functionAPIs.readChores();
+  const formData0 = {
+    title: "Wash Dishses",
+    description: "Wash dishes with hand",
+    assignee: ["Mark", "Park", "Kate"],
+    assignedDate: "11/11/1111",
+  };
+  const formData1 = {
+    title: "Clean floor",
+    description: "Clean floor with vaccum",
+    assignee: ["Park", "Mark", "Kate"],
+    assignedDate: "11/12/1111",
+  };
+
+  const formData2 = {
+    title: "Move TV",
+    description: "Move TV away from there",
+    assignee: ["Kate", "Mark", "Park"],
+    assignedDate: "11/19/1111",
+  };
+
+  const resData = {
+    chores: [
+      {
+        id: 2,
         title: "Clean floor",
         description: "Clean floor with vaccum",
         assignee: ["Park", "Mark", "Kate"],
         assignedDate: "11/12/1111",
-    };
-
-    const formData2 = {
+        status: "open",
+        currRoommate: "Park",
+      },
+    ],
+    archived: [
+      {
+        id: 1,
+        title: "Wash Dishses",
+        description: "Wash dishes with hand",
+        assignee: ["Mark", "Park", "Kate"],
+        assignedDate: "11/11/1111",
+        status: "closed",
+        currRoommate: "Mark",
+      },
+      {
+        id: 3,
         title: "Move TV",
         description: "Move TV away from there",
         assignee: ["Kate", "Mark", "Park"],
         assignedDate: "11/19/1111",
-    };
+        status: "closed",
+        currRoommate: "Kate",
+      },
+    ],
+    openChoresCount: 1,
+    closedChoresCount: 2,
+    choresCountId: 4,
+  };
 
-    const resData = {
-        chores: [
-        {
-            id: 2,
-            title: "Clean floor",
-            description: "Clean floor with vaccum",
-            assignee: ["Park", "Mark", "Kate"],
-            assignedDate: "11/12/1111",
-            status: "open",
-            currRoommate: "Park",
-        }
-        ],
-        archived: [{
-            id: 1,
-            title: "Wash Dishses",
-            description: "Wash dishes with hand",
-            assignee: ["Mark", "Park", "Kate"],
-            assignedDate: "11/11/1111",
-            status: "closed",
-            currRoommate: "Mark",
-        },
-        {
-            id: 3,
-            title: "Move TV",
-            description: "Move TV away from there",
-            assignee: ["Kate", "Mark", "Park"],
-            assignedDate: "11/19/1111",
-            status: "closed",
-            currRoommate: "Kate",
-        }],
-        openChoresCount: 1,
-        closedChoresCount: 2,
-        choresCountId: 4
-    };
-
-    functionAPIs.createChore(formData0);
-    functionAPIs.createChore(formData1);
-    functionAPIs.createChore(formData2);
-    functionAPIs.closeChore(1);
-    functionAPIs.closeChore(3);
-    const localStorageData = JSON.parse(
-        window.localStorage.getItem("ChoresListData")
-    );
-    console.log("local storage:", localStorageData);
-    console.log("supposed data:", resData);
-    expect(localStorageData).toStrictEqual(resData);
-    window.localStorage.clear();
+  functionAPIs.createChore(formData0);
+  functionAPIs.createChore(formData1);
+  functionAPIs.createChore(formData2);
+  functionAPIs.closeChore(1);
+  functionAPIs.closeChore(3);
+  const localStorageData = JSON.parse(
+    window.localStorage.getItem("ChoresListData")
+  );
+  console.log("local storage:", localStorageData);
+  console.log("supposed data:", resData);
+  expect(localStorageData).toStrictEqual(resData);
+  window.localStorage.clear();
 });
 
 test("checks if reOpenChore reopens chores that closed", () => {
