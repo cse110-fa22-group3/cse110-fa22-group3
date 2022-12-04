@@ -1,5 +1,13 @@
 import { readRoommate } from "../../../../back-end/roommateListAPI.js";
-import { initializeRoommate, deleteRoommateFromDivider, getRoommateArray, getHistoryArray, setRoommateArray, setHistoryArray, addTransaction } from "../../../../back-end/billDividerAPI.js";
+import {
+  initializeRoommate,
+  deleteRoommateFromDivider,
+  getRoommateArray,
+  getHistoryArray,
+  setRoommateArray,
+  setHistoryArray,
+  addTransaction,
+} from "../../../../back-end/billDividerAPI.js";
 
 let roommates = readRoommate();
 /**
@@ -8,7 +16,6 @@ let roommates = readRoommate();
  * @returns The roommate object
  */
 function getRoommate(id) {
-
   for (let i = 0; i < roommates.length; i++) {
     if (roommates[i].id == id) return roommates[i];
   }
@@ -38,7 +45,6 @@ let history_array = getHistoryArray();
  * @param {Object} data The data for the roommate
  */
 function createRoommateCard(data) {
-
   // CREATES THE WRAPPER FOR A GIVEN ROOMMATE
 
   let wrapper = document.createElement("li");
@@ -49,7 +55,10 @@ function createRoommateCard(data) {
   if (data.isOwed > 0)
     wrapper.insertAdjacentHTML("beforeend", `<p>is owed $${data.isOwed}</p>`);
   else if (data.isOwed < 0)
-    wrapper.insertAdjacentHTML("beforeend", `<span>owes $${-data.isOwed}</span>`);
+    wrapper.insertAdjacentHTML(
+      "beforeend",
+      `<span>owes $${-data.isOwed}</span>`
+    );
 
   // APPENDS WRAPPER TO PAGE
 
@@ -70,15 +79,15 @@ function initializeList() {
     let radioTransferFrom = document.createElement("div");
     let radioTransferTo = document.createElement("div");
     let radioPay = document.createElement("div");
-    radioTransferFrom.innerHTML = `<input type="radio" name="roommate" form="transfer-from" data-roommate="${data.id}"><label>${
-      getRoommateName(data.id)
-    }</label>`;
-    radioTransferTo.innerHTML = `<input type="radio" name="roommate" form="transfer-to" data-roommate="${data.id}"><label>${
-      getRoommateName(data.id)
-    }</label>`;
-    radioPay.innerHTML = `<input type="radio" name="roommate" form="pay" data-roommate="${data.id}"><label>${
-      getRoommateName(data.id)
-    }</label>`;
+    radioTransferFrom.innerHTML = `<input type="radio" name="roommate" form="transfer-from" data-roommate="${
+      data.id
+    }"><label>${getRoommateName(data.id)}</label>`;
+    radioTransferTo.innerHTML = `<input type="radio" name="roommate" form="transfer-to" data-roommate="${
+      data.id
+    }"><label>${getRoommateName(data.id)}</label>`;
+    radioPay.innerHTML = `<input type="radio" name="roommate" form="pay" data-roommate="${
+      data.id
+    }"><label>${getRoommateName(data.id)}</label>`;
     radioList[0].append(radioTransferFrom);
     radioList[1].append(radioTransferTo);
     radioList[2].append(radioPay);
@@ -89,15 +98,12 @@ function initializeList() {
  * Populates history list with data from history_array
  */
 function populateHistory() {
-
   // ITERATES THROUGH FULL HISTORY
 
   for (let i = 0; i < history_array.length; i++) {
-
     // FOR PAYMENTS:
 
-    if (history_array[i][0] == 'payment') {
-
+    if (history_array[i][0] == "payment") {
       // GETS THE 3 VALUES
 
       let id = history_array[i][1];
@@ -114,19 +120,14 @@ function populateHistory() {
       record.className = "mb-3";
       record.innerHTML = `
               <input type="checkbox" form="del-history">
-              <span>${
-                getRoommateName(id)
-              } paid ${amount} for ${purpose}</span>
+              <span>${getRoommateName(id)} paid ${amount} for ${purpose}</span>
           `;
       let historyList = document.querySelector("ul.history-list");
       historyList.insertBefore(record, historyList.firstChild);
-
     }
-    
+
     // FOR TRANSFERS:
-
-    else if (history_array[i][0] == 'transfer') {
-
+    else if (history_array[i][0] == "transfer") {
       // GETS THE 3 VALUES
 
       let from_id = history_array[i][1];
@@ -144,15 +145,12 @@ function populateHistory() {
       record.className = "mb-3";
       record.innerHTML = `
               <input type="checkbox" form="del-history">
-              <span>${
-                getRoommateName(from_id)
-              } transferred ${amount} to ${
-        getRoommateName(to_id)
-      }</span>
+              <span>${getRoommateName(
+                from_id
+              )} transferred ${amount} to ${getRoommateName(to_id)}</span>
           `;
       let historyList = document.querySelector("ul.history-list");
       historyList.insertBefore(record, historyList.firstChild);
-
     }
   }
 }
@@ -183,7 +181,6 @@ function storeData() {
  * B's share (to be paid to A) will offset the money A owes B first.
  */
 function pay() {
-
   // GETS PAYMENT FORM ELEMENTS
 
   let formPay = document.querySelector("form#pay");
@@ -202,32 +199,34 @@ function pay() {
     //update Owes and is Owed
     let index = 0; //index of selected roommate's data in array
     //The first array.length inputs are radio buttons. Loop through to find which is selected
-    for (let x = 0; x < array.length; x++) if (inputs[x].checked) index = inputs[x].dataset.roommate;
-    for (let y = 0; y < array.length; y++) if (array[y].id == index) {
-      index = y;
-      break;
-    }
+    for (let x = 0; x < array.length; x++)
+      if (inputs[x].checked) index = inputs[x].dataset.roommate;
+    for (let y = 0; y < array.length; y++)
+      if (array[y].id == index) {
+        index = y;
+        break;
+      }
 
     // PROCESSES THE PAYMENT
 
     processPayment(getRoommateId(index), cost);
 
     // RETURNS TO THE HOME PAGE AND CLEARS THE FORM
-    
+
     cardBox[0].classList.add("active");
     cardBox[3].classList.remove("active");
     formPay.reset();
 
     // ADDS RECORD TO HISTORY
-    
-    history_array.push(['payment', getRoommateId(index), cost, to]);
+
+    history_array.push(["payment", getRoommateId(index), cost, to]);
     let record = document.createElement("li");
     record.className = "mb-3";
     record.innerHTML = `
             <input type="checkbox" form="del-history">
-            <span>${
-              getRoommateName(array[index].id)
-            } paid ${cost} for ${to}</span>
+            <span>${getRoommateName(
+              array[index].id
+            )} paid ${cost} for ${to}</span>
         `;
     let historyList = document.querySelector("ul.history-list");
     historyList.insertBefore(record, historyList.firstChild);
@@ -244,7 +243,6 @@ function pay() {
  * @param {number} amount The amount paid
  */
 function processPayment(id, amount) {
-
   // FINDS THE ARRAY INDEX OF THE ROOMMATE PAYING
 
   let index = getRoommateIndex(id);
@@ -266,7 +264,6 @@ function processPayment(id, amount) {
  * Re-evaluates debt/amount owed for each roommate
  */
 function reevaluateDebt() {
-  
   // CALCULATES THE TOTAL PAYMENTS AND AVERAGE PAYMENT ACROSS ALL THE ROOMMATES
 
   let total_paid = 0;
@@ -282,7 +279,6 @@ function reevaluateDebt() {
     array[x].isOwed = debtor_excess;
     array[x].isOwed = Math.round(array[x].isOwed * 100) / 100; //round to 2 decimal places
   }
-
 }
 
 /**
@@ -291,7 +287,6 @@ function reevaluateDebt() {
  * If extra amount is paid, B owes to A.
  */
 function transfer() {
-  
   // GETS TRANSFER TO/FROM & BUTTON
 
   let form_transfer_from = document.querySelector("form#transfer-from");
@@ -301,7 +296,6 @@ function transfer() {
   // SETS BEHAVIOR FOR TRANSFER BUTTON CLICK
 
   transfer_btn.onclick = function () {
-
     // GETS TRANSFER FIELDS
 
     let radios_from = form_transfer_from.elements;
@@ -336,16 +330,21 @@ function transfer() {
 
     // ADDS TRANSFER TO HISTORY
 
-    history_array.push(['transfer', getRoommateId(from_index), amount, getRoommateId(to_index)]);
+    history_array.push([
+      "transfer",
+      getRoommateId(from_index),
+      amount,
+      getRoommateId(to_index),
+    ]);
     let record = document.createElement("li");
     record.className = "mb-3";
     record.innerHTML = `
             <input type="checkbox" form="del-history">
-            <span>${
-              getRoommateName(array[from_index].id)
-            } transferred ${amount} to ${
-      getRoommateName(array[to_index].id)
-    }</span>
+            <span>${getRoommateName(
+              array[from_index].id
+            )} transferred ${amount} to ${getRoommateName(
+      array[to_index].id
+    )}</span>
         `;
     let historyList = document.querySelector("ul.history-list");
     historyList.insertBefore(record, historyList.firstChild);
@@ -353,7 +352,6 @@ function transfer() {
     // STORES THE DATA
 
     storeData();
-
   };
 }
 
@@ -364,7 +362,6 @@ function transfer() {
  * @param {number} toId The ID of the recipient
  */
 function processTransfer(fromId, amount, toId) {
-
   let fromIndex = getRoommateIndex(fromId);
   let toIndex = getRoommateIndex(toId);
 
@@ -385,7 +382,6 @@ function processTransfer(fromId, amount, toId) {
  * check the checkboxes of the records you want to delete and click on delete button to delete them
  */
 function deleteHistory() {
-
   // GETS DELETE FORM AND LIST
 
   let form_del_history = document.querySelector("form#del-history");
@@ -414,25 +410,18 @@ function deleteHistory() {
     // REVERSES EVERY DELETED TRANSACTION
 
     to_del_idx.forEach((idx) => {
-
       // FOR TRANSFERS:
 
-      if (history_array[idx][0] == 'transfer') {
-
+      if (history_array[idx][0] == "transfer") {
         let [type, from_id, amount, to_id] = history_array[idx];
         processTransfer(to_id, amount, from_id); //from_index,-amount,to_index is incorrect for how transfer is implemented
-
       }
-      
+
       // FOR PAYMENTS:
-
-      else if (history_array[idx][0] == 'payment') {
-
+      else if (history_array[idx][0] == "payment") {
         let [type, id, amount, purpose] = history_array[idx];
         processPayment(id, -amount);
-
       }
-
     });
 
     // DELETES ALL DELETED TRANSACTIONS FROM HISTORY
@@ -442,9 +431,7 @@ function deleteHistory() {
     });
 
     for (let i = to_del_array.length - 1; i >= 0; i--) {
-
       history_array.splice(history_array.length - 1 - to_del_array[i], 1);
-
     }
 
     // //return to home page
@@ -463,15 +450,11 @@ function deleteHistory() {
  * @returns The index of the roommate
  */
 function getRoommateIndex(id) {
-
   for (let i = 0; i < array.length; i++) {
-
     if (array[i].id == id) return i;
-
   }
 
   return -1;
-
 }
 
 /**
@@ -480,9 +463,7 @@ function getRoommateIndex(id) {
  * @returns The ID of the roommate
  */
 function getRoommateId(index) {
-
   return array[index].id;
-
 }
 
 /**
@@ -491,8 +472,6 @@ function getRoommateId(index) {
  * @returns The name of the roommate
  */
 function getRoommateName(id) {
-
   if (getRoommate(id) != null) return getRoommate(id).name;
   else return "[deleted]";
-
 }

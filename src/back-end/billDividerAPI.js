@@ -308,7 +308,7 @@ function dataExist() {
 
     //adding it to local storage for the first time
     localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
-    
+
     for (let r = 0; r < roommates.length; r++) {
       initializeRoommate(roommates[r].id);
     }

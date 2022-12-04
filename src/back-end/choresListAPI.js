@@ -396,7 +396,6 @@ export function inCharge(id) {
  */
 export function removeFromChore(id) {
   if (localStorage.getItem("ChoresListData") === null) {
-
   } else {
     //get ChoresListData from localStorage
     let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));

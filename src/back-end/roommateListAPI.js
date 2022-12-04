@@ -1,6 +1,9 @@
 // roommateListAPI.js
 import { removeFromChore } from "../back-end/choresListAPI.js";
-import { initializeRoommate, deleteRoommateFromDivider } from "./billDividerAPI.js";
+import {
+  initializeRoommate,
+  deleteRoommateFromDivider,
+} from "./billDividerAPI.js";
 
 /**
  * Reads formData from the form that creates a new rooomate.
