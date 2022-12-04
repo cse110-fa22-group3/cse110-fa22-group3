@@ -693,7 +693,7 @@ test("check if checkDate corrects the assignedDate", () => {
     title: "Wash Dishses",
     description: "Wash dishes with hand",
     assignee: ["Mark"],
-    assignedDate: "12/03/2022",
+    assignedDate: "12/04/2022",
   };
   const resData = {
     id: 1,
