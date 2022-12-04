@@ -423,49 +423,46 @@ export function inCharge(id) {
  * @param {*} id id of the roommate that was removed
  */
 export function removeFromChore(id) {
-  if (localStorage.getItem("ChoresListData") === null) {
-  } else {
-    //get ChoresListData from localStorage
-    let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
+  //get ChoresListData from localStorage
+  let choresAPIData = JSON.parse(localStorage.getItem("ChoresListData"));
 
-    //iterate through the open chores list
-    for (let i = 0; i &lt; choresAPIData["chores"].length; i++) {
-      let openChore = choresAPIData["chores"][i];
+  //iterate through the open chores list
+  for (let i = 0; i &lt; choresAPIData["chores"].length; i++) {
+    let openChore = choresAPIData["chores"][i];
 
-      //iterate through the assignees the chore
-      for (let j = 0; j &lt; openChore["assignee"].length; j++) {
-        //if the deleted roommate's id is found, remove that roommate
-        if (openChore["assignee"][j] == id) {
-          openChore["assignee"].splice(j, 1);
+    //iterate through the assignees the chore
+    for (let j = 0; j &lt; openChore["assignee"].length; j++) {
+      //if the deleted roommate's id is found, remove that roommate
+      if (openChore["assignee"][j] == id) {
+        openChore["assignee"].splice(j, 1);
 
-          if (openChore["currRoommate"] == id) {
-            if (openChore["assignee"].length > 0) {
-              openChore["currRoommate"] = openChore["assignee"][0];
-            } else {
-              openChore["assignee"] = [-1];
-              openChore["currRoommate"] = -1;
-            }
+        if (openChore["currRoommate"] == id) {
+          if (openChore["assignee"].length > 0) {
+            openChore["currRoommate"] = openChore["assignee"][0];
+          } else {
+            openChore["assignee"] = [-1];
+            openChore["currRoommate"] = -1;
           }
-          break;
         }
+        break;
       }
     }
-
-    //iterate through the archived chores list
-    for (let i = 0; i &lt; choresAPIData["archived"].length; i++) {
-      let archivedChore = choresAPIData["archived"][i];
-
-      //iterate through the assignees the chore
-      for (let j = 0; j &lt; archivedChore["assignee"].length; j++) {
-        //if the deleted roommate's id is found, remove that roommate
-        if (archivedChore["assignee"][j] == id) {
-          archivedChore["assignee"].splice(j, 1);
-        }
-      }
-    }
-
-    localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
   }
+
+  //iterate through the archived chores list
+  for (let i = 0; i &lt; choresAPIData["archived"].length; i++) {
+    let archivedChore = choresAPIData["archived"][i];
+
+    //iterate through the assignees the chore
+    for (let j = 0; j &lt; archivedChore["assignee"].length; j++) {
+      //if the deleted roommate's id is found, remove that roommate
+      if (archivedChore["assignee"][j] == id) {
+        archivedChore["assignee"].splice(j, 1);
+      }
+    }
+  }
+
+  localStorage.setItem("ChoresListData", JSON.stringify(choresAPIData));
 }
 </code></pre>
         </article>
@@ -477,13 +474,13 @@ export function removeFromChore(id) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addPayment">addPayment</a></li><li><a href="global.html#addTransaction">addTransaction</a></li><li><a href="global.html#checkDate">checkDate</a></li><li><a href="global.html#clearArchive">clearArchive</a></li><li><a href="global.html#closeChore">closeChore</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createChore">createChore</a></li><li><a href="global.html#createFormHandler">createFormHandler</a></li><li><a href="global.html#createNoPasswordsMessage">createNoPasswordsMessage</a></li><li><a href="global.html#createPassword">createPassword</a></li><li><a href="global.html#createPasswordForm">createPasswordForm</a></li><li><a href="global.html#createRoommate">createRoommate</a></li><li><a href="global.html#createRoommateCard">createRoommateCard</a></li><li><a href="global.html#dataExist">dataExist</a></li><li><a href="global.html#deleteHistory">deleteHistory</a></li><li><a href="global.html#deleteNoPasswordsMessage">deleteNoPasswordsMessage</a></li><li><a href="global.html#deletePassword">deletePassword</a></li><li><a href="global.html#deletePasswordClick">deletePasswordClick</a></li><li><a href="global.html#deleteRoommate">deleteRoommate</a></li><li><a href="global.html#deleteRoommateFromDivider">deleteRoommateFromDivider</a></li><li><a href="global.html#displayRoommateCards">displayRoommateCards</a></li><li><a href="global.html#editFormHandler">editFormHandler</a></li><li><a href="global.html#editPasswordForm">editPasswordForm</a></li><li><a href="global.html#getAssignees">getAssignees</a></li><li><a href="global.html#getAvgContribution">getAvgContribution</a></li><li><a href="global.html#getContribution">getContribution</a></li><li><a href="global.html#getCurrentWeek">getCurrentWeek</a></li><li><a href="global.html#getDebt">getDebt</a></li><li><a href="global.html#getHistoryArray">getHistoryArray</a></li><li><a href="global.html#getLog">getLog</a></li><li><a href="global.html#getRoommate">getRoommate</a></li><li><a href="global.html#getRoommateArray">getRoommateArray</a></li><li><a href="global.html#getRoommateId">getRoommateId</a></li><li><a href="global.html#getRoommateIndex">getRoommateIndex</a></li><li><a href="global.html#getRoommateName">getRoommateName</a></li><li><a href="global.html#getTodaysDate">getTodaysDate</a></li><li><a href="global.html#getTotalContributions">getTotalContributions</a></li><li><a href="global.html#inCharge">inCharge</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initFormHandler">initFormHandler</a></li><li><a href="global.html#initializeList">initializeList</a></li><li><a href="global.html#initializeRoommate">initializeRoommate</a></li><li><a href="global.html#initPage">initPage</a></li><li><a href="global.html#initRoommateAssignment">initRoommateAssignment</a></li><li><a href="global.html#openInfoPasswordClick">openInfoPasswordClick</a></li><li><a href="global.html#passIdToEditButton">passIdToEditButton</a></li><li><a href="global.html#pay">pay</a></li><li><a href="global.html#populateHistory">populateHistory</a></li><li><a href="global.html#processPayment">processPayment</a></li><li><a href="global.html#processTransfer">processTransfer</a></li><li><a href="global.html#queryChore">queryChore</a></li><li><a href="global.html#queryPasswordInfo">queryPasswordInfo</a></li><li><a href="global.html#readChores">readChores</a></li><li><a href="global.html#readIdCount">readIdCount</a></li><li><a href="global.html#readPasswords">readPasswords</a></li><li><a href="global.html#readRoommate">readRoommate</a></li><li><a href="global.html#reevaluateDebt">reevaluateDebt</a></li><li><a href="global.html#removeFromChore">removeFromChore</a></li><li><a href="global.html#reOpenChore">reOpenChore</a></li><li><a href="global.html#setHistoryArray">setHistoryArray</a></li><li><a href="global.html#setRoommateArray">setRoommateArray</a></li><li><a href="global.html#setupPage">setupPage</a></li><li><a href="global.html#storeData">storeData</a></li><li><a href="global.html#transfer">transfer</a></li><li><a href="global.html#updateChore">updateChore</a></li><li><a href="global.html#updateDelHandler">updateDelHandler</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#updateRoommate">updateRoommate</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Roommate.html">Roommate</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addHandler">addHandler</a></li><li><a href="global.html#checkDate">checkDate</a></li><li><a href="global.html#clearArchive">clearArchive</a></li><li><a href="global.html#closeChore">closeChore</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createChore">createChore</a></li><li><a href="global.html#createFormHandler">createFormHandler</a></li><li><a href="global.html#createNoPasswordsMessage">createNoPasswordsMessage</a></li><li><a href="global.html#createPassword">createPassword</a></li><li><a href="global.html#createPasswordForm">createPasswordForm</a></li><li><a href="global.html#createRoommate">createRoommate</a></li><li><a href="global.html#dataExist">dataExist</a></li><li><a href="global.html#deleteNoPasswordsMessage">deleteNoPasswordsMessage</a></li><li><a href="global.html#deletePassword">deletePassword</a></li><li><a href="global.html#deletePasswordClick">deletePasswordClick</a></li><li><a href="global.html#deleteRoommate">deleteRoommate</a></li><li><a href="global.html#editFormHandler">editFormHandler</a></li><li><a href="global.html#editPasswordForm">editPasswordForm</a></li><li><a href="global.html#getAssignees">getAssignees</a></li><li><a href="global.html#getCurrentWeek">getCurrentWeek</a></li><li><a href="global.html#getRoommate">getRoommate</a></li><li><a href="global.html#getTodaysDate">getTodaysDate</a></li><li><a href="global.html#inCharge">inCharge</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initPage">initPage</a></li><li><a href="global.html#initRoommateAssignment">initRoommateAssignment</a></li><li><a href="global.html#loadCards">loadCards</a></li><li><a href="global.html#openInfoPasswordClick">openInfoPasswordClick</a></li><li><a href="global.html#passIdToEditButton">passIdToEditButton</a></li><li><a href="global.html#queryChore">queryChore</a></li><li><a href="global.html#queryPasswordInfo">queryPasswordInfo</a></li><li><a href="global.html#readChores">readChores</a></li><li><a href="global.html#readIdCount">readIdCount</a></li><li><a href="global.html#readPasswords">readPasswords</a></li><li><a href="global.html#readRoommate">readRoommate</a></li><li><a href="global.html#removeFromChore">removeFromChore</a></li><li><a href="global.html#reOpenChore">reOpenChore</a></li><li><a href="global.html#setupPage">setupPage</a></li><li><a href="global.html#updateChore">updateChore</a></li><li><a href="global.html#updateDelHandler">updateDelHandler</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#updateRoommate">updateRoommate</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Dec 04 2022 03:27:54 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Dec 04 2022 03:27:58 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

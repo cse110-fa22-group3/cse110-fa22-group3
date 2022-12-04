@@ -104,7 +104,7 @@
     
 
     
-    <h4 class="name" id="addPayment"><span class="type-signature"></span>addPayment<span class="signature">(text, giver, recipient, amount)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="addHandler"><span class="type-signature"></span>addHandler<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -112,9 +112,9 @@
 
 
 <div class="description">
-    Adjusts the contribution of the giver (increase) and adjusts the contribution
-of the recipient (decrease) if they exist. Also adds the transaction information
-(text, giver, recipient, amount) to the log in local storage.
+    addHandler, provides the functionality for showing/hiding the
+ popup, and submitting the new roommate data. This function should
+ only be executed once, as there is only one add button.
 </div>
 
 
@@ -123,124 +123,6 @@ of the recipient (decrease) if they exist. Also adds the transaction information
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>text</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>giver</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Int</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>recipient</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Int</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>amount</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Float</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -276,191 +158,7 @@ of the recipient (decrease) if they exist. Also adds the transaction information
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line67">line 67</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="addTransaction"><span class="type-signature"></span>addTransaction<span class="signature">(from, amount, to)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Adds a transaction (including from, amount, and to information). To
-can be -1 if it is not sent to anyone.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>from</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Int</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">id of the roommate money is sent from</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>amount</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Double</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">amount of money sent</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>to</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Int</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">id of the roommate money is sent to</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line277">line 277</a>
+        <a href="front-end_modules_roommate-list_js_main.js.html">front-end/modules/roommate-list/js/main.js</a>, <a href="front-end_modules_roommate-list_js_main.js.html#line58">line 58</a>
     </li></ul></dd>
     
 
@@ -638,7 +336,7 @@ roommates when called from readChores
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line230">line 230</a>
+        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line228">line 228</a>
     </li></ul></dd>
     
 
@@ -816,7 +514,7 @@ array, so that we can clear out our backlog of issues.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line213">line 213</a>
+        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line211">line 211</a>
     </li></ul></dd>
     
 
@@ -1092,7 +790,7 @@ into the archived array, so we can track completetion.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line173">line 173</a>
+        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line171">line 171</a>
     </li></ul></dd>
     
 
@@ -1510,7 +1208,7 @@ counter to maintain unique ids for chores and updates the amount of open chores.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line80">line 80</a>
+        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line78">line 78</a>
     </li></ul></dd>
     
 
@@ -2102,7 +1800,7 @@ the DOM aswell as update the localStorage with the new information.
 
 <div class="description">
     Reads formData from the form that creates a new rooomate.
-Then stores this information within the localStorage API.
+Then stores this information within the local storage.
 </div>
 
 
@@ -2154,7 +1852,7 @@ Then stores this information within the localStorage API.
 
             
 
-            <td class="description last">An object with form data regarding new roommate</td>
+            <td class="description last">data for the new roommate</td>
         </tr>
 
     
@@ -2195,7 +1893,7 @@ Then stores this information within the localStorage API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_roommateListAPI.js.html">back-end/roommateListAPI.js</a>, <a href="back-end_roommateListAPI.js.html#line13">line 13</a>
+        <a href="back-end_roommateListAPI.js.html">back-end/roommateListAPI.js</a>, <a href="back-end_roommateListAPI.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -2369,143 +2067,6 @@ Then stores this information within the localStorage API.
     
 
     
-    <h4 class="name" id="createRoommateCard"><span class="type-signature"></span>createRoommateCard<span class="signature">(data)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    create a roommate card using information in the input data object
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The data for the roommate</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line47">line 47</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
     <h4 class="name" id="dataExist"><span class="type-signature"></span>dataExist<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
@@ -2514,10 +2075,10 @@ Then stores this information within the localStorage API.
 
 
 <div class="description">
-    Helper function that checks if the BillDividerData exists in local storage.
+    Helper function that checks if the RoommateListData exists in local storage.
 If it exists, nothing is done.
-If it does not exist, then it is created with an empty array of roommates
-and an empty array of transaction history.
+If it does not exist, then it is created with an empty list of roommates and idCount of 0.
+This function is called at the start of each CRUD function to ensure nothing breaks.
 </div>
 
 
@@ -2561,96 +2122,7 @@ and an empty array of transaction history.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line298">line 298</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="deleteHistory"><span class="type-signature"></span>deleteHistory<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    delete history functionality
-check the checkboxes of the records you want to delete and click on delete button to delete them
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line384">line 384</a>
+        <a href="back-end_roommateListAPI.js.html">back-end/roommateListAPI.js</a>, <a href="back-end_roommateListAPI.js.html#line122">line 122</a>
     </li></ul></dd>
     
 
@@ -3206,7 +2678,7 @@ No change is made to the array if the id is not found.
 
             
 
-            <td class="description last">Id of the roommate to remove</td>
+            <td class="description last">id of the roommate to remove</td>
         </tr>
 
     
@@ -3247,7 +2719,7 @@ No change is made to the array if the id is not found.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_roommateListAPI.js.html">back-end/roommateListAPI.js</a>, <a href="back-end_roommateListAPI.js.html#line94">line 94</a>
+        <a href="back-end_roommateListAPI.js.html">back-end/roommateListAPI.js</a>, <a href="back-end_roommateListAPI.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -3387,232 +2859,6 @@ No change is made to the array if the id is not found.
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="testSupportFiles_roommateListTests_unit-test-roommateListAPI.js.html">testSupportFiles/roommateListTests/unit-test-roommateListAPI.js</a>, <a href="testSupportFiles_roommateListTests_unit-test-roommateListAPI.js.html#line98">line 98</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="deleteRoommateFromDivider"><span class="type-signature"></span>deleteRoommateFromDivider<span class="signature">(id)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Removes a given roommate from the Roommate array.
-Also removes all history of that roommate and all Owes/transferred references.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Int</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line195">line 195</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="displayRoommateCards"><span class="type-signature"></span>displayRoommateCards<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    display the roommate cards list. used everytime any roommate data is modified (pay and transfer)
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line161">line 161</a>
     </li></ul></dd>
     
 
@@ -3996,277 +3242,6 @@ localStorage accordingly and update the card to have the proper account name.
     
 
     
-    <h4 class="name" id="getAvgContribution"><span class="type-signature"></span>getAvgContribution<span class="signature">()</span><span class="type-signature"> &rarr; {Float}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Gets the total contributions and divides it by the number of roommates, then
-returns the value.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line144">line 144</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    the average contribution
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Float</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getContribution"><span class="type-signature"></span>getContribution<span class="signature">(id)</span><span class="type-signature"> &rarr; {Float}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Gets the contribution of the roommate with the matching id by accessing
-local storage.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Int</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">id of the roommate</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line32">line 32</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    contribution of the roommate with matching id
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Float</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
     <h4 class="name" id="getCurrentWeek"><span class="type-signature"></span>getCurrentWeek<span class="signature">(offset)</span><span class="type-signature"></span></h4>
     
 
@@ -4398,517 +3373,6 @@ local storage.
         
 <div class="param-desc">
     Text representing the current week
-</div>
-
-
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getDebt"><span class="type-signature"></span>getDebt<span class="signature">(id)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Gets the debt of the roommate with the matching id by subtracting their
-contribution from the average contribution.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Int</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line54">line 54</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The debt for the roommate with the id given
-</div>
-
-
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getHistoryArray"><span class="type-signature"></span>getHistoryArray<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;object>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Returns the history array with all of the transactions.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line235">line 235</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;object></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getLog"><span class="type-signature"></span>getLog<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;object>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Returns the log array holding the list of transactions
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line114">line 114</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    the array holding the transactions
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;object></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getRoommate"><span class="type-signature"></span>getRoommate<span class="signature">(id)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Gets a given roommate with their ID
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The ID of the roommate</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line18">line 18</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The roommate object
 </div>
 
 
@@ -5072,557 +3536,6 @@ contribution from the average contribution.
     
 
     
-    <h4 class="name" id="getRoommateArray"><span class="type-signature"></span>getRoommateArray<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;object>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Returns the roommate list with id, amount they're owed/owe/paid/transferred.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line225">line 225</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    an array of roommates
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;object></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getRoommateId"><span class="type-signature"></span>getRoommateId<span class="signature">(index)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Gets the ID of a roommate given their index in array
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>index</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The index of the roommate</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line465">line 465</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The ID of the roommate
-</div>
-
-
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getRoommateIndex"><span class="type-signature"></span>getRoommateIndex<span class="signature">(id)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Gets the index of a roommate given their ID
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The ID of the roommate</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line452">line 452</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The index of the roommate
-</div>
-
-
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getRoommateName"><span class="type-signature"></span>getRoommateName<span class="signature">(id)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Gets the name of a roommate given their ID
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The ID of the roommate</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line474">line 474</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The name of the roommate
-</div>
-
-
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
     <h4 class="name" id="getTodaysDate"><span class="type-signature"></span>getTodaysDate<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
@@ -5708,117 +3621,6 @@ contribution from the average contribution.
 </div>
 
 
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getTotalContributions"><span class="type-signature"></span>getTotalContributions<span class="signature">()</span><span class="type-signature"> &rarr; {Float}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Gets the contribution of all roommates from local storage, adds them, and
-returns it.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line123">line 123</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    the total contributions from all roommates
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Float</span>
-
-
-    </dd>
-</dl>
 
     
 
@@ -6080,7 +3882,7 @@ returns it.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line383">line 383</a>
+        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line381">line 381</a>
     </li></ul></dd>
     
 
@@ -6115,94 +3917,6 @@ returns it.
 
 
     
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="init"><span class="type-signature"></span>init<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    init()
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line30">line 30</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -6443,326 +4157,7 @@ returns it.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_roommate-list_js_main.js.html">front-end/modules/roommate-list/js/main.js</a>, <a href="front-end_modules_roommate-list_js_main.js.html#line13">line 13</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="initFormHandler"><span class="type-signature"></span>initFormHandler<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    initFormHandler, adds the needed event handlers
-	for when the submit button and creates a new roommate
-	when it is is clicked and will also brings up a
- popup when it is clicked
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_roommate-list_js_main.js.html">front-end/modules/roommate-list/js/main.js</a>, <a href="front-end_modules_roommate-list_js_main.js.html#line52">line 52</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="initializeList"><span class="type-signature"></span>initializeList<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    initialize a sample data object array
-and create the roommate cards and their corresponding radio buttons
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line73">line 73</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="initializeRoommate"><span class="type-signature"></span>initializeRoommate<span class="signature">(id)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Adds a new roommate into the Roommate Array. This will be called in the Roommate List API.
-"Owes" and "transferred" arrays should all have a new pair added with the given ID and amount 0
-Set "paid" to the average "paid" from the other roommates.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Int</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line164">line 164</a>
+        <a href="front-end_modules_roommate-list_js_main.js.html">front-end/modules/roommate-list/js/main.js</a>, <a href="front-end_modules_roommate-list_js_main.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -7023,145 +4418,6 @@ Set "paid" to the average "paid" from the other roommates.
     
 
     
-    <h4 class="name" id="initPage"><span class="type-signature"></span>initPage<span class="signature">(roommates)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    initPage, reads in our roommates from the local storage
- creates a new element for each roommate that'll
- be present on the page when it is loaded in
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>roommates</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_roommate-list_js_main.js.html">front-end/modules/roommate-list/js/main.js</a>, <a href="front-end_modules_roommate-list_js_main.js.html#line26">line 26</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
     <h4 class="name" id="initRoommateAssignment"><span class="type-signature"></span>initRoommateAssignment<span class="signature">(selectedRoommate, chore, popup)</span><span class="type-signature"></span></h4>
     
 
@@ -7345,6 +4601,145 @@ Set "paid" to the average "paid" from the other roommates.
     
 
     
+    <h4 class="name" id="loadCards"><span class="type-signature"></span>loadCards<span class="signature">(roommates)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    loadCards, reads in our roommates from the local storage and
+ creates a new element roommate-card for each roommate that will
+ be present on the page when it is loaded in.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>roommates</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">an array of roommates</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="front-end_modules_roommate-list_js_main.js.html">front-end/modules/roommate-list/js/main.js</a>, <a href="front-end_modules_roommate-list_js_main.js.html#line29">line 29</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="openInfoPasswordClick"><span class="type-signature"></span>openInfoPasswordClick<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
@@ -7491,528 +4886,6 @@ on.
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="front-end_modules_passwordHolder_scripts_main.js.html">front-end/modules/passwordHolder/scripts/main.js</a>, <a href="front-end_modules_passwordHolder_scripts_main.js.html#line133">line 133</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="pay"><span class="type-signature"></span>pay<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    pay functionality.
-Any payment made is equally divided among all roommates.
-If roommate A owes some money to roommate B, when roommate A pays a bill,
-B's share (to be paid to A) will offset the money A owes B first.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line183">line 183</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="populateHistory"><span class="type-signature"></span>populateHistory<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Populates history list with data from history_array
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line100">line 100</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="processPayment"><span class="type-signature"></span>processPayment<span class="signature">(id, amount)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Processes a payment given a roommate's ID and the amount paid
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The ID of the roommate</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>amount</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The amount paid</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line245">line 245</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="processTransfer"><span class="type-signature"></span>processTransfer<span class="signature">(fromId, amount, toId)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Processes a transfer between 2 roommates given both IDs and the amount
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>fromId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The ID of the paying roommate</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>amount</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The amount being transferred</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>toId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The ID of the recipient</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line364">line 364</a>
     </li></ul></dd>
     
 
@@ -8365,7 +5238,7 @@ for the chore, either 'open' or 'closed'</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line50">line 50</a>
+        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -8912,7 +5785,7 @@ initialized fields
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line21">line 21</a>
+        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -9422,9 +6295,9 @@ init function when initializing the passwordHolder page.
 
 
 <div class="description">
-    Reads 'RoommateListData' data from local storage
-and returns an array of all the roommates information
-found. If nothing in local storage returns empty array
+    Reads 'RoommateListData' data from local storage and returns
+an array of all the roommates information found. If nothing is
+found in local storage, an empty array is returned.
 </div>
 
 
@@ -9468,7 +6341,7 @@ found. If nothing in local storage returns empty array
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_roommateListAPI.js.html">back-end/roommateListAPI.js</a>, <a href="back-end_roommateListAPI.js.html#line72">line 72</a>
+        <a href="back-end_roommateListAPI.js.html">back-end/roommateListAPI.js</a>, <a href="back-end_roommateListAPI.js.html#line40">line 40</a>
     </li></ul></dd>
     
 
@@ -9497,7 +6370,7 @@ found. If nothing in local storage returns empty array
 
         
 <div class="param-desc">
-    An array of RoommateListData
+    an array of roommates
 </div>
 
 
@@ -9627,94 +6500,6 @@ found. If nothing in local storage returns empty array
 </dl>
 
     
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="reevaluateDebt"><span class="type-signature"></span>reevaluateDebt<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Re-evaluates debt/amount owed for each roommate
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line266">line 266</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9964,7 +6749,7 @@ found. If nothing in local storage returns empty array
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line408">line 408</a>
+        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line406">line 406</a>
     </li></ul></dd>
     
 
@@ -10240,281 +7025,7 @@ into the chores(open) array, so we can track completetion.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line194">line 194</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="setHistoryArray"><span class="type-signature"></span>setHistoryArray<span class="signature">(newHistory)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Replaces the old history list with the new one in local storage.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>newHistory</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;object></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">new history list</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line258">line 258</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="setRoommateArray"><span class="type-signature"></span>setRoommateArray<span class="signature">(newRoommates)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Replaces the old roommates list with the new one in local storage.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>newRoommates</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;object></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">new roommates list</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_billDividerAPI.js.html">back-end/billDividerAPI.js</a>, <a href="back-end_billDividerAPI.js.html#line245">line 245</a>
+        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line192">line 192</a>
     </li></ul></dd>
     
 
@@ -10652,184 +7163,6 @@ into the chores(open) array, so we can track completetion.
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="front-end_modules_chores-list_scripts_main.js.html">front-end/modules/chores-list/scripts/main.js</a>, <a href="front-end_modules_chores-list_scripts_main.js.html#line78">line 78</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="storeData"><span class="type-signature"></span>storeData<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Stores array and history_array in local storage
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line172">line 172</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="transfer"><span class="type-signature"></span>transfer<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    transfer functionality
-Any transfer from roommate A to roommate B will offset the money A owes B.
-If extra amount is paid, B owes to A.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_bill-divider_js_main.js.html">front-end/modules/bill-divider/js/main.js</a>, <a href="front-end_modules_bill-divider_js_main.js.html#line289">line 289</a>
     </li></ul></dd>
     
 
@@ -11201,7 +7534,7 @@ for the chore, either 'open' or 'closed'</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line106">line 106</a>
+        <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html">testSupportFiles/choresListTests/unit-test-choresListAPI.js</a>, <a href="testSupportFiles_choresListTests_unit-test-choresListAPI.js.html#line104">line 104</a>
     </li></ul></dd>
     
 
@@ -11245,9 +7578,11 @@ for the chore, either 'open' or 'closed'</td>
 
 
 <div class="description">
-    updateDelHandler, handles when a roommate-card gets deleted or updated
- will add the updated roommate list to localstorage. Provides a popup where
- people can input information for roommate update and delete
+    updateDelHandler, handles when a roommate-card gets deleted or updated. The function
+ will add the updated roommate list to local storage. Provides the functionality to
+ show/hide a popup where people can input information for updating or deleting
+ a roommate. This function should be executed multiple times, occuring when any
+ CRUD operations occur.
 </div>
 
 
@@ -11291,7 +7626,7 @@ for the chore, either 'open' or 'closed'</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="front-end_modules_roommate-list_js_main.js.html">front-end/modules/roommate-list/js/main.js</a>, <a href="front-end_modules_roommate-list_js_main.js.html#line82">line 82</a>
+        <a href="front-end_modules_roommate-list_js_main.js.html">front-end/modules/roommate-list/js/main.js</a>, <a href="front-end_modules_roommate-list_js_main.js.html#line101">line 101</a>
     </li></ul></dd>
     
 
@@ -11651,7 +7986,7 @@ updated password for the rooommate group.
     
 
     
-    <h4 class="name" id="updateRoommate"><span class="type-signature"></span>updateRoommate<span class="signature">(formData)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="updateRoommate"><span class="type-signature"></span>updateRoommate<span class="signature">(formData, id)</span><span class="type-signature"></span></h4>
     
 
     
@@ -11659,8 +7994,8 @@ updated password for the rooommate group.
 
 
 <div class="description">
-    Reads formData from the form that updates an existing rooomate.
-Then stores this information within the localStorage API.
+    Reads formData from the form that updates an existing roommate.
+Then updates the roommates list within the local storage.
 </div>
 
 
@@ -11712,7 +8047,30 @@ Then stores this information within the localStorage API.
 
             
 
-            <td class="description last">An object with form data regarding new roommate</td>
+            <td class="description last">updated data for the roommate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">id of the roommate to update</td>
         </tr>
 
     
@@ -11753,7 +8111,7 @@ Then stores this information within the localStorage API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="back-end_roommateListAPI.js.html">back-end/roommateListAPI.js</a>, <a href="back-end_roommateListAPI.js.html#line47">line 47</a>
+        <a href="back-end_roommateListAPI.js.html">back-end/roommateListAPI.js</a>, <a href="back-end_roommateListAPI.js.html#line89">line 89</a>
     </li></ul></dd>
     
 
@@ -11937,13 +8295,13 @@ Then stores this information within the localStorage API.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addPayment">addPayment</a></li><li><a href="global.html#addTransaction">addTransaction</a></li><li><a href="global.html#checkDate">checkDate</a></li><li><a href="global.html#clearArchive">clearArchive</a></li><li><a href="global.html#closeChore">closeChore</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createChore">createChore</a></li><li><a href="global.html#createFormHandler">createFormHandler</a></li><li><a href="global.html#createNoPasswordsMessage">createNoPasswordsMessage</a></li><li><a href="global.html#createPassword">createPassword</a></li><li><a href="global.html#createPasswordForm">createPasswordForm</a></li><li><a href="global.html#createRoommate">createRoommate</a></li><li><a href="global.html#createRoommateCard">createRoommateCard</a></li><li><a href="global.html#dataExist">dataExist</a></li><li><a href="global.html#deleteHistory">deleteHistory</a></li><li><a href="global.html#deleteNoPasswordsMessage">deleteNoPasswordsMessage</a></li><li><a href="global.html#deletePassword">deletePassword</a></li><li><a href="global.html#deletePasswordClick">deletePasswordClick</a></li><li><a href="global.html#deleteRoommate">deleteRoommate</a></li><li><a href="global.html#deleteRoommateFromDivider">deleteRoommateFromDivider</a></li><li><a href="global.html#displayRoommateCards">displayRoommateCards</a></li><li><a href="global.html#editFormHandler">editFormHandler</a></li><li><a href="global.html#editPasswordForm">editPasswordForm</a></li><li><a href="global.html#getAssignees">getAssignees</a></li><li><a href="global.html#getAvgContribution">getAvgContribution</a></li><li><a href="global.html#getContribution">getContribution</a></li><li><a href="global.html#getCurrentWeek">getCurrentWeek</a></li><li><a href="global.html#getDebt">getDebt</a></li><li><a href="global.html#getHistoryArray">getHistoryArray</a></li><li><a href="global.html#getLog">getLog</a></li><li><a href="global.html#getRoommate">getRoommate</a></li><li><a href="global.html#getRoommateArray">getRoommateArray</a></li><li><a href="global.html#getRoommateId">getRoommateId</a></li><li><a href="global.html#getRoommateIndex">getRoommateIndex</a></li><li><a href="global.html#getRoommateName">getRoommateName</a></li><li><a href="global.html#getTodaysDate">getTodaysDate</a></li><li><a href="global.html#getTotalContributions">getTotalContributions</a></li><li><a href="global.html#inCharge">inCharge</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initFormHandler">initFormHandler</a></li><li><a href="global.html#initializeList">initializeList</a></li><li><a href="global.html#initializeRoommate">initializeRoommate</a></li><li><a href="global.html#initPage">initPage</a></li><li><a href="global.html#initRoommateAssignment">initRoommateAssignment</a></li><li><a href="global.html#openInfoPasswordClick">openInfoPasswordClick</a></li><li><a href="global.html#passIdToEditButton">passIdToEditButton</a></li><li><a href="global.html#pay">pay</a></li><li><a href="global.html#populateHistory">populateHistory</a></li><li><a href="global.html#processPayment">processPayment</a></li><li><a href="global.html#processTransfer">processTransfer</a></li><li><a href="global.html#queryChore">queryChore</a></li><li><a href="global.html#queryPasswordInfo">queryPasswordInfo</a></li><li><a href="global.html#readChores">readChores</a></li><li><a href="global.html#readIdCount">readIdCount</a></li><li><a href="global.html#readPasswords">readPasswords</a></li><li><a href="global.html#readRoommate">readRoommate</a></li><li><a href="global.html#reevaluateDebt">reevaluateDebt</a></li><li><a href="global.html#removeFromChore">removeFromChore</a></li><li><a href="global.html#reOpenChore">reOpenChore</a></li><li><a href="global.html#setHistoryArray">setHistoryArray</a></li><li><a href="global.html#setRoommateArray">setRoommateArray</a></li><li><a href="global.html#setupPage">setupPage</a></li><li><a href="global.html#storeData">storeData</a></li><li><a href="global.html#transfer">transfer</a></li><li><a href="global.html#updateChore">updateChore</a></li><li><a href="global.html#updateDelHandler">updateDelHandler</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#updateRoommate">updateRoommate</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Roommate.html">Roommate</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addHandler">addHandler</a></li><li><a href="global.html#checkDate">checkDate</a></li><li><a href="global.html#clearArchive">clearArchive</a></li><li><a href="global.html#closeChore">closeChore</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createChore">createChore</a></li><li><a href="global.html#createFormHandler">createFormHandler</a></li><li><a href="global.html#createNoPasswordsMessage">createNoPasswordsMessage</a></li><li><a href="global.html#createPassword">createPassword</a></li><li><a href="global.html#createPasswordForm">createPasswordForm</a></li><li><a href="global.html#createRoommate">createRoommate</a></li><li><a href="global.html#dataExist">dataExist</a></li><li><a href="global.html#deleteNoPasswordsMessage">deleteNoPasswordsMessage</a></li><li><a href="global.html#deletePassword">deletePassword</a></li><li><a href="global.html#deletePasswordClick">deletePasswordClick</a></li><li><a href="global.html#deleteRoommate">deleteRoommate</a></li><li><a href="global.html#editFormHandler">editFormHandler</a></li><li><a href="global.html#editPasswordForm">editPasswordForm</a></li><li><a href="global.html#getAssignees">getAssignees</a></li><li><a href="global.html#getCurrentWeek">getCurrentWeek</a></li><li><a href="global.html#getRoommate">getRoommate</a></li><li><a href="global.html#getTodaysDate">getTodaysDate</a></li><li><a href="global.html#inCharge">inCharge</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initPage">initPage</a></li><li><a href="global.html#initRoommateAssignment">initRoommateAssignment</a></li><li><a href="global.html#loadCards">loadCards</a></li><li><a href="global.html#openInfoPasswordClick">openInfoPasswordClick</a></li><li><a href="global.html#passIdToEditButton">passIdToEditButton</a></li><li><a href="global.html#queryChore">queryChore</a></li><li><a href="global.html#queryPasswordInfo">queryPasswordInfo</a></li><li><a href="global.html#readChores">readChores</a></li><li><a href="global.html#readIdCount">readIdCount</a></li><li><a href="global.html#readPasswords">readPasswords</a></li><li><a href="global.html#readRoommate">readRoommate</a></li><li><a href="global.html#removeFromChore">removeFromChore</a></li><li><a href="global.html#reOpenChore">reOpenChore</a></li><li><a href="global.html#setupPage">setupPage</a></li><li><a href="global.html#updateChore">updateChore</a></li><li><a href="global.html#updateDelHandler">updateDelHandler</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#updateRoommate">updateRoommate</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Dec 04 2022 03:27:54 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Dec 04 2022 03:27:58 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
