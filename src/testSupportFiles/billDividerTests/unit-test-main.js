@@ -1,3 +1,21 @@
+module.exports = {
+  getRoommate,
+  createRoommateCard,
+  initializeList,
+  populateHistory,
+  displayRoommateCards,
+  storeData,
+  pay,
+  processPayment,
+  reevaluateDebt,
+  transfer,
+  processTransfer,
+  deleteHistory,
+  getRoommateIndex,
+  getRoommateId,
+  getRoommateName,
+};
+
 //import { readRoommate } from "../../../../back-end/roommateListAPI.js";
 const roommateAPI = require("../roommateListTests/unit-test-roommateListAPI.js");
 
@@ -17,9 +35,8 @@ module.exports = {
   deleteHistory,
   getRoommateIndex,
   getRoommateId,
-  getRoommateName
-  
-}
+  getRoommateName,
+};
 
 //import {
 //  initializeRoommate,
@@ -30,8 +47,7 @@ module.exports = {
 //  setHistoryArray,
 //  addTransaction,
 //} from "../../../../back-end/billDividerAPI.js";
-const billDividerAPI = require("../billDividerTests/unit-test-billDividerAPI.js")
-
+const billDividerAPI = require("../billDividerTests/unit-test-billDividerAPI.js");
 
 /**
  * Gets a given roommate with their ID
@@ -97,7 +113,6 @@ function createRoommateCard(data) {
  * and create the roommate cards and their corresponding radio buttons
  */
 function initializeList() {
-
   let radioList = document.querySelectorAll(".select-name");
   //create roommates and their corresponding radio buttons
   array.forEach((data) => {
@@ -292,6 +307,8 @@ function processPayment(id, amount) {
  */
 function reevaluateDebt() {
   // CALCULATES THE TOTAL PAYMENTS AND AVERAGE PAYMENT ACROSS ALL THE ROOMMATES
+
+  let array = billDividerAPI.getRoommateArray(); //array containing data objects
 
   let total_paid = 0;
   array.forEach((data) => {
@@ -492,12 +509,11 @@ function getRoommateIndex(id) {
  */
 function getRoommateId(index) {
   let array = billDividerAPI.getRoommateArray(); //array containing data objects
-  if(index > array.length -1){
+  if (index > array.length - 1) {
     return -1;
-  }else{
+  } else {
     return array[index].id;
   }
-  
 }
 
 /**
