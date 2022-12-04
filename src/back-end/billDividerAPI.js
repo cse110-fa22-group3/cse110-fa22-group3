@@ -259,7 +259,7 @@ export function setRoommateArray(newRoommates) {
  */
 export function setHistoryArray(newHistory) {
   dataExist();
-  
+
   const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
 
   //replace the old history array (may not be needed if you use addTransaction)
