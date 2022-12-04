@@ -6,7 +6,7 @@
 const functionAPIs = require("../../testSupportFiles/choresListTests/unit-test-choresListAPI");
 const roommateFunctionAPIs = require("../../testSupportFiles/roommateListTests/unit-test-roommateListAPI");
 
-test("checks if readChores initializes fileds correctly if there's no chore", () => {
+test("checks if readChores initializes fields correctly if there's no chore", () => {
   const resData = {
     chores: [],
     archived: [],
