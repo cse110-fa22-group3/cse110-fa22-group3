@@ -170,25 +170,17 @@ export function initializeRoommate(id) {
   const roommate = {
     id: id,
     isOwed: 0.0,
-    owes: {},
     paid: 0.0,
-    transferred: {},
   };
   let totalPaid = 0;
 
   //getting the average paid from other roommates (BEFORE THE NEW ONE IS ADDED)
   for (let i = 0; i < roommates.length; i++) {
-    totalPaid += roommates[i][paid];
+    totalPaid += roommates[i]["paid"];
   }
 
   //assigning the average paid to the new roommate
-  roommate["paid"] = totalPaid / roommates.length;
-
-  //assigning the value the new roommate owes/transferred to other roommates to 0
-  for (let i = 0; i < listOfPeople.length; i++) {
-    roommate["owes"][listOfPeople[i]["id"]] = 0.0;
-    roommate["transferred"][listOfPeople[i]["id"]] = 0.0;
-  }
+  if (roommates.length > 0) roommate["paid"] = totalPaid / roommates.length;
 
   billDividerData["Roommates"].push(roommate);
 
@@ -200,17 +192,19 @@ export function initializeRoommate(id) {
  * Also removes all history of that roommate and all Owes/transferred references.
  * @param {Int} id
  */
-export function deleteRoommate(id) {
+export function deleteRoommateFromDivider(id) {
   dataExist();
 
   const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
   const roommates = billDividerData["Roommates"];
   const history = billDividerData["History"];
 
-  //removing the roommate from the owes and transferred list
+  //removing the roommate from the owes and transferred list, and overall list
   for (let i = 0; i < roommates.length; i++) {
-    delete roommates[i]["owes"][id];
-    delete roommates[i]["transferred"][id];
+    if (roommates[i].id == id) {
+      roommates.splice(i, 1);
+      break;
+    }
   }
 
   //removing the roommate from the history list
@@ -220,6 +214,8 @@ export function deleteRoommate(id) {
       i--;
     }
   }
+
+  localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
 }
 
 /**
@@ -308,7 +304,13 @@ function dataExist() {
       History: [],
     };
 
+    let roommates = readRoommate();
+
     //adding it to local storage for the first time
     localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+
+    for (let r = 0; r < roommates.length; r++) {
+      initializeRoommate(roommates[r].id);
+    }
   }
 }

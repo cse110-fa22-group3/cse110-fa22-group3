@@ -1,5 +1,9 @@
 // roommateListAPI.js
 import { removeFromChore } from "../back-end/choresListAPI.js";
+import {
+  initializeRoommate,
+  deleteRoommateFromDivider,
+} from "./billDividerAPI.js";
 
 /**
  * Reads formData from the form that creates a new rooomate.
@@ -16,6 +20,7 @@ export function createRoommate(formData) {
       idCount: 1,
     };
     localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
+    initializeRoommate(firstRoommate.id);
   } else {
     const apiData = JSON.parse(localStorage.getItem("RoommateListData"));
     const roommate = {};
@@ -30,6 +35,7 @@ export function createRoommate(formData) {
     apiData.Roommates.push(roommate);
 
     localStorage.setItem("RoommateListData", JSON.stringify(apiData));
+    initializeRoommate(roommate.id);
   }
 }
 
@@ -106,6 +112,7 @@ export function deleteRoommate(id) {
   roommateList.Roommates = roommates;
   console.log(roommateList);
   removeFromChore(id);
+  deleteRoommateFromDivider(id);
   // replace the RoommateListData in local storage
 
   localStorage.setItem("RoommateListData", JSON.stringify(roommateList));
