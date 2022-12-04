@@ -2,7 +2,6 @@
  * Globals
  */
 
-
 /* Custom default button */
 
 .btn-secondary,
@@ -10,10 +9,9 @@
 .btn-secondary:focus {
   color: #333;
   text-shadow: none;
-  
+
   /* Prevent inheritance from `body` */
 }
-
 
 /*
  * Base structure
@@ -48,7 +46,6 @@ button:hover {
   background-color: red;
   color: white;
 }
-
 
 /*
  * Header
@@ -188,7 +185,6 @@ h3 {
   text-decoration: none;
   color: black;
 }
-
 
 /*
  * Image
