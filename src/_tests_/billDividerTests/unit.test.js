@@ -74,3 +74,33 @@ test("checks if getRoommate is able to identify if a roommate exists or not", ()
     expect(reference).toStrictEqual(mainAPIs.getRoommate(0));
     window.localStorage.clear();
 });
+
+//reevaluateDebt (doesn't work because this function does not replace local storage data)
+test("checks if reevaluateDebt correctly assigns the right debt to each roommate", () => {
+    const roommate = {
+        id: 2,
+        isOwed: 0.0,
+        paid: 75.0,
+    };
+
+    const roommate2 = {
+        id: 4,
+        isOwed: 0.0,
+        paid: 25.0,
+    };
+
+    const newRoommates = [roommate, roommate2];
+
+    functionAPIs.setRoommateArray(newRoommates);
+
+    mainAPIs.reevaluateDebt();
+
+    const localStorageData = JSON.parse(window.localStorage.getItem("BillDividerData"));
+    const roommates = localStorageData["Roommates"];
+
+    console.log(roommates);
+
+    expect(roommates[0].isOwed).toStrictEqual(25);
+    expect(roommates[1].isOwed).toStrictEqual(-25);
+    window.localStorage.clear();
+});

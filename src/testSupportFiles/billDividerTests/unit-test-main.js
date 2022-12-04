@@ -287,6 +287,8 @@ function processPayment(id, amount) {
 function reevaluateDebt() {
   // CALCULATES THE TOTAL PAYMENTS AND AVERAGE PAYMENT ACROSS ALL THE ROOMMATES
 
+  let array = billDividerAPI.getRoommateArray(); //array containing data objects
+  
   let total_paid = 0;
   array.forEach((data) => {
     total_paid += data.paid;
