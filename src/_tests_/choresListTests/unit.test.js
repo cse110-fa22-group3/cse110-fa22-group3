@@ -711,7 +711,7 @@ test("check if checkDate corrects the assignedDate", () => {
 });
 
 // readRoommate
-test("checks if deleteRoommate deletes a roommate from chores", () => {
+test("checks if removeFromChore removes the roommate from chores", () => {
   functionAPIs.readChores();
   const formData = {
     name: "Xun Liu",
