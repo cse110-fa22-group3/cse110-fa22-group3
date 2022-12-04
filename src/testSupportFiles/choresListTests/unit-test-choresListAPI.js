@@ -5,8 +5,10 @@ module.exports = {
   createChore,
   updateChore,
   closeChore,
+  reOpenChore,
   clearArchive,
   checkDate,
+  inCharge,
   removeFromChore,
 };
 /**
