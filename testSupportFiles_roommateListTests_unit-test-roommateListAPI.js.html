@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: testSupportFiles/passwordHolderTests/unit-test-passwordHolderAPIs.js</title>
+    <title>JSDoc: Source: testSupportFiles/roommateListTests/unit-test-roommateListAPI.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: testSupportFiles/passwordHolderTests/unit-test-passwordHolderAPIs.js</h1>
+    <h1 class="page-title">Source: testSupportFiles/roommateListTests/unit-test-roommateListAPI.js</h1>
 
     
 
@@ -26,120 +26,123 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// passwordHolderAPI.js
-
+            <pre class="prettyprint source linenums"><code>// roommateListAPI.js
 module.exports = {
-  readPasswords,
-  readIdCount,
-  queryPasswordInfo,
-  deletePassword,
-  createPassword,
-  updatePassword,
+  createRoommate,
+  updateRoommate,
+  readRoommate,
+  deleteRoommate,
 };
 
+// import { removeFromChore } from "../back-end/choresListAPI.js";
+const choreAPI = require("../choresListTests/unit-test-choresListAPI.js");
 /**
- * readPasswords handles populating the password information commonly
- * shared by all roommates in a group. First function called within the
- * init function when initializing the passwordHolder page.
- * @returns {Array&lt;object>} with the JSON data of each password.
+ * Reads formData from the form that creates a new rooomate.
+ * Then stores this information within the localStorage API.
+ * @param {Object} formData An object with form data regarding new roommate
  */
-function readPasswords() {
-  if (localStorage.getItem("PasswordHolderData") === null) {
-    const firstPasswordList = {
-      Passwords: [],
-      idPasswordCount: 0,
+// export
+function createRoommate(formData) {
+  // Check if the RoommateListData key is contained within local storage
+  // If not then create it, otherwise just append to roommates list and update id
+  if (localStorage.getItem("RoommateListData") === null) {
+    formData.id = 0;
+    const firstRoommate = {
+      Roommates: [formData],
+      idCount: 1,
     };
-    localStorage.setItem(
-      "PasswordHolderData",
-      JSON.stringify(firstPasswordList)
-    );
-    return JSON.parse(localStorage.getItem("PasswordHolderData")).Passwords;
+    localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
   } else {
-    return JSON.parse(localStorage.getItem("PasswordHolderData")).Passwords;
+    const apiData = JSON.parse(localStorage.getItem("RoommateListData"));
+    const roommate = {};
+
+    roommate.id = apiData.idCount;
+    apiData.idCount += 1;
+
+    for (const [key, value] of Object.entries(formData)) {
+      roommate[key] = value;
+    }
+
+    apiData.Roommates.push(roommate);
+
+    localStorage.setItem("RoommateListData", JSON.stringify(apiData));
   }
 }
 
 /**
- * queryPasswordInfo handles providing information for a specifc password
- * in the localStorage.
- * @param {Int} id that indicates which password we are trying to query
- * @returns {Object} with the JSON data of the specific password.
+ * Reads formData from the form that updates an existing rooomate.
+ * Then stores this information within the localStorage API.
+ * @param {Object} formData An object with form data regarding new roommate
  */
-function queryPasswordInfo(id) {
-  const apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
-  for (let i = 0; i &lt; apiData.Passwords.length; i++) {
-    if (apiData.Passwords[i].id === id) {
-      return apiData.Passwords[i];
+// export
+function updateRoommate(formData, id) {
+  // gather data inputted from form
+  const roommate = {};
+
+  roommate.id = id;
+  for (const [key, value] of Object.entries(formData)) {
+    roommate[key] = value;
+  }
+
+  const roommateData = JSON.parse(localStorage.getItem("RoommateListData"));
+
+  for (let i = 0; i &lt; roommateData.Roommates.length; i++) {
+    if (roommateData.Roommates[i].id == id) {
+      roommateData.Roommates[i] = roommate;
     }
   }
+  localStorage.setItem("RoommateListData", JSON.stringify(roommateData));
 }
 
 /**
- * readIdCount handles providing information for which id number we are on.
- * @returns {Int} with the latest id assigned to a card.
+ * Reads 'RoommateListData' data from local storage
+ * and returns an array of all the roommates information
+ * found. If nothing in local storage returns empty array
+ * @returns {Array&lt;object>} An array of RoommateListData
  */
-function readIdCount() {
-  if (localStorage.getItem("PasswordHolderData") === null) {
-    return 0;
+// export
+function readRoommate() {
+  // check to see if this is the first time the user is attempting to add roommates
+  if (localStorage.getItem("RoommateListData") === null) {
+    const firstRoommate = {
+      Roommates: [],
+      idCount: 0,
+    };
+    localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
+    return JSON.parse(localStorage.getItem("RoommateListData")).Roommates;
+  } else {
+    const roommate = JSON.parse(localStorage.getItem("RoommateListData"));
+    return roommate.Roommates;
   }
-  return JSON.parse(localStorage.getItem("PasswordHolderData")).idPasswordCount;
 }
 
 /**
- * createPassword handles adding a new commonly shared password into the
- * localStorage so that we can store a new password for the rooommate group
- * Establishes the data we are tracking for a commonly shared password.
- * @param {Object} formData provided by JS file that gives us the data for
- * fields of a new password.
+ * Reads 'RoommateListData' from local storage and removes the instance
+ * of a specified roommate based on id from the list of roommates array.
+ * No change is made to the array if the id is not found.
+ * @param {Int} id Id of the roommate to remove
  */
-function createPassword(formData) {
-  const apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
-  const newPassword = {
-    id: apiData.idPasswordCount,
-    key: formData.key,
-    username: formData.username,
-    password: formData.password,
-  };
-  apiData.idPasswordCount += 1;
-  apiData.Passwords.push(newPassword);
-  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
-}
-
-/**
- * updatePassword handles editing an existing commonly shared password and
- * putting the changes into the localStorage so that we can store an
- * updated password for the rooommate group.
- * @param {Object} formData provided by JS file that gives us the fields
- * @param {Int} id that indicates which password we are trying to update
- */
-function updatePassword(id, formData) {
-  const apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
-  for (let i = 0; i &lt; apiData.Passwords.length; i++) {
-    if (apiData.Passwords[i].id === id) {
-      apiData.Passwords[i].key = formData.key;
-      apiData.Passwords[i].username = formData.username;
-      apiData.Passwords[i].password = formData.password;
+// export
+function deleteRoommate(id) {
+  // get the RoommateListData from local storage
+  const roommateList = JSON.parse(localStorage.getItem("RoommateListData"));
+  // get the list of roommates from RoommateListData
+  const roommates = roommateList.Roommates;
+  // iterate through the list of roommates
+  for (let i = 0; i &lt; roommates.length; i++) {
+    // check if the name matches our query
+    if (roommates[i].id == id) {
+      // remove the roommate from the list of roommates
+      roommates.splice(i, 1);
       break;
     }
   }
-  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
-}
 
-/**
- * deletePassword handles deleting an existing commonly shared password and
- * putting the changes into the localStorage so that we can remove a
- * password for the rooommate group.
- * @param {Int} id that indicates which password we are trying to delete
- */
-function deletePassword(id) {
-  const apiData = JSON.parse(localStorage.getItem("PasswordHolderData"));
-  for (let i = 0; i &lt; apiData.Passwords.length; i++) {
-    if (apiData.Passwords[i].id === id) {
-      apiData.Passwords.splice(i, 1);
-      break;
-    }
-  }
-  localStorage.setItem("PasswordHolderData", JSON.stringify(apiData));
+  // replace the old list of roommates
+  roommateList.Roommates = roommates;
+  choreAPI.removeFromChore(id);
+  // replace the RoommateListData in local storage
+  localStorage.setItem("RoommateListData", JSON.stringify(roommateList));
 }
 </code></pre>
         </article>
