@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: testSupportFiles/roommateListTests/unit-test-roommateListAPI.js</title>
+    <title>JSDoc: Source: testSupportFiles/billDividerTests/unit-test-billDividerAPI.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: testSupportFiles/roommateListTests/unit-test-roommateListAPI.js</h1>
+    <h1 class="page-title">Source: testSupportFiles/billDividerTests/unit-test-billDividerAPI.js</h1>
 
     
 
@@ -26,123 +26,182 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// roommateListAPI.js
-module.exports = {
-  createRoommate,
-  updateRoommate,
-  readRoommate,
-  deleteRoommate,
+            <pre class="prettyprint source linenums"><code>module.exports = {
+  initializeRoommate,
+  deleteRoommateFromDivider,
+  getRoommateArray,
+  getHistoryArray,
+  setRoommateArray,
+  setHistoryArray,
+  addTransaction,
+  dataExist,
 };
 
-// import { removeFromChore } from "../back-end/choresListAPI.js";
-const choreAPI = require("../choresListTests/unit-test-choresListAPI.js");
-/**
- * Reads formData from the form that creates a new rooomate.
- * Then stores this information within the localStorage API.
- * @param {Object} formData An object with form data regarding new roommate
- */
-// export
-function createRoommate(formData) {
-  // Check if the RoommateListData key is contained within local storage
-  // If not then create it, otherwise just append to roommates list and update id
-  if (localStorage.getItem("RoommateListData") === null) {
-    formData.id = 0;
-    const firstRoommate = {
-      Roommates: [formData],
-      idCount: 1,
-    };
-    localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
-  } else {
-    const apiData = JSON.parse(localStorage.getItem("RoommateListData"));
-    const roommate = {};
-
-    roommate.id = apiData.idCount;
-    apiData.idCount += 1;
-
-    for (const [key, value] of Object.entries(formData)) {
-      roommate[key] = value;
-    }
-
-    apiData.Roommates.push(roommate);
-
-    localStorage.setItem("RoommateListData", JSON.stringify(apiData));
-  }
-}
+//import { readRoommate } from "../back-end/roommateListAPI.js";
+const roommateAPI = require("../roommateListTests/unit-test-roommateListAPI.js");
 
 /**
- * Reads formData from the form that updates an existing rooomate.
- * Then stores this information within the localStorage API.
- * @param {Object} formData An object with form data regarding new roommate
+ * Adds a new roommate into the Roommate Array. This will be called in the Roommate List API.
+ * "Owes" and "transferred" arrays should all have a new pair added with the given ID and amount 0
+ * Set "paid" to the average "paid" from the other roommates.
+ * @param {Int} id
  */
-// export
-function updateRoommate(formData, id) {
-  // gather data inputted from form
-  const roommate = {};
+function initializeRoommate(id) {
+  dataExist();
 
-  roommate.id = id;
-  for (const [key, value] of Object.entries(formData)) {
-    roommate[key] = value;
-  }
+  const listOfPeople = roommateAPI.readRoommate();
+  const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+  const roommates = billDividerData["Roommates"];
+  const roommate = {
+    id: id,
+    isOwed: 0.0,
+    paid: 0.0,
+  };
+  let totalPaid = 0;
 
-  const roommateData = JSON.parse(localStorage.getItem("RoommateListData"));
-
-  for (let i = 0; i &lt; roommateData.Roommates.length; i++) {
-    if (roommateData.Roommates[i].id == id) {
-      roommateData.Roommates[i] = roommate;
-    }
-  }
-  localStorage.setItem("RoommateListData", JSON.stringify(roommateData));
-}
-
-/**
- * Reads 'RoommateListData' data from local storage
- * and returns an array of all the roommates information
- * found. If nothing in local storage returns empty array
- * @returns {Array&lt;object>} An array of RoommateListData
- */
-// export
-function readRoommate() {
-  // check to see if this is the first time the user is attempting to add roommates
-  if (localStorage.getItem("RoommateListData") === null) {
-    const firstRoommate = {
-      Roommates: [],
-      idCount: 0,
-    };
-    localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
-    return JSON.parse(localStorage.getItem("RoommateListData")).Roommates;
-  } else {
-    const roommate = JSON.parse(localStorage.getItem("RoommateListData"));
-    return roommate.Roommates;
-  }
-}
-
-/**
- * Reads 'RoommateListData' from local storage and removes the instance
- * of a specified roommate based on id from the list of roommates array.
- * No change is made to the array if the id is not found.
- * @param {Int} id Id of the roommate to remove
- */
-// export
-function deleteRoommate(id) {
-  // get the RoommateListData from local storage
-  const roommateList = JSON.parse(localStorage.getItem("RoommateListData"));
-  // get the list of roommates from RoommateListData
-  const roommates = roommateList.Roommates;
-  // iterate through the list of roommates
+  //getting the average paid from other roommates (BEFORE THE NEW ONE IS ADDED)
   for (let i = 0; i &lt; roommates.length; i++) {
-    // check if the name matches our query
+    totalPaid += roommates[i]["paid"];
+  }
+
+  //assigning the average paid to the new roommate
+  if (roommates.length > 0) roommate["paid"] = totalPaid / roommates.length;
+
+  billDividerData["Roommates"].push(roommate);
+
+  localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+}
+
+/**
+ * Removes a given roommate from the Roommate array.
+ * Also removes all history of that roommate and all Owes/transferred references.
+ * @param {Int} id
+ */
+function deleteRoommateFromDivider(id) {
+  dataExist();
+
+  const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+  const roommates = billDividerData["Roommates"];
+  const history = billDividerData["History"];
+
+  //removing the roommate from the owes and transferred list, and overall list
+  for (let i = 0; i &lt; roommates.length; i++) {
     if (roommates[i].id == id) {
-      // remove the roommate from the list of roommates
       roommates.splice(i, 1);
       break;
     }
   }
 
-  // replace the old list of roommates
-  roommateList.Roommates = roommates;
-  choreAPI.removeFromChore(id);
-  // replace the RoommateListData in local storage
-  localStorage.setItem("RoommateListData", JSON.stringify(roommateList));
+  //removing the roommate from the history list
+  for (let i = 0; i &lt; history.length; i++) {
+    if (history[i]["from"] == id || history[i]["to"] == id) {
+      history.splice(i, 1);
+      i--;
+    }
+  }
+
+  localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+}
+
+/**
+ * Returns the roommate list with id, amount they're owed/owe/paid/transferred.
+ * @returns {Array&lt;object>} an array of roommates
+ */
+function getRoommateArray() {
+  dataExist();
+
+  return JSON.parse(localStorage.getItem("BillDividerData"))["Roommates"];
+}
+
+/**
+ * Returns the history array with all of the transactions.
+ * @returns {Array&lt;object>}
+ */
+function getHistoryArray() {
+  dataExist();
+
+  return JSON.parse(localStorage.getItem("BillDividerData"))["History"];
+}
+
+/**
+ * Replaces the old roommates list with the new one in local storage.
+ * @param {Array&lt;object>} newRoommates new roommates list
+ */
+function setRoommateArray(newRoommates) {
+  dataExist();
+
+  const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+
+  //replace the old roommates array
+  billDividerData["Roommates"] = newRoommates;
+
+  localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+}
+
+/**
+ * Replaces the old history list with the new one in local storage.
+ * @param {Array&lt;object>} newHistory new history list
+ */
+function setHistoryArray(newHistory) {
+  dataExist();
+
+  const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+
+  //replace the old history array (may not be needed if you use addTransaction)
+  billDividerData["History"] = newHistory;
+
+  //replace the old history array (may not be needed if you use addTransaction)
+  billDividerData["History"] = newHistory;
+
+  localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+}
+
+/**
+ * Adds a transaction (including from, amount, and to information). To
+ * can be -1 if it is not sent to anyone.
+ * @param {Int} from id of the roommate money is sent from
+ * @param {Double} amount amount of money sent
+ * @param {Int} to id of the roommate money is sent to
+ */
+function addTransaction(from, amount, to) {
+  const billDividerData = JSON.parse(localStorage.getItem("BillDividerData"));
+
+  //initialize the transaction with argument data (to can be -1)
+  const transaction = {
+    from: from,
+    amount: amount,
+    to: to,
+  };
+
+  billDividerData["History"].push(transaction);
+
+  localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+}
+
+/**
+ * Helper function that checks if the BillDividerData exists in local storage.
+ * If it exists, nothing is done.
+ * If it does not exist, then it is created with an empty array of roommates
+ * and an empty array of transaction history.
+ */
+function dataExist() {
+  //check to see if BillDividerData does not exist in local storage
+  if (localStorage.getItem("BillDividerData") === null) {
+    //creating a new BillDividerData
+    const billDividerData = {
+      Roommates: [],
+      History: [],
+    };
+
+    let roommates = roommateAPI.readRoommate();
+
+    //adding it to local storage for the first time
+    localStorage.setItem("BillDividerData", JSON.stringify(billDividerData));
+
+    for (let r = 0; r &lt; roommates.length; r++) {
+      initializeRoommate(roommates[r].id);
+    }
+  }
 }
 </code></pre>
         </article>
