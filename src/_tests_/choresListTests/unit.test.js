@@ -414,7 +414,7 @@ test("checks if updateChore correctly updates multiple non-empty chores in local
         description: "Clean roof with vaccum",
         assignee: ["Park", "Pete", "Kate"],
         assignedDate: "12/12/1111",
-        status: "open",
+        // status: "open",
         currRoommate: "Park",
       },
       {
@@ -423,7 +423,7 @@ test("checks if updateChore correctly updates multiple non-empty chores in local
         description: "Move closet away from there",
         assignee: ["Kitty", "Pete", "Prince"],
         assignedDate: "01/19/1112",
-        status: "open",
+        // status: "open",
         currRoommate: "Kitty",
       },
     ],
