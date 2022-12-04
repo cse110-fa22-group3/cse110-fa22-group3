@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: back-end/roommateListAPI.js</title>
+    <title>JSDoc: Source: testSupportFiles/roommateListTests/unit-test-roommateListAPI.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: back-end/roommateListAPI.js</h1>
+    <h1 class="page-title">Source: testSupportFiles/roommateListTests/unit-test-roommateListAPI.js</h1>
 
     
 
@@ -27,14 +27,22 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>// roommateListAPI.js
-import { removeFromChore } from "../back-end/choresListAPI.js";
+module.exports = {
+  createRoommate,
+  updateRoommate,
+  readRoommate,
+  deleteRoommate,
+};
 
+// import { removeFromChore } from "../back-end/choresListAPI.js";
+const choreAPI = require("../choresListTests/unit-test-choresListAPI.js");
 /**
  * Reads formData from the form that creates a new rooomate.
  * Then stores this information within the localStorage API.
  * @param {Object} formData An object with form data regarding new roommate
  */
-export function createRoommate(formData) {
+// export
+function createRoommate(formData) {
   // Check if the RoommateListData key is contained within local storage
   // If not then create it, otherwise just append to roommates list and update id
   if (localStorage.getItem("RoommateListData") === null) {
@@ -51,7 +59,7 @@ export function createRoommate(formData) {
     roommate.id = apiData.idCount;
     apiData.idCount += 1;
 
-    for (const [key, value] of formData) {
+    for (const [key, value] of Object.entries(formData)) {
       roommate[key] = value;
     }
 
@@ -66,12 +74,13 @@ export function createRoommate(formData) {
  * Then stores this information within the localStorage API.
  * @param {Object} formData An object with form data regarding new roommate
  */
-export function updateRoommate(formData, id) {
+// export
+function updateRoommate(formData, id) {
   // gather data inputted from form
   const roommate = {};
 
   roommate.id = id;
-  for (const [key, value] of formData) {
+  for (const [key, value] of Object.entries(formData)) {
     roommate[key] = value;
   }
 
@@ -91,7 +100,8 @@ export function updateRoommate(formData, id) {
  * found. If nothing in local storage returns empty array
  * @returns {Array&lt;object>} An array of RoommateListData
  */
-export function readRoommate() {
+// export
+function readRoommate() {
   // check to see if this is the first time the user is attempting to add roommates
   if (localStorage.getItem("RoommateListData") === null) {
     const firstRoommate = {
@@ -112,12 +122,12 @@ export function readRoommate() {
  * No change is made to the array if the id is not found.
  * @param {Int} id Id of the roommate to remove
  */
-export function deleteRoommate(id) {
+// export
+function deleteRoommate(id) {
   // get the RoommateListData from local storage
   const roommateList = JSON.parse(localStorage.getItem("RoommateListData"));
   // get the list of roommates from RoommateListData
   const roommates = roommateList.Roommates;
-  // console.log(roommates);
   // iterate through the list of roommates
   for (let i = 0; i &lt; roommates.length; i++) {
     // check if the name matches our query
@@ -130,8 +140,7 @@ export function deleteRoommate(id) {
 
   // replace the old list of roommates
   roommateList.Roommates = roommates;
-  console.log(roommateList);
-  removeFromChore(id);
+  choreAPI.removeFromChore(id);
   // replace the RoommateListData in local storage
   localStorage.setItem("RoommateListData", JSON.stringify(roommateList));
 }
