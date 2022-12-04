@@ -158,57 +158,140 @@ test("checks to makes sure that getRoommate returns roommate when it is present 
     window.localStorage.clear();
 });
 
-test("",() =>{
+//getRoommateName
+test("checks that getRoommateName returns deleted if searched for non-existent roommate in empty list",() =>{
+    let roommates = roommateFunctionAPIs.readRoommate();
+    const tempRoommate = mainAPIs.getRoommateName(1);
+
+    expect(tempRoommate).toStrictEqual("[deleted]");
+    window.localStorage.clear();
+});
+
+test("checks that getRoommateName returns deleted if searched for non-existent roommate in non-empty list",() =>{
+    let roommates = roommateFunctionAPIs.readRoommate();
+
+    const formData = {
+        name: "Xun Liu",
+        birthday: "12/19/2000",
+        hobbies: "playing guitar",
+        notes: "",
+      };
+    roommateFunctionAPIs.createRoommate(formData);
+    const tempRoommate = mainAPIs.getRoommateName(2);
+
+    expect(tempRoommate).toStrictEqual("[deleted]");
+    window.localStorage.clear();
+});
+
+test("checks that getRoommateName returns correct name in a 1 person roommatelist",() =>{
+    let roommates = roommateFunctionAPIs.readRoommate();
+
+    const formData = {
+        name: "Xun Liu",
+        birthday: "12/19/2000",
+        hobbies: "playing guitar",
+        notes: "",
+      };
+    roommateFunctionAPIs.createRoommate(formData);
+    const tempRoommate = mainAPIs.getRoommateName(0);
+
+    expect(tempRoommate).toStrictEqual("Xun Liu");
+    window.localStorage.clear();
 
 });
 
+test("checks that getRoommateName returns correct name in a multi-person roommatelist",() =>{
+    let roommates = roommateFunctionAPIs.readRoommate();
 
-//createRoommateCard
-test("",() =>{
+    const formData0 = {
+        name: "Xun Liu",
+        birthday: "12/19/2000",
+        hobbies: "playing guitar",
+        notes: "",
+      };
+      const formData1 = {
+        name: "John Doe",
+        birthday: "12/12/1212",
+        hobbies: "playing bass",
+        notes: "",
+      };
 
+    roommateFunctionAPIs.createRoommate(formData0);
+    roommateFunctionAPIs.createRoommate(formData1);
+    const tempRoommate = mainAPIs.getRoommateName(0);
+
+    expect(tempRoommate).toStrictEqual("Xun Liu");
+    window.localStorage.clear();
 });
 
-test("",() =>{
+//getRoommateId
+test("checks that getRoommateId returns correct id in a multi-person roommatelist",() =>{
+    functionAPIs.getRoommateArray();
+    functionAPIs.initializeRoommate(1);
+    functionAPIs.initializeRoommate(2);
+    functionAPIs.initializeRoommate(3);
+    const tempRoommate = mainAPIs.getRoommateId(0);
+    expect(tempRoommate).toStrictEqual(1);
+    window.localStorage.clear();
+});
 
+test("checks that getRoommateId returns correct id in a 1-person roommatelist",() =>{
+    functionAPIs.getRoommateArray();
+    functionAPIs.initializeRoommate(1);
+    const tempRoommate = mainAPIs.getRoommateId(0);
+    expect(tempRoommate).toStrictEqual(1);
+    window.localStorage.clear();
+});
+
+test("checks that getRoommateId returns -1 in an empty roommatelist",() =>{
+    functionAPIs.getRoommateArray();
+    const tempRoommate = mainAPIs.getRoommateId(0);
+    expect(tempRoommate).toStrictEqual(-1);
+    window.localStorage.clear();
+});
+
+test("checks that getRoommateId returns -1 in a non-empty roommatelist",() =>{
+    functionAPIs.getRoommateArray();
+    functionAPIs.initializeRoommate(1);
+    const tempRoommate = mainAPIs.getRoommateId(1);
+    expect(tempRoommate).toStrictEqual(-1);
+    window.localStorage.clear();
 });
 
 
-//initalizeList
-test("",() =>{
+//getRoommateIndex
 
+test("checks that getRoommateIndex returns -1 in a non-empty roommatelist",() =>{
+    functionAPIs.getRoommateArray();
+    functionAPIs.initializeRoommate(1);
+    const tempRoommate = mainAPIs.getRoommateIndex(0);
+    expect(tempRoommate).toStrictEqual(-1);
+    window.localStorage.clear();
 });
 
-test("",() =>{
+test("checks that getRoommateIndex returns -1 in an empty roommatelist",() =>{
+    functionAPIs.getRoommateArray();
+    const tempRoommate = mainAPIs.getRoommateIndex(1);
+    expect(tempRoommate).toStrictEqual(-1);
+    window.localStorage.clear();
+});
 
+test("checks that getRoommateIndex returns correct index in a 1-person roommatelist",() =>{
+    functionAPIs.getRoommateArray();
+    functionAPIs.initializeRoommate(1);
+    const tempRoommate = mainAPIs.getRoommateIndex(1);
+    expect(tempRoommate).toStrictEqual(0);
+    window.localStorage.clear();
+});
+
+test("checks that getRoommateIndex returns correct index in a multi-person roommatelist",() =>{
+    functionAPIs.getRoommateArray();
+    functionAPIs.initializeRoommate(1);
+    functionAPIs.initializeRoommate(2);
+    functionAPIs.initializeRoommate(3);
+    const tempRoommate = mainAPIs.getRoommateIndex(1);
+    expect(tempRoommate).toStrictEqual(0);
+    window.localStorage.clear();
 });
 
 
-//populateHistory
-test("",() =>{
-
-});
-
-test("",() =>{
-
-});
-
-
-//displayRoommmateCards
-test("",() =>{
-
-});
-
-test("",() =>{
-
-});
-
-
-//storeData
-test("",() =>{
-
-});
-
-//pay
-test("",() =>{
-
-});
