@@ -9,7 +9,10 @@ describe("Basic user flow for Website", () => {
   // Next, check to make sure that all 20 <product-item> elements have loaded
   it("Adding one password", async () => {
     page.waitForTimeout(2000);
-    const noPasswordText = await page.$eval("#no-elements-present", element => element.textContent);
+    const noPasswordText = await page.$eval(
+      "#no-elements-present",
+      (element) => element.textContent
+    );
     expect(noPasswordText).toBe("No passwords to show");
     await page.click("#add-button-password");
     await page.waitForTimeout(1000);
@@ -20,16 +23,22 @@ describe("Basic user flow for Website", () => {
     const passwordCards = await page.$$("password-holder-card");
     expect(passwordCards.length).toBe(1);
   });
-  it("Checking passsword info", async() => {
+  it("Checking passsword info", async () => {
     await page.waitForTimeout(2000);
     await page.click("#passwordCard0");
     await page.waitForTimeout(1000);
-    const username = await page.$eval("#insert-username-modal", element => element.textContent);
-    const password = await page.$eval("#insert-password-modal", element => element.textContent);
+    const username = await page.$eval(
+      "#insert-username-modal",
+      (element) => element.textContent
+    );
+    const password = await page.$eval(
+      "#insert-password-modal",
+      (element) => element.textContent
+    );
     await page.click("#info-modal-close-button");
     expect(username).toBe("secret username");
     expect(password).toBe("secret password");
-  })
+  });
   it("Editing password info", async () => {
     await page.waitForTimeout(2000);
     await page.click("#password-card-edit-id-0");
@@ -41,8 +50,14 @@ describe("Basic user flow for Website", () => {
     await page.waitForTimeout(2000);
     await page.click("#passwordCard0");
     await page.waitForTimeout(1000);
-    const username = await page.$eval("#insert-username-modal", element => element.textContent);
-    const password = await page.$eval("#insert-password-modal", element => element.textContent);
+    const username = await page.$eval(
+      "#insert-username-modal",
+      (element) => element.textContent
+    );
+    const password = await page.$eval(
+      "#insert-password-modal",
+      (element) => element.textContent
+    );
     await page.click("#info-modal-close-button");
     expect(username).toBe("new username");
     expect(password).toBe("new password");
@@ -53,7 +68,10 @@ describe("Basic user flow for Website", () => {
     await page.waitForTimeout(2000);
     const passwordCards = await page.$$("password-holder-card");
     expect(passwordCards.length).toBe(0);
-    const noPasswordText = await page.$eval("#no-elements-present", element => element.textContent);
+    const noPasswordText = await page.$eval(
+      "#no-elements-present",
+      (element) => element.textContent
+    );
     expect(noPasswordText).toBe("No passwords to show");
   });
 });
