@@ -82,7 +82,7 @@ export function deleteRoommate(id) {
 
   //remove the roommate from any chores
   removeFromChore(id);
-  
+
   //remove the roommate from the bill divider storage
   deleteRoommateFromDivider(id);
 
