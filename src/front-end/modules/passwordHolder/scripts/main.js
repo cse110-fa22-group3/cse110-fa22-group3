@@ -141,10 +141,9 @@ function passIdToEditButton() {
  * and password credentials for a given shared account.
  */
 function openInfoPasswordClick() {
-  let info = queryPasswordInfo(this["dataset"]["value"]);
+  let info = queryPasswordInfo(parseInt(this["dataset"]["value"]));
   let modalUsernameField = document.getElementById("insert-username-modal");
   let modalPasswordField = document.getElementById("insert-password-modal");
-  console.log(info.password);
   modalUsernameField.innerText = info.username;
   modalPasswordField.innerText = info.password;
 }

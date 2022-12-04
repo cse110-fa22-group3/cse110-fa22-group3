@@ -8,9 +8,9 @@ name: Lint Code Base
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main, passwordHolderFeature, billDividerFeature, choresListFeature, roommateListFeature]
   pull_request:
-    branches: [ "main" ]
+    branches: [main, passwordHolderFeature, billDividerFeature, choresListFeature, roommateListFeature]
 jobs:
   run-lint:
     runs-on: ubuntu-latest
@@ -24,6 +24,7 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter@v4
         env:
+          VALIDATE_JAVASCRIPT_STANDARD: false
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
