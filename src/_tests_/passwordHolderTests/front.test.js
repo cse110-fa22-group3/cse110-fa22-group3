@@ -6,6 +6,7 @@ describe("Basic user flow for Website", () => {
   
     // Next, check to make sure that all 20 <product-item> elements have loaded
     it("Initial Passwords Page", async () => {
+      await page.waitForTimeout(4000)
       expect(true).toBe(true);
     });
   });
