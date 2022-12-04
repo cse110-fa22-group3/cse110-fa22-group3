@@ -673,7 +673,7 @@ test("check if checkDate corrects the assignedDate", () => {
     title: "Wash Dishses",
     description: "Wash dishes with hand",
     assignee: ["Mark"],
-    assignedDate: "12/3/2022",
+    assignedDate: "12/4/2022",
     status: "open",
     currRoommate: "Mark",
   };
@@ -683,7 +683,7 @@ test("check if checkDate corrects the assignedDate", () => {
   const chore = localStorageData.chores[0];
   console.log("local storage:", chore);
   console.log("supposed data:", resData);
-  expect(chore["assignedDate"]).toStrictEqual("12/3/2022");
+  expect(chore["assignedDate"]).toStrictEqual("12/4/2022");
   window.localStorage.clear();
 });
 
@@ -693,7 +693,7 @@ test("check if checkDate corrects the assignedDate", () => {
     title: "Wash Dishses",
     description: "Wash dishes with hand",
     assignee: ["Mark"],
-    assignedDate: "12/04/2022",
+    assignedDate: "12/03/2022",
   };
   const resData = {
     id: 1,
