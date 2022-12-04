@@ -13,7 +13,7 @@ describe('user flow for chores page', () => {
 
     // get the website first 
     beforeAll(async () => {
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch();
         page = await browser.newPage();
         await page.goto('http://localhost/3000/src/front-end/roommates.html');
         // click on add in webpage and add new roommate
