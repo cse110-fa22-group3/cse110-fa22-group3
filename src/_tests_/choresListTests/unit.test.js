@@ -521,7 +521,7 @@ test("check if closeChore correctly closes chores and put them to archive", () =
   window.localStorage.clear();
 });
 
-test("checks if reOpenChore reopens chores that closed", () => {
+test("checks if reOpenChore reopens chores that are closed", () => {
   functionAPIs.readChores();
   const formData0 = {
     title: "Wash Dishses",
@@ -660,7 +660,7 @@ test("checks if clearArchive clears archive", () => {
   window.localStorage.clear();
 });
 
-// Deleted checkDate test because result varies everyday
+// CheckDate result varies every day
 // test("check if checkDate corrects the assignedDate", () => {
 //   functionAPIs.readChores();
 //   const formData = {
@@ -674,48 +674,34 @@ test("checks if clearArchive clears archive", () => {
 //     title: "Wash Dishses",
 //     description: "Wash dishes with hand",
 //     assignee: ["Mark"],
-//     assignedDate: "12/4/2022",
+//     assignedDate: "12/3/2022",
 //     status: "open",
 //     currRoommate: "Mark",
 //   };
 
-  functionAPIs.createChore(formData);
-  const localStorageData = functionAPIs.readChores();
-  const chore = localStorageData.chores[0];
-  console.log("local storage:", chore);
-  console.log("supposed data:", resData);
-  expect(chore["assignedDate"]).toStrictEqual("12/4/2022");
-  window.localStorage.clear();
-});
+//   functionAPIs.createChore(formData);
+//   const localStorageData = functionAPIs.readChores();
+//   const chore = localStorageData.chores[0];
+//   console.log("local storage:", chore);
+//   console.log("supposed data:", resData);
+//   expect(chore["assignedDate"]).toStrictEqual("12/3/2022");
+//   window.localStorage.clear();
+// });
 
-test("check if checkDate corrects the assignedDate", () => {
+test("checks if inCharge returns the correct roommate that's in charge of a chore", () => {
   functionAPIs.readChores();
   const formData = {
     title: "Wash Dishses",
     description: "Wash dishes with hand",
-    assignee: ["Mark"],
+    assignee: ["Xun Liu"],
     assignedDate: "12/03/2022",
   };
-  const resData = {
-    id: 1,
-    title: "Wash Dishses",
-    description: "Wash dishes with hand",
-    assignee: ["Mark"],
-    assignedDate: "12/3/2022",
-    status: "open",
-    currRoommate: "Mark",
-  };
-
   functionAPIs.createChore(formData);
-  const localStorageData = functionAPIs.readChores();
-  const chore = localStorageData.chores[0];
-  console.log("local storage:", chore);
-  console.log("supposed data:", resData);
-  expect(chore["currRoommate"]).toStrictEqual("Mark");
+  const charge = functionAPIs.inCharge(1);
+  expect(charge).toStrictEqual("Xun Liu");
   window.localStorage.clear();
 });
 
-// readRoommate
 test("checks if removeFromChore removes the roommate from chores", () => {
   functionAPIs.readChores();
   const formData = {
