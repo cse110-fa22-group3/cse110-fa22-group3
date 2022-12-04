@@ -1,9 +1,7 @@
 {
-	"folders": [
-		{
-			"name": "cse110-fa22-group3",
-			"path": "../.."
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "../.."
+        }
+    ]
 }
