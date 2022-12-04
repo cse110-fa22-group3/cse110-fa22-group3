@@ -18,7 +18,7 @@ class passwordHolderCard extends HTMLElement {
     passwordHolderCard.innerHTML = `<style>.whole-password{
           background-color: rgba(0, 0, 0, 0);
           border-radius: 12px;
-          border: solid white 2px;
+          border: solid #212529 2px;
           box-shadow: 0 10px 8px rgba(0, 0, 0, 0.5);
           transition-duration: 0.4s;
           color:black;
