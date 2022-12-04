@@ -56,7 +56,7 @@ class Roommate extends HTMLElement {
   set data(data) {
     //if there is no data, return
     if (!data) return;
-    
+
     //querying the div element
     const roommate = this.shadow.querySelector("div");
 
