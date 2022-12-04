@@ -3,9 +3,10 @@
  */
 
 // import functions
-const functionAPIs = require("../../testSupportFiles/billDividerTests/unit-test-billDividerAPI");
-const mainAPIs = require("../../testSupportFiles/billDividerTests/unit-test-main");
-  
+const functionAPIs = require("../../testSupportFiles/billDividerTests/unit-test-billDividerAPI.js");
+const mainAPIs = require("../../testSupportFiles/billDividerTests/unit-test-main.js");
+const roommateFunctionAPIs = require("../../testSupportFiles/roommateListTests/unit-test-roommateListAPI");
+
 //getRoommateArray
 test("check if getRoommateArray returns an empty array when there are no Roommates",() =>{
     //call to our getRoommateArray
@@ -107,8 +108,12 @@ test("check if getHistoryArray creates a non-empty historyArray",() =>{
 });
 
 //getRoommate
-test("",() =>{
+test("check getRoommate returns null when cant find roommate in empty roommatelist",() =>{
+    let roommates = roommateFunctionAPIs.readRoommate();
+    const tempRoommate = mainAPIs.getRoommate(1);
 
+    expect(tempRoommate).toStrictEqual(null);
+    window.localStorage.clear();
 });
 
 test("",() =>{

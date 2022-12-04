@@ -1,6 +1,26 @@
 //import { readRoommate } from "../../../../back-end/roommateListAPI.js";
 const roommateAPI = require("../roommateListTests/unit-test-roommateListAPI.js");
 
+module.exports = {
+  getRoommate,
+  init,
+  createRoommateCard,
+  initializeList,
+  populateHistory,
+  displayRoommateCards,
+  storeData,
+  pay,
+  processPayment,
+  reevaluateDebt,
+  transfer,
+  processTransfer,
+  deleteHistory,
+  getRoommateIndex,
+  getRoommateId,
+  getRoommateName
+  
+}
+
 //import {
 //  initializeRoommate,
 //  deleteRoommateFromDivider,
