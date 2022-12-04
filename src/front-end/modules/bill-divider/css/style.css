@@ -24,6 +24,25 @@ textarea {
   border: 2px solid #000;
 }
 
+section {
+  border-width: 2px !important;
+  border-color: #2e6331 !important;
+  box-shadow: .25px .25px 15px #518c55;
+  background-color: #f0eded !important;
+}
+
+input[value="Delete"]:hover {
+  background-color: red;
+}
+
+input[type="submit"]:hover {
+  background-color: green;
+}
+
+input[value="Submit"]:hover {
+  background-color: green;
+}
+
 .w {
   width: 500px;
   margin: 0 auto;
@@ -42,12 +61,16 @@ textarea {
   border: 3px solid #000;
 }
 
+.card .w {
+  background-color: white !important;
+}
+
 .card.active {
   display: block;
 }
 
 .card .tit {
-  position: relative;
+  position: inherit;
   display: flex;
   margin-bottom: 15px;
 }
@@ -92,6 +115,30 @@ textarea {
   padding: 5px 15px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.btn1 {
+  border-color: gold;
+}
+
+.btn1:hover {
+  background-color: gold;
+}
+
+.btn2 {
+  border-color: turquoise;
+}
+
+.btn2:hover {
+  background-color: turquoise;
+}
+
+.btn3 {
+  border-color: lightblue;
+}
+
+.btn3:hover {
+  background-color: lightblue;
 }
 
 .transfer-list {
