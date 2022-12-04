@@ -116,6 +116,48 @@ test("check getRoommate returns null when cant find roommate in empty roommateli
     window.localStorage.clear();
 });
 
+test("checks to make sure that getRoommate returns null when cant find roommate in non-empty roommatelist",() =>{
+    let roommates = roommateFunctionAPIs.readRoommate();
+
+    const formData = {
+        name: "Xun Liu",
+        birthday: "12/19/2000",
+        hobbies: "playing guitar",
+        notes: "",
+      };
+    roommateFunctionAPIs.createRoommate(formData);
+    const tempRoommate = mainAPIs.getRoommate(2);
+
+    expect(tempRoommate).toStrictEqual(null);
+    window.localStorage.clear();
+});
+
+test("checks to makes sure that getRoommate returns roommate when it is present in roommateList",() =>{
+    const formData0 = {
+        name: "Xun Liu",
+        birthday: "12/19/2000",
+        hobbies: "playing guitar",
+        notes: "",
+      };
+      const formData1 = {
+        name: "John Doe",
+        birthday: "12/12/1212",
+        hobbies: "playing bass",
+        notes: "",
+      };
+
+    roommateFunctionAPIs.createRoommate(formData0);
+    roommateFunctionAPIs.createRoommate(formData1);
+    let roommates = roommateFunctionAPIs.readRoommate();
+
+    const tempRoommate = mainAPIs.getRoommate(0);    
+
+    console.log("getRoommate:", mainAPIs.getRoommate(0));
+    console.log("form data:", formData0);
+    expect(tempRoommate).toStrictEqual(formData0);
+    window.localStorage.clear();
+});
+
 test("",() =>{
 
 });

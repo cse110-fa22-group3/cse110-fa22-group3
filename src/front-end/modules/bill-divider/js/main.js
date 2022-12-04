@@ -9,13 +9,14 @@ import {
   addTransaction,
 } from "../../../../back-end/billDividerAPI.js";
 
-let roommates = readRoommate();
+
 /**
  * Gets a given roommate with their ID
  * @param {number} id The ID of the roommate
  * @returns The roommate object
  */
 function getRoommate(id) {
+  let roommates = readRoommate();
   for (let i = 0; i < roommates.length; i++) {
     if (roommates[i].id == id) return roommates[i];
   }
