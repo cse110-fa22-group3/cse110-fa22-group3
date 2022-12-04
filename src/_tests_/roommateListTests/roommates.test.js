@@ -1,25 +1,24 @@
 describe('user flow for roommates page', () => {
 
-
     // get puppeteer
     const puppeteer = require('puppeteer');
     let page;
 
     // set variables for test roommate
-    let testName = 'test';
+    let testName = 'John Doe';
     let testBirthday = '10/31/2008';
     let testHobby = 'programming';
     let testNote = 'system failure';
-
+    
     // get the website first 
     beforeAll(async () => {
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch();
         page = await browser.newPage();
-        await page.goto('http://127.0.0.1:5500/src/front-end/roommates.html');
+        await page.goto('https://cse110-fa22-group3.github.io/cse110-fa22-group3/src/front-end/roommates.html');
     });
 
     // check to see there are no roommates 
-    it('First check there are no roommates', async () => {
+    it ('First check there are no roommates', async() => {
         const nullRoommates = await page.$$eval('roommate-card', (nRoommate) => {
             return nRoommate.length;
         });
@@ -27,14 +26,14 @@ describe('user flow for roommates page', () => {
     });
 
     // check to see if we can add a new roommate 
-    it('Add a new roommate', async () => {
+    it ('Add a new roommate', async() => {
         // click on add in webpage and add new roommate
         await page.click('#new');
         // wait for the popup box to add roommates
         await page.waitForSelector('#background-1');
         // need to put in string values for the following because variables were not accepted
         // type in the name of roommate
-        await page.$eval('#name-1', nm => nm.value = 'test');
+        await page.$eval('#name-1', nm => nm.value = 'John Doe');
         // type in birthday of roommate
         await page.$eval('#birthday-1', bd => bd.value = '10/31/2008');
         // type in hobbies of roommate
@@ -50,10 +49,10 @@ describe('user flow for roommates page', () => {
         // if new roommate is added then roommate card should contain 1 new roommate
         expect(numRoommmate).toBe(1);
     });
-
+    
     // check to see if the roommate we created is the correct one and information is stored
     // first we check roommate name
-    it('Check roommate name', async () => {
+    it ('Check roommate name', async() => {
         // grab roommate card 
         const currRoommate = await page.$('roommate-card');
         // grab shadowroot from roommate card
@@ -67,9 +66,9 @@ describe('user flow for roommates page', () => {
         // compare name with test name 
         expect(name).toBe(testName);
     });
-
+    
     // second we check roommate birthday
-    it('Check roommate birthday', async () => {
+    it ('Check roommate birthday', async () => {
         // grab roommate card
         const currRoommate = await page.$('roommate-card');
         // grab shadowroot from roommate card
@@ -85,7 +84,7 @@ describe('user flow for roommates page', () => {
     })
 
     // third we check roommate hobbies
-    it('Check roommate hobbies', async () => {
+    it ('Check roommate hobbies', async () => {
         // grab roommate card
         const currRoommate = await page.$('roommate-card');
         // grab shadowroot from roommate card
@@ -101,7 +100,7 @@ describe('user flow for roommates page', () => {
     });
 
     // fourth we check to see if notes is the same 
-    it('Check roommate notes', async () => {
+    it ('Check roommate notes', async () => {
         // grab roommate card
         const currRoommate = await page.$('roommate-card');
         // grab shadowroot from roommate card
@@ -117,7 +116,7 @@ describe('user flow for roommates page', () => {
     });
 
     // check to see if we can update roommates from the list 
-    it('Check update roommates', async () => {
+    it ('Check update roommates', async() => {
         // click on the John Doe roommate list   
         await page.click('[id="0"]');
         // wait for response 
