@@ -9,13 +9,14 @@ import {
   addTransaction,
 } from "../../../../back-end/billDividerAPI.js";
 
-let roommates = readRoommate();
+
 /**
  * Gets a given roommate with their ID
  * @param {number} id The ID of the roommate
  * @returns The roommate object
  */
 function getRoommate(id) {
+  let roommates = readRoommate();
   for (let i = 0; i < roommates.length; i++) {
     if (roommates[i].id == id) return roommates[i];
   }
@@ -449,7 +450,8 @@ function deleteHistory() {
  * @param {number} id The ID of the roommate
  * @returns The index of the roommate
  */
-function getRoommateIndex(id) {
+ function getRoommateIndex(id) {
+  let array = billDividerAPI.getRoommateArray(); //array containing data objects
   for (let i = 0; i < array.length; i++) {
     if (array[i].id == id) return i;
   }
@@ -460,10 +462,16 @@ function getRoommateIndex(id) {
 /**
  * Gets the ID of a roommate given their index in array
  * @param {number} index The index of the roommate
- * @returns The ID of the roommate
+ * @returns The ID of the roommate or -1 if out of bounds
  */
 function getRoommateId(index) {
-  return array[index].id;
+  let array = billDividerAPI.getRoommateArray(); //array containing data objects
+  if(index > array.length -1){
+    return -1;
+  }else{
+    return array[index].id;
+  }
+  
 }
 
 /**
