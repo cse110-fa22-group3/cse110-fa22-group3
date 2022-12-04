@@ -18,10 +18,10 @@ class passwordHolderCard extends HTMLElement {
     passwordHolderCard.innerHTML = `<style>.whole-password{
           background-color: rgba(0, 0, 0, 0);
           border-radius: 12px;
-          border: solid white 2px;
+          border: solid #212529 2px;
           box-shadow: 0 10px 8px rgba(0, 0, 0, 0.5);
           transition-duration: 0.4s;
-          color:white;
+          color:black;
           height: 50px;
           margin-top: 15px;
           padding-left: 20px;
@@ -33,8 +33,8 @@ class passwordHolderCard extends HTMLElement {
       
       .whole-password:hover{
       transform: translateY(-4px);
-      color: black;
-      background-color: white;
+      color: white;
+      background-color: #212529;
       cursor: pointer;
       }</style><h2>${data.key}</h2>`;
   }

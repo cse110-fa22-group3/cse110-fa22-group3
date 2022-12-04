@@ -6,21 +6,33 @@
 
 fieldset {
   margin: 1em 0;
-  border: solid 1px #ccc;
+  border: solid 3px #ccc;
   min-width: 20px;
   background-color: #b0aeac;
 }
 
 input {
   width: 100%;
+  padding: 10px;
+}
+
+input [type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+}
+
+label {
+  width: 99%;
 }
 
 button {
+  margin-bottom: 10px;
   font-size: 16px;
   border: 2px solid black;
   border-color: #04aa6d;
   color: green;
-  padding: 10px 15px;
+  padding: 5px 10px;
   background-color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -45,6 +57,8 @@ button:hover {
 }
 
 .div1 {
+  position: relative;
+  top: -60px;
   background: #eee;
   width: 70%;
   z-index: 1;
@@ -61,7 +75,6 @@ button:hover {
 
 .div2 {
   background: #eee;
-  margin-top: 30px;
   height: 400px;
   padding: 0 20px;
   font-size: x-large;
