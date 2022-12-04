@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: testSupportFiles/roommateListTests/unit-test-roommateListAPI.js</title>
+    <title>JSDoc: Source: front-end/modules/roommate-list/js/roommate.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: testSupportFiles/roommateListTests/unit-test-roommateListAPI.js</h1>
+    <h1 class="page-title">Source: front-end/modules/roommate-list/js/roommate.js</h1>
 
     
 
@@ -26,124 +26,87 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// roommateListAPI.js
-module.exports = {
-  createRoommate,
-  updateRoommate,
-  readRoommate,
-  deleteRoommate,
-};
+            <pre class="prettyprint source linenums"><code>//roommate.js
 
-// import { removeFromChore } from "../back-end/choresListAPI.js";
-const choreAPI = require("../choresListTests/unit-test-choresListAPI.js");
 /**
- * Reads formData from the form that creates a new rooomate.
- * Then stores this information within the localStorage API.
- * @param {Object} formData An object with form data regarding new roommate
+ * Class Roommate has the functionality to create custom roommate-card
+ * elements and input a consistent style and roommate data from local storage.
  */
-// export
-function createRoommate(formData) {
-  // Check if the RoommateListData key is contained within local storage
-  // If not then create it, otherwise just append to roommates list and update id
-  if (localStorage.getItem("RoommateListData") === null) {
-    formData.id = 0;
-    const firstRoommate = {
-      Roommates: [formData],
-      idCount: 1,
-    };
-    localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
-  } else {
-    const apiData = JSON.parse(localStorage.getItem("RoommateListData"));
-    const roommate = {};
+class Roommate extends HTMLElement {
+  constructor() {
+    //inheret everything from HTMLElement
+    super();
+    //attach shadow DOM
+    this.shadow = this.attachShadow({ mode: "open" });
 
-    roommate.id = apiData.idCount;
-    apiData.idCount += 1;
+    //defining the roommate element and appending it
+    const roommate = document.createElement("div");
+    roommate.className = "item";
+    this.shadow.append(roommate);
 
-    for (const [key, value] of Object.entries(formData)) {
-      roommate[key] = value;
-    }
+    //defining the style element and appending it
+    const style = document.createElement("style");
+    style.innerText = `
+          .item {
+            margin-bottom: 30px;
+            padding: 30px;
+            width: 200px;
+            border-radius: 45px;
+            border: 5px solid #000;
+            text-align: center;
+            cursor: pointer;
+          }
+          .text {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .text img {
+            width: 35px;
+            height: auto;
+          }
+          .text p {
+            font-size: 25px;
+          }
+          h3 {
+            text-align: center;
+            font-size: 35px;
+            margin-bottom: 20px;
+          }
+          span {
+            font-size: 20px;
+          }
+          `;
+    this.shadow.append(style);
+  }
+  //setting the data that we will receive from local storage
+  set data(data) {
+    //if there is no data, return
+    if (!data) return;
 
-    apiData.Roommates.push(roommate);
+    //querying the div element
+    const roommate = this.shadow.querySelector("div");
 
-    localStorage.setItem("RoommateListData", JSON.stringify(apiData));
+    //showing the roommate's data in the shadow DOM
+    roommate.innerHTML = `
+            &lt;h3>${data.name}&lt;/h3>
+            &lt;div class="text">
+                &lt;img src="./modules/roommate-list/images/icon-1.png" alt="">
+                &lt;p>${data.birthday}&lt;/p>
+            &lt;/div>
+            &lt;div class="text">
+                &lt;p>${data.hobbies}&lt;/p>
+            &lt;/div>
+            &lt;div class="text">
+                &lt;p>${data.notes}&lt;/p>
+            &lt;/div>
+        `;
   }
 }
 
-/**
- * Reads formData from the form that updates an existing rooomate.
- * Then stores this information within the localStorage API.
- * @param {Object} formData An object with form data regarding new roommate
- */
-// export
-function updateRoommate(formData, id) {
-  // gather data inputted from form
-  const roommate = {};
-
-  roommate.id = id;
-  for (const [key, value] of Object.entries(formData)) {
-    roommate[key] = value;
-  }
-
-  const roommateData = JSON.parse(localStorage.getItem("RoommateListData"));
-
-  for (let i = 0; i &lt; roommateData.Roommates.length; i++) {
-    if (roommateData.Roommates[i].id == id) {
-      roommateData.Roommates[i] = roommate;
-    }
-  }
-  localStorage.setItem("RoommateListData", JSON.stringify(roommateData));
-}
-
-/**
- * Reads 'RoommateListData' data from local storage
- * and returns an array of all the roommates information
- * found. If nothing in local storage returns empty array
- * @returns {Array&lt;object>} An array of RoommateListData
- */
-// export
-function readRoommate() {
-  // check to see if this is the first time the user is attempting to add roommates
-  if (localStorage.getItem("RoommateListData") === null) {
-    const firstRoommate = {
-      Roommates: [],
-      idCount: 0,
-    };
-    localStorage.setItem("RoommateListData", JSON.stringify(firstRoommate));
-    return JSON.parse(localStorage.getItem("RoommateListData")).Roommates;
-  } else {
-    const roommate = JSON.parse(localStorage.getItem("RoommateListData"));
-    return roommate.Roommates;
-  }
-}
-
-/**
- * Reads 'RoommateListData' from local storage and removes the instance
- * of a specified roommate based on id from the list of roommates array.
- * No change is made to the array if the id is not found.
- * @param {Int} id Id of the roommate to remove
- */
-// export
-function deleteRoommate(id) {
-  // get the RoommateListData from local storage
-  const roommateList = JSON.parse(localStorage.getItem("RoommateListData"));
-  // get the list of roommates from RoommateListData
-  const roommates = roommateList.Roommates;
-  // iterate through the list of roommates
-  for (let i = 0; i &lt; roommates.length; i++) {
-    // check if the name matches our query
-    if (roommates[i].id == id) {
-      // remove the roommate from the list of roommates
-      roommates.splice(i, 1);
-      break;
-    }
-  }
-
-  // replace the old list of roommates
-  roommateList.Roommates = roommates;
-  choreAPI.removeFromChore(id);
-  // replace the RoommateListData in local storage
-  localStorage.setItem("RoommateListData", JSON.stringify(roommateList));
-}
+//define a new custom element roommate-card
+customElements.define("roommate-card", Roommate);
 </code></pre>
         </article>
     </section>
