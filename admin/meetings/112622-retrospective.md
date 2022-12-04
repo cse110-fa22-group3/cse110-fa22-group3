@@ -20,6 +20,7 @@
 8:00 - 8:19 PM on 11/26/22 via Zoom
 
 ### **Retrospective Notes**
+
 1. Originally we were thinking of testing with e2e strictly, but we found a lot of benefit in creating local unit tests specifically for the
    API functions, to see how they work isolated.
    Furtermore the pipeline was not going to contain the e2e tests but we decided it was important to see if the user workflow would still work with new code.
