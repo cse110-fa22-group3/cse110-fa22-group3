@@ -660,7 +660,6 @@ test("checks if clearArchive clears archive", () => {
   window.localStorage.clear();
 });
 
-
 test("check if checkDate corrects the assignedDate", () => {
   functionAPIs.readChores();
   const formData = {
