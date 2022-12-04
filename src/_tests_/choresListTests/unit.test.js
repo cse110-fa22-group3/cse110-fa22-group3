@@ -660,45 +660,61 @@ test("checks if clearArchive clears archive", () => {
   window.localStorage.clear();
 });
 
-// CheckDate result varies every day
-// test("check if checkDate corrects the assignedDate", () => {
-//   functionAPIs.readChores();
-//   const formData = {
-//     title: "Wash Dishses",
-//     description: "Wash dishes with hand",
-//     assignee: ["Mark"],
-//     assignedDate: "11/11/1111",
-//   };
-//   const resData = {
-//     id: 1,
-//     title: "Wash Dishses",
-//     description: "Wash dishes with hand",
-//     assignee: ["Mark"],
-//     assignedDate: "12/3/2022",
-//     status: "open",
-//     currRoommate: "Mark",
-//   };
 
-//   functionAPIs.createChore(formData);
-//   const localStorageData = functionAPIs.readChores();
-//   const chore = localStorageData.chores[0];
-//   console.log("local storage:", chore);
-//   console.log("supposed data:", resData);
-//   expect(chore["assignedDate"]).toStrictEqual("12/3/2022");
-//   window.localStorage.clear();
-// });
+test("check if checkDate corrects the assignedDate", () => {
+  functionAPIs.readChores();
+  const formData = {
+    title: "Wash Dishses",
+    description: "Wash dishes with hand",
+    assignee: ["Mark"],
+    assignedDate: "11/11/1111",
+  };
+
+  const date = new Date();
+
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+
+  // This arrangement can be altered based on how we want the date's format to appear.
+  let currentDate = `${month}/${day}/${year}`;
+  console.log(currentDate);
+
+  const resData = {
+    id: 1,
+    title: "Wash Dishses",
+    description: "Wash dishes with hand",
+    assignee: ["Mark"],
+    assignedDate: currentDate,
+    status: "open",
+    currRoommate: "Mark",
+  };
+
+  functionAPIs.createChore(formData);
+  const localStorageData = functionAPIs.readChores();
+  const chore = localStorageData.chores[0];
+  console.log("local storage:", chore);
+  console.log("supposed data:", resData);
+  expect(chore["assignedDate"]).toStrictEqual(currentDate);
+  window.localStorage.clear();
+});
 
 test("checks if inCharge returns the correct roommate that's in charge of a chore", () => {
   functionAPIs.readChores();
   const formData = {
     title: "Wash Dishses",
     description: "Wash dishes with hand",
-    assignee: ["Xun Liu"],
+    assignee: ["Mark"],
     assignedDate: "12/03/2022",
   };
   functionAPIs.createChore(formData);
+  let localStorageData = JSON.parse(
+    window.localStorage.getItem("ChoresListData")
+  );
+  const chore = localStorageData.chores[0];
+  console.log(chore);
   const charge = functionAPIs.inCharge(1);
-  expect(charge).toStrictEqual("Xun Liu");
+  expect(charge).toStrictEqual("Mark");
   window.localStorage.clear();
 });
 
