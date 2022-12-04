@@ -520,3 +520,231 @@ test("check if closeChore correctly closes chores and put them to archive", () =
   expect(localStorageData).toStrictEqual(resData);
   window.localStorage.clear();
 });
+
+test("checks if reOpenChore reopens chores that are closed", () => {
+  functionAPIs.readChores();
+  const formData0 = {
+    title: "Wash Dishses",
+    description: "Wash dishes with hand",
+    assignee: ["Mark", "Park", "Kate"],
+    assignedDate: "11/11/1111",
+  };
+  const formData1 = {
+    title: "Clean floor",
+    description: "Clean floor with vaccum",
+    assignee: ["Park", "Mark", "Kate"],
+    assignedDate: "11/12/1111",
+  };
+
+  const formData2 = {
+    title: "Move TV",
+    description: "Move TV away from there",
+    assignee: ["Kate", "Mark", "Park"],
+    assignedDate: "11/19/1111",
+  };
+
+  const resData = {
+    chores: [
+      {
+        id: 2,
+        title: "Clean floor",
+        description: "Clean floor with vaccum",
+        assignee: ["Park", "Mark", "Kate"],
+        assignedDate: "11/12/1111",
+        status: "open",
+        currRoommate: "Park",
+      },
+      {
+        id: 3,
+        title: "Move TV",
+        description: "Move TV away from there",
+        assignee: ["Kate", "Mark", "Park"],
+        assignedDate: "11/19/1111",
+        status: "closed",
+        currRoommate: "Kate",
+      },
+    ],
+    archived: [
+      {
+        id: 1,
+        title: "Wash Dishses",
+        description: "Wash dishes with hand",
+        assignee: ["Mark", "Park", "Kate"],
+        assignedDate: "11/11/1111",
+        status: "closed",
+        currRoommate: "Mark",
+      },
+    ],
+    openChoresCount: 2,
+    closedChoresCount: 1,
+    choresCountId: 4,
+  };
+
+  functionAPIs.createChore(formData0);
+  functionAPIs.createChore(formData1);
+  functionAPIs.createChore(formData2);
+  functionAPIs.closeChore(1);
+  functionAPIs.closeChore(3);
+  functionAPIs.reOpenChore(3);
+  const localStorageData = JSON.parse(
+    window.localStorage.getItem("ChoresListData")
+  );
+  console.log("local storage:", localStorageData);
+  console.log("supposed data:", resData);
+  expect(localStorageData).toStrictEqual(resData);
+  window.localStorage.clear();
+});
+
+test("checks if clearArchive clears archive", () => {
+  functionAPIs.readChores();
+  const formData0 = {
+    title: "Wash Dishses",
+    description: "Wash dishes with hand",
+    assignee: ["Mark", "Park", "Kate"],
+    assignedDate: "11/11/1111",
+  };
+  const formData1 = {
+    title: "Clean floor",
+    description: "Clean floor with vaccum",
+    assignee: ["Park", "Mark", "Kate"],
+    assignedDate: "11/12/1111",
+  };
+
+  const formData2 = {
+    title: "Move TV",
+    description: "Move TV away from there",
+    assignee: ["Kate", "Mark", "Park"],
+    assignedDate: "11/19/1111",
+  };
+
+  const resData = {
+    chores: [
+      {
+        id: 2,
+        title: "Clean floor",
+        description: "Clean floor with vaccum",
+        assignee: ["Park", "Mark", "Kate"],
+        assignedDate: "11/12/1111",
+        status: "open",
+        currRoommate: "Park",
+      },
+      {
+        id: 3,
+        title: "Move TV",
+        description: "Move TV away from there",
+        assignee: ["Kate", "Mark", "Park"],
+        assignedDate: "11/19/1111",
+        status: "closed",
+        currRoommate: "Kate",
+      },
+    ],
+    archived: [],
+    openChoresCount: 2,
+    closedChoresCount: 0,
+    choresCountId: 4,
+  };
+
+  functionAPIs.createChore(formData0);
+  functionAPIs.createChore(formData1);
+  functionAPIs.createChore(formData2);
+  functionAPIs.closeChore(1);
+  functionAPIs.closeChore(3);
+  functionAPIs.reOpenChore(3);
+  functionAPIs.clearArchive();
+  const localStorageData = JSON.parse(
+    window.localStorage.getItem("ChoresListData")
+  );
+  console.log("local storage:", localStorageData);
+  console.log("supposed data:", resData);
+  expect(localStorageData).toStrictEqual(resData);
+  window.localStorage.clear();
+});
+
+test("check if checkDate corrects the assignedDate", () => {
+  functionAPIs.readChores();
+  const formData = {
+    title: "Wash Dishses",
+    description: "Wash dishes with hand",
+    assignee: ["Mark"],
+    assignedDate: "11/11/1111",
+  };
+
+  const date = new Date();
+
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+
+  // This arrangement can be altered based on how we want the date's format to appear.
+  let currentDate = `${month}/${day}/${year}`;
+  console.log(currentDate);
+
+  const resData = {
+    id: 1,
+    title: "Wash Dishses",
+    description: "Wash dishes with hand",
+    assignee: ["Mark"],
+    assignedDate: currentDate,
+    status: "open",
+    currRoommate: "Mark",
+  };
+
+  functionAPIs.createChore(formData);
+  const localStorageData = functionAPIs.readChores();
+  const chore = localStorageData.chores[0];
+  console.log("local storage:", chore);
+  console.log("supposed data:", resData);
+  expect(chore["assignedDate"]).toStrictEqual(currentDate);
+  window.localStorage.clear();
+});
+
+test("checks if inCharge returns the correct roommate that's in charge of a chore", () => {
+  functionAPIs.readChores();
+  const formData = {
+    title: "Wash Dishses",
+    description: "Wash dishes with hand",
+    assignee: ["Mark"],
+    assignedDate: "12/03/2022",
+  };
+  functionAPIs.createChore(formData);
+  let localStorageData = JSON.parse(
+    window.localStorage.getItem("ChoresListData")
+  );
+  const chore = localStorageData.chores[0];
+  console.log(chore);
+  const charge = functionAPIs.inCharge(1);
+  expect(charge).toStrictEqual("Mark");
+  window.localStorage.clear();
+});
+
+test("checks if removeFromChore removes the roommate from chores", () => {
+  functionAPIs.readChores();
+  const formData = {
+    name: "Xun Liu",
+    birthday: "12/19/2000",
+    hobbies: "playing guitar",
+    notes: "",
+  };
+  const formDataC = {
+    title: "Wash Dishses",
+    description: "Wash dishes with hand",
+    assignee: ["Xun Liu"],
+    assignedDate: "12/03/2022",
+  };
+  const id = "Xun Liu";
+  roommateFunctionAPIs.createRoommate(formData);
+  functionAPIs.createChore(formDataC);
+  functionAPIs.removeFromChore(id);
+  let localStorageData = JSON.parse(
+    window.localStorage.getItem("RoommateListData")
+  );
+  let localStorageDataC = JSON.parse(
+    window.localStorage.getItem("ChoresListData")
+  );
+  const Roommates = localStorageData.Roommates;
+  const chores = localStorageDataC.chores;
+  console.log("Roommates: ", Roommates);
+  console.log("chores: ", chores);
+  expect(chores[0]["assignee"]).toStrictEqual([-1]);
+  window.localStorage.clear();
+});
