@@ -53,11 +53,11 @@ function createRoommateCard(data) {
   // ADDS THE DEBT/OWED TEXT
 
   if (data.isOwed > 0)
-    wrapper.insertAdjacentHTML("beforeend", `<p>is owed $${data.isOwed}</p>`);
+    wrapper.insertAdjacentHTML("beforeend", `<span class="is-owed">is owed $${data.isOwed}</span>`);
   else if (data.isOwed < 0)
     wrapper.insertAdjacentHTML(
       "beforeend",
-      `<span>owes $${-data.isOwed}</span>`
+      `<span class="in-debt">owes $${-data.isOwed}</span>`
     );
 
   // APPENDS WRAPPER TO PAGE
@@ -81,16 +81,16 @@ function initializeList() {
     let radioPay = document.createElement("div");
     radioTransferFrom.innerHTML = `<input type="radio" name="roommate" form="transfer-from" data-roommate="${
       data.id
-    }"><label>${getRoommateName(data.id)}</label>`;
+    }" required><label>${getRoommateName(data.id)}</label>`;
     radioTransferTo.innerHTML = `<input type="radio" name="roommate" form="transfer-to" data-roommate="${
       data.id
-    }"><label>${getRoommateName(data.id)}</label>`;
+    }" required><label>${getRoommateName(data.id)}</label>`;
     radioPay.innerHTML = `<input type="radio" name="roommate" form="pay" data-roommate="${
       data.id
-    }"><label>${getRoommateName(data.id)}</label>`;
-    radioList[0].append(radioTransferFrom);
-    radioList[1].append(radioTransferTo);
-    radioList[2].append(radioPay);
+    }" required><label>${getRoommateName(data.id)}</label>`;
+    radioList[1].append(radioTransferFrom);
+    radioList[2].append(radioTransferTo);
+    radioList[0].append(radioPay);
   });
 }
 
@@ -196,6 +196,7 @@ function pay() {
     let radioLength = array.length;
     let cost = parseFloat(inputs[radioLength].value);
     let to = inputs[radioLength + 1].value;
+    console.log(formPay.elements)
     //update Owes and is Owed
     let index = 0; //index of selected roommate's data in array
     //The first array.length inputs are radio buttons. Loop through to find which is selected
@@ -213,8 +214,8 @@ function pay() {
 
     // RETURNS TO THE HOME PAGE AND CLEARS THE FORM
 
-    cardBox[0].classList.add("active");
-    cardBox[3].classList.remove("active");
+    // cardBox[0].classList.add("active");
+    // cardBox[3].classList.remove("active");
     formPay.reset();
 
     // ADDS RECORD TO HISTORY
@@ -322,8 +323,8 @@ function transfer() {
 
     // RETURNS TO HOME PAGE AND CLEARS THE FORM
 
-    cardBox[0].classList.add("active");
-    cardBox[2].classList.remove("active");
+    // cardBox[0].classList.add("active");
+    // cardBox[2].classList.remove("active");
     form_transfer_from.reset();
     form_transfer_to.reset();
     input_amount.value = "";
