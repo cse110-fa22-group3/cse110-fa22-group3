@@ -62,9 +62,9 @@ export function deleteRoommate(id) {
 
   //iterate through the list of roommates
   for (let i = 0; i < roommates.length; i++) {
-    //check if the name matches our query
-    if (roommates[i]["id"] == id) {
-      //remove the roommate from the list of roommates
+    // check if the name matches our query
+    if (roommates[i].id == id) {
+      // remove the roommate from the list of roommates
       roommates.splice(i, 1);
       break;
     }

@@ -30,12 +30,12 @@ function loadCards(roommates) {
   //find the row element where all of the cards are
   const row = document.querySelector(".row");
 
-  //remove all of the cards except the add button
+  // remove all of the cards except the add button
   while (row.childElementCount > 1) {
     row.removeChild(row.firstElementChild);
   }
 
-  //add a card for each roommate in the list
+  // add a card for each roommate in the list
   roommates.forEach((roommate) => {
     //create the custom element roommate-card
     const card = document.createElement("roommate-card");
@@ -81,12 +81,12 @@ function addHandler() {
     loadCards(readRoommate());
   }
 
-  //when the add button is clicked, show the popup
+  // when the add button is clicked, show the popup
   addBtn.onclick = function show() {
     addPopup.style.display = "block";
   };
 
-  //when the close button is clicked, hide the popup
+  // when the close button is clicked, hide the popup
   closeBtn.onclick = function close() {
     addPopup.style.display = "none";
   };
@@ -122,13 +122,13 @@ function updateDelHandler() {
 
       //grabbing the roommate with the matching id
       for (let i = 0; i < roommates.length; i++) {
-        if (roommates[i]["id"] == event.target.id) {
+        if (roommates[i].id == event.target.id) {
           roommate = roommates[i];
           break;
         }
       }
 
-      //updating the form HTML to prefill it with the roommate's data
+      // updating the form HTML to prefill it with the roommate's data
       updateForm.innerHTML = `<fieldset>
 				<label for="name">
 					Name:
@@ -174,7 +174,7 @@ function updateDelHandler() {
       //when a card is clicked, show the popup
       updatePopup.style.display = "block";
 
-      //when the close button is clicked, hide the popup
+      // when the close button is clicked, hide the popup
       closeBtn.onclick = function close() {
         updatePopup.style.display = "none";
         //remove this specific card's event listener (important, since all the cards use the same form for updating)
