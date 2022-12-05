@@ -53,7 +53,10 @@ function createRoommateCard(data) {
   // ADDS THE DEBT/OWED TEXT
 
   if (data.isOwed > 0)
-    wrapper.insertAdjacentHTML("beforeend", `<span class="is-owed">is owed $${data.isOwed}</span>`);
+    wrapper.insertAdjacentHTML(
+      "beforeend",
+      `<span class="is-owed">is owed $${data.isOwed}</span>`
+    );
   else if (data.isOwed < 0)
     wrapper.insertAdjacentHTML(
       "beforeend",
@@ -190,7 +193,6 @@ function pay() {
     e.preventDefault();
 
     if (array.length > 0) {
-
       // GETS ALL VALUES FROM THE FORM
 
       //get inputs from submitted form
@@ -198,7 +200,7 @@ function pay() {
       let radioLength = array.length;
       let cost = parseFloat(inputs[radioLength].value);
       let to = inputs[radioLength + 1].value;
-      console.log(formPay.elements)
+      console.log(formPay.elements);
       //update Owes and is Owed
       let index = 0; //index of selected roommate's data in array
       //The first array.length inputs are radio buttons. Loop through to find which is selected
@@ -302,7 +304,6 @@ function transfer() {
     e.preventDefault();
 
     if (array.length > 0) {
-
       let inputs = transferForm.elements;
 
       // GETS TRANSFER FIELDS
@@ -327,7 +328,11 @@ function transfer() {
 
       // PROCESSES THE TRANSFER
 
-      processTransfer(getRoommateId(from_index), amount, getRoommateId(to_index));
+      processTransfer(
+        getRoommateId(from_index),
+        amount,
+        getRoommateId(to_index)
+      );
 
       // RETURNS TO HOME PAGE AND CLEARS THE FORM
 
@@ -359,9 +364,8 @@ function transfer() {
       // STORES THE DATA
 
       storeData();
-      
     }
-  };
+  }
 }
 
 /**
