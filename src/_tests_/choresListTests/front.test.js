@@ -131,7 +131,7 @@ describe("user flow for chores page", () => {
     // change chores text to "changed"
     await page.$eval("#e-chore-name", (nt) => (nt.value = "changed"));
     // click continue button
-    await page.click('[type="submit"]');
+    await page.click('#edit > button:nth-child(7)');
     // wait for response
     await page.waitForSelector("#edit-assign-background");
     // click Edit button
@@ -160,7 +160,7 @@ describe("user flow for chores page", () => {
     // wait for response
     await page.waitForSelector("#edit-background");
     //click Delete
-    await page.click('[id="delete-1"]');
+    await page.click('#delete-1');
     // check to see if chores was delete
     const numChore = await page.$$eval("chore-card", (n) => {
       return n.length;
