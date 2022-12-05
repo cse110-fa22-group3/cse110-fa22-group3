@@ -167,10 +167,10 @@ describe("user flow for chores page", () => {
     });
     // if new chores is delete then chores card should nothing
     expect(numChore).toBe(0);
-  } , 10000);
-  
+  }, 10000);
+
   // close browser once done
   afterAll(async () => {
-        await browser.close();
-   });
+    await browser.close();
+  });
 });
