@@ -94,7 +94,7 @@
       </form>
       <li class="mb-3">
         <span>Pay:</span>
-        <input type="text" form="transfer" pattern="^\d{0,8}\.\d{1,2}$|^\d{0,11}$">
+        <input type="text" form="transfer" id="transfer-text-input" pattern="^\d{0,8}\.\d{1,2}$|^\d{0,11}$">
         <!--pattern not woring now because this input is not submitted in a form-->
       </li>
       <form id="transfer-to">
@@ -128,14 +128,14 @@
         </li>
         <li class="mb-3">
           <span>Cost:</span>
-          <input type="text" form="pay" pattern="^\d{0,8}\.\d{1,2}$|^\d{0,11}$">
+          <input type="text" form="pay" id="pay-input-field-cost" pattern="^\d{0,8}\.\d{1,2}$|^\d{0,11}$">
         </li>
         <li class="mb-3">
           <span>For:</span>
-          <input type="text" form="pay">
+          <input type="text" id="pay-input-field-for" form="pay">
         </li>
       </ul>
-      <input type="submit" style="border-color: green;">
+      <input type="submit" id="pay-input-field-button" style="border-color: green;">
     </form>
   </section>
   <script>
