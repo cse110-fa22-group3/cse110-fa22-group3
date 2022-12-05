@@ -63,7 +63,7 @@ describe("user flow for chores page", () => {
     await page.waitForSelector("#assign-background");
     await page.click("#checkbox-0");
     // create  new chores
-    await page.click('#create > button');
+    await page.click("#create > button");
 
     // check to see if new chores was added
     const numchore = await page.$$eval("chore-card", (n) => {
