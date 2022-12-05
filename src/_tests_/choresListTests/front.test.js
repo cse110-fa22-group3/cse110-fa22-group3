@@ -135,7 +135,7 @@ describe("user flow for chores page", () => {
     // wait for response
     await page.waitForSelector("#edit-assign-background");
     // click Edit button
-    await page.click('#edit-assign > button:nth-child(2)');
+    await page.click("#edit-assign > button:nth-child(2)");
     // wait for response
     await page.waitForSelector("html");
     // grab chores card
