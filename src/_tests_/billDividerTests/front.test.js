@@ -50,7 +50,7 @@ describe("Basic user flow for Money Balancer", () => {
   it("Check if transferring money will changed owed amount", async () => {
     await page.waitForTimeout(2000);
     await page.click("#radio-transfer-from-1");
-    await page.type("#transfer-text-input", "200");
+    await page.type("body > section > ul > li > input", "200");
     await page.click("#radio-transfer-to-0");
     await page.click("#transfer-btn");
     await page.waitForTimeout(2000);
