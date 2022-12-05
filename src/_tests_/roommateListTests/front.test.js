@@ -147,7 +147,7 @@ describe("user flow for roommates page", () => {
     let note = await innerText.jsonValue();
     // test to see if notes is the same as test note
     expect(note).toBe("something else");
-  }, 10000);
+  }, 100000);
 
   // check to see if we can delete roommate from the list
   it("Check delete roommate", async () => {
