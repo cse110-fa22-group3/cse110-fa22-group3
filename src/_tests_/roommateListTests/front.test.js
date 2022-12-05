@@ -14,7 +14,7 @@ describe("user flow for roommates page", () => {
   beforeAll(async () => {
     browser = await puppeteer.launch();
     page = await browser.newPage();
-    await page.goto("http://localhost/3000/src/front-end/roommates.html");
+    await page.goto("http://localhost:3000/src/front-end/roommates.html");
   });
 
   // check to see there are no roommates
