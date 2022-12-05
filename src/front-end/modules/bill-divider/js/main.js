@@ -48,12 +48,17 @@ function createRoommateCard(data) {
   // CREATES THE WRAPPER FOR A GIVEN ROOMMATE
 
   let wrapper = document.createElement("li");
-  wrapper.innerHTML = `<h3 id=roommate-${data.id}>${getRoommateName(data.id)}</h3>`;
+  wrapper.innerHTML = `<h3 id=roommate-${data.id}>${getRoommateName(
+    data.id
+  )}</h3>`;
 
   // ADDS THE DEBT/OWED TEXT
 
   if (data.isOwed > 0)
-    wrapper.insertAdjacentHTML("beforeend", `<p id="owed-${data.id}">is owed $${data.isOwed}</p>`);
+    wrapper.insertAdjacentHTML(
+      "beforeend",
+      `<p id="owed-${data.id}">is owed $${data.isOwed}</p>`
+    );
   else if (data.isOwed < 0)
     wrapper.insertAdjacentHTML(
       "beforeend",
@@ -79,13 +84,19 @@ function initializeList() {
     let radioTransferFrom = document.createElement("div");
     let radioTransferTo = document.createElement("div");
     let radioPay = document.createElement("div");
-    radioTransferFrom.innerHTML = `<input type="radio" id="radio-transfer-from-${data.id}" name="roommate" form="transfer-from" data-roommate="${
+    radioTransferFrom.innerHTML = `<input type="radio" id="radio-transfer-from-${
+      data.id
+    }" name="roommate" form="transfer-from" data-roommate="${
       data.id
     }"><label>${getRoommateName(data.id)}</label>`;
-    radioTransferTo.innerHTML = `<input type="radio" id="radio-transfer-to-${data.id}" name="roommate" form="transfer-to" data-roommate="${
+    radioTransferTo.innerHTML = `<input type="radio" id="radio-transfer-to-${
+      data.id
+    }" name="roommate" form="transfer-to" data-roommate="${
       data.id
     }"><label>${getRoommateName(data.id)}</label>`;
-    radioPay.innerHTML = `<input type="radio" id="radio-pay-${data.id}" "name="roommate" form="pay" data-roommate="${
+    radioPay.innerHTML = `<input type="radio" id="radio-pay-${
+      data.id
+    }" "name="roommate" form="pay" data-roommate="${
       data.id
     }"><label>${getRoommateName(data.id)}</label>`;
     radioList[0].append(radioTransferFrom);
