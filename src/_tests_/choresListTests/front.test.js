@@ -45,7 +45,7 @@ describe("user flow for chores page", () => {
     await page.click('[type="submit"]');
     // wait for the popup box to create chores
     await page.waitForSelector("#assign-background");
-    await page.click("#checkbox-0");
+    // await page.click("#checkbox-0");
     // create  new chores
     await page.click('[type="submit"]');
 
@@ -61,9 +61,9 @@ describe("user flow for chores page", () => {
   // first we check chores name
   it("Check chores name", async () => {
     // grab chores card
-    const currchores = await page.$("chores-card");
+    const currchores = await page.$$("chore-card");
     // grab shadowroot from chores card
-    let shadowchores = await currchores.getProperty("shadowRoot");
+    let shadowchores = await currchores[0].getProperty("shadowRoot");
     // grab the html element storing the name
     let headerTag = await shadowchores.$("h2");
     // grab the value of the html element
@@ -77,9 +77,9 @@ describe("user flow for chores page", () => {
   // second we check chores Assigned Roommate
   it("Check chores Assigned Roommate", async () => {
     // grab chores card
-    const currchores = await page.$("chores-card");
+    const currchores = await page.$$("chore-card");
     // grab shadowroot from chores card
-    let shadowchores = await currchores.getProperty("shadowRoot");
+    let shadowchores = await currchores[0].getProperty("shadowRoot");
     // grab html element storing birthday
     let headerTag = await shadowchores.$("h3");
     // grab the value of html element
@@ -93,9 +93,9 @@ describe("user flow for chores page", () => {
   // third we check Description
   it("Check chores Description", async () => {
     // grab chores card
-    const currchores = await page.$("chores-card");
+    const currchores = await page.$$("chore-card");
     // grab shadowroot from chores card
-    let shadowchores = await currchores.getProperty("shadowRoot");
+    let shadowchores = await currchores[0].getProperty("shadowRoot");
     // grab html element storing choress hobbies
     let pTags = await shadowchores.$$("p");
     // grab the value of html element
