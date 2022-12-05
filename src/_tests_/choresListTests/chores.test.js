@@ -2,6 +2,7 @@ describe("user flow for chores page", () => {
   // get puppeteer
   const puppeteer = require("puppeteer");
   let page;
+  let browser;
 
   // set variables for test chores
   let choresName = "test";
@@ -10,7 +11,7 @@ describe("user flow for chores page", () => {
 
   // get the website first
   beforeAll(async () => {
-    const browser = await puppeteer.launch();
+    browser = await puppeteer.launch();
     page = await browser.newPage();
     await page.goto("http://localhost/3000/src/front-end/roommates.html");
     // click on add in webpage and add new roommate
@@ -37,7 +38,7 @@ describe("user flow for chores page", () => {
       return choreN.length;
     });
     expect(choreNum).toBe(0);
-  });
+  }, 10000);
 
   // check to see if we can add a new chores
   it("Add a new chores", async () => {
@@ -70,7 +71,7 @@ describe("user flow for chores page", () => {
     });
     // if new chores is added then chores card should contain 1 new chores
     expect(numchore).toBe(1);
-  });
+  }, 10000);
 
   // check to see if the chores we created is the correct one and information is stored
   // first we check chores name
@@ -87,7 +88,7 @@ describe("user flow for chores page", () => {
     let name = await innerText.jsonValue();
     // compare name with test name
     expect(name).toBe(choresName);
-  });
+  }, 10000);
 
   // second we check chores Assigned Roommate
   it("Check chores Assigned Roommate", async () => {
@@ -103,7 +104,7 @@ describe("user flow for chores page", () => {
     let Roommate = await innerText.jsonValue();
     // test that the Assigned Roommate gotten is the one that we tested
     expect(Roommate).toBe(testRoommate);
-  });
+  }, 10000);
 
   // third we check Description
   it("Check chores Description", async () => {
@@ -119,7 +120,7 @@ describe("user flow for chores page", () => {
     let desc = await innerText.jsonValue();
     // test to see if hobbies is the same as test hobby
     expect(desc).toBe(testDesc);
-  });
+  }, 10000);
 
   // check to see if we can update choress from the list
   it("Check update choress", async () => {
@@ -150,7 +151,7 @@ describe("user flow for chores page", () => {
     let choreName = await innerText.jsonValue();
     // test to see if notes is the same as test note
     expect(choreName).toBe("changed");
-  });
+  }, 10000);
 
   // check to see if we can delete chores from the list
   it("Check delete chores", async () => {
@@ -166,5 +167,10 @@ describe("user flow for chores page", () => {
     });
     // if new chores is delete then chores card should nothing
     expect(numChore).toBe(0);
-  });
+  } , 10000);
+  
+  // close browser once done
+  afterAll(async () => {
+        await browser.close();
+   });
 });
