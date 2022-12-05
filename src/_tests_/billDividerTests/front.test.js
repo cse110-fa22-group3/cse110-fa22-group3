@@ -53,7 +53,7 @@ describe("Basic user flow for Money Balancer", () => {
     //await page.type("#transfer-text-input", "200"); #transfer > li:nth-child(2) > input[type=text]
     await page.type("#transfer > li:nth-child(2) > input[type=text]", "200");
     await page.click("#radio-transfer-to-0");
-    await page.click("#transfer-btn");
+    await page.click("#transfer > input[type=submit]");
     await page.waitForTimeout(2000);
     const owed = await page.$eval("#owed-1", (element) => element.textContent);
     const owes = await page.$eval("#owes-0", (element) => element.textContent);
@@ -63,7 +63,7 @@ describe("Basic user flow for Money Balancer", () => {
 
   it("Check history", async () => {
     const firstTrans = await page.$eval(
-      "#del-history > ul > li:nth-child(2) > span",
+      "#del-history > ul > li > span",
       (e) => e.textContent
     );
     expect(firstTrans).toBe("testRoommate1 paid 100 for no reason");
@@ -79,7 +79,7 @@ describe("Basic user flow for Money Balancer", () => {
 
   it("Test history deletion", async () => {
     await page.click(
-      "#del-history > ul > li:nth-child(2) > input[type=checkbox]"
+      "#del-history > ul > li > input[type=checkbox]"
     );
     await page.click("#del-history > input[type=submit]");
     const newTrans = await page.$eval(
