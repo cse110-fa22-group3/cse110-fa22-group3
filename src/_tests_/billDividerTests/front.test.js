@@ -78,9 +78,7 @@ describe("Basic user flow for Money Balancer", () => {
   });
 
   it("Test history deletion", async () => {
-    await page.click(
-      "#del-history > ul > li > input[type=checkbox]"
-    );
+    await page.click("#del-history > ul > li > input[type=checkbox]");
     await page.click("#del-history > input[type=submit]");
     const newTrans = await page.$eval(
       "#del-history > ul > li > span",
