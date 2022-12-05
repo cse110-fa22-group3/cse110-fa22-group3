@@ -127,7 +127,7 @@ describe("user flow for roommates page", () => {
     await page.click("#save_button");
     // now we are back at list page, now we need to check if it saved
     // wait till we are at roommate card page
-    await page.waitForSelector("body > div.content > div.row");
+    // await page.waitForSelector("body > div.content > div.row");
     // for whatever reason, this test will only work if we have this
     // do not delete, need to find out why it works when I have this vs not
     // otherwise this really does nothing for me right now
