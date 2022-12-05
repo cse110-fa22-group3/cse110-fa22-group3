@@ -14,22 +14,6 @@ describe("user flow for chores page", () => {
     browser = await puppeteer.launch();
     page = await browser.newPage();
     await page.goto("http://localhost:3000/src/front-end/chores.html");
-    // click on add in webpage and add new roommate
-    await page.click("#new");
-    // wait for the popup box to add roommates
-    await page.waitForSelector("#background-1");
-    // need to put in string values for the following because variables were not accepted
-    // type in the name of roommate
-    await page.$eval("#name-1", (nm) => (nm.value = "test"));
-    // type in birthday of roommate
-    await page.$eval("#birthday-1", (bd) => (bd.value = "10/31/2008"));
-    // type in hobbies of roommate
-    await page.$eval("#hobbies-1", (hb) => (hb.value = "programming"));
-    // type in notes about the roommate
-    await page.$eval("#notes-1", (nt) => (nt.value = "system failure"));
-    // submit new roommate
-    await page.click('[type="submit"]');
-    await page.goto("http://127.0.0.1:5500/src/front-end/chores.html");
   });
 
   // check to see there are no chores
