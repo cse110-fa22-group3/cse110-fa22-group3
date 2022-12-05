@@ -164,9 +164,9 @@ describe("user flow for roommates page", () => {
     // if new roommate is delete then roommate card should nothing
     expect(numRoommmate).toBe(0);
   }, 10000);
-  
-  // close browser once done with testing 
+
+  // close browser once done with testing
   afterAll(async () => {
-        await browser.close();
-    });
+    await browser.close();
+  });
 });
