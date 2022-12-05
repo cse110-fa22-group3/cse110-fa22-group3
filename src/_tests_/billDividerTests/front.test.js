@@ -66,7 +66,7 @@ describe("Basic user flow for Money Balancer", () => {
       "#del-history > ul > li > span",
       (e) => e.textContent
     );
-    expect(firstTrans).toBe("testRoommate1 paid 100 for no reason");
+    expect(firstTrans).toBe("testRoommate2 transferred 200 to testRoommate1");
   });
 
   it("Check history for second transaction", async () => {
@@ -84,6 +84,6 @@ describe("Basic user flow for Money Balancer", () => {
       "#del-history > ul > li > span",
       (e) => e.textContent
     );
-    expect(newTrans).toBe("testRoommate2 transferred 200 to testRoommate1");
+    expect(newTrans).toBe("testRoommate1 paid 100 for no reason");
   });
 });
