@@ -80,11 +80,11 @@
         </li>
         <li class="mb-3">
           <span>Cost:</span>
-          <input type="text" form="pay" pattern="^\d{0,8}\.\d{1,2}$|^\d{0,11}$">
+          <input type="text" form="pay" pattern="^\d{0,8}\.\d{1,2}$|^\d{0,11}$" required>
         </li>
         <li class="mb-3">
           <span>For:</span>
-          <input type="text" form="pay">
+          <input type="text" form="pay" required>
         </li>
       </ul>
       <input type="submit" style="border-color: green;">
@@ -97,30 +97,26 @@
       </a>-->
       <h1>Transfer</h1>
     </header>
-    <ul class="transfer-list">
-      <form id="transfer-from">
-        <li class="mb-3">
-          <span>Name:</span>
-          <div class="select-name from">
-            <!-- radio buttons go here -->
-          </div>
-        </li>
-      </form>
+    <form id="transfer" class="transfer-list">
+      <li class="mb-3">
+        <span>Name:</span>
+        <fieldset class="select-name from">
+          <!-- radio buttons go here -->
+        </fieldset>
+      </li>
       <li class="mb-3">
         <span>Pay:</span>
         <input type="text" form="transfer" pattern="^\d{0,8}\.\d{1,2}$|^\d{0,11}$" required>
         <!--pattern not woring now because this input is not submitted in a form-->
       </li>
-      <form id="transfer-to">
-        <li class="mb-3">
-          <span>To:</span>
-          <div class="select-name to">
-            <!-- radio buttons go here -->
-          </div>
-        </li>
-      </form>
-    </ul>
-    <input type="button" value="Submit" id="transfer-btn" style="border-color: green;">
+      <li class="mb-3">
+        <span>To:</span>
+        <fieldset class="select-name to">
+          <!-- radio buttons go here -->
+        </fieldset>
+      </li>
+      <input type="submit" style="border-color: green;">
+    </form>
   </section>
   <section class="card  w">
     <header class="tit">
