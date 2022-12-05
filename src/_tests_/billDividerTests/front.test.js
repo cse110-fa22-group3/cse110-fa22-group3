@@ -33,7 +33,7 @@ describe("Basic user flow for Money Balancer", () => {
     expect(roommate1).toBe("testRoommate1");
     expect(roommate2).toBe("testRoommate2");
   });
-  
+
   it("Test adding a payment and appropriate values", async () => {
     await page.waitForTimeout(2000);
     await page.click("#radio-pay-0");
@@ -46,7 +46,7 @@ describe("Basic user flow for Money Balancer", () => {
     expect(owed).toBe("is owed $50");
     expect(owes).toBe("owes $50");
   });
-  
+
   it("Check if transferring money will changed owed amount", async () => {
     await page.waitForTimeout(2000);
     await page.click("#radio-transfer-from-1");
@@ -58,22 +58,33 @@ describe("Basic user flow for Money Balancer", () => {
     const owes = await page.$eval("#owes-0", (element) => element.textContent);
     expect(owed).toBe("is owed $150");
     expect(owes).toBe("owes $150");
-   });
+  });
 
-   it ('Check history', async () => {
-    const firstTrans = await page.$eval('#del-history > ul > li:nth-child(2) > span', (e) => e.textContent);
-    expect(firstTrans).toBe('testRoommate1 paid 100 for no reason');
-   });
+  it("Check history", async () => {
+    const firstTrans = await page.$eval(
+      "#del-history > ul > li:nth-child(2) > span",
+      (e) => e.textContent
+    );
+    expect(firstTrans).toBe("testRoommate1 paid 100 for no reason");
+  });
 
-   it ('Check history for second transaction', async () => {
-    const secondtrans = await page.$eval('#del-history > ul > li:nth-child(1) > span', (e) => e.textContent);
-    expect(secondtrans).toBe('testRoommate2 transferred 200 to testRoommate1');
-   });
+  it("Check history for second transaction", async () => {
+    const secondtrans = await page.$eval(
+      "#del-history > ul > li:nth-child(1) > span",
+      (e) => e.textContent
+    );
+    expect(secondtrans).toBe("testRoommate2 transferred 200 to testRoommate1");
+  });
 
-   it ('Test history deletion', async () => {
-    await page.click('#del-history > ul > li:nth-child(2) > input[type=checkbox]');
-    await page.click('#del-history > input[type=submit]');
-    const newTrans = await page.$eval('#del-history > ul > li > span', (e) => e.textContent);
-    expect(newTrans).toBe('testRoommate2 transferred 200 to testRoommate1');
-   });
+  it("Test history deletion", async () => {
+    await page.click(
+      "#del-history > ul > li:nth-child(2) > input[type=checkbox]"
+    );
+    await page.click("#del-history > input[type=submit]");
+    const newTrans = await page.$eval(
+      "#del-history > ul > li > span",
+      (e) => e.textContent
+    );
+    expect(newTrans).toBe("testRoommate2 transferred 200 to testRoommate1");
+  });
 });
