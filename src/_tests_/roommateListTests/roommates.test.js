@@ -96,7 +96,7 @@ describe("user flow for roommates page", () => {
     let hobby = await innerText.jsonValue();
     // test to see if hobbies is the same as test hobby
     expect(hobby).toBe(testHobby);
-  } , 10000);
+  }, 10000);
 
   // fourth we check to see if notes is the same
   it("Check roommate notes", async () => {
