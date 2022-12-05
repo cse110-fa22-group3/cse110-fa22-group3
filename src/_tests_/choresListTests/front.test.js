@@ -63,7 +63,7 @@ describe("user flow for chores page", () => {
     await page.waitForSelector("#assign-background");
     await page.click("#checkbox-0");
     // create  new chores
-    await page.click("#create > button");
+    await page.click("#assign > div > button");
 
     // check to see if new chores was added
     const numchore = await page.$$eval("chore-card", (n) => {
@@ -77,7 +77,7 @@ describe("user flow for chores page", () => {
   // first we check chores name
   it("Check chores name", async () => {
     // grab chores card
-    const currchores = await page.$$("chore-card");
+    const currchores = await page.$$("#\31 ");
     // grab shadowroot from chores card
     let shadowchores = await currchores[0].getProperty("shadowRoot");
     // grab the html element storing the name
