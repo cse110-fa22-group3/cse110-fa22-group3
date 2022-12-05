@@ -22,7 +22,7 @@ describe("user flow for roommates page", () => {
       return nRoommate.length;
     });
     expect(nullRoommates).toBe(0);
-  });
+  }, 10000);
 
   // check to see if we can add a new roommate
   it("Add a new roommate", async () => {
@@ -47,7 +47,7 @@ describe("user flow for roommates page", () => {
     });
     // if new roommate is added then roommate card should contain 1 new roommate
     expect(numRoommmate).toBe(1);
-  });
+  }, 10000);
 
   // check to see if the roommate we created is the correct one and information is stored
   // first we check roommate name
@@ -64,7 +64,7 @@ describe("user flow for roommates page", () => {
     let name = await innerText.jsonValue();
     // compare name with test name
     expect(name).toBe(testName);
-  });
+  }, 10000);
 
   // second we check roommate birthday
   it("Check roommate birthday", async () => {
@@ -80,7 +80,7 @@ describe("user flow for roommates page", () => {
     let birthday = await innerText.jsonValue();
     // test that the birthday gotten is the one that we tested
     expect(birthday).toBe(testBirthday);
-  });
+  }, 10000);
 
   // third we check roommate hobbies
   it("Check roommate hobbies", async () => {
@@ -96,7 +96,7 @@ describe("user flow for roommates page", () => {
     let hobby = await innerText.jsonValue();
     // test to see if hobbies is the same as test hobby
     expect(hobby).toBe(testHobby);
-  });
+  } , 10000);
 
   // fourth we check to see if notes is the same
   it("Check roommate notes", async () => {
@@ -112,7 +112,7 @@ describe("user flow for roommates page", () => {
     let note = await innerText.jsonValue();
     // test to see if notes is the same as test note
     expect(note).toBe(testNote);
-  });
+  }, 10000);
 
   // check to see if we can update roommates from the list
   it("Check update roommates", async () => {
@@ -146,7 +146,7 @@ describe("user flow for roommates page", () => {
     let note = await innerText.jsonValue();
     // test to see if notes is the same as test note
     expect(note).toBe("something else");
-  });
+  }, 10000);
 
   // check to see if we can delete roommate from the list
   it("Check delete roommate", async () => {
@@ -162,5 +162,5 @@ describe("user flow for roommates page", () => {
     });
     // if new roommate is delete then roommate card should nothing
     expect(numRoommmate).toBe(0);
-  });
+  }, 10000);
 });
