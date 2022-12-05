@@ -125,8 +125,7 @@ describe("user flow for chores page", () => {
   // check to see if we can update choress from the list
   it("Check update choress", async () => {
     // click on the chores list
-    await page.$$("#\\31")[0].click();
-    //await page.click('[id="0"]');
+    await page.click('#\\31');
     // wait for response
     await page.waitForSelector("#edit-background");
     // change chores text to "changed"
