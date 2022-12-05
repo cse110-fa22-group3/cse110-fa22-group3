@@ -119,7 +119,7 @@ describe("user flow for chores page", () => {
     // turn the value into a string
     let desc = await innerText.jsonValue();
     // test to see if hobbies is the same as test hobby
-    expect(desc).toBe('test');
+    expect(desc).toBe("test");
   });
 
   // check to see if we can update choress from the list
@@ -157,7 +157,7 @@ describe("user flow for chores page", () => {
   // check to see if we can delete chores from the list
   it("Check delete chores", async () => {
     // click on the chores list
-    await page.click('#\\31');
+    await page.click("#\\31");
     // wait for response
     await page.waitForSelector("#edit-background");
     //click Delete
