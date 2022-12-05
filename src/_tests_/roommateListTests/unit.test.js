@@ -18,8 +18,6 @@ test("checks if createRoommate adds a roommate to local storage", () => {
   const localStorageData = JSON.parse(
     window.localStorage.getItem("RoommateListData")
   );
-  console.log("local storage:", localStorageData.Roommates[0]);
-  console.log("form data:", formData);
   expect(localStorageData.Roommates[0]).toStrictEqual(formData);
   window.localStorage.clear();
 });
@@ -35,8 +33,6 @@ test("checks if createRoommate adds an empty roommate to local storage", () => {
   const localStorageData = JSON.parse(
     window.localStorage.getItem("RoommateListData")
   );
-  console.log("local storage:", localStorageData.Roommates[0]);
-  console.log("form data:", formData);
   expect(localStorageData.Roommates[0]).toStrictEqual(formData);
   window.localStorage.clear();
 });
@@ -61,10 +57,6 @@ test("checks if createRoommate adds multiple roommates to local storage", () => 
   const localStorageData = JSON.parse(
     window.localStorage.getItem("RoommateListData")
   );
-  console.log("local storage:", localStorageData.Roommates[0]);
-  console.log("form data:", formData0);
-  console.log("local storage:", localStorageData.Roommates[1]);
-  console.log("form data:", formData1);
   expect(localStorageData.Roommates[0]).toStrictEqual(formData0);
   expect(localStorageData.Roommates[1]).toStrictEqual(formData1);
   window.localStorage.clear();
@@ -94,8 +86,6 @@ test("checks if updateRoommate updates the properties of a roommate", () => {
   const localStorageData = JSON.parse(
     window.localStorage.getItem("RoommateListData")
   );
-  console.log("local storage:", localStorageData.Roommates[0]);
-  console.log("form data:", upData);
   expect(localStorageData.Roommates[0]).toStrictEqual(upData);
   window.localStorage.clear();
 });
@@ -141,8 +131,6 @@ test("checks if updateRoommate updates the properties of the correct roommate", 
   const localStorageData = JSON.parse(
     window.localStorage.getItem("RoommateListData")
   );
-  console.log("local storage:", localStorageData.Roommates[2]);
-  console.log("form data:", upData);
   expect(localStorageData.Roommates[2]).toStrictEqual(upData);
   window.localStorage.clear();
 });
@@ -155,8 +143,6 @@ test("checks if readRoommate returns empty array if there's no roommate", () => 
   );
   const Roommates = localStorageData.Roommates;
 
-  console.log("local storage:", Roommates);
-  console.log("Reading:", Reading);
   expect(Roommates).toStrictEqual(Reading);
   window.localStorage.clear();
 });
@@ -176,8 +162,6 @@ test("checks if readRoommate returns a roommate array if there's one roommate", 
   );
   const Roommates = localStorageData.Roommates;
 
-  console.log("local storage:", Roommates);
-  console.log("Reading:", Reading);
   expect(Roommates).toStrictEqual(Reading);
   window.localStorage.clear();
 });
@@ -214,8 +198,6 @@ test("checks if readRoommate returns a roommate array if there're multiple roomm
   );
   const Roommates = localStorageData.Roommates;
 
-  console.log("local storage:", Roommates);
-  console.log("Reading:", Reading);
   expect(Roommates).toStrictEqual(Reading);
   window.localStorage.clear();
 });
@@ -237,8 +219,6 @@ test("checks if deleteRoommate deletes a roommate from local storage", () => {
     window.localStorage.getItem("RoommateListData")
   );
   const Roommates = localStorageData.Roommates;
-  console.log("local storage:", Roommates);
-  console.log("form data:", upData);
   expect(localStorageData.Roommates).toStrictEqual(upData);
   window.localStorage.clear();
 });
@@ -282,8 +262,6 @@ test("checks if deleteRoommate deletes multiple roommates from local storage", (
     window.localStorage.getItem("RoommateListData")
   );
   const Roommates = localStorageData.Roommates;
-  console.log("local storage:", Roommates);
-  console.log("form data:", upData);
   expect(localStorageData.Roommates).toStrictEqual(upData);
   window.localStorage.clear();
 });
