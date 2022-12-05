@@ -84,11 +84,17 @@ function initializeList() {
     let radioTransferFrom = document.createElement("div");
     let radioTransferTo = document.createElement("div");
     let radioPay = document.createElement("div");
-    radioTransferFrom.innerHTML = `<input type="radio" id="radio-transfer-from-${data.id}" name="transfer-from" form="transfer" data-roommate="${data.id}" required>
+    radioTransferFrom.innerHTML = `<input type="radio" id="radio-transfer-from-${
+      data.id
+    }" name="transfer-from" form="transfer" data-roommate="${data.id}" required>
       <label>${getRoommateName(data.id)}</label>`;
-    radioTransferTo.innerHTML = `<input type="radio" id="radio-transfer-to-${data.id}" name="transfer-to" form="transfer" data-roommate="${data.id}" required>
+    radioTransferTo.innerHTML = `<input type="radio" id="radio-transfer-to-${
+      data.id
+    }" name="transfer-to" form="transfer" data-roommate="${data.id}" required>
       <label>${getRoommateName(data.id)}</label>`;
-    radioPay.innerHTML = `<input type="radio" id="radio-pay-${data.id}" name="roommate" form="pay" data-roommate="${
+    radioPay.innerHTML = `<input type="radio" id="radio-pay-${
+      data.id
+    }" name="roommate" form="pay" data-roommate="${
       data.id
     }" required><label>${getRoommateName(data.id)}</label>`;
     radioList[1].append(radioTransferFrom);
