@@ -2,6 +2,7 @@ describe("user flow for roommates page", () => {
   // get puppeteer
   const puppeteer = require("puppeteer");
   let page;
+  let browser;
 
   // set variables for test roommate
   let testName = "John Doe";
@@ -11,7 +12,7 @@ describe("user flow for roommates page", () => {
 
   // get the website first
   beforeAll(async () => {
-    const browser = await puppeteer.launch();
+    browser = await puppeteer.launch();
     page = await browser.newPage();
     await page.goto("http://localhost/3000/src/front-end/roommates.html");
   });
@@ -163,4 +164,9 @@ describe("user flow for roommates page", () => {
     // if new roommate is delete then roommate card should nothing
     expect(numRoommmate).toBe(0);
   }, 10000);
+  
+  // close browser once done with testing 
+  afterAll(async () => {
+        await browser.close();
+    });
 });
