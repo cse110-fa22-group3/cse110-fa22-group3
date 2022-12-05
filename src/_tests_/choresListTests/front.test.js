@@ -135,7 +135,7 @@ describe("user flow for chores page", () => {
     // wait for response
     await page.waitForSelector("#edit-assign-background");
     // click Edit button
-    await page.click('[type="submit"]');
+    await page.click('#edit-assign > button:nth-child(2)');
     // wait for response
     await page.waitForSelector("html");
     // grab chores card
@@ -158,7 +158,7 @@ describe("user flow for chores page", () => {
     // click on the chores list
     await page.click("#\\31");
     // wait for response
-    await page.waitForSelector("#edit-background");
+    await page.waitForSelector("#edit-popup");
     //click Delete
     await page.click("#delete-1");
     // check to see if chores was delete
