@@ -13,7 +13,7 @@ describe("user flow for chores page", () => {
   beforeAll(async () => {
     browser = await puppeteer.launch();
     page = await browser.newPage();
-    await page.goto("http://127.0.0.1:5500/src/front-end/roommates.html");
+    await page.goto("http://localhost:3000/src/front-end/roommates.html");
     // click on add in webpage and add new roommate
     await page.click("#new");
     // wait for the popup box to add roommates
@@ -29,7 +29,7 @@ describe("user flow for chores page", () => {
     await page.$eval("#notes-1", (nt) => (nt.value = "system failure"));
     // submit new roommate
     await page.click('[type="submit"]');
-    await page.goto("http://127.0.0.1:5500/src/front-end/chores.html");
+    await page.goto("http://localhost:3000/src/front-end/chores.html");
   });
 
   // check to see there are no chores
