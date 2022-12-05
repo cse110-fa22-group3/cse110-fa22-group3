@@ -39,12 +39,12 @@ input[type="submit"],
   left: 40%;
 }
 
-input[value="Delete"]:hover {
-  background-color: red;
-}
-
 input[type="submit"]:hover {
   background-color: green;
+}
+
+input[value="Delete"]:hover {
+  background-color: red;
 }
 
 input[value="Submit"]:hover {
