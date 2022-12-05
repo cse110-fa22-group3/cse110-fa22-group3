@@ -63,7 +63,7 @@ describe("user flow for chores page", () => {
     await page.waitForSelector("#assign-background");
     await page.click("#checkbox-0");
     // create  new chores
-    await page.click('[type="submit"]');
+    await page.click('#create > button');
 
     // check to see if new chores was added
     const numchore = await page.$$eval("chore-card", (n) => {
@@ -77,9 +77,9 @@ describe("user flow for chores page", () => {
   // first we check chores name
   it("Check chores name", async () => {
     // grab chores card
-    const currchores = await page.$("chores-card");
+    const currchores = await page.$$("chore-card");
     // grab shadowroot from chores card
-    let shadowchores = await currchores.getProperty("shadowRoot");
+    let shadowchores = await currchores[0].getProperty("shadowRoot");
     // grab the html element storing the name
     let headerTag = await shadowchores.$("h2");
     // grab the value of the html element
@@ -93,9 +93,9 @@ describe("user flow for chores page", () => {
   // second we check chores Assigned Roommate
   it("Check chores Assigned Roommate", async () => {
     // grab chores card
-    const currchores = await page.$("chores-card");
+    const currchores = await page.$$("chore-card");
     // grab shadowroot from chores card
-    let shadowchores = await currchores.getProperty("shadowRoot");
+    let shadowchores = await currchores[0].getProperty("shadowRoot");
     // grab html element storing birthday
     let headerTag = await shadowchores.$("h3");
     // grab the value of html element
@@ -109,9 +109,9 @@ describe("user flow for chores page", () => {
   // third we check Description
   it("Check chores Description", async () => {
     // grab chores card
-    const currchores = await page.$("chores-card");
+    const currchores = await page.$$("chore-card");
     // grab shadowroot from chores card
-    let shadowchores = await currchores.getProperty("shadowRoot");
+    let shadowchores = await currchores[0].getProperty("shadowRoot");
     // grab html element storing choress hobbies
     let pTags = await shadowchores.$$("p");
     // grab the value of html element
@@ -125,7 +125,8 @@ describe("user flow for chores page", () => {
   // check to see if we can update choress from the list
   it("Check update choress", async () => {
     // click on the chores list
-    await page.click('[id="0"]');
+    await page.$$("chore-card")[0].click();
+    //await page.click('[id="0"]');
     // wait for response
     await page.waitForSelector("#edit-background");
     // change chores text to "changed"
@@ -140,7 +141,7 @@ describe("user flow for chores page", () => {
     await page.waitForSelector("html");
     // grab chores card
     // need to grab all chores-card's because grabing only one will not get the one we changed
-    const currchores = await page.$$("chores-card");
+    const currchores = await page.$$("chore-card");
     // grab shadowroot from chores card
     let shadowchores = await currchores[0].getProperty("shadowRoot");
     // grab html element storing notes
