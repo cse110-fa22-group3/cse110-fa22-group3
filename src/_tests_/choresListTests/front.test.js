@@ -77,7 +77,7 @@ describe("user flow for chores page", () => {
   // first we check chores name
   it("Check chores name", async () => {
     // grab chores card
-    const currchores = await page.$$("#\31 ");
+    const currchores = await page.$$("#\\31 ");
     // grab shadowroot from chores card
     let shadowchores = await currchores[0].getProperty("shadowRoot");
     // grab the html element storing the name
