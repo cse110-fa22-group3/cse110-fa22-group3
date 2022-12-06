@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Money Balancer</title>
-  <link rel="stylesheet" href="./modules/bill-divider/css/style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="./modules/bill-divider/css/style.css">
 </head>
 
 <body>
@@ -39,27 +39,110 @@
     <div class="container">
       <h1>Money Balancer</h1>
       <div class="container">
-        <p>Here is a page to manage your funds.</p>
-        <p>You can transfer money, pay someone, or check your transaction history</p>
+        <p>Here is a page to manage your money division.</p>
+        <p>You can input shared expenses for your dorm to show how much each roommate owes or is owed.</p>
+        <b><p>*Important: Make sure to add at least one roommate in order to use this functionality.
+          Please click on the "Roommate List" tab and add a roommate by following the instruction in the page.
+        </p></b>
+        <b><p>Usage:</p></b>
+        <p>a) The "Money Balancer" section shows the total money a person owes or owed.
+          These numbers are calculated by comparing a roommate's total expenses to the average amount paid by each roommate.
+          A roommate who has paid less than average is in debt, and a roommate who has paid more than average is owed money.
+        </p>
+        <p>b) The "Pay" section is used to input a transaction by one roommate that you want to split evenly between all roommates.</p>
+          <ol>
+            <li>1. Select the roommate who originally made the payment.</li>
+            <li>2. Input the total cost in "cost" section.</li>
+            <li>3. Input what payment it was for in the "for" section.</li>
+            <li>4. Finally, click "submit" when done!</li>
+          </ol>
+        <p>c) The "Transfer" section is used to input a money transfer between roommates to pay off debt, such as a Venmo transfer.</p>
+          <ol>
+            <li>1. In the "Name:" section, select the roommate who sent money in the transfer.</li>
+            <li>2. Input the amount of payment this person selected will be sending.</li>
+            <li>3. In the "To:" section, select the roommate who received money in the transfer.</li>
+          </ol>
+        <p>d) The "History" section shows the past transactions that occured.</p>
+          <ol>
+            <li>1. Click the "checkbox" for a log that you want to delete. You can choose multiple.</li>
+            <li>2. Click the "delete" button to delete these entries. This will also reverse all transactions selected.</li>
+          </ol>
       </div>
     </div>
   </div>
   <section class="card active w">
-    <h1 style="text-align: center;">Money Balancer</h1>
     <header class="tit">
       <!--
       <a href="index.html" class="back">
         <img src="./modules/bill-divider/images/back.png" alt="">
       </a>-->
+    <h1 style="text-align: center;">Money Balancer</h1>
     </header>
     <ul class="list mb-3">
       <!-- roommates go here -->
     </ul>
-    <div class="btn-list">
-      <button class="btn1">History</button>
-      <button class="btn2">Add Transfer</button>
-      <button class="btn3">Add Payment</button>
-    </div>
+    <!-- <div class="btn-list"> -->
+      <!-- <button class="btn1">History</button> -->
+      <!-- <button class="btn2">Add Transfer</button> -->
+      <!-- <button class="btn3">Add Payment</button> -->
+    <!-- </div> -->
+  </section>
+  <section class="card w">
+    <header class="tit">
+      <h1>Pay</h1>
+      <!--
+      <a href="#" class="back back-btn back-btn-payment">
+        <img src="./modules/bill-divider/images/back.png" alt="">
+      </a>
+    -->
+    </header>
+    <form id="pay">
+      <ul class="transfer-list">
+        <li class="mb-3">
+          <span>Name:</span>
+          <div class="select-name">
+            <!-- radio buttons go here -->
+          </div>
+        </li>
+        <li class="mb-3">
+          <span>Cost:</span>
+          <input type="text" form="pay" id="pay-input-field-cost" pattern="^\d{0,8}\.\d{1,2}$|^\d{0,11}$" required>
+        </li>
+        <li class="mb-3">
+          <span>For:</span>
+          <input type="text" form="pay" id="pay-input-field-for" required>
+        </li>
+      </ul>
+      <input type="submit" id="pay-input-field-button" style="border-color: green;">
+    </form>
+  </section>
+  <section class="card w">
+    <header class="tit">
+      <!--<a href="#" class="back back-btn back-btn-transfer">
+        <img src="./modules/bill-divider/images/back.png" alt="">
+      </a>-->
+      <h1>Transfer</h1>
+    </header>
+    <form id="transfer" class="transfer-list">
+      <li class="mb-3">
+        <span>Name:</span>
+        <fieldset class="select-name from">
+          <!-- radio buttons go here -->
+        </fieldset>
+      </li>
+      <li class="mb-3">
+        <span>Pay:</span>
+        <input type="text" form="transfer" pattern="^\d{0,8}\.\d{1,2}$|^\d{0,11}$" required>
+        <!--pattern not woring now because this input is not submitted in a form-->
+      </li>
+      <li class="mb-3">
+        <span>To:</span>
+        <fieldset class="select-name to">
+          <!-- radio buttons go here -->
+        </fieldset>
+      </li>
+      <input type="submit" style="border-color: green;">
+    </form>
   </section>
   <section class="card  w">
     <header class="tit">
@@ -75,96 +158,6 @@
       <input type="submit" value="Delete" style="border-color: red;">
     </form>
   </section>
-  <section class="card w">
-    <header class="tit">
-      <!--<a href="#" class="back back-btn back-btn-transfer">
-        <img src="./modules/bill-divider/images/back.png" alt="">
-      </a>-->
-      <h1>Transfer</h1>
-    </header>
-    <br>
-    <ul class="transfer-list">
-      <form id="transfer-from">
-        <li class="mb-3">
-          <span>Name:</span>
-          <div class="select-name from">
-            <!-- radio buttons go here -->
-          </div>
-        </li>
-      </form>
-      <li class="mb-3">
-        <span>Pay:</span>
-        <input type="text" form="transfer" pattern="^\d{0,8}\.\d{1,2}$|^\d{0,11}$">
-        <!--pattern not woring now because this input is not submitted in a form-->
-      </li>
-      <form id="transfer-to">
-        <li class="mb-3">
-          <span>To:</span>
-          <div class="select-name to">
-            <!-- radio buttons go here -->
-          </div>
-        </li>
-      </form>
-    </ul>
-    <input type="button" value="Submit" id="transfer-btn" style="border-color: green;">
-  </section>
-  <section class="card w">
-    <header class="tit">
-      <h1>Pay</h1>
-      <!--
-      <a href="#" class="back back-btn back-btn-payment">
-        <img src="./modules/bill-divider/images/back.png" alt="">
-      </a>
-    -->
-    </header>
-    <br>
-    <form id="pay">
-      <ul class="transfer-list">
-        <li class="mb-3">
-          <span>Name:</span>
-          <div class="select-name">
-            <!-- radio buttons go here -->
-          </div>
-        </li>
-        <li class="mb-3">
-          <span>Cost:</span>
-          <input type="text" form="pay" pattern="^\d{0,8}\.\d{1,2}$|^\d{0,11}$">
-        </li>
-        <li class="mb-3">
-          <span>For:</span>
-          <input type="text" form="pay">
-        </li>
-      </ul>
-      <input type="submit" style="border-color: green;">
-    </form>
-  </section>
-  <script>
-    let backBtn = document.querySelectorAll('.back-btn')
-    let cardBox = document.querySelectorAll('.card')
-    let btn1 = document.querySelector('.btn1')
-    let btn2 = document.querySelector('.btn2')
-    let btn3 = document.querySelector('.btn3')
-    backBtn.forEach((el, i) => {
-      el.addEventListener('click', function() {
-        cardBox.forEach(item => {
-          item.classList.remove('active')
-        })
-        cardBox[0].classList.add('active')
-      })
-    })
-    btn1.addEventListener('click', function() {
-      cardBox[0].classList.remove('active')
-      cardBox[1].classList.add('active')
-    })
-    btn2.addEventListener('click', function() {
-      cardBox[0].classList.remove('active')
-      cardBox[2].classList.add('active')
-    })
-    btn3.addEventListener('click', function() {
-      cardBox[0].classList.remove('active')
-      cardBox[3].classList.add('active')
-    })
-  </script>
   <script src="./modules/bill-divider/js/main.js" type="module"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <!--Bottom Class-->

@@ -34,18 +34,17 @@ section {
 input[type="submit"],
 #transfer-btn {
   position: relative;
-  margin-top: 30px;
   font-size: 1em;
   width: 100px;
   left: 40%;
 }
 
-input[value="Delete"]:hover {
-  background-color: red;
-}
-
 input[type="submit"]:hover {
   background-color: green;
+}
+
+input[value="Delete"]:hover {
+  background-color: red;
 }
 
 input[value="Submit"]:hover {
@@ -62,7 +61,6 @@ input[value="Submit"]:hover {
 }
 
 .card {
-  display: none;
   margin: 30px auto;
   padding: 15px;
   background: #fff;
@@ -81,7 +79,8 @@ input[value="Submit"]:hover {
 .card .tit {
   position: inherit;
   display: flex;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  height: 50px;
 }
 
 .card .tit .back {
@@ -90,8 +89,8 @@ input[value="Submit"]:hover {
 
 .card .tit h1 {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
 }
 
 .list li {
@@ -106,11 +105,11 @@ input[value="Submit"]:hover {
   font-size: 25px;
 }
 
-.list li p {
+.list li span.is-owed {
   color: #59a54c;
 }
 
-.list li span {
+.list li span.in-debt {
   color: red;
 }
 
@@ -211,4 +210,8 @@ li.mb-3 .select-name {
 
 li.mb-3 .select-name label {
   font-size: larger;
+}
+
+ul {
+  padding-left: 0;
 }
