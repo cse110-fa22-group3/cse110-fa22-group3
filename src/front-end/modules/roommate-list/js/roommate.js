@@ -21,30 +21,31 @@ class Roommate extends HTMLElement {
     style.innerText = `
           .item {
             margin-bottom: 30px;
-            padding: 30px;
-            width: 200px;
             border-radius: 45px;
-            border: 5px solid #000;
+            border: 3px solid #000;
             text-align: center;
             cursor: pointer;
+            word-break: break-word;
           }
           .text {
-            margin-bottom: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 0;
           }
           .text img {
-            width: 35px;
+            width: 25px;
             height: auto;
           }
           .text p {
-            font-size: 25px;
+            font-size: 20px;
+            padding-bottom: 0px;
+            line-height: 25px;
           }
           h3 {
             text-align: center;
-            font-size: 35px;
-            margin-bottom: 20px;
+            font-size: 25px;
+            margin-bottom: 0px;
           }
           span {
             font-size: 20px;
