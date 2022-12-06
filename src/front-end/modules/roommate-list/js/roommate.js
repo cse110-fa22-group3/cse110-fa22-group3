@@ -66,13 +66,13 @@ class Roommate extends HTMLElement {
             <h3>${data.name}</h3>
             <div class="text">
                 <img src="./modules/roommate-list/images/icon-1.png" alt="">
-                <p>&nbsp;${data.birthday}</p>
+                <p>${data.birthday}</p>
             </div>
             <div class="text">
-                <p><b>Hobbies:</b> ${data.hobbies}</p>
+                <p>${data.hobbies}</p>
             </div>
             <div class="text">
-                <p><b>Notes:</b> ${data.notes}</p>
+                <p>${data.notes}</p>
             </div>
         `;
   }
