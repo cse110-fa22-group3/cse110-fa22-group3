@@ -68,7 +68,7 @@ roommate-card {
   transition: background-color 0.2s;
 }
 
-.add-box:hover {
+.row .item .add-box:hover {
   background-color: lightgreen;
 }
 
