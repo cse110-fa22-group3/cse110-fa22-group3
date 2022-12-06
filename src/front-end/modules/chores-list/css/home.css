@@ -108,6 +108,7 @@ chore-card {
   background-color: white;
   margin: 20px;
   text-align: center;
+  word-break: break-word;
 }
 
 chore-card:hover {

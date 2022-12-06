@@ -23,7 +23,7 @@ img {
 }
 
 roommate-card {
-  width: 294px !important;
+  width: 300px !important;
   overflow: hidden;
 }
 
@@ -37,63 +37,69 @@ roommate-card {
   background-color: aliceblue;
 }
 
-.content .head {
+.head {
   margin-bottom: 30px;
   height: 50px;
 }
 
-.content .head .back {
+.head .back {
   display: block;
   width: 50px;
   height: 50px;
 }
 
-.content .row {
+.row {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.content .row .item {
-  margin-bottom: 30px;
-  padding: 30px;
-  padding-right: 5px;
-  width: 350px;
-  width: 250px;
-  border-radius: 45px;
-  border: 5px solid #000;
-  text-align: center;
-  cursor: pointer;
+.row .item {
+  width: 300px;
 }
 
-.content .row .item .text {
+.row .item .add-box {
+  margin-bottom: 30px;
+  border-radius: 45px;
+  height: 200px;
+  border: 3px solid #000;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-box:hover {
+  background-color: lightgreen;
+}
+
+.row .item .text {
   margin-bottom: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.content .row .item .text img {
+.row .item .text img {
   width: 35px;
   height: auto;
 }
 
-.content .row .item .text p {
+.row .item .text p {
   font-size: 25px;
 }
 
-.content .row .item h3 {
+.row .item h3 {
   text-align: left;
   font-size: 35px;
   font-size: 20px;
   margin-bottom: 20px;
 }
 
-.content .row .item span {
+.row .item span {
   font-size: 20px;
 }
 
-.content .row .item:last-child {
+.row .item:last-child .add-box {
   display: flex;
   align-items: center;
   justify-content: center;
