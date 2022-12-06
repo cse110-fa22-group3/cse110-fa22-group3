@@ -38,11 +38,13 @@ button:hover {
   color: white;
 }
 
-#delete-1 {
+#delete-1,
+#delete-2 {
   border-color: red;
 }
 
-#delete-1:hover {
+#delete-1:hover,
+#delete-2:hover {
   background-color: red;
   color: white;
 }
@@ -160,7 +162,7 @@ h3 {
 }
 
 .assignee-box-and-label label {
-  font-size: 15px;
+  font-size: 20px;
 }
 
 #assign label {
@@ -178,7 +180,7 @@ h3 {
 
 #week-header-div {
   display: inline-block;
-  inline-size: 350px;
+  inline-size: 480px;
   text-align: center;
 }
 
