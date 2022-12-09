@@ -2,7 +2,7 @@
 
 ## Project
 
-A webpage for roommates to simplify to-do lists, bill dividing, remembering information, etc. in a dorm or apartment.
+A web page for roommates to simplify to-do lists, bill dividing, remembering information, etc. in a dorm or apartment.
 
 https://cse110-fa22-group3.github.io/cse110-fa22-group3/
 
