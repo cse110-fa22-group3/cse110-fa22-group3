@@ -1,0 +1,14 @@
+## Context and Problem Statement
+
+- How to handle styling?
+
+## Decision
+
+- Use Bootstrap for the styling, replacing most of the temporary styling that's currently being used for the pages.
+- For efficiency's sake, don't completely overwrite styling that's already in place if it looks good. A mix between CSS and Bootstrap is okay.
+
+## Pros Considered
+
+- Bootstrap is simple and easy to use compared to plain CSS.
+- Some team members already have experience with Bootstrap.
+- We will be able to have a professional, consistent header and footer for every page.
