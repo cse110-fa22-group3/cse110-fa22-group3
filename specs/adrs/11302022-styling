@@ -4,7 +4,8 @@
 
 ## Decision
 
-- Use the current styling for the pages, and incorporate Bootstrap to wrap the page and add additional styling.
+- Use Bootstrap for the styling, replacing most of the temporary styling that's currently being used for the pages.
+- For efficiency's sake, don't completely overwrite styling that's already in place if it looks good. A mix between CSS and Bootstrap is okay.
 
 ## Pros Considered
 
