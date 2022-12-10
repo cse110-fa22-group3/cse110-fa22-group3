@@ -1,0 +1,13 @@
+## Context and Problem Statement
+
+- How to handle styling?
+
+## Decision
+
+- Use the current styling for the pages, and incorporate Bootstrap to wrap the page and add additional styling.
+
+## Pros Considered
+
+- Bootstrap is simple and easy to use compared to plain CSS.
+- Some team members already have experience with Bootstrap.
+- We will be able to have a professional, consistent header and footer for every page.
